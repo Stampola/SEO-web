@@ -1,5 +1,7 @@
-# Cloudflare Pages — redirects & rewrites
+# Cloudflare Pages / Workers Static Assets — redirects
 # https://developers.cloudflare.com/pages/configuration/redirects/
+# Note: 404 fallback is handled by wrangler.jsonc "not_found_handling": "404-page"
+# (do NOT put 404 as a status code here — Cloudflare rejects it)
 
 # Pretty URLs (optional) — /pricing → /pricing.html
 /pricing       /pricing.html      301
@@ -17,6 +19,3 @@
 /sign-up       /signup.html       301
 /sign-in       /app.html          301
 /login         /app.html          301
-
-# Fallback to 404
-/*             /404.html          404
