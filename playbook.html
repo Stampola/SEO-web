@@ -1,0 +1,1246 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SEO Task Playbook · งานประจำวันเพิ่ม SEO Score</title>
+<meta name="description" content="คู่มืองาน SEO รายวัน-รายสัปดาห์-รายเดือน สำหรับทีม agency · ทุกงานมีเวลาประมาณ + impact + step-by-step + ส่งผลต่อ score มิติไหน" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950:'#030712', 900:'#0b1220', 800:'#1f2937', 700:'#374151', 500:'#6b7280', 400:'#9ca3af', 300:'#d1d5db', 200:'#e5e7eb', 100:'#f3f4f6', 50:'#f9fafb' },
+          brand: { 50:'#eef2ff', 100:'#e0e7ff', 200:'#c7d2fe', 300:'#a5b4fc', 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca', 800:'#3730a3', 900:'#312e81' },
+          accent: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' },
+        }
+      }
+    }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, ui-sans-serif, sans-serif; }
+  code, pre { font-family: 'JetBrains Mono', monospace; }
+  html { scroll-behavior: smooth; }
+  body { background: #fafbfc; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 3px; }
+  .topic { scroll-margin-top: 100px; }
+  .tab-btn[aria-selected="true"] { background: #4f46e5; color: white; box-shadow: 0 4px 6px -1px rgba(79,70,229,0.3); }
+  .tab-btn[aria-selected="true"] svg { color: white; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  details summary { list-style: none; cursor: pointer; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] summary .chev { transform: rotate(180deg); }
+  .chev { transition: transform 0.2s; }
+  .task-card { transition: all 0.2s; }
+  .task-card:hover { transform: translateY(-1px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+  /* Pill colors */
+  .pill { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.125rem 0.5rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 700; }
+  .pill-time { background: #f3f4f6; color: #374151; }
+  .pill-impact-high { background: #dcfce7; color: #166534; }
+  .pill-impact-med { background: #fef3c7; color: #92400e; }
+  .pill-impact-low { background: #e0e7ff; color: #3730a3; }
+  .pill-onpage { background: #e0e7ff; color: #4338ca; }
+  .pill-tech { background: #f3e8ff; color: #6b21a8; }
+  .pill-cwv { background: #fee2e2; color: #991b1b; }
+  .pill-content { background: #d1fae5; color: #065f46; }
+  .pill-offpage { background: #fce7f3; color: #9f1239; }
+  .pill-aivis { background: #ede9fe; color: #5b21b6; }
+  .pill-local { background: #d1fae5; color: #065f46; }
+  /* Custom checkbox */
+  .task-check { width: 1.25rem; height: 1.25rem; border: 2px solid #d1d5db; border-radius: 0.375rem; cursor: pointer; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .task-check.checked { background: #10b981; border-color: #10b981; }
+  .task-check.checked::after { content: '✓'; color: white; font-weight: bold; font-size: 0.875rem; }
+  .task-row.checked .task-title { text-decoration: line-through; opacity: 0.5; }
+</style>
+</head>
+<body class="text-ink-900">
+
+<!-- ============ TOP BAR ============ -->
+<header class="sticky top-0 z-30 bg-white/90 backdrop-blur-lg border-b border-ink-200">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-4">
+    <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-red-600 flex items-center justify-center">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+      </div>
+      <div class="hidden sm:block">
+        <div class="font-extrabold text-sm leading-none">SEO Task Playbook</div>
+        <div class="text-[10px] text-ink-500 leading-none mt-0.5">งานประจำวันที่ทำให้ score เพิ่มขึ้น</div>
+      </div>
+    </a>
+    <div class="flex-1"></div>
+    <div class="flex items-center gap-2 flex-shrink-0">
+      <a href="help.html" class="hidden sm:inline-flex text-xs font-semibold text-ink-700 px-3 py-2 hover:bg-ink-50 rounded-lg">📚 Help</a>
+      <a href="app.html" class="text-xs font-semibold bg-ink-900 text-white px-3 py-2 rounded-lg hover:bg-ink-700">← Back to App</a>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-6 py-8">
+
+  <!-- ============ HERO ============ -->
+  <div class="bg-gradient-to-br from-accent-500 via-red-500 to-pink-600 rounded-3xl p-8 md:p-12 text-white mb-8 relative overflow-hidden">
+    <div class="relative">
+      <div class="text-xs font-bold tracking-[0.2em] uppercase mb-3 opacity-80">⚡ STAFF PLAYBOOK</div>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-4">รวมงาน SEO ที่ทีมต้องทำ <br/><span class="opacity-90">เพื่อเพิ่ม score</span></h1>
+      <p class="text-lg text-white/90 max-w-3xl mb-6">5 งาน daily · 11 งาน weekly · 14 งาน monthly · แยกตาม role · มี time estimate + impact + step-by-step ครบ — ทำตามได้เลย</p>
+      <div class="flex flex-wrap gap-2 text-xs">
+        <a href="#daily" class="bg-white/15 hover:bg-white/25 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">⚡ Daily (~30 นาที)</a>
+        <a href="#weekly" class="bg-white/15 hover:bg-white/25 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">📅 Weekly (~3 ชม.)</a>
+        <a href="#monthly" class="bg-white/15 hover:bg-white/25 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">📆 Monthly (~1 วัน)</a>
+        <a href="#quick-wins" class="bg-white/15 hover:bg-white/25 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">🎯 Top 10 Quick Wins</a>
+        <a href="#by-role" class="bg-white/15 hover:bg-white/25 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">👥 By Role</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ IMPACT LEGEND ============ -->
+  <div class="bg-white rounded-2xl border border-ink-200 p-5 mb-8">
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <h3 class="font-bold text-sm mb-3">📊 ระดับ Impact</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="pill pill-impact-high">High</span>
+          <span class="text-xs text-ink-500">เพิ่ม score 5-15 จุดใน 30 วัน</span>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="pill pill-impact-med">Medium</span>
+          <span class="text-xs text-ink-500">เพิ่ม score 2-5 จุดใน 30 วัน</span>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="pill pill-impact-low">Low</span>
+          <span class="text-xs text-ink-500">เพิ่ม score 0-2 จุด · maintenance</span>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-bold text-sm mb-3">🎯 ส่งผลต่อมิติ Score</h3>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="pill pill-onpage">On-Page</span>
+          <span class="pill pill-tech">Tech</span>
+          <span class="pill pill-cwv">CWV</span>
+          <span class="pill pill-content">Content</span>
+          <span class="pill pill-offpage">Off-Page</span>
+          <span class="pill pill-aivis">AI Vis</span>
+          <span class="pill pill-local">Local</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TABS ============ -->
+  <div class="flex gap-2 mb-6 overflow-x-auto" role="tablist">
+    <button class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-ink-200 text-sm font-bold whitespace-nowrap" role="tab" aria-selected="true" data-panel="daily">⚡ Daily (5)</button>
+    <button class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-ink-200 text-sm font-bold whitespace-nowrap" role="tab" aria-selected="false" data-panel="weekly">📅 Weekly (11)</button>
+    <button class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-ink-200 text-sm font-bold whitespace-nowrap" role="tab" aria-selected="false" data-panel="monthly">📆 Monthly (14)</button>
+    <button class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-ink-200 text-sm font-bold whitespace-nowrap" role="tab" aria-selected="false" data-panel="quick-wins">🎯 Quick Wins (10)</button>
+    <button class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-ink-200 text-sm font-bold whitespace-nowrap" role="tab" aria-selected="false" data-panel="by-role">👥 By Role</button>
+  </div>
+
+  <!-- ============ DAILY ============ -->
+  <section id="daily" class="topic panel active" data-panel="daily">
+    <div class="bg-white rounded-2xl border border-ink-200 p-5 mb-4">
+      <h2 class="text-2xl font-extrabold mb-1">⚡ Daily Tasks</h2>
+      <p class="text-sm text-ink-500">งานประจำวัน · ทำตอนเช้า ~30 นาที</p>
+    </div>
+
+    <div class="space-y-3" id="daily-list">
+      <!-- Task 1 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold text-sm sm:text-base">1. เช็ค ranking ที่เปลี่ยนแปลง</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <span class="pill pill-time">⏱ 10 นาที</span>
+                <span class="pill pill-impact-high">High</span>
+                <span class="pill pill-onpage">On-Page</span>
+                <span class="pill pill-content">Content</span>
+              </div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> ปัญหา ranking ตกที่เจอเร็วใน 24 ชม. แก้ได้ก่อนลามไปไกล</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2 mb-3">
+              <li>เปิด Dashboard → ตาราง "Top moving keywords"</li>
+              <li>ดู keywords ที่ตก &gt; 3 อันดับ (สีแดง ↓)</li>
+              <li>ถ้าเป็น keyword สำคัญ → คลิกดู SERP diff (เว็บใครขึ้นแทน?)</li>
+              <li>ถ้าสาเหตุชัด (เช่น competitor เขียนใหม่) → สร้าง task ให้ writer refresh content</li>
+              <li>ถ้าไม่ชัด → ดูใน Audit ว่ามีอะไรเปลี่ยน (CWV ตก? schema หาย?)</li>
+            </ol>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs"><strong>💡 ระบบช่วย:</strong> Automation "Ranking drop watcher" จะแจ้ง LINE อัตโนมัติเมื่อตก &gt; 5 อันดับ · งานนี้คุณแค่ยืนยัน + assign</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Task 2 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold text-sm sm:text-base">2. Review Google Search Console errors</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <span class="pill pill-time">⏱ 5 นาที</span>
+                <span class="pill pill-impact-high">High</span>
+                <span class="pill pill-tech">Tech</span>
+              </div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> Crawl error/index issue ทำให้ Google มองไม่เห็นหน้า = score Tech ตก</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2 mb-3">
+              <li>เปิด Project Detail → tab "Audit Issues"</li>
+              <li>ดู section "GSC alerts" — มี alert ใหม่ไหม</li>
+              <li>หา 404 errors ใหม่ → fix หรือ redirect</li>
+              <li>หา "Crawled but not indexed" → เช็คว่า content ดีพอ ไม่ใช่ thin</li>
+              <li>กด "Submit for indexing" สำหรับหน้าใหม่ที่ยังไม่ index</li>
+            </ol>
+            <div class="bg-blue-50 rounded-lg p-3 text-xs"><strong>เป้าหมาย:</strong> 0 critical errors · indexed/discovered ratio &gt; 95%</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Task 3 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold text-sm sm:text-base">3. เช็ค comments/approvals จากลูกค้า</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <span class="pill pill-time">⏱ 10 นาที</span>
+                <span class="pill pill-impact-med">Medium</span>
+                <span class="pill pill-content">Content</span>
+              </div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> ลูกค้า approve ช้า = content publish ช้า = score Content ขึ้นช้า</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2 mb-3">
+              <li>เปิด Content Pipeline → คอลัมน์ "In Review"</li>
+              <li>เช็คว่ามี comment ใหม่จากลูกค้าหรือไม่</li>
+              <li>ถ้าลูกค้าขอแก้ → แจ้ง writer ทันที (ไม่ทิ้งข้ามวัน)</li>
+              <li>ถ้า approve แล้ว → ระบบ publish อัตโนมัติ ตรวจดูว่า publish สำเร็จ + schema ใส่แล้ว</li>
+              <li>ถ้าลูกค้าเงียบ &gt; 3 วัน → ส่ง reminder ทาง LINE</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- Task 4 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold text-sm sm:text-base">4. Monitor automation alerts</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <span class="pill pill-time">⏱ 5 นาที</span>
+                <span class="pill pill-impact-med">Medium</span>
+                <span class="pill pill-tech">Tech</span>
+              </div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> Automation จับปัญหาให้แล้ว แต่บางอย่างต้องมีคนตัดสินใจต่อ</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2 mb-3">
+              <li>เปิด Automations → ดู "Run history" 24 ชม.ที่แล้ว</li>
+              <li>เช็ค rule ที่ status = "failed" หรือ "needs-action"</li>
+              <li>ถ้า fail บ่อยๆ → debug rule (โอเค ปรับ threshold หรือ disable)</li>
+              <li>ถ้า task ถูกสร้างให้ specialist → ตรวจ priority ถูกหรือยัง</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- Task 5 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold text-sm sm:text-base">5. เช็ค AI Visibility ลูกค้าเด่นๆ</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <span class="pill pill-time">⏱ 5 นาที</span>
+                <span class="pill pill-impact-high">High</span>
+                <span class="pill pill-aivis">AI Vis</span>
+              </div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> AI citations เป็น <strong>ranking factor ใหม่ที่คู่แข่งยังไม่ทำ</strong> · ปรับเล็กน้อยได้ผลเยอะ</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2 mb-3">
+              <li>เปิด AI Visibility → ดู prompt portfolio ของลูกค้าที่ดูแล</li>
+              <li>เช็ค prompts ที่ <strong>เคย cited → กลายเป็น mention/—</strong> ใน 7 วัน</li>
+              <li>ถ้าหลุดเยอะ → คลิก "Why not cited?" diff explainer</li>
+              <li>สร้าง task ให้ writer refresh content หรือเพิ่ม schema</li>
+            </ol>
+            <div class="bg-purple-50 rounded-lg p-3 text-xs"><strong>💡 Automation:</strong> "AI citation lost" rule จะ auto-create brief ให้แล้ว · งานคุณคือ verify + assign</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WEEKLY ============ -->
+  <section id="weekly" class="topic panel" data-panel="weekly">
+    <div class="bg-white rounded-2xl border border-ink-200 p-5 mb-4">
+      <h2 class="text-2xl font-extrabold mb-1">📅 Weekly Tasks</h2>
+      <p class="text-sm text-ink-500">งานสัปดาห์ละครั้ง · ทำวันจันทร์ ~3 ชม.</p>
+    </div>
+
+    <div class="space-y-3">
+      <!-- W1: Full audit -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">1. รัน full site audit ของลูกค้าทุกราย</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 30 นาที</span><span class="pill pill-impact-high">High</span><span class="pill pill-onpage">On-Page</span><span class="pill pill-tech">Tech</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> Snapshot สถานะเว็บ — ดูว่ามีปัญหาใหม่เกิดขึ้นในสัปดาห์ที่ผ่านมา</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>กด "Run audit" ในทุก project (Automation จะรันอยู่แล้ว แต่ manual run ให้ได้ snapshot ปัจจุบัน)</li>
+              <li>ดู "Audit Issues" → เปรียบเทียบกับสัปดาห์ที่แล้ว</li>
+              <li>Critical issues ใหม่ → สร้าง task priority high</li>
+              <li>ถ้า score ตก &gt; 5 จุด → ดูว่ามิติไหนเสีย แล้วโฟกัสที่นั่น</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- W2 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">2. Backlink analysis — ใหม่ + หาย</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 20 นาที</span><span class="pill pill-impact-high">High</span><span class="pill pill-offpage">Off-Page</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> Backlinks ที่หายไป (lost links) ทำให้ Off-Page score ตก · backlinks ใหม่ DA สูงเพิ่ม authority</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2 mb-3">
+              <li>เปิด Project Detail → tab "Backlinks"</li>
+              <li>ดู "Lost links" 7 วัน → ถ้าเป็น link สำคัญ → ติดต่อขอกลับ หรือทดแทนด้วย link ใหม่</li>
+              <li>ดู "New links" → ถ้าเป็น toxic (spam/porn) → disavow</li>
+              <li>เก็บ list backlink ใหม่ DA &gt; 50 เพื่อ pitch case study ต่อ</li>
+            </ol>
+            <div class="bg-amber-50 rounded-lg p-3 text-xs"><strong>หมายเหตุ:</strong> ระบบเรา sync DataForSEO ทุก 24 ชม. · ข้อมูลเป็น near-realtime</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- W3 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">3. Local Grid scan สำหรับ local clients</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 15 นาที</span><span class="pill pill-impact-high">High</span><span class="pill pill-local">Local</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> Local ranking ต่างกันมากในแต่ละพื้นที่ · Grid scan เห็นภาพชัด</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>เปิด Local Grid สำหรับลูกค้า local (ร้านอาหาร, spa, คลินิก)</li>
+              <li>รัน 7×7 grid สำหรับ keyword หลัก</li>
+              <li>เปรียบเทียบกับสัปดาห์ที่แล้ว — top 3 coverage เพิ่ม/ลด?</li>
+              <li>หา weak zones (สีแดง/ส้ม) → focus area สำหรับ GBP optimization</li>
+              <li>แจ้งลูกค้าให้ขอ review จากคนในพื้นที่ weak zone</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- W4 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">4. Content brief queue — สร้าง brief ใหม่</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 40 นาที</span><span class="pill pill-impact-high">High</span><span class="pill pill-content">Content</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> Writer ต้องมี brief จ่ายอย่างต่อเนื่อง · queue ว่าง = ไม่มี content publish = score ตก</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>ดู content calendar — ลูกค้าไหนใกล้หมด brief</li>
+              <li>เปิด Keyword Planner → ใส่ topic ของลูกค้านั้น</li>
+              <li>เลือก keyword ที่ KD ต่ำ-ปานกลาง + volume ดี (sweet spot: KD 20-50, vol &gt; 500)</li>
+              <li>กด "สร้าง Brief จาก keyword" → ระบบ generate outline ให้</li>
+              <li>review brief + เพิ่มเงื่อนไขพิเศษ → assign writer</li>
+            </ol>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs"><strong>เป้าหมาย:</strong> มี brief ใน pipeline ≥ 4 ชิ้นต่อลูกค้า ตลอดเวลา</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- W5 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">5. Internal linking audit + เพิ่ม links</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 30 นาที</span><span class="pill pill-impact-high">High</span><span class="pill pill-onpage">On-Page</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> Internal linking <strong>เร็วและฟรี</strong> — ส่ง link equity ระหว่างหน้า เพิ่ม ranking ของ pillar</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2 mb-3">
+              <li>ใช้ Internal Linking suggester ของระบบ</li>
+              <li>หา orphan pages (ไม่มี link ชี้มา) → เพิ่ม links จากหน้าที่เกี่ยวข้อง</li>
+              <li>หา pillar pages (หน้าใหญ่) → เพิ่ม link จาก sub-articles 3-5 ตัว</li>
+              <li>ตรวจ anchor text — ห้ามใช้ "click here" ให้ใช้ keyword ที่เกี่ยวข้อง</li>
+              <li>publish updates ตรง (ไม่ต้อง wait approval สำหรับ link เล็กๆ)</li>
+            </ol>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs"><strong>📈 Impact:</strong> ทำต่อเนื่อง 4 สัปดาห์ = score On-Page เพิ่ม 3-8 จุด</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- W6 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">6. Schema validation check</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 15 นาที</span><span class="pill pill-impact-med">Medium</span><span class="pill pill-tech">Tech</span><span class="pill pill-aivis">AI Vis</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> Schema ที่ error = Google ไม่อ่าน + AI ไม่ใช้ในการ quote</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>ดู Audit Issues → section "Structured Data"</li>
+              <li>เช็คทุก schema ที่มี error/warning</li>
+              <li>ใช้ Google Rich Results Test เพื่อ verify</li>
+              <li>ถ้าหน้าไหนยังไม่มี schema ที่ควรมี → ใช้ Schema Generator สร้าง</li>
+              <li>ตรวจว่า dev/CMS ใส่ schema ถูกที่</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- W7 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">7. CWV diagnostic + dev tickets</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 20 นาที</span><span class="pill pill-impact-med">Medium</span><span class="pill pill-cwv">CWV</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> CWV ตกค่อยๆ จาก third-party scripts/รูปใหม่ที่ใส่ — ต้องคอยจับ</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>เปิด Project → tab CWV</li>
+              <li>เปรียบเทียบ INP/LCP/CLS กับสัปดาห์ที่แล้ว</li>
+              <li>หาหน้าที่ INP &gt; 200ms — debug script ที่หนัก</li>
+              <li>สร้าง dev ticket ใน ClickUp/Asana (auto-sync จากระบบ)</li>
+              <li>แจ้ง dev team พร้อม recommendation</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- W8 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">8. Update content calendar</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 20 นาที</span><span class="pill pill-impact-med">Medium</span><span class="pill pill-content">Content</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> ลูกค้าต้องการความสม่ำเสมอ · Google มอง freshness</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>เปิด Content Pipeline · ดู kanban</li>
+              <li>วางแผน 4 สัปดาห์ข้างหน้า — 1 pillar + 2-3 sub-articles ต่อลูกค้า</li>
+              <li>match กับเทศกาล/event (สงกรานต์, ปีใหม่, Black Friday)</li>
+              <li>set due dates + assign writers</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- W9 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">9. Refresh old content (1-2 articles)</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 45 นาที</span><span class="pill pill-impact-high">High</span><span class="pill pill-content">Content</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> เนื้อหา 1-2 ปีเก่า rank ตกค่อยๆ · refresh เร็วและถูกกว่าเขียนใหม่ + Google ชอบ freshness</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2 mb-3">
+              <li>หาบทความที่: published &gt; 12 เดือน + เคย rank ดี + ตอนนี้ตก</li>
+              <li>อ่านบทความปัจจุบันที่ติด top 3 — เขาเพิ่มอะไรที่เราขาด?</li>
+              <li>เพิ่ม section ใหม่, อัปเดต stats/ปี, refresh examples</li>
+              <li>เพิ่ม author byline ถ้ายังไม่มี (E-E-A-T)</li>
+              <li>publish + update <code>dateModified</code> ใน schema</li>
+              <li>submit re-index ใน GSC</li>
+            </ol>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs"><strong>💡 Pro tip:</strong> Refresh 1 article สร้าง traffic ได้เท่าๆ กับเขียนใหม่ 3 articles · ทำสัปดาห์ละครั้งสม่ำเสมอ</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- W10 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">10. Competitor SERP analysis</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 25 นาที</span><span class="pill pill-impact-med">Medium</span><span class="pill pill-content">Content</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> เข้าใจคู่แข่ง = หา content gap = topics ที่ทำง่ายและ rank ได้</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>เลือก competitor 2-3 ราย</li>
+              <li>ดู keyword ที่เขา rank ดี (top 10) แต่เราไม่</li>
+              <li>filter ด้วย KD ≤ 50 + volume &gt; 300</li>
+              <li>เพิ่มเป็น content brief ใน queue</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- W11 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">11. ส่ง weekly digest ให้ลูกค้า</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 15 นาที</span><span class="pill pill-impact-low">Low</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>ทำไม:</strong> รักษาความสัมพันธ์ + ลูกค้าเห็น value ของ retainer</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>ระบบ generate weekly digest อัตโนมัติทุกจันทร์ 9:00</li>
+              <li>คุณ review + เพิ่ม commentary ส่วนตัว</li>
+              <li>highlight 1 win + 1 issue ที่กำลังแก้</li>
+              <li>ส่ง LINE OA + email</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MONTHLY ============ -->
+  <section id="monthly" class="topic panel" data-panel="monthly">
+    <div class="bg-white rounded-2xl border border-ink-200 p-5 mb-4">
+      <h2 class="text-2xl font-extrabold mb-1">📆 Monthly Tasks</h2>
+      <p class="text-sm text-ink-500">งานเดือนละครั้ง · ใช้เวลา ~1 วันรวม · ทำต้นเดือน</p>
+    </div>
+
+    <div class="space-y-3">
+      <!-- M1 -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">1. Monthly report — ทุกลูกค้า</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 1 ชม. (auto + review)</span><span class="pill pill-impact-low">Low</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3">ระบบ generate PDF อัตโนมัติทุกวันที่ 1 · AM review + เพิ่ม commentary · ส่งอีเมล + LINE OA</p>
+            <p class="font-semibold mb-2">📋 Step-by-step:</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>เปิดทุก draft report ที่ระบบ generate</li>
+              <li>review AI Summary — ปรับโทนให้เหมาะกับลูกค้า</li>
+              <li>เพิ่ม narrative ของ AM ส่วนตัว (1-2 ย่อหน้า)</li>
+              <li>กด "Send" → ระบบส่ง email + LINE + log</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M2 Audit deep -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">2. Full technical SEO deep dive</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 2 ชม.</span><span class="pill pill-impact-high">High</span><span class="pill pill-tech">Tech</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>เช็คทุก technical aspect ที่ไม่ได้ดูทุกสัปดาห์</strong></p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>sitemap.xml — มีหน้าครบ + submit GSC?</li>
+              <li>robots.txt — block สิ่งที่ไม่ควร? อนุญาต GPTBot/ClaudeBot?</li>
+              <li>hreflang — ถ้ามีหลายภาษา ใส่ครบ?</li>
+              <li>HTTPS — ทุกหน้า + redirect HTTP → HTTPS</li>
+              <li>Canonical chains — ไม่มี loop หรือ chain &gt; 2</li>
+              <li>JS rendering parity — Google เห็นตรงกับ browser?</li>
+              <li>Mobile responsiveness — ทุก breakpoint</li>
+              <li>404/410/redirect — ไม่มี broken</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M3 Keyword refresh -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">3. Keyword research refresh</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 1.5 ชม.</span><span class="pill pill-impact-high">High</span><span class="pill pill-content">Content</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>ดู keyword list ปัจจุบัน — มีตัวที่เลิก track ได้ไหม (volume ตก)</li>
+              <li>หา new keyword opportunities จาก GSC: "queries with impressions but no clicks"</li>
+              <li>ทำ keyword expansion ใหม่จาก seed keyword ของลูกค้า</li>
+              <li>filter: KD ≤ 50, volume ≥ 200, intent matches business</li>
+              <li>เพิ่มเข้า tracker</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M4 AI Visibility deep -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">4. AI Visibility deep dive</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 1 ชม.</span><span class="pill pill-impact-high">High</span><span class="pill pill-aivis">AI Vis</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>refresh prompt portfolio — เพิ่ม 10-20 prompts ใหม่ที่เกี่ยวข้องกับ business</li>
+              <li>วิเคราะห์ SOV trend 30 วัน — เพิ่ม/ลด?</li>
+              <li>identify content gaps จาก "why not cited" diff</li>
+              <li>วาง content strategy เพื่อชนะ citations ในไตรมาสถัดไป</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M5 Backlink outreach -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">5. Backlink outreach campaign</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 3 ชม.</span><span class="pill pill-impact-high">High</span><span class="pill pill-offpage">Off-Page</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>identify backlink prospects — เว็บ industry ที่เขียนเรื่องคล้ายๆ</li>
+              <li>research contact + email</li>
+              <li>เตรียม pitch (guest post, link building, broken link replacement)</li>
+              <li>ส่ง 10-20 emails</li>
+              <li>track responses (เป้า: 1-2 backlinks/เดือนจาก campaign นี้)</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M6 Schema upgrade -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">6. Schema upgrade pass</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 45 นาที</span><span class="pill pill-impact-med">Medium</span><span class="pill pill-tech">Tech</span><span class="pill pill-aivis">AI Vis</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>identify หน้าใหม่ที่ขาด schema</li>
+              <li>upgrade schema เก่าให้ chained (Product → Org → Person sameAs)</li>
+              <li>เพิ่ม Author entity graph สำหรับ content E-E-A-T</li>
+              <li>test ทุก schema ใหม่กับ Rich Results Test</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M7 Re-optimize -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">7. Re-optimize underperforming pages (3-5 หน้า)</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 2 ชม.</span><span class="pill pill-impact-high">High</span><span class="pill pill-onpage">On-Page</span><span class="pill pill-content">Content</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <p class="mb-3"><strong>หน้าที่ติด page 2 (11-20)</strong> — ใกล้ top 10 มาก, ปรับนิดเดียวขยับขึ้นได้</p>
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>filter GSC: pages with avg position 11-20 + impressions ≥ 500</li>
+              <li>ดู NLP score — ขาด entity/term ไหน</li>
+              <li>เพิ่ม content depth (FAQ section, comparison table, expert quote)</li>
+              <li>เพิ่ม internal links จากหน้าอื่น 3-5 ลิงก์</li>
+              <li>อัปเดต title/meta ใหม่ให้ดึงดูดคลิก</li>
+              <li>publish + re-submit GSC</li>
+            </ol>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs"><strong>📈 Impact ตัวจริง:</strong> 30-50% ของหน้าที่ทำแบบนี้ขึ้น top 10 ใน 30 วัน</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- M8 GBP posts -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">8. GBP posts + Q&A refresh (local clients)</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 30 นาที</span><span class="pill pill-impact-med">Medium</span><span class="pill pill-local">Local</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>โพสต์ใน GBP 4 ครั้ง/เดือน (offer, event, what's new, product)</li>
+              <li>ตอบ Q&A ใหม่ทั้งหมด</li>
+              <li>request reviews จากลูกค้าใหม่</li>
+              <li>upload รูปใหม่ 2-3 รูป</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M9 Review automations -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">9. Review automation rules</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 30 นาที</span><span class="pill pill-impact-low">Low</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>ดู Automation success rate (เป้า ≥ 99%)</li>
+              <li>rule ที่ trigger เยอะแต่ไม่มี action จริง → ปรับ threshold</li>
+              <li>เพิ่ม rule ใหม่จาก pattern ที่เกิดบ่อยๆ (ทำซ้ำเอง 3 ครั้งขึ้นไป)</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M10 Content performance -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">10. Content performance review</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 1 ชม.</span><span class="pill pill-impact-med">Medium</span><span class="pill pill-content">Content</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-1 ml-2">
+              <li>ดูบทความที่ publish ในเดือนที่แล้ว</li>
+              <li>top performers — ทำไมได้ traffic เยอะ? เลียนแบบสำหรับเดือนต่อ</li>
+              <li>under-performers — schedule refresh ใน 6 เดือน</li>
+              <li>NLP score ต่ำ → list ไว้สำหรับ improve</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- M11-14 ย่อเป็นการ์ดสั้น -->
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">11. Update sitemap.xml + submit GSC</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 15 นาที</span><span class="pill pill-impact-low">Low</span><span class="pill pill-tech">Tech</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700">ตรวจให้แน่ใจ sitemap มีทุกหน้าใหม่ที่ publish ในเดือนที่ผ่านมา + re-submit ใน GSC</div>
+        </details>
+      </div>
+
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">12. Strategic review meeting กับลูกค้า</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 1 ชม./ลูกค้า</span><span class="pill pill-impact-med">Medium</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700">นัด Zoom/Google Meet กับลูกค้า · ทบทวน monthly report · วาง strategy เดือนถัดไป</div>
+        </details>
+      </div>
+
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">13. AI Crawler access check</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 20 นาที</span><span class="pill pill-impact-med">Medium</span><span class="pill pill-aivis">AI Vis</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700">เช็คว่า WAF/Cloudflare ไม่ block GPTBot, ClaudeBot, PerplexityBot · ใช้ AI Crawler Access Auditor ในระบบ</div>
+        </details>
+      </div>
+
+      <div class="task-row bg-white rounded-2xl border border-ink-200 overflow-hidden task-card">
+        <details>
+          <summary class="px-5 py-4 flex items-start gap-3 hover:bg-ink-50">
+            <span class="task-check" onclick="toggleCheck(event, this)"></span>
+            <div class="flex-1 min-w-0">
+              <div class="task-title font-bold">14. Team retrospective</div>
+              <div class="flex flex-wrap gap-1.5 mt-1.5"><span class="pill pill-time">⏱ 1 ชม.</span><span class="pill pill-impact-low">Low</span></div>
+            </div>
+            <svg class="chev w-4 h-4 text-ink-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 pt-1 text-sm text-ink-700">ประชุมทีมเดือนละครั้ง · review wins/issues · improve process · share findings</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUICK WINS ============ -->
+  <section id="quick-wins" class="topic panel" data-panel="quick-wins">
+    <div class="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-6 text-white mb-4">
+      <h2 class="text-2xl font-extrabold mb-1">🎯 Top 10 Quick Wins</h2>
+      <p class="text-white/90">งานที่ <strong>ทำเร็ว (&lt; 1 ชม.)</strong> แต่ <strong>ขยับ score เห็นผล</strong> ภายใน 14-30 วัน</p>
+    </div>
+
+    <div class="space-y-3">
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">1</div>
+        <div class="flex-1">
+          <h3 class="font-bold">เติม meta description ที่ขาด</h3>
+          <p class="text-sm text-ink-700 mt-1">หา 5-10 หน้าที่ไม่มี meta description (Audit Issues) · ใช้ AI generate · เพิ่ม CTR ทันที</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 30 นาที</span><span class="pill pill-impact-high">+3-5 score</span><span class="pill pill-onpage">On-Page</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">2</div>
+        <div class="flex-1">
+          <h3 class="font-bold">เพิ่ม schema markup สำหรับ Article (top 10 หน้า)</h3>
+          <p class="text-sm text-ink-700 mt-1">หน้าที่มี traffic เยอะ ยังไม่มี schema · ใช้ Schema Generator · ผลภายใน 1-2 สัปดาห์ AI ดึงไปใช้</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 45 นาที</span><span class="pill pill-impact-high">+5-10 AI Vis</span><span class="pill pill-tech">Tech</span><span class="pill pill-aivis">AI Vis</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">3</div>
+        <div class="flex-1">
+          <h3 class="font-bold">เพิ่ม Author entity ทุก content</h3>
+          <p class="text-sm text-ink-700 mt-1">สร้าง /authors/ pages พร้อม sameAs (LinkedIn, Twitter) · ใส่ Person schema · ส่งผลต่อ E-E-A-T ทันที</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 1 ชม.</span><span class="pill pill-impact-high">+5-8 Content</span><span class="pill pill-content">Content</span><span class="pill pill-aivis">AI Vis</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">4</div>
+        <div class="flex-1">
+          <h3 class="font-bold">Fix broken internal links</h3>
+          <p class="text-sm text-ink-700 mt-1">ใช้ Broken Link Sweeper · automation จะ suggest redirect ให้ · กดยืนยัน publish</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 20 นาที</span><span class="pill pill-impact-med">+2-4 score</span><span class="pill pill-tech">Tech</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">5</div>
+        <div class="flex-1">
+          <h3 class="font-bold">เพิ่ม FAQ section ที่ทุกหน้าหลัก</h3>
+          <p class="text-sm text-ink-700 mt-1">5-7 คำถามที่ลูกค้าจริงๆ ถาม · ใส่ FAQPage schema · ติด People Also Ask + AI Overview</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 45 นาที/หน้า</span><span class="pill pill-impact-high">+3-7 AI Vis</span><span class="pill pill-content">Content</span><span class="pill pill-aivis">AI Vis</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">6</div>
+        <div class="flex-1">
+          <h3 class="font-bold">Compress รูปภาพหนัก (LCP fix)</h3>
+          <p class="text-sm text-ink-700 mt-1">หารูปที่ &gt; 500KB · convert เป็น WebP/AVIF · ใช้ CDN · LCP ดีขึ้นทันที</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 30 นาที</span><span class="pill pill-impact-high">+3-6 CWV</span><span class="pill pill-cwv">CWV</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">7</div>
+        <div class="flex-1">
+          <h3 class="font-bold">เติม alt text ที่ขาด</h3>
+          <p class="text-sm text-ink-700 mt-1">หา images ไม่มี alt · ใช้ AI generate descriptive alt · ช่วยทั้ง SEO และ accessibility</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 20 นาที</span><span class="pill pill-impact-med">+1-3 score</span><span class="pill pill-onpage">On-Page</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">8</div>
+        <div class="flex-1">
+          <h3 class="font-bold">Internal links จาก high-authority pages</h3>
+          <p class="text-sm text-ink-700 mt-1">หาหน้าที่มี traffic เยอะ → link ไปหน้าที่อยากให้ rank ขึ้น · กระจาย link equity</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 30 นาที</span><span class="pill pill-impact-high">+3-5 score</span><span class="pill pill-onpage">On-Page</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">9</div>
+        <div class="flex-1">
+          <h3 class="font-bold">Optimize title tags 50-60 chars</h3>
+          <p class="text-sm text-ink-700 mt-1">หา title ที่ &gt; 60 (ถูกตัด) หรือ &lt; 30 (สั้นไป) · rewrite + ใส่ keyword หลัก</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 20 นาที</span><span class="pill pill-impact-high">+CTR 10-30%</span><span class="pill pill-onpage">On-Page</span></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-5 task-card flex items-start gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold text-lg flex-shrink-0">10</div>
+        <div class="flex-1">
+          <h3 class="font-bold">Submit "page 2 keywords" สำหรับ re-index</h3>
+          <p class="text-sm text-ink-700 mt-1">หน้าที่ติด 11-20 + เพิ่ม content เล็กน้อย + submit GSC re-crawl · ขึ้น top 10 ได้ใน 1-2 wk</p>
+          <div class="flex flex-wrap gap-1.5 mt-2"><span class="pill pill-time">⏱ 30 นาที/หน้า</span><span class="pill pill-impact-high">+top 10 wins</span><span class="pill pill-content">Content</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BY ROLE ============ -->
+  <section id="by-role" class="topic panel" data-panel="by-role">
+    <div class="bg-white rounded-2xl border border-ink-200 p-5 mb-4">
+      <h2 class="text-2xl font-extrabold mb-1">👥 Tasks by Role</h2>
+      <p class="text-sm text-ink-500">งานที่แต่ละ role ในทีมทำ</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <!-- AM -->
+      <div class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+        <div class="px-5 py-4 bg-gradient-to-br from-purple-500 to-purple-700 text-white">
+          <div class="text-2xl mb-1">📋</div>
+          <h3 class="font-bold text-lg">Account Manager (AM)</h3>
+          <p class="text-xs text-white/80 mt-1">บริหารความสัมพันธ์ลูกค้า + วาง strategy</p>
+        </div>
+        <div class="p-5">
+          <h4 class="font-bold text-sm mb-2">📅 Daily</h4>
+          <ul class="text-sm text-ink-700 space-y-1 mb-4 ml-3">
+            <li>• เช็ค client comments + LINE messages</li>
+            <li>• Review pending approvals</li>
+            <li>• Triage automation alerts</li>
+          </ul>
+          <h4 class="font-bold text-sm mb-2">📅 Weekly</h4>
+          <ul class="text-sm text-ink-700 space-y-1 mb-4 ml-3">
+            <li>• Weekly digest ให้ลูกค้าทุกราย</li>
+            <li>• 1:1 calls กับลูกค้าใหม่</li>
+            <li>• Strategy planning</li>
+          </ul>
+          <h4 class="font-bold text-sm mb-2">📅 Monthly</h4>
+          <ul class="text-sm text-ink-700 space-y-1 ml-3">
+            <li>• Monthly report + commentary</li>
+            <li>• Strategic review meeting</li>
+            <li>• Identify upsell opportunities</li>
+            <li>• Renewal conversations</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Specialist -->
+      <div class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+        <div class="px-5 py-4 bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
+          <div class="text-2xl mb-1">🔧</div>
+          <h3 class="font-bold text-lg">SEO Specialist</h3>
+          <p class="text-xs text-white/80 mt-1">Technical SEO + on-page + tools</p>
+        </div>
+        <div class="p-5">
+          <h4 class="font-bold text-sm mb-2">📅 Daily</h4>
+          <ul class="text-sm text-ink-700 space-y-1 mb-4 ml-3">
+            <li>• Ranking check + Audit Issues</li>
+            <li>• GSC errors review</li>
+            <li>• Run tasks จาก automation</li>
+            <li>• Quick fixes (broken links, schema)</li>
+          </ul>
+          <h4 class="font-bold text-sm mb-2">📅 Weekly</h4>
+          <ul class="text-sm text-ink-700 space-y-1 mb-4 ml-3">
+            <li>• Full audit + score tracking</li>
+            <li>• Backlink analysis</li>
+            <li>• Internal linking pass</li>
+            <li>• CWV diagnostic + dev tickets</li>
+            <li>• Schema validation</li>
+            <li>• Local Grid scan (local clients)</li>
+          </ul>
+          <h4 class="font-bold text-sm mb-2">📅 Monthly</h4>
+          <ul class="text-sm text-ink-700 space-y-1 ml-3">
+            <li>• Technical SEO deep dive</li>
+            <li>• Re-optimize underperforming pages</li>
+            <li>• Schema upgrade</li>
+            <li>• AI Crawler access check</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Writer -->
+      <div class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+        <div class="px-5 py-4 bg-gradient-to-br from-amber-500 to-orange-600 text-white">
+          <div class="text-2xl mb-1">✍️</div>
+          <h3 class="font-bold text-lg">Content Writer</h3>
+          <p class="text-xs text-white/80 mt-1">เขียน + optimize content</p>
+        </div>
+        <div class="p-5">
+          <h4 class="font-bold text-sm mb-2">📅 Daily</h4>
+          <ul class="text-sm text-ink-700 space-y-1 mb-4 ml-3">
+            <li>• เขียน draft ตาม brief</li>
+            <li>• Optimize NLP score ก่อนส่ง review</li>
+            <li>• เพิ่ม internal links + alt text</li>
+            <li>• Respond ต่อ revision requests</li>
+          </ul>
+          <h4 class="font-bold text-sm mb-2">📅 Weekly</h4>
+          <ul class="text-sm text-ink-700 space-y-1 mb-4 ml-3">
+            <li>• Refresh 1-2 old articles</li>
+            <li>• Research new topics</li>
+            <li>• Image research + alt text บทความใหม่</li>
+          </ul>
+          <h4 class="font-bold text-sm mb-2">📅 Monthly</h4>
+          <ul class="text-sm text-ink-700 space-y-1 ml-3">
+            <li>• Content performance review</li>
+            <li>• Identify topic clusters</li>
+            <li>• Update content calendar</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Owner -->
+      <div class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+        <div class="px-5 py-4 bg-gradient-to-br from-brand-500 to-purple-700 text-white">
+          <div class="text-2xl mb-1">👑</div>
+          <h3 class="font-bold text-lg">Owner / Agency Lead</h3>
+          <p class="text-xs text-white/80 mt-1">บริหาร agency + automation + growth</p>
+        </div>
+        <div class="p-5">
+          <h4 class="font-bold text-sm mb-2">📅 Daily</h4>
+          <ul class="text-sm text-ink-700 space-y-1 mb-4 ml-3">
+            <li>• Quick check Admin Dashboard</li>
+            <li>• Triage critical alerts</li>
+          </ul>
+          <h4 class="font-bold text-sm mb-2">📅 Weekly</h4>
+          <ul class="text-sm text-ink-700 space-y-1 mb-4 ml-3">
+            <li>• MRR + retention review</li>
+            <li>• Team workload balancing</li>
+            <li>• Automation success rate</li>
+          </ul>
+          <h4 class="font-bold text-sm mb-2">📅 Monthly</h4>
+          <ul class="text-sm text-ink-700 space-y-1 ml-3">
+            <li>• Team retrospective</li>
+            <li>• Pricing/packaging review</li>
+            <li>• Hiring planning</li>
+            <li>• Tool/integration upgrades</li>
+            <li>• Renewal forecast</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary impact map -->
+    <div class="mt-8 bg-gradient-to-br from-brand-50 to-purple-50 rounded-2xl border border-brand-200 p-6">
+      <h3 class="font-extrabold text-lg mb-4">🎯 Impact Map · งานไหนเพิ่ม score มิติไหน</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+        <div class="bg-white rounded-lg p-3">
+          <div class="font-bold mb-1.5"><span class="pill pill-onpage">On-Page</span></div>
+          <ul class="space-y-0.5 text-ink-700">
+            <li>• Title/meta optimization</li>
+            <li>• Internal linking</li>
+            <li>• Alt text</li>
+            <li>• Heading structure</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg p-3">
+          <div class="font-bold mb-1.5"><span class="pill pill-tech">Tech</span></div>
+          <ul class="space-y-0.5 text-ink-700">
+            <li>• Schema markup</li>
+            <li>• Sitemap + robots</li>
+            <li>• Fix broken links</li>
+            <li>• GSC errors</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg p-3">
+          <div class="font-bold mb-1.5"><span class="pill pill-cwv">CWV</span></div>
+          <ul class="space-y-0.5 text-ink-700">
+            <li>• Image compression</li>
+            <li>• Reduce JS</li>
+            <li>• Lazy loading</li>
+            <li>• CDN</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg p-3">
+          <div class="font-bold mb-1.5"><span class="pill pill-content">Content</span></div>
+          <ul class="space-y-0.5 text-ink-700">
+            <li>• New articles</li>
+            <li>• Refresh old content</li>
+            <li>• Author entity</li>
+            <li>• FAQ sections</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg p-3">
+          <div class="font-bold mb-1.5"><span class="pill pill-offpage">Off-Page</span></div>
+          <ul class="space-y-0.5 text-ink-700">
+            <li>• Backlink outreach</li>
+            <li>• Guest posts</li>
+            <li>• Brand mentions</li>
+            <li>• Disavow toxic</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg p-3">
+          <div class="font-bold mb-1.5"><span class="pill pill-aivis">AI Vis</span></div>
+          <ul class="space-y-0.5 text-ink-700">
+            <li>• Entity-rich schema</li>
+            <li>• Author E-E-A-T</li>
+            <li>• Quotable Q&A formats</li>
+            <li>• AI crawler access</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER CTA ============ -->
+  <div class="mt-12 bg-ink-900 text-white rounded-3xl p-8 text-center">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-3">เริ่มใช้ Playbook นี้</h2>
+    <p class="text-white/70 mb-6 max-w-2xl mx-auto">เปิด App แล้วลองทำ daily tasks · checklist ทำเครื่องหมายเสร็จได้ · ระบบ track ความสำเร็จให้</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="app.html" class="bg-white text-ink-900 px-6 py-3 rounded-xl font-bold text-sm">← กลับไปที่ App</a>
+      <a href="help.html" class="bg-white/10 backdrop-blur border border-white/30 text-white px-6 py-3 rounded-xl font-bold text-sm">📚 Help Center</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="border-t border-ink-200 bg-white mt-12">
+  <div class="max-w-7xl mx-auto px-6 py-6 text-sm text-ink-500 flex flex-col sm:flex-row justify-between gap-2">
+    <p>SearchFit Pro · Staff Playbook</p>
+    <p>40+ tasks · 4 roles · 6 score dimensions</p>
+  </div>
+</footer>
+
+<script>
+/* ============ TABS ============ */
+const tabs = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.panel');
+tabs.forEach(t => t.addEventListener('click', () => {
+  tabs.forEach(x => x.setAttribute('aria-selected', 'false'));
+  t.setAttribute('aria-selected', 'true');
+  const id = t.dataset.panel;
+  panels.forEach(p => p.classList.toggle('active', p.dataset.panel === id));
+}));
+
+/* ============ TASK CHECK ============ */
+function toggleCheck(e, el) {
+  e.stopPropagation();
+  e.preventDefault();
+  el.classList.toggle('checked');
+  el.closest('.task-row').classList.toggle('checked');
+  // Persist to localStorage
+  const id = Array.from(document.querySelectorAll('.task-row')).indexOf(el.closest('.task-row'));
+  const checks = JSON.parse(localStorage.getItem('playbook-checks') || '{}');
+  checks[id] = el.classList.contains('checked');
+  localStorage.setItem('playbook-checks', JSON.stringify(checks));
+}
+
+// Restore checks
+window.addEventListener('load', () => {
+  const checks = JSON.parse(localStorage.getItem('playbook-checks') || '{}');
+  document.querySelectorAll('.task-row').forEach((row, i) => {
+    if (checks[i]) {
+      row.classList.add('checked');
+      row.querySelector('.task-check')?.classList.add('checked');
+    }
+  });
+});
+
+/* ============ HASH NAV ============ */
+if (location.hash) {
+  const target = location.hash.slice(1);
+  const tab = document.querySelector(`[data-panel="${target}"]`);
+  if (tab && tab.classList.contains('tab-btn')) tab.click();
+}
+</script>
+
+<script src="assets/i18n.js"></script>
+</body>
+</html>

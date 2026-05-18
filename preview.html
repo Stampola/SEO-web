@@ -1,0 +1,1745 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SearchFit Pro — Live Preview · ดูทุกอย่างที่เว็บแอปทำได้</title>
+<meta name="description" content="Single-page preview ของ webapp SEO ทั้งหมด — live demos + screen mockups ครบในหน้าเดียว" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950:'#030712', 900:'#0b1220', 800:'#1f2937', 700:'#374151', 500:'#6b7280', 400:'#9ca3af', 300:'#d1d5db', 200:'#e5e7eb', 100:'#f3f4f6', 50:'#f9fafb' },
+          brand: { 50:'#eef2ff', 100:'#e0e7ff', 200:'#c7d2fe', 300:'#a5b4fc', 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca', 800:'#3730a3', 900:'#312e81' },
+          accent: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' },
+        }
+      }
+    }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, ui-sans-serif, sans-serif; }
+  code, pre { font-family: 'JetBrains Mono', monospace; }
+  html { scroll-behavior: smooth; }
+  body { background: #fafbfc; }
+  .section { scroll-margin-top: 80px; }
+  .hero-bg {
+    background:
+      radial-gradient(at 20% 30%, rgba(99,102,241,0.40) 0px, transparent 50%),
+      radial-gradient(at 80% 10%, rgba(249,115,22,0.25) 0px, transparent 50%),
+      radial-gradient(at 70% 80%, rgba(168,85,247,0.35) 0px, transparent 50%),
+      radial-gradient(at 10% 90%, rgba(34,197,94,0.18) 0px, transparent 50%),
+      #0b1220;
+  }
+  .text-gradient { background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .text-gradient-cool { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+  .card-hover { transition: transform 0.25s, box-shadow 0.25s; }
+  .card-hover:hover { transform: translateY(-3px); box-shadow: 0 25px 30px -10px rgba(0,0,0,0.15); }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #818cf8; }
+  .pulse-ring { box-shadow: 0 0 0 0 rgba(99,102,241,0.4); animation: pulse-ring 2s infinite; }
+  @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(99,102,241,0.5); } 70% { box-shadow: 0 0 0 12px rgba(99,102,241,0); } 100% { box-shadow: 0 0 0 0 rgba(99,102,241,0); } }
+  .pulse-dot { animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .demo-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .demo-card:hover { transform: translateY(-2px); box-shadow: 0 20px 25px -5px rgba(99,102,241,0.15); }
+  .grid-bg { background-image: linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px); background-size: 40px 40px; }
+  .score-ring { transform: rotate(-90deg); transform-origin: 50% 50%; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  /* Mockup browser chrome */
+  .browser-chrome { background: linear-gradient(180deg, #1f2937 0%, #111827 100%); padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-radius: 1rem 1rem 0 0; }
+  .browser-dot { width: 0.75rem; height: 0.75rem; border-radius: 9999px; }
+  .browser-bar { flex: 1; background: rgba(255,255,255,0.1); border-radius: 0.5rem; padding: 0.25rem 0.75rem; color: rgba(255,255,255,0.7); font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body class="text-ink-900">
+
+<!-- ============ STICKY NAV ============ -->
+<nav class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg border-b border-ink-200">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center shadow-lg">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+      </div>
+      <div>
+        <div class="font-extrabold text-base tracking-tight leading-none">SearchFit <span class="text-brand-600">Pro</span></div>
+        <div class="text-[10px] text-ink-500 leading-none mt-0.5">Live Preview</div>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-1 text-xs font-semibold text-ink-700">
+      <a href="#overview" class="px-3 py-2 rounded-lg hover:bg-ink-50">ภาพรวม</a>
+      <a href="#audit-demo" class="px-3 py-2 rounded-lg hover:bg-ink-50">SEO Audit</a>
+      <a href="#keyword-demo" class="px-3 py-2 rounded-lg hover:bg-ink-50">Keyword</a>
+      <a href="#ai-demo" class="px-3 py-2 rounded-lg hover:bg-ink-50">AI Visibility</a>
+      <a href="#local-demo" class="px-3 py-2 rounded-lg hover:bg-ink-50">Local Grid</a>
+      <a href="#schema-demo" class="px-3 py-2 rounded-lg hover:bg-ink-50">Schema</a>
+      <a href="#automation-demo" class="px-3 py-2 rounded-lg hover:bg-ink-50">Automation</a>
+      <a href="#screens" class="px-3 py-2 rounded-lg hover:bg-ink-50">Screens</a>
+      <a href="#pricing" class="px-3 py-2 rounded-lg hover:bg-ink-50">Pricing</a>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <a href="proposal.html" class="hidden sm:inline-flex text-xs font-semibold text-ink-700 px-3 py-2 hover:bg-ink-50 rounded-lg">📋 Proposal</a>
+      <a href="app.html" class="inline-flex text-xs font-semibold bg-ink-900 text-white px-3 py-2 rounded-lg hover:bg-ink-700">🔐 Login & Try</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 1. HERO ============ -->
+<section id="hero" class="hero-bg pt-28 pb-16 relative overflow-hidden text-white">
+  <div class="relative max-w-7xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-semibold mb-6">
+      <span class="w-2 h-2 bg-emerald-400 rounded-full pulse-dot"></span>
+      Live Preview · เลื่อนลงเพื่อดู demo ทำงานจริง
+    </div>
+    <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] mb-5">
+      <span class="text-gradient">ดูทุกอย่าง</span> <br/>
+      ที่เว็บแอป SEO ของเรา <br/>
+      <span class="text-white">จะทำได้</span>
+    </h1>
+    <p class="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-8">
+      หน้าเดียวจบ — ลอง <strong class="text-white">ใส่ URL จริง</strong>, <strong class="text-white">เลือก schema</strong>, <strong class="text-white">ใส่ keyword ไทย</strong> แล้วดูผลทันที <br/>
+      พร้อม screen ของ admin / client portal / automation builder ครบ
+    </p>
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <a href="#audit-demo" class="bg-white hover:bg-ink-100 text-ink-900 px-5 py-3 rounded-xl font-bold text-sm transition shadow-lg flex items-center gap-2">
+        ลอง Live Demo ทันที
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </a>
+      <a href="#overview" class="glass hover:bg-white/15 text-white px-5 py-3 rounded-xl font-semibold text-sm">ดู feature ก่อน</a>
+    </div>
+
+    <!-- Quick stats -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
+      <div class="glass rounded-2xl p-4 text-left">
+        <div class="text-2xl font-extrabold text-gradient">11</div>
+        <div class="text-xs text-white/60">หน้าจอ admin/client</div>
+      </div>
+      <div class="glass rounded-2xl p-4 text-left">
+        <div class="text-2xl font-extrabold text-gradient">7</div>
+        <div class="text-xs text-white/60">Live demos กด-ทำงานได้</div>
+      </div>
+      <div class="glass rounded-2xl p-4 text-left">
+        <div class="text-2xl font-extrabold text-gradient">40+</div>
+        <div class="text-xs text-white/60">ฟีเจอร์ทั้งหมด</div>
+      </div>
+      <div class="glass rounded-2xl p-4 text-left">
+        <div class="text-2xl font-extrabold text-gradient">5</div>
+        <div class="text-xs text-white/60">จุดต่างจากคู่แข่ง</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. OVERVIEW — ฟีเจอร์ทั้งหมดในตาเดียว ============ -->
+<section id="overview" class="section py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">01 · เว็บแอปทำอะไรได้บ้าง</div>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">ฟีเจอร์ทั้งหมด <span class="text-gradient-cool">ในตาเดียว</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">12 กลุ่มฟีเจอร์ — แต่ละกลุ่มมี mini-demo ด้านล่าง</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <a href="#audit-demo" class="card-hover bg-gradient-to-br from-brand-50 to-white border border-brand-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">🔍</div>
+        <h3 class="font-bold mb-1">SEO Audit + Score</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">วินิจฉัยเว็บ 100+ จุด · SearchFit Score 0-100 · auto re-scan</p>
+        <div class="text-xs text-brand-600 font-semibold mt-2">→ Live demo</div>
+      </a>
+      <a href="#keyword-demo" class="card-hover bg-gradient-to-br from-purple-50 to-white border border-purple-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">🧠</div>
+        <h3 class="font-bold mb-1">Keyword Research</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">Thai-aware tokenizer · intent classification · cluster mapping</p>
+        <div class="text-xs text-purple-600 font-semibold mt-2">→ Live demo</div>
+      </a>
+      <a href="#ai-demo" class="card-hover bg-gradient-to-br from-pink-50 to-white border border-pink-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">🤖</div>
+        <h3 class="font-bold mb-1">AI Visibility Tracker</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">Track 5 engines (ChatGPT, Claude, Gemini, Perplexity, AIO)</p>
+        <div class="text-xs text-pink-600 font-semibold mt-2">→ Live demo</div>
+      </a>
+      <a href="#local-demo" class="card-hover bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">📍</div>
+        <h3 class="font-bold mb-1">Local Grid Scanner</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">3×3 ถึง 21×21 grid · GBP audit · review velocity</p>
+        <div class="text-xs text-emerald-600 font-semibold mt-2">→ Live demo</div>
+      </a>
+      <a href="#schema-demo" class="card-hover bg-gradient-to-br from-cyan-50 to-white border border-cyan-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">🏷️</div>
+        <h3 class="font-bold mb-1">Schema Generator</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">JSON-LD 10 ประเภท · entity-depth · AI-extractability score</p>
+        <div class="text-xs text-cyan-600 font-semibold mt-2">→ Live demo</div>
+      </a>
+      <a href="#pseo-demo" class="card-hover bg-gradient-to-br from-amber-50 to-white border border-amber-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">📑</div>
+        <h3 class="font-bold mb-1">Programmatic SEO</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">CSV → template → หน้าเว็บจำนวนมาก · sitemap.xml export</p>
+        <div class="text-xs text-amber-600 font-semibold mt-2">→ Live demo</div>
+      </a>
+      <a href="#automation-demo" class="card-hover bg-gradient-to-br from-accent-50 to-white border border-accent-200 rounded-2xl p-5">
+        <div class="text-3xl mb-3">⚡</div>
+        <h3 class="font-bold mb-1">Automation Engine</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">If-this-then-that สำหรับ SEO · 20+ recipes · LINE/Slack alerts</p>
+        <div class="text-xs text-accent-600 font-semibold mt-2">→ Mock demo</div>
+      </a>
+      <a href="#content-demo" class="card-hover bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">✍️</div>
+        <h3 class="font-bold mb-1">Content Pipeline</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">Brief → Draft → Review → Publish · NLP scoring · E-E-A-T</p>
+        <div class="text-xs text-indigo-600 font-semibold mt-2">→ Mockup</div>
+      </a>
+      <a href="#client-portal-demo" class="card-hover bg-gradient-to-br from-rose-50 to-white border border-rose-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">🪟</div>
+        <h3 class="font-bold mb-1">Client Portal</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">White-label · custom domain · ลูกค้าเห็นแบรนด์ agency</p>
+        <div class="text-xs text-rose-600 font-semibold mt-2">→ Mockup</div>
+      </a>
+      <a href="#report-demo" class="card-hover bg-gradient-to-br from-violet-50 to-white border border-violet-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">📊</div>
+        <h3 class="font-bold mb-1">Auto Reports</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">PDF + live dashboard · AI summary · LINE/email delivery</p>
+        <div class="text-xs text-violet-600 font-semibold mt-2">→ Mockup</div>
+      </a>
+      <a href="#admin-demo" class="card-hover bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-2xl p-5">
+        <div class="text-3xl mb-3">👑</div>
+        <h3 class="font-bold mb-1">Admin Dashboard</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">MRR, team workload, 15 clients, automation health</p>
+        <div class="text-xs text-slate-600 font-semibold mt-2">→ Mockup</div>
+      </a>
+      <a href="#integration-demo" class="card-hover bg-gradient-to-br from-teal-50 to-white border border-teal-100 rounded-2xl p-5">
+        <div class="text-3xl mb-3">🔌</div>
+        <h3 class="font-bold mb-1">Integrations</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">GSC · GA4 · GBP · WordPress · LINE · FlowAccount · Stripe</p>
+        <div class="text-xs text-teal-600 font-semibold mt-2">→ Mockup</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. LIVE DEMO — SEO AUDIT ============ -->
+<section id="audit-demo" class="section py-20 bg-gradient-to-b from-white to-ink-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <div class="lg:sticky lg:top-24">
+          <div class="text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">02 · LIVE DEMO</div>
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">🔍 SEO Audit + Score</h2>
+          <p class="text-ink-500 leading-relaxed mb-6">วินิจฉัยหน้าเว็บใดๆ ใน 10 วินาที — ตรวจ 16 มิติแล้วได้คะแนน + คำแนะนำชี้จุดแก้</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Title, meta, headings, schema, alt, canonical, viewport, robots, lang</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Open Graph + Twitter Card</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> Internal/external links, word count</li>
+            <li class="flex gap-2"><span class="text-brand-500">✓</span> 6 มิติคะแนน (On-Page · Tech · CWV · Content · Off-Page · AI)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="bg-white rounded-3xl shadow-xl border border-ink-100 overflow-hidden">
+          <div class="browser-chrome">
+            <span class="browser-dot bg-red-400"></span>
+            <span class="browser-dot bg-yellow-400"></span>
+            <span class="browser-dot bg-green-400"></span>
+            <span class="browser-bar">searchfit.app/audit</span>
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 mb-4">
+              <input id="audit-url" type="url" value="https://www.example.com" class="flex-1 px-3 py-2.5 border border-ink-200 rounded-lg text-sm font-mono" />
+              <button id="audit-btn" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold whitespace-nowrap">⚡ Run Audit</button>
+            </div>
+            <div class="text-xs text-ink-500 mb-4">💡 ใส่ URL ของจริง หรือกดปุ่ม "Run Audit" เพื่อดูผล (demo ใช้ข้อมูลตัวอย่างของ <code>example.com</code>)</div>
+
+            <div id="audit-result">
+              <!-- Score panel -->
+              <div class="bg-gradient-to-br from-brand-600 to-purple-700 rounded-2xl p-6 text-white mb-4">
+                <div class="flex items-center gap-5 flex-wrap">
+                  <div class="relative w-24 h-24 flex-shrink-0">
+                    <svg class="score-ring w-24 h-24" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="8"/>
+                      <circle id="audit-score-circle" cx="50" cy="50" r="42" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-dasharray="200 264"/>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center text-center">
+                      <div>
+                        <div id="audit-score-num" class="text-3xl font-extrabold">76</div>
+                        <div class="text-[10px] opacity-70">/ 100</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs text-white/70">SearchFit Score</div>
+                    <div id="audit-url-display" class="text-lg font-semibold truncate">example.com</div>
+                    <div class="text-sm text-emerald-300 font-bold mt-1">✓ 12 ผ่าน · ⚠ 3 เตือน · ✕ 1 fail</div>
+                  </div>
+                  <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                    <div class="bg-white/10 rounded-lg p-2 px-3"><div class="opacity-70">On-Page</div><div class="font-bold text-base mt-0.5">82</div></div>
+                    <div class="bg-white/10 rounded-lg p-2 px-3"><div class="opacity-70">Tech</div><div class="font-bold text-base mt-0.5">71</div></div>
+                    <div class="bg-white/10 rounded-lg p-2 px-3"><div class="opacity-70">AI</div><div class="font-bold text-base mt-0.5">68</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Audit issues -->
+              <div class="space-y-2">
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">✓</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">Title tag · 54 chars</div>
+                    <div class="text-xs text-emerald-700">"Example Domain — Comprehensive Web Examples and Documentation"</div>
+                  </div>
+                  <span class="text-xs text-emerald-700 font-bold">PASS</span>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">!</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">Meta description · ขาด</div>
+                    <div class="text-xs text-amber-700">💡 เพิ่ม 140-160 chars พร้อม keyword หลัก + CTA · <button class="underline font-semibold">⚡ AI generate ให้</button></div>
+                  </div>
+                  <span class="text-xs text-amber-700 font-bold">WARN</span>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">✓</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">H1 · 1 ตัว</div>
+                    <div class="text-xs text-emerald-700">"Example Domain"</div>
+                  </div>
+                  <span class="text-xs text-emerald-700 font-bold">PASS</span>
+                </div>
+                <div class="bg-red-50 border border-red-200 rounded-xl p-3 flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-red-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">✕</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">Schema markup · ขาด</div>
+                    <div class="text-xs text-red-700">💡 ใส่ Organization + Article schema · <button class="underline font-semibold">⚡ Generate JSON-LD</button></div>
+                  </div>
+                  <span class="text-xs text-red-700 font-bold">FAIL</span>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">!</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">Open Graph · 1/4</div>
+                    <div class="text-xs text-amber-700">💡 ขาด og:image, og:description, og:url</div>
+                  </div>
+                  <span class="text-xs text-amber-700 font-bold">WARN</span>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">✓</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm">Viewport mobile + canonical + lang</div>
+                    <div class="text-xs text-emerald-700">รองรับ mobile · ระบุ canonical · lang="en"</div>
+                  </div>
+                  <span class="text-xs text-emerald-700 font-bold">PASS</span>
+                </div>
+              </div>
+
+              <div class="mt-4 grid grid-cols-2 gap-2">
+                <a href="tools.html" class="text-xs bg-ink-100 hover:bg-ink-200 text-center py-2 rounded-lg font-semibold">เปิดเครื่องมือเต็ม (16 checks)</a>
+                <button class="text-xs bg-brand-600 hover:bg-brand-700 text-white py-2 rounded-lg font-semibold">⚡ สร้าง task แก้ทั้งหมด</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. LIVE DEMO — KEYWORD PLANNER ============ -->
+<section id="keyword-demo" class="section py-20 bg-ink-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <div class="lg:sticky lg:top-24">
+          <div class="text-xs font-bold tracking-[0.2em] text-purple-600 uppercase mb-3">03 · LIVE DEMO</div>
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">🧠 Keyword Planner</h2>
+          <p class="text-ink-500 leading-relaxed mb-6">ใส่หัวข้อ → ขยายเป็น 50+ keyword variations + แยก search intent + สร้าง content brief</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-purple-500">✓</span> Thai tokenizer (PyThaiNLP-style)</li>
+            <li class="flex gap-2"><span class="text-purple-500">✓</span> 4 intent: Informational · Commercial · Transactional · Navigational</li>
+            <li class="flex gap-2"><span class="text-purple-500">✓</span> Difficulty heuristic + word count</li>
+            <li class="flex gap-2"><span class="text-purple-500">✓</span> Topic clusters + sub-article suggestions</li>
+            <li class="flex gap-2"><span class="text-purple-500">✓</span> Export CSV</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="bg-white rounded-3xl shadow-xl border border-ink-100 overflow-hidden">
+          <div class="browser-chrome">
+            <span class="browser-dot bg-red-400"></span>
+            <span class="browser-dot bg-yellow-400"></span>
+            <span class="browser-dot bg-green-400"></span>
+            <span class="browser-bar">searchfit.app/keywords</span>
+          </div>
+          <div class="p-6">
+            <div class="grid sm:grid-cols-2 gap-2 mb-4">
+              <input id="kw-seed" type="text" value="ทำ SEO" placeholder="เช่น ทำ SEO, react hook, กาแฟดริป" class="px-3 py-2.5 border border-ink-200 rounded-lg text-sm" />
+              <button id="kw-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold">🧠 Expand Keywords</button>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-4 gap-2 mb-4">
+              <div class="bg-blue-50 rounded-lg p-2.5 text-center"><div class="text-[10px] text-blue-700 font-semibold">Informational</div><div id="kw-info-count" class="text-xl font-extrabold text-blue-700 mt-0.5">12</div></div>
+              <div class="bg-purple-50 rounded-lg p-2.5 text-center"><div class="text-[10px] text-purple-700 font-semibold">Commercial</div><div id="kw-comm-count" class="text-xl font-extrabold text-purple-700 mt-0.5">11</div></div>
+              <div class="bg-emerald-50 rounded-lg p-2.5 text-center"><div class="text-[10px] text-emerald-700 font-semibold">Transactional</div><div id="kw-trans-count" class="text-xl font-extrabold text-emerald-700 mt-0.5">8</div></div>
+              <div class="bg-amber-50 rounded-lg p-2.5 text-center"><div class="text-[10px] text-amber-700 font-semibold">Navigational</div><div id="kw-nav-count" class="text-xl font-extrabold text-amber-700 mt-0.5">4</div></div>
+            </div>
+
+            <!-- Results table -->
+            <div class="border border-ink-200 rounded-xl overflow-hidden max-h-96 overflow-y-auto">
+              <table class="w-full text-sm">
+                <thead class="bg-ink-50 text-xs text-ink-500 uppercase tracking-wider sticky top-0">
+                  <tr>
+                    <th class="text-left p-3 font-semibold">Keyword</th>
+                    <th class="text-left p-3 font-semibold">Intent</th>
+                    <th class="text-left p-3 font-semibold">Difficulty</th>
+                  </tr>
+                </thead>
+                <tbody id="kw-table-body" class="divide-y divide-ink-100">
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Content brief teaser -->
+            <div class="mt-4 bg-gradient-to-br from-brand-50 to-white border border-brand-100 rounded-xl p-4">
+              <h4 class="font-bold text-sm mb-2">📋 Content Brief สำหรับ pillar article</h4>
+              <div class="space-y-1.5 text-xs">
+                <div><strong class="text-ink-700">Suggested Title:</strong> <span id="kw-title" class="font-mono">คู่มือฉบับสมบูรณ์: ทำ SEO (ฉบับปี 2026)</span></div>
+                <div><strong class="text-ink-700">Word target:</strong> 1,800-2,500 คำ</div>
+                <div><strong class="text-ink-700">Outline (auto):</strong> 5-7 H2 จาก informational keywords</div>
+                <div><strong class="text-ink-700">Internal links target:</strong> 3-5 ไปยัง commercial keywords</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. LIVE DEMO — AI VISIBILITY ============ -->
+<section id="ai-demo" class="section py-20 bg-gradient-to-br from-purple-600 to-pink-600 text-white relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-10"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <div class="lg:sticky lg:top-24">
+          <div class="text-xs font-bold tracking-[0.2em] text-white/70 uppercase mb-3">04 · LIVE DEMO · DIFFERENTIATOR</div>
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">🤖 AI Visibility</h2>
+          <p class="text-white/80 leading-relaxed mb-6">ตามรอยว่าแบรนด์ลูกค้าโดน <strong>cite ใน AI engines</strong> หรือไม่ — ทำได้แต่ tool ของไทยตอนนี้</p>
+          <div class="space-y-2 text-sm">
+            <div class="glass rounded-lg p-3">✓ Track 5 engines พร้อมกัน</div>
+            <div class="glass rounded-lg p-3">✓ Share of Voice vs คู่แข่ง</div>
+            <div class="glass rounded-lg p-3">✓ "Why am I not cited?" diff</div>
+            <div class="glass rounded-lg p-3">✓ Auto-create content brief เพื่อกลับเข้า citation</div>
+            <div class="glass rounded-lg p-3">✓ Sentiment alert ถ้า AI พูดในแง่ลบ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="bg-white rounded-3xl shadow-2xl text-ink-900 overflow-hidden">
+          <div class="browser-chrome">
+            <span class="browser-dot bg-red-400"></span>
+            <span class="browser-dot bg-yellow-400"></span>
+            <span class="browser-dot bg-green-400"></span>
+            <span class="browser-bar">searchfit.app/ai-visibility</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+              <div>
+                <h3 class="font-bold">Prompt Portfolio — Coffee Co.</h3>
+                <p class="text-xs text-ink-500 mt-0.5">8 prompts × 5 engines · update เมื่อ 14 นาทีก่อน</p>
+              </div>
+              <div class="flex gap-2">
+                <button id="ai-add-prompt" class="text-xs bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-lg font-semibold">+ เพิ่ม prompt</button>
+                <button class="text-xs bg-ink-100 hover:bg-ink-200 px-3 py-1.5 rounded-lg font-semibold">⚡ Re-run all</button>
+              </div>
+            </div>
+
+            <!-- SOV chart -->
+            <div class="grid sm:grid-cols-2 gap-3 mb-4">
+              <div class="bg-ink-50 rounded-xl p-3">
+                <div class="text-xs text-ink-500 font-semibold mb-1">Share of Voice</div>
+                <div class="text-3xl font-extrabold text-purple-600">47%</div>
+                <div class="text-xs text-emerald-600 font-bold">↑ +12% (7 วัน)</div>
+              </div>
+              <div class="bg-ink-50 rounded-xl p-3">
+                <div class="text-xs text-ink-500 font-semibold mb-1">Sentiment</div>
+                <div class="text-3xl font-extrabold text-purple-600">8.4 <span class="text-base font-normal">/ 10</span></div>
+                <div class="text-xs text-emerald-600 font-bold">positive · stable</div>
+              </div>
+            </div>
+
+            <!-- Prompts table -->
+            <div class="border border-ink-200 rounded-xl overflow-hidden">
+              <table class="w-full text-sm">
+                <thead class="bg-ink-50 text-[10px] text-ink-500 uppercase tracking-wider">
+                  <tr>
+                    <th class="text-left p-3 font-semibold">Prompt</th>
+                    <th class="p-2 text-center">ChatGPT</th>
+                    <th class="p-2 text-center">Claude</th>
+                    <th class="p-2 text-center">Gemini</th>
+                    <th class="p-2 text-center">Perplexity</th>
+                    <th class="p-2 text-center">AIO</th>
+                  </tr>
+                </thead>
+                <tbody id="ai-prompts-body" class="divide-y divide-ink-100">
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Diff explainer -->
+            <div class="mt-4 bg-gradient-to-br from-pink-50 to-white border border-pink-200 rounded-xl p-4">
+              <h4 class="font-bold text-sm mb-2">🔬 "Why am I not cited?" — "คาเฟ่เปิดดึก สุขุมวิท"</h4>
+              <div class="space-y-1.5 text-xs">
+                <div class="bg-red-50 rounded-lg p-2"><strong>✕ Author entity</strong> · หน้าที่ถูก cite มี Person schema + LinkedIn sameAs — ของเราขาด</div>
+                <div class="bg-amber-50 rounded-lg p-2"><strong>⚠ Content depth</strong> · cited page 2,400 คำ + 10 ร้าน · ของเรา 800 คำ</div>
+                <div class="bg-blue-50 rounded-lg p-2"><strong>→ Action</strong> · auto-create brief เพิ่ม author bio + เปรียบเทียบ 10 ร้าน · <button class="underline font-semibold">⚡ assign Max ทันที</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. INTERACTIVE LOCAL GRID ============ -->
+<section id="local-demo" class="section py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <div class="lg:sticky lg:top-24">
+          <div class="text-xs font-bold tracking-[0.2em] text-emerald-600 uppercase mb-3">05 · INTERACTIVE</div>
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">📍 Local Grid Scanner</h2>
+          <p class="text-ink-500 leading-relaxed mb-6">วัด rank ในแผนที่ — 3×3 ถึง 21×21 grid · เหมาะกับร้านอาหาร, คลินิก, แฟรนไชส์</p>
+          <p class="text-sm text-ink-700 leading-relaxed mb-4">
+            <strong>👇 ลองเปลี่ยน grid size + keyword:</strong>
+          </p>
+          <div class="space-y-3">
+            <div>
+              <label class="text-xs font-semibold text-ink-700">Grid Size</label>
+              <div class="flex gap-1 mt-1.5">
+                <button class="local-grid-btn px-3 py-1.5 rounded-lg text-xs bg-ink-100 hover:bg-ink-200 font-semibold" data-size="3">3×3</button>
+                <button class="local-grid-btn px-3 py-1.5 rounded-lg text-xs bg-ink-100 hover:bg-ink-200 font-semibold" data-size="5">5×5</button>
+                <button class="local-grid-btn active px-3 py-1.5 rounded-lg text-xs bg-emerald-600 text-white font-semibold" data-size="7">7×7</button>
+                <button class="local-grid-btn px-3 py-1.5 rounded-lg text-xs bg-ink-100 hover:bg-ink-200 font-semibold" data-size="9">9×9</button>
+                <button class="local-grid-btn px-3 py-1.5 rounded-lg text-xs bg-ink-100 hover:bg-ink-200 font-semibold" data-size="11">11×11</button>
+              </div>
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-ink-700">Keyword</label>
+              <select id="local-kw" class="mt-1.5 w-full px-3 py-2 border border-ink-200 rounded-lg text-sm">
+                <option>สปา ใกล้ฉัน</option>
+                <option>คลินิกกายภาพ สีลม</option>
+                <option>ร้านกาแฟ สุขุมวิท</option>
+                <option>cafe near me bangkok</option>
+              </select>
+            </div>
+            <button id="local-rescan" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-lg text-sm font-bold">🔄 Re-scan grid</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="bg-white rounded-3xl shadow-xl border border-ink-100 overflow-hidden">
+          <div class="browser-chrome">
+            <span class="browser-dot bg-red-400"></span>
+            <span class="browser-dot bg-yellow-400"></span>
+            <span class="browser-dot bg-green-400"></span>
+            <span class="browser-bar">searchfit.app/local-grid</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h3 class="font-bold">Bangkok Spa @ สีลม</h3>
+                <p class="text-xs text-ink-500">Keyword: <span id="local-kw-display">สปา ใกล้ฉัน</span> · <span id="local-size-display">7×7 = 49 จุด</span></p>
+              </div>
+              <div class="flex items-center gap-4 text-xs">
+                <div><span class="text-ink-500">Avg rank</span> <span id="local-avg" class="font-bold text-emerald-600 ml-1">5.2</span></div>
+                <div><span class="text-ink-500">Top 3</span> <span id="local-top3" class="font-bold text-emerald-600 ml-1">18/49</span></div>
+              </div>
+            </div>
+
+            <!-- Grid -->
+            <div id="local-grid-display" class="grid gap-1 aspect-square max-w-md mx-auto bg-ink-50 p-2 rounded-xl mb-4" style="grid-template-columns: repeat(7, 1fr);">
+            </div>
+
+            <!-- Legend -->
+            <div class="flex items-center justify-center gap-3 text-xs mb-4 flex-wrap">
+              <span class="flex items-center gap-1"><span class="w-3 h-3 bg-emerald-500 rounded"></span> 1-3</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 bg-yellow-400 rounded"></span> 4-10</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 bg-orange-400 rounded"></span> 11-20</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 bg-red-400 rounded"></span> 21+</span>
+              <span class="flex items-center gap-1"><span class="w-3 h-3 bg-ink-200 rounded"></span> ไม่ติด</span>
+            </div>
+
+            <!-- GBP audit panel -->
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="bg-emerald-50 rounded-xl p-3">
+                <div class="text-xs font-semibold text-emerald-900 mb-1">GBP Profile Status</div>
+                <ul class="text-xs text-emerald-800 space-y-0.5">
+                  <li>✓ Profile complete</li>
+                  <li>✓ Photos 50+</li>
+                  <li>✓ Open hours ครบ</li>
+                </ul>
+              </div>
+              <div class="bg-amber-50 rounded-xl p-3">
+                <div class="text-xs font-semibold text-amber-900 mb-1">⚠ ต้องแก้</div>
+                <ul class="text-xs text-amber-800 space-y-0.5">
+                  <li>! Review velocity: 2/wk ต่ำ</li>
+                  <li>! ขาด GBP posts 1 เดือน</li>
+                  <li>✕ ยังไม่ตอบ Q&A 3 ข้อ</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. LIVE DEMO — SCHEMA GENERATOR ============ -->
+<section id="schema-demo" class="section py-20 bg-ink-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <div class="lg:sticky lg:top-24">
+          <div class="text-xs font-bold tracking-[0.2em] text-cyan-600 uppercase mb-3">06 · LIVE DEMO</div>
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">🏷️ Schema Generator</h2>
+          <p class="text-ink-500 leading-relaxed mb-6">สร้าง JSON-LD structured data ที่ Google + AI engines เข้าใจ — กด copy ก็เอาไปวางได้เลย</p>
+          <ul class="space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-cyan-500">✓</span> 10 schema types ครบทุก use case</li>
+            <li class="flex gap-2"><span class="text-cyan-500">✓</span> Entity-depth chaining (Person → Org → ...)</li>
+            <li class="flex gap-2"><span class="text-cyan-500">✓</span> sameAs auto-suggest (Wikidata, LinkedIn)</li>
+            <li class="flex gap-2"><span class="text-cyan-500">✓</span> AI-extractability score (ไม่ใช่แค่ Google rich result)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="bg-white rounded-3xl shadow-xl border border-ink-100 overflow-hidden">
+          <div class="browser-chrome">
+            <span class="browser-dot bg-red-400"></span>
+            <span class="browser-dot bg-yellow-400"></span>
+            <span class="browser-dot bg-green-400"></span>
+            <span class="browser-bar">searchfit.app/schema</span>
+          </div>
+          <div class="p-6">
+            <div class="grid sm:grid-cols-2 gap-2 mb-4">
+              <select id="schema-pick" class="px-3 py-2.5 border border-ink-200 rounded-lg text-sm font-semibold">
+                <option value="Article">📰 Article (บทความ)</option>
+                <option value="Product">🛒 Product (สินค้า)</option>
+                <option value="FAQPage">❓ FAQPage (FAQ)</option>
+                <option value="LocalBusiness">📍 LocalBusiness</option>
+                <option value="Organization">🏢 Organization</option>
+                <option value="BreadcrumbList">🍞 BreadcrumbList</option>
+                <option value="HowTo">🔧 HowTo</option>
+                <option value="Review">⭐ Review</option>
+                <option value="Event">📅 Event</option>
+                <option value="VideoObject">🎬 VideoObject</option>
+              </select>
+              <button id="schema-copy" class="bg-cyan-600 hover:bg-cyan-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold">📋 Copy + script tag</button>
+            </div>
+
+            <div class="bg-ink-900 rounded-xl overflow-hidden">
+              <div class="px-4 py-2 bg-ink-800 text-xs text-white/60 font-mono flex items-center justify-between">
+                <span>schema.json</span>
+                <span class="text-emerald-400">✓ valid JSON-LD</span>
+              </div>
+              <pre id="schema-output" class="p-4 text-xs text-white overflow-x-auto leading-relaxed max-h-96 overflow-y-auto"></pre>
+            </div>
+
+            <div class="mt-3 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <div class="flex items-center gap-2">
+                <span class="text-ink-500">AI Extractability:</span>
+                <span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-bold">94/100</span>
+              </div>
+              <a href="https://search.google.com/test/rich-results" target="_blank" class="text-cyan-600 font-semibold hover:underline">→ Test on Google Rich Results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. LIVE DEMO — PROGRAMMATIC SEO ============ -->
+<section id="pseo-demo" class="section py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="text-xs font-bold tracking-[0.2em] text-amber-600 uppercase mb-3">07 · LIVE DEMO</div>
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">📑 Programmatic SEO Builder</h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">CSV → template → หน้าเว็บ scale · เหมาะกับ directory, location, comparison pages</p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-6">
+      <div class="lg:col-span-2 space-y-3">
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+          <div class="font-bold mb-2">1️⃣ Data (CSV)</div>
+          <pre class="text-xs bg-white p-3 rounded-lg font-mono text-ink-700 leading-relaxed">city,service,price
+Bangkok,Web Design,15000
+Chiang Mai,SEO Audit,8000
+Phuket,Branding,25000
+Pattaya,Logo Design,5000
+Khon Kaen,Social Media,12000</pre>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+          <div class="font-bold mb-2">2️⃣ Templates</div>
+          <div class="text-xs space-y-1.5">
+            <div><strong>URL:</strong> <code class="bg-white px-1.5 py-0.5 rounded">/services/{{service}}-in-{{city}}</code></div>
+            <div><strong>Title:</strong> <code class="bg-white px-1.5 py-0.5 rounded text-[10px]">{{service}} ใน {{city}} — เริ่มที่ {{price}}฿</code></div>
+            <div><strong>Body:</strong> <code class="bg-white px-1.5 py-0.5 rounded text-[10px]">เราให้บริการ {{service}}...</code></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <div class="bg-white rounded-2xl shadow-xl border border-ink-200 overflow-hidden">
+          <div class="px-5 py-3 border-b border-ink-100 bg-ink-50 flex items-center justify-between">
+            <div>
+              <div class="font-bold text-sm">3️⃣ Output · สร้าง 5 หน้า</div>
+              <p class="text-xs text-ink-500">+ sitemap.xml + schema สำหรับแต่ละหน้า</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="text-xs bg-ink-100 hover:bg-ink-200 px-3 py-1.5 rounded-lg font-semibold">📥 ZIP</button>
+              <button class="text-xs bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded-lg font-semibold">🚀 Publish all</button>
+            </div>
+          </div>
+          <table class="w-full text-sm">
+            <thead class="bg-ink-50 text-xs text-ink-500 uppercase">
+              <tr><th class="text-left p-3 font-semibold">URL</th><th class="text-left p-3 font-semibold">Title</th></tr>
+            </thead>
+            <tbody class="divide-y divide-ink-100">
+              <tr class="hover:bg-amber-50"><td class="p-3 font-mono text-xs">/services/web-design-in-bangkok</td><td class="p-3 text-xs">Web Design ใน Bangkok — เริ่มที่ 15000฿</td></tr>
+              <tr class="hover:bg-amber-50"><td class="p-3 font-mono text-xs">/services/seo-audit-in-chiang-mai</td><td class="p-3 text-xs">SEO Audit ใน Chiang Mai — เริ่มที่ 8000฿</td></tr>
+              <tr class="hover:bg-amber-50"><td class="p-3 font-mono text-xs">/services/branding-in-phuket</td><td class="p-3 text-xs">Branding ใน Phuket — เริ่มที่ 25000฿</td></tr>
+              <tr class="hover:bg-amber-50"><td class="p-3 font-mono text-xs">/services/logo-design-in-pattaya</td><td class="p-3 text-xs">Logo Design ใน Pattaya — เริ่มที่ 5000฿</td></tr>
+              <tr class="hover:bg-amber-50"><td class="p-3 font-mono text-xs">/services/social-media-in-khon-kaen</td><td class="p-3 text-xs">Social Media ใน Khon Kaen — เริ่มที่ 12000฿</td></tr>
+            </tbody>
+          </table>
+          <div class="px-5 py-3 bg-emerald-50 text-xs text-emerald-800 border-t border-emerald-100">
+            <strong>✓ HCU-safe:</strong> ทุกหน้ามี unique data (city + price ต่าง) + auto-add original images + ผ่าน pSEO auditor
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center">
+      <a href="tools.html" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm">
+        ลองใช้ pSEO Builder เต็มรูปแบบ
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. AUTOMATION BUILDER MOCK ============ -->
+<section id="automation-demo" class="section py-20 bg-gradient-to-br from-accent-500 to-red-600 text-white relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-10"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="text-xs font-bold tracking-[0.2em] text-white/70 uppercase mb-3">08 · AUTOMATION</div>
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">⚡ Automation Builder</h2>
+      <p class="text-lg text-white/80 max-w-2xl mx-auto">if-this-then-that สำหรับ SEO โดยเฉพาะ — เครื่องมืออื่นแจ้งปัญหา ของเราจัดการต่อ</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Trigger -->
+      <div class="bg-white text-ink-900 rounded-2xl shadow-xl p-6 demo-card relative">
+        <div class="absolute -top-3 left-6 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">When (Trigger)</div>
+        <div class="mt-4">
+          <select class="w-full px-3 py-2 border border-ink-200 rounded-lg text-sm font-semibold mb-3">
+            <option>📉 Keyword ranking drop</option>
+            <option>📊 Audit score change</option>
+            <option>🤖 AI citation lost</option>
+            <option>⚡ CWV regression</option>
+            <option>🔗 New backlink found</option>
+            <option>⏰ Schedule (cron)</option>
+          </select>
+          <div class="bg-ink-50 rounded-lg p-3 text-xs space-y-2">
+            <div>
+              <label class="block text-ink-500 mb-1">Project</label>
+              <select class="w-full px-2 py-1.5 border border-ink-200 rounded text-xs"><option>Coffee Co. — www.coffeeco.th</option></select>
+            </div>
+            <div>
+              <label class="block text-ink-500 mb-1">Drop threshold</label>
+              <input type="number" value="5" class="w-full px-2 py-1.5 border border-ink-200 rounded text-xs" />
+            </div>
+            <div>
+              <label class="block text-ink-500 mb-1">In time window</label>
+              <select class="w-full px-2 py-1.5 border border-ink-200 rounded text-xs"><option>24 hours</option><option>7 days</option></select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Then -->
+      <div class="bg-white text-ink-900 rounded-2xl shadow-xl p-6 demo-card relative">
+        <div class="absolute -top-3 left-6 bg-amber-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Then (Action)</div>
+        <div class="mt-4 space-y-2">
+          <div class="bg-amber-50 rounded-lg p-3 text-xs border border-amber-200">
+            <div class="flex items-center gap-2 mb-1">
+              <input type="checkbox" checked class="rounded">
+              <strong>1. Run mini-audit ของหน้าที่เกี่ยวข้อง</strong>
+            </div>
+            <p class="text-ink-500 text-[11px] ml-6">ตรวจ on-page + speed + schema</p>
+          </div>
+          <div class="bg-amber-50 rounded-lg p-3 text-xs border border-amber-200">
+            <div class="flex items-center gap-2 mb-1">
+              <input type="checkbox" checked class="rounded">
+              <strong>2. วิเคราะห์ SERP diff</strong>
+            </div>
+            <p class="text-ink-500 text-[11px] ml-6">ดูหน้าที่ขึ้นแทน + algorithm tags</p>
+          </div>
+          <div class="bg-amber-50 rounded-lg p-3 text-xs border border-amber-200">
+            <div class="flex items-center gap-2 mb-1">
+              <input type="checkbox" checked class="rounded">
+              <strong>3. สร้าง task ใน Specialist queue</strong>
+            </div>
+            <p class="text-ink-500 text-[11px] ml-6">priority: high · assignee: auto</p>
+          </div>
+          <button class="w-full bg-ink-100 hover:bg-ink-200 text-xs py-2 rounded-lg font-semibold">+ เพิ่ม action</button>
+        </div>
+      </div>
+
+      <!-- Notify -->
+      <div class="bg-white text-ink-900 rounded-2xl shadow-xl p-6 demo-card relative">
+        <div class="absolute -top-3 left-6 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Notify (Channel)</div>
+        <div class="mt-4 space-y-2">
+          <label class="flex items-center gap-3 p-2.5 bg-emerald-50 rounded-lg border border-emerald-200 cursor-pointer">
+            <input type="checkbox" checked class="rounded">
+            <div class="flex-1 text-sm">
+              <div class="font-semibold">💬 LINE Group</div>
+              <div class="text-xs text-ink-500">Coffee Co. OA group + ทีม Acme</div>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 p-2.5 bg-emerald-50 rounded-lg border border-emerald-200 cursor-pointer">
+            <input type="checkbox" checked class="rounded">
+            <div class="flex-1 text-sm">
+              <div class="font-semibold">💼 Slack</div>
+              <div class="text-xs text-ink-500">#seo-alerts channel</div>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 p-2.5 bg-emerald-50 rounded-lg border border-emerald-200 cursor-pointer">
+            <input type="checkbox" class="rounded">
+            <div class="flex-1 text-sm">
+              <div class="font-semibold">📧 Email</div>
+              <div class="text-xs text-ink-500">am@acme.co + ลูกค้า (optional)</div>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 p-2.5 bg-emerald-50 rounded-lg border border-emerald-200 cursor-pointer">
+            <input type="checkbox" class="rounded">
+            <div class="flex-1 text-sm">
+              <div class="font-semibold">📋 ClickUp/Asana ticket</div>
+              <div class="text-xs text-ink-500">sync เป็น task</div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save flow -->
+    <div class="mt-6 bg-white text-ink-900 rounded-2xl p-5 shadow-xl flex items-center justify-between gap-4 flex-wrap">
+      <div>
+        <div class="text-xs text-ink-500 font-semibold mb-1">Rule name</div>
+        <input type="text" value="Coffee Co. — Ranking drop watcher" class="px-3 py-2 border border-ink-200 rounded-lg text-sm font-semibold w-80 max-w-full" />
+      </div>
+      <div class="flex gap-2">
+        <button class="bg-ink-100 hover:bg-ink-200 px-4 py-2 rounded-lg text-sm font-semibold">▶ ทดสอบ</button>
+        <button class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-semibold">💾 Save + Activate</button>
+      </div>
+    </div>
+
+    <!-- Recipe gallery -->
+    <div class="mt-10">
+      <h3 class="text-2xl font-bold text-center mb-2">หรือเลือกจาก Recipe Library (20+ แบบ)</h3>
+      <p class="text-center text-white/70 text-sm mb-6">ปรับแต่งได้แล้วใช้ทันที — ไม่ต้องสร้างเอง</p>
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="glass rounded-xl p-4 demo-card cursor-pointer">
+          <div class="text-2xl mb-2">🚨</div>
+          <div class="font-bold text-sm">Ranking drop watcher</div>
+          <div class="text-xs text-white/60 mt-1">ตก > 5 อันดับ → audit + task</div>
+        </div>
+        <div class="glass rounded-xl p-4 demo-card cursor-pointer">
+          <div class="text-2xl mb-2">📊</div>
+          <div class="font-bold text-sm">Monthly auto-report</div>
+          <div class="text-xs text-white/60 mt-1">วันที่ 1 → PDF + LINE</div>
+        </div>
+        <div class="glass rounded-xl p-4 demo-card cursor-pointer">
+          <div class="text-2xl mb-2">🤖</div>
+          <div class="font-bold text-sm">AI citation lost</div>
+          <div class="text-xs text-white/60 mt-1">หลุด AIO → brief อัตโนมัติ</div>
+        </div>
+        <div class="glass rounded-xl p-4 demo-card cursor-pointer">
+          <div class="text-2xl mb-2">⚡</div>
+          <div class="font-bold text-sm">CWV regression</div>
+          <div class="text-xs text-white/60 mt-1">INP > 500ms → dev ticket</div>
+        </div>
+        <div class="glass rounded-xl p-4 demo-card cursor-pointer">
+          <div class="text-2xl mb-2">📝</div>
+          <div class="font-bold text-sm">Brief → publish</div>
+          <div class="text-xs text-white/60 mt-1">Approve → WP + GSC ping</div>
+        </div>
+        <div class="glass rounded-xl p-4 demo-card cursor-pointer">
+          <div class="text-2xl mb-2">🔗</div>
+          <div class="font-bold text-sm">Broken link sweep</div>
+          <div class="text-xs text-white/60 mt-1">รายสัปดาห์ + redirect</div>
+        </div>
+        <div class="glass rounded-xl p-4 demo-card cursor-pointer">
+          <div class="text-2xl mb-2">🌟</div>
+          <div class="font-bold text-sm">Backlink alert</div>
+          <div class="text-xs text-white/60 mt-1">DA > 50 → LINE</div>
+        </div>
+        <div class="glass rounded-xl p-4 demo-card cursor-pointer">
+          <div class="text-2xl mb-2">🎯</div>
+          <div class="font-bold text-sm">Featured snippet won</div>
+          <div class="text-xs text-white/60 mt-1">celebrate + protect content</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. CONTENT PIPELINE MOCKUP ============ -->
+<section id="content-demo" class="section py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="text-xs font-bold tracking-[0.2em] text-indigo-600 uppercase mb-3">09 · WORKFLOW</div>
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">✍️ Content Pipeline</h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">Brief → Draft → Review → Publish · NLP scoring + E-E-A-T verification ในระบบเดียว</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-ink-100 rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="font-bold text-sm">📝 Brief</div>
+          <span class="text-xs bg-white px-2 py-0.5 rounded-full font-semibold">3</span>
+        </div>
+        <div class="space-y-2">
+          <div class="bg-white rounded-lg p-3 cursor-grab hover:shadow-md transition">
+            <div class="text-xs text-ink-500">Coffee Co.</div>
+            <div class="text-sm font-semibold mt-1">วิธีชงเอสเปรสโซที่บ้านให้อร่อย</div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px] text-ink-500"><span>KD 32</span> · <span>Vol 1.2k</span> · <span>👤 unassigned</span></div>
+          </div>
+          <div class="bg-white rounded-lg p-3 cursor-grab hover:shadow-md transition">
+            <div class="text-xs text-ink-500">HealthWise</div>
+            <div class="text-sm font-semibold mt-1">ออฟฟิศซินโดรม ปวดคออาการเป็นยังไง</div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px] text-ink-500"><span>KD 28</span> · <span>Vol 880</span> · <span>👤 Max</span></div>
+          </div>
+          <div class="bg-white rounded-lg p-3 cursor-grab hover:shadow-md transition">
+            <div class="text-xs text-ink-500">Travel Roam</div>
+            <div class="text-sm font-semibold mt-1">10 ที่เที่ยวเชียงใหม่ 2026</div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px] text-ink-500"><span>KD 45</span> · <span>Vol 3.6k</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-amber-50 rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="font-bold text-sm">✏️ Drafting</div>
+          <span class="text-xs bg-white px-2 py-0.5 rounded-full font-semibold">2</span>
+        </div>
+        <div class="space-y-2">
+          <div class="bg-white rounded-lg p-3 cursor-grab hover:shadow-md transition">
+            <div class="text-xs text-ink-500">Coffee Co.</div>
+            <div class="text-sm font-semibold mt-1">รีวิว 5 เมล็ดกาแฟไทย</div>
+            <div class="mt-2 h-1 bg-amber-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500" style="width:65%"></div></div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px] text-ink-500"><span>👤 Max · 65%</span> · <span>NLP 78</span></div>
+          </div>
+          <div class="bg-white rounded-lg p-3 cursor-grab hover:shadow-md transition">
+            <div class="text-xs text-ink-500">FashionBrand</div>
+            <div class="text-sm font-semibold mt-1">เทรนด์เสื้อผ้าฤดูร้อน 2026</div>
+            <div class="mt-2 h-1 bg-amber-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500" style="width:40%"></div></div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px] text-ink-500"><span>👤 Junior · 40%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="font-bold text-sm">👁 In Review</div>
+          <span class="text-xs bg-white px-2 py-0.5 rounded-full font-semibold">1</span>
+        </div>
+        <div class="space-y-2">
+          <div class="bg-white rounded-lg p-3 cursor-grab hover:shadow-md transition">
+            <div class="text-xs text-ink-500">Bangkok Spa</div>
+            <div class="text-sm font-semibold mt-1">5 เมนูสปาที่ผู้หญิงไทยต้องลอง</div>
+            <div class="mt-2 flex items-center gap-1 text-[10px]">
+              <span class="bg-cyan-100 text-cyan-700 px-1.5 py-0.5 rounded-full font-semibold">รอลูกค้า approve</span>
+            </div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px] text-ink-500"><span>NLP 89</span> · <span>E-E-A-T ✓</span> · <span>Schema ✓</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-50 rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="font-bold text-sm">✅ Published</div>
+          <span class="text-xs bg-white px-2 py-0.5 rounded-full font-semibold">12 / เดือน</span>
+        </div>
+        <div class="space-y-2">
+          <div class="bg-white rounded-lg p-3 hover:shadow-md transition">
+            <div class="text-xs text-ink-500">Coffee Co.</div>
+            <div class="text-sm font-semibold mt-1">arabica vs robusta ต่างกันยังไง</div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px]"><span class="text-emerald-700 font-bold">📈 #2 · +340 visits</span></div>
+          </div>
+          <div class="bg-white rounded-lg p-3 hover:shadow-md transition">
+            <div class="text-xs text-ink-500">HealthWise</div>
+            <div class="text-sm font-semibold mt-1">8 ท่าโยคะแก้ปวดคอ</div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px]"><span class="text-emerald-700 font-bold">📈 #5 · 🤖 AIO cited</span></div>
+          </div>
+          <div class="bg-white rounded-lg p-3 hover:shadow-md transition">
+            <div class="text-xs text-ink-500">Travel Roam</div>
+            <div class="text-sm font-semibold mt-1">เที่ยวภูเก็ตช่วงโลว์ซีซั่น</div>
+            <div class="flex items-center gap-1.5 mt-2 text-[10px]"><span class="text-emerald-700 font-bold">📈 Featured snippet</span></div>
+          </div>
+          <div class="text-center text-xs text-ink-500 py-1">+9 บทความ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. SCREEN MOCKUPS ============ -->
+<section id="screens" class="section py-20 bg-ink-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">10 · SCREEN MOCKUPS</div>
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">หน้าจอ admin / client / project</h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">click ดูแต่ละหน้าใน full prototype ได้</p>
+    </div>
+
+    <!-- Admin Dashboard mockup -->
+    <div id="admin-demo" class="bg-white rounded-3xl shadow-2xl border border-ink-200 overflow-hidden mb-8">
+      <div class="browser-chrome">
+        <span class="browser-dot bg-red-400"></span>
+        <span class="browser-dot bg-yellow-400"></span>
+        <span class="browser-dot bg-green-400"></span>
+        <span class="browser-bar">acme.searchfit.app/dashboard</span>
+        <span class="text-xs text-white/60 font-semibold">👑 Owner view</span>
+      </div>
+      <div class="flex h-[480px]">
+        <!-- Mock sidebar -->
+        <div class="w-52 bg-white border-r border-ink-200 px-3 py-3 flex-shrink-0">
+          <div class="flex items-center gap-2 mb-3 px-2">
+            <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-purple-600"></div>
+            <div class="text-xs font-extrabold">SearchFit <span class="text-brand-600">Pro</span></div>
+          </div>
+          <div class="space-y-1 text-xs">
+            <div class="text-[10px] font-bold tracking-wider text-ink-400 px-2 py-1.5">ภาพรวม</div>
+            <div class="px-2.5 py-1.5 bg-gradient-to-r from-brand-500 to-purple-600 text-white rounded-lg font-semibold">📊 Dashboard</div>
+            <div class="px-2.5 py-1.5 text-ink-700">👥 Clients <span class="text-[10px] ml-1 bg-ink-100 px-1 rounded">15</span></div>
+            <div class="px-2.5 py-1.5 text-ink-700">🎯 Project</div>
+            <div class="text-[10px] font-bold tracking-wider text-ink-400 px-2 py-1.5 pt-2">เครื่องมือ</div>
+            <div class="px-2.5 py-1.5 text-ink-700">🤖 AI Visibility <span class="text-[10px] ml-1 bg-purple-100 text-purple-700 px-1 rounded font-bold">NEW</span></div>
+            <div class="px-2.5 py-1.5 text-ink-700">📍 Local Grid</div>
+            <div class="px-2.5 py-1.5 text-ink-700">✍️ Content</div>
+            <div class="px-2.5 py-1.5 text-ink-700">⚡ Automations</div>
+          </div>
+        </div>
+        <!-- Mock main -->
+        <div class="flex-1 bg-ink-50 p-5 overflow-y-auto">
+          <div class="grid grid-cols-4 gap-3 mb-4">
+            <div class="bg-white rounded-xl p-3 border border-ink-100">
+              <div class="text-[10px] text-ink-500">MRR</div>
+              <div class="text-xl font-extrabold">฿285,400</div>
+              <div class="text-[10px] text-emerald-600 font-bold">↑ 12%</div>
+            </div>
+            <div class="bg-white rounded-xl p-3 border border-ink-100">
+              <div class="text-[10px] text-ink-500">Avg Score</div>
+              <div class="text-xl font-extrabold">76 / 100</div>
+              <div class="text-[10px] text-emerald-600 font-bold">↑ 3.2</div>
+            </div>
+            <div class="bg-white rounded-xl p-3 border border-ink-100">
+              <div class="text-[10px] text-ink-500">Top-10 KW</div>
+              <div class="text-xl font-extrabold">2,847</div>
+              <div class="text-[10px] text-emerald-600 font-bold">↑ 148</div>
+            </div>
+            <div class="bg-white rounded-xl p-3 border border-ink-100">
+              <div class="text-[10px] text-ink-500">Automations</div>
+              <div class="text-xl font-extrabold">1,402</div>
+              <div class="text-[10px] text-brand-600 font-bold">99.4% ok</div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-4 border border-ink-100 mb-3">
+            <div class="font-bold text-sm mb-2">Organic traffic — รวม 15 ลูกค้า</div>
+            <canvas id="screen-chart" height="80"></canvas>
+          </div>
+          <div class="bg-white rounded-xl p-4 border border-ink-100">
+            <div class="font-bold text-sm mb-2">⚠ Recent activity</div>
+            <div class="space-y-1.5 text-xs">
+              <div class="flex gap-2"><span class="text-red-500">🚨</span> Coffee Co. — "เมล็ดกาแฟ" ตก #3 → #9 · auto-task สร้างแล้ว</div>
+              <div class="flex gap-2"><span class="text-emerald-500">✅</span> Travel Roam — Monthly report ส่งสำเร็จ · ลูกค้าเปิดแล้ว 2 ครั้ง</div>
+              <div class="flex gap-2"><span class="text-purple-500">🤖</span> HealthWise ติด ChatGPT citation: "คลินิกกายภาพ สีลม"</div>
+              <div class="flex gap-2"><span class="text-amber-500">⚠</span> FashionBrand INP 580ms · dev ticket #2401</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-ink-200 px-5 py-3 bg-ink-50 text-center">
+        <a href="app.html#admin" class="text-sm text-brand-600 font-bold hover:underline">→ เปิดหน้า Admin Dashboard เต็มรูปแบบ</a>
+      </div>
+    </div>
+
+    <!-- Project Detail mockup -->
+    <div class="bg-white rounded-3xl shadow-2xl border border-ink-200 overflow-hidden mb-8">
+      <div class="browser-chrome">
+        <span class="browser-dot bg-red-400"></span>
+        <span class="browser-dot bg-yellow-400"></span>
+        <span class="browser-dot bg-green-400"></span>
+        <span class="browser-bar">acme.searchfit.app/clients/coffee-co/project</span>
+        <span class="text-xs text-white/60 font-semibold">🔧 Specialist view</span>
+      </div>
+      <div class="p-6">
+        <div class="bg-gradient-to-br from-brand-600 to-purple-700 rounded-2xl p-5 text-white mb-4">
+          <div class="flex items-start justify-between flex-wrap gap-4">
+            <div>
+              <div class="text-xs text-white/70 mb-1">Clients › Coffee Co. › www.coffeeco.th</div>
+              <h3 class="text-2xl font-extrabold">Coffee Co.</h3>
+              <div class="text-xs text-white/80 mt-1">Active retainer · ฿25,000/mo · AM: Nong</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="relative w-20 h-20">
+                <svg class="score-ring w-20 h-20" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="8"/>
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-dasharray="242 264"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-center"><div class="text-2xl font-extrabold">92</div><div class="text-[8px] opacity-70">/100</div></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-1.5 text-center text-[10px]">
+                <div class="bg-white/10 rounded p-1.5"><div class="opacity-70">On-Page</div><div class="font-bold">94</div></div>
+                <div class="bg-white/10 rounded p-1.5"><div class="opacity-70">Tech</div><div class="font-bold">88</div></div>
+                <div class="bg-white/10 rounded p-1.5"><div class="opacity-70">CWV</div><div class="font-bold">95</div></div>
+                <div class="bg-white/10 rounded p-1.5"><div class="opacity-70">Content</div><div class="font-bold">90</div></div>
+                <div class="bg-white/10 rounded p-1.5"><div class="opacity-70">Off-Page</div><div class="font-bold">82</div></div>
+                <div class="bg-accent-500 rounded p-1.5"><div class="opacity-90">AI Vis</div><div class="font-bold">96</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-3">
+          <div class="lg:col-span-2 bg-ink-50 rounded-xl p-4">
+            <div class="font-bold text-sm mb-3">Top moving keywords</div>
+            <table class="w-full text-xs">
+              <thead class="text-ink-500 uppercase">
+                <tr><th class="text-left pb-2 font-semibold">Keyword</th><th class="pb-2">Rank</th><th class="pb-2">Δ</th><th class="pb-2">Vol</th><th class="pb-2">SERP</th></tr>
+              </thead>
+              <tbody class="divide-y divide-ink-200">
+                <tr><td class="py-1.5">เมล็ดกาแฟ premium</td><td class="text-center font-bold">3</td><td class="text-center text-emerald-600 font-bold">↑ 8</td><td class="text-center">2.4k</td><td class="text-center">🤖 AIO</td></tr>
+                <tr><td class="py-1.5">เครื่องชงกาแฟบ้าน</td><td class="text-center font-bold">5</td><td class="text-center text-emerald-600 font-bold">↑ 4</td><td class="text-center">1.8k</td><td class="text-center">⭐ Featured</td></tr>
+                <tr><td class="py-1.5">arabica vs robusta</td><td class="text-center font-bold">2</td><td class="text-center text-emerald-600 font-bold">↑ 3</td><td class="text-center">880</td><td class="text-center">❓ PAA</td></tr>
+                <tr><td class="py-1.5">คั่วกาแฟ medium roast</td><td class="text-center font-bold">9</td><td class="text-center text-red-600 font-bold">↓ 6</td><td class="text-center">560</td><td class="text-center">🛒 Shopping</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bg-red-50 rounded-xl p-4">
+            <div class="font-bold text-sm mb-2">⚠ Critical issues</div>
+            <div class="space-y-2 text-xs">
+              <div class="bg-white rounded-lg p-2.5 border border-red-100">
+                <div class="font-bold text-red-900">Missing meta · 3 หน้า</div>
+                <button class="text-[10px] text-red-700 font-bold mt-1 hover:underline">⚡ AI auto-fix →</button>
+              </div>
+              <div class="bg-white rounded-lg p-2.5 border border-amber-100">
+                <div class="font-bold text-amber-900">Broken links · 7</div>
+                <button class="text-[10px] text-amber-700 font-bold mt-1 hover:underline">⚡ Run recipe →</button>
+              </div>
+              <div class="bg-white rounded-lg p-2.5 border border-blue-100">
+                <div class="font-bold text-blue-900">Schema · +12 หน้า</div>
+                <button class="text-[10px] text-blue-700 font-bold mt-1 hover:underline">⚡ Generate →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-ink-200 px-5 py-3 bg-ink-50 text-center">
+        <a href="app.html#project" class="text-sm text-brand-600 font-bold hover:underline">→ เปิดหน้า Project Detail เต็มรูปแบบ</a>
+      </div>
+    </div>
+
+    <!-- Client Portal (white-label) mockup -->
+    <div id="client-portal-demo" class="bg-white rounded-3xl shadow-2xl border border-ink-200 overflow-hidden mb-8">
+      <div class="browser-chrome">
+        <span class="browser-dot bg-red-400"></span>
+        <span class="browser-dot bg-yellow-400"></span>
+        <span class="browser-dot bg-green-400"></span>
+        <span class="browser-bar">seo.mediaagency.co.th/coffee-co</span>
+        <span class="text-xs text-white/60 font-semibold">👁 Client (View) — white-label</span>
+      </div>
+      <!-- Custom branded header -->
+      <div class="bg-gradient-to-r from-orange-500 to-pink-500 px-6 py-4 text-white flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl">☕</div>
+          <div>
+            <div class="font-extrabold">Coffee Co. SEO Dashboard</div>
+            <div class="text-xs text-white/80">powered by Media Agency Co.</div>
+          </div>
+        </div>
+        <div class="text-xs bg-white/10 px-3 py-1.5 rounded-lg">Download report</div>
+      </div>
+      <div class="p-6 space-y-4">
+        <div class="grid sm:grid-cols-4 gap-3">
+          <div class="bg-emerald-50 rounded-xl p-3">
+            <div class="text-[10px] text-emerald-700 font-bold">SEO SCORE</div>
+            <div class="text-2xl font-extrabold text-emerald-700 mt-1">92<span class="text-sm font-normal">/100</span></div>
+            <div class="text-[10px] text-emerald-600 mt-1">↑ 8.2</div>
+          </div>
+          <div class="bg-blue-50 rounded-xl p-3">
+            <div class="text-[10px] text-blue-700 font-bold">VISITS</div>
+            <div class="text-2xl font-extrabold text-blue-700 mt-1">12,450</div>
+            <div class="text-[10px] text-blue-600 mt-1">↑ 34% MoM</div>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-3">
+            <div class="text-[10px] text-purple-700 font-bold">TOP 10 KW</div>
+            <div class="text-2xl font-extrabold text-purple-700 mt-1">87</div>
+            <div class="text-[10px] text-purple-600 mt-1">+12</div>
+          </div>
+          <div class="bg-amber-50 rounded-xl p-3">
+            <div class="text-[10px] text-amber-700 font-bold">AI CITATIONS</div>
+            <div class="text-2xl font-extrabold text-amber-700 mt-1">14</div>
+            <div class="text-[10px] text-amber-600 mt-1">ChatGPT + AIO</div>
+          </div>
+        </div>
+
+        <div class="bg-ink-50 rounded-xl p-4">
+          <div class="font-bold text-sm mb-2">💬 AI summary ของเดือนนี้</div>
+          <p class="text-sm text-ink-700 leading-relaxed">เดือนนี้เว็บของคุณ <strong>เติบโต 34%</strong> โดยมาจาก keyword "เมล็ดกาแฟ premium" ขึ้นจาก #11 ไป <strong>#3</strong> และ feature ใน AI Overview — เพิ่ม traffic 234 คน/วัน · ที่ <strong>ต้องระวัง</strong>: "คั่วกาแฟ medium roast" ตก 6 อันดับ ทีมกำลังตรวจสอบ</p>
+        </div>
+
+        <div class="bg-white border border-ink-200 rounded-xl p-4">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-xs text-ink-500 font-semibold mb-1">รออนุมัติจากคุณ</div>
+              <div class="font-semibold">5 เมนูสปาที่ผู้หญิงไทยต้องลอง</div>
+              <div class="text-xs text-ink-500 mt-1">เขียนโดย Max · NLP 89 · target "สปา ผู้หญิง" (vol 3,200)</div>
+            </div>
+            <div class="flex gap-2">
+              <button class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-lg font-bold">✓ Approve</button>
+              <button class="text-xs bg-amber-500 text-white px-3 py-1.5 rounded-lg font-bold">✎ ขอแก้</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-ink-200 px-5 py-3 bg-ink-50 text-center">
+        <a href="app.html#client-portal" class="text-sm text-brand-600 font-bold hover:underline">→ เปิดหน้า Client Portal เต็มรูปแบบ</a>
+      </div>
+    </div>
+
+    <!-- More screens grid -->
+    <h3 class="text-2xl font-bold text-center mb-6 mt-12">+ หน้าจออื่นๆ ใน prototype</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <a href="app.html#clients" class="card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-ink-200">
+        <div class="aspect-video bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white text-3xl">🏢</div>
+        <div class="p-4">
+          <div class="text-[10px] text-purple-600 font-bold tracking-wider mb-1">ADMIN</div>
+          <div class="font-bold text-sm mb-1">Client Portfolio</div>
+          <div class="text-xs text-ink-500">15 ลูกค้า · filter · status</div>
+        </div>
+      </a>
+      <a href="app.html#automations" class="card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-ink-200">
+        <div class="aspect-video bg-gradient-to-br from-accent-500 to-red-600 flex items-center justify-center text-white text-3xl">⚡</div>
+        <div class="p-4">
+          <div class="text-[10px] text-accent-600 font-bold tracking-wider mb-1">POWER</div>
+          <div class="font-bold text-sm mb-1">Automation Builder</div>
+          <div class="text-xs text-ink-500">23 rules · 99.4% uptime</div>
+        </div>
+      </a>
+      <a href="app.html#team" id="report-demo" class="card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-ink-200">
+        <div class="aspect-video bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-3xl">👥</div>
+        <div class="p-4">
+          <div class="text-[10px] text-emerald-600 font-bold tracking-wider mb-1">ADMIN</div>
+          <div class="font-bold text-sm mb-1">Team Management</div>
+          <div class="text-xs text-ink-500">workload · roles · audit log</div>
+        </div>
+      </a>
+      <a href="app.html#reports" class="card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-ink-200">
+        <div class="aspect-video bg-gradient-to-br from-violet-600 to-fuchsia-600 flex items-center justify-center text-white text-3xl">📊</div>
+        <div class="p-4">
+          <div class="text-[10px] text-violet-600 font-bold tracking-wider mb-1">REPORTS</div>
+          <div class="font-bold text-sm mb-1">Auto Reports</div>
+          <div class="text-xs text-ink-500">monthly PDF + AI summary</div>
+        </div>
+      </a>
+      <a href="app.html#settings" id="integration-demo" class="card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-ink-200">
+        <div class="aspect-video bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white text-3xl">🔌</div>
+        <div class="p-4">
+          <div class="text-[10px] text-teal-600 font-bold tracking-wider mb-1">SETUP</div>
+          <div class="font-bold text-sm mb-1">Integrations</div>
+          <div class="text-xs text-ink-500">GSC · GA4 · GBP · LINE · WP</div>
+        </div>
+      </a>
+      <a href="app.html#settings" class="card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-ink-200">
+        <div class="aspect-video bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center text-white text-3xl">🎨</div>
+        <div class="p-4">
+          <div class="text-[10px] text-rose-600 font-bold tracking-wider mb-1">CUSTOMIZE</div>
+          <div class="font-bold text-sm mb-1">White-label Config</div>
+          <div class="text-xs text-ink-500">domain · logo · colors</div>
+        </div>
+      </a>
+      <a href="app.html#ai-visibility" class="card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-ink-200">
+        <div class="aspect-video bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white text-3xl">🤖</div>
+        <div class="p-4">
+          <div class="text-[10px] text-purple-600 font-bold tracking-wider mb-1">DIFFERENTIATOR</div>
+          <div class="font-bold text-sm mb-1">AI Visibility</div>
+          <div class="text-xs text-ink-500">5 engines tracking</div>
+        </div>
+      </a>
+      <a href="tools.html" class="card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-ink-200">
+        <div class="aspect-video bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-white text-3xl">⚡</div>
+        <div class="p-4">
+          <div class="text-[10px] text-brand-600 font-bold tracking-wider mb-1">WORKING</div>
+          <div class="font-bold text-sm mb-1">MVP Tools</div>
+          <div class="text-xs text-ink-500">4 เครื่องมือทำงานจริง</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. PRICING ============ -->
+<section id="pricing" class="section py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">11 · PRICING</div>
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">ราคา <span class="text-gradient-cool">เป็นบาท · ใส · ไม่มี credit</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">ทดลอง 14 วันฟรีไม่ต้องใส่บัตร · ใบกำกับภาษีถูกต้อง</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-white rounded-3xl p-6 border-2 border-ink-200 demo-card">
+        <div class="text-xs font-bold text-ink-500 tracking-wider mb-2">STARTER</div>
+        <div class="text-2xl font-extrabold mb-1">฿1,490<span class="text-sm font-normal text-ink-500">/mo</span></div>
+        <div class="text-xs text-ink-500 mb-5">ฟรีแลนซ์ / in-house</div>
+        <ul class="space-y-1.5 text-xs mb-5">
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 3 client · 2 seats</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 250 keywords</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> Audit + Schema + pSEO</li>
+          <li class="flex gap-2 text-ink-400"><span>✕</span> White-label</li>
+        </ul>
+        <button class="w-full bg-ink-100 hover:bg-ink-200 text-ink-900 font-bold py-2.5 rounded-lg text-xs">เริ่มฟรี</button>
+      </div>
+      <div class="bg-gradient-to-br from-brand-600 to-purple-700 rounded-3xl p-6 text-white shadow-2xl scale-105 demo-card relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-500 text-white text-[10px] font-bold px-3 py-1 rounded-full">⭐ POPULAR</div>
+        <div class="text-xs font-bold text-white/80 tracking-wider mb-2">AGENCY</div>
+        <div class="text-2xl font-extrabold mb-1">฿4,990<span class="text-sm font-normal text-white/70">/mo</span></div>
+        <div class="text-xs text-white/70 mb-5">Agency 10-20 ลูกค้า</div>
+        <ul class="space-y-1.5 text-xs mb-5">
+          <li class="flex gap-2"><span>✓</span> 15 client · <strong>unlimited seats</strong></li>
+          <li class="flex gap-2"><span>✓</span> 2,500 keywords</li>
+          <li class="flex gap-2"><span>✓</span> <strong>White-label</strong> + Local Grid</li>
+          <li class="flex gap-2"><span>✓</span> <strong>AI Visibility</strong> (100 prompts)</li>
+          <li class="flex gap-2"><span>✓</span> Automation Engine</li>
+        </ul>
+        <button class="w-full bg-white hover:bg-ink-100 text-brand-700 font-bold py-2.5 rounded-lg text-xs">เริ่มฟรี 14 วัน</button>
+      </div>
+      <div class="bg-white rounded-3xl p-6 border-2 border-ink-200 demo-card">
+        <div class="text-xs font-bold text-ink-500 tracking-wider mb-2">PRO</div>
+        <div class="text-2xl font-extrabold mb-1">฿14,990<span class="text-sm font-normal text-ink-500">/mo</span></div>
+        <div class="text-xs text-ink-500 mb-5">Agency 30+ ลูกค้า</div>
+        <ul class="space-y-1.5 text-xs mb-5">
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 50 client</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 10,000 keywords</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> <strong>Custom domain</strong></li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> AI Vis (500 prompts)</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> Public API</li>
+        </ul>
+        <button class="w-full bg-ink-900 hover:bg-ink-700 text-white font-bold py-2.5 rounded-lg text-xs">เริ่มฟรี</button>
+      </div>
+      <div class="bg-ink-900 rounded-3xl p-6 text-white demo-card">
+        <div class="text-xs font-bold text-accent-400 tracking-wider mb-2">ENTERPRISE</div>
+        <div class="text-2xl font-extrabold mb-1">ติดต่อทีม</div>
+        <div class="text-xs text-white/60 mb-5">Network agencies / brand ใหญ่</div>
+        <ul class="space-y-1.5 text-xs mb-5">
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> Unlimited everything</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> SSO + SAML</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> Dedicated CSM</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> SLA 99.9%</li>
+        </ul>
+        <button class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-2.5 rounded-lg text-xs">นัดคุย</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. CTA ============ -->
+<section class="py-20 bg-gradient-to-br from-brand-600 via-purple-600 to-accent-600 text-white text-center">
+  <div class="max-w-3xl mx-auto px-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">เจ๋งใช่มะ? ลองดูเลย</h2>
+    <p class="text-lg md:text-xl text-white/80 mb-10">
+      ทุกอย่างใน preview นี้มี version เต็มให้สำรวจ — admin views, client portal, automation builder, working tools
+    </p>
+    <div class="flex flex-wrap justify-center gap-3 mb-8">
+      <a href="app.html" class="bg-white text-brand-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-ink-50 transition shadow-2xl flex items-center gap-2">
+        🔐 Login & Try Full App
+      </a>
+      <a href="proposal.html" class="bg-white/10 backdrop-blur-lg border border-white/30 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/20 flex items-center gap-2">
+        📋 Proposal เต็ม
+      </a>
+      <a href="tools.html" class="bg-white/10 backdrop-blur-lg border border-white/30 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/20 flex items-center gap-2">
+        ⚡ MVP Tools
+      </a>
+    </div>
+    <div class="text-sm text-white/70">
+      Research backing: <a href="research/competitor-analysis.md" class="underline">competitor</a> · <a href="research/ai-seo-trends.md" class="underline">AI trends</a> · <a href="research/agency-workflow.md" class="underline">agency</a> · <a href="research/architecture-spec.md" class="underline">architecture</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink-950 text-white py-8">
+  <div class="max-w-7xl mx-auto px-6 text-center text-xs text-white/60">
+    <p>© 2026 SearchFit Pro · Single-page Preview · Proposal Package v1.0</p>
+  </div>
+</footer>
+
+<script>
+/* ============================
+   1. SEO AUDIT DEMO
+   ============================ */
+const auditMockData = {
+  'www.example.com': { score: 76, pass: 12, warn: 3, fail: 1, onPage: 82, tech: 71, ai: 68 },
+  'www.coffeeco.th': { score: 92, pass: 14, warn: 2, fail: 0, onPage: 94, tech: 88, ai: 96 },
+  'www.travelroam.com': { score: 88, pass: 13, warn: 2, fail: 1, onPage: 90, tech: 85, ai: 88 },
+};
+// Deterministic hash so the same URL always yields the same demo score.
+// (For real auditing of any URL, use the Tools page — that one actually
+// fetches and parses the HTML.)
+function hashStr(s) {
+  let h = 2166136261 >>> 0; // FNV-1a 32-bit
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = (h * 16777619) >>> 0;
+  }
+  return h;
+}
+function syntheticAudit(host) {
+  const h = hashStr(host);
+  const score   = 55 + (h % 41);                 // 55–95, stable per host
+  const onPage  = 60 + ((h >>> 7)  % 36);
+  const tech    = 55 + ((h >>> 13) % 41);
+  const ai      = 50 + ((h >>> 19) % 46);
+  const total   = 16;
+  const fail    = score < 65 ? 2 : score < 80 ? 1 : 0;
+  const warn    = Math.max(1, Math.round((100 - score) / 10));
+  const pass    = total - fail - warn;
+  return { score, pass, warn, fail, onPage, tech, ai };
+}
+document.getElementById('audit-btn').addEventListener('click', () => {
+  const url = document.getElementById('audit-url').value;
+  try {
+    const host = new URL(url).hostname;
+    const data = auditMockData[host] || syntheticAudit(host);
+    document.getElementById('audit-url-display').textContent = host;
+    document.getElementById('audit-score-num').textContent = data.score;
+    document.getElementById('audit-score-circle').setAttribute('stroke-dasharray', (data.score * 2.64) + ' 264');
+  } catch(e) { alert('กรุณาใส่ URL ที่ถูกต้อง'); }
+});
+
+/* ============================
+   2. KEYWORD PLANNER DEMO
+   ============================ */
+function generateKeywords(seed) {
+  const isThai = /[฀-๿]/.test(seed);
+  const mods = isThai ? {
+    info: ['คืออะไร','วิธี','ทำยังไง','คู่มือ','เคล็ดลับ','ตัวอย่าง','รีวิว','เปรียบเทียบ','ข้อดี','ข้อเสีย','ใหม่ล่าสุด','สำหรับมือใหม่'],
+    comm: ['ที่ดีที่สุด','แนะนำ','ราคา','ฟรี','โปรโมชั่น','ลดราคา','ดีไหม','คุ้มไหม','รุ่นไหนดี','ยี่ห้อไหนดี','vs'],
+    trans: ['ซื้อ','สั่ง','จอง','ดาวน์โหลด','สมัคร','ใกล้ฉัน','online','ส่งฟรี'],
+    nav: ['login','app','official','website']
+  } : {
+    info: ['what is','how to','guide','tutorial','tips','examples','review','vs','pros and cons','definition','for beginners','complete guide'],
+    comm: ['best','top','cheapest','free','price','review','comparison','alternative','vs','for small business'],
+    trans: ['buy','order','book','download','sign up','near me','online','app'],
+    nav: ['login','app','official','website']
+  };
+
+  const out = [];
+  // Take subset for visual demo (cap at 35 kws total)
+  mods.info.slice(0, 12).forEach(m => out.push({ kw: `${m} ${seed}`, intent: 'Informational' }));
+  mods.comm.slice(0, 11).forEach(m => out.push({ kw: `${m} ${seed}`, intent: 'Commercial' }));
+  mods.trans.slice(0, 8).forEach(m => out.push({ kw: `${seed} ${m}`, intent: 'Transactional' }));
+  mods.nav.slice(0, 4).forEach(m => out.push({ kw: `${seed} ${m}`, intent: 'Navigational' }));
+  return out;
+}
+function difficultyOf(kw) {
+  const n = kw.split(/\s+/).length;
+  if (n <= 2) return { label: 'Hard', color: 'red' };
+  if (n === 3) return { label: 'Medium', color: 'amber' };
+  return { label: 'Easy', color: 'emerald' };
+}
+function renderKeywords() {
+  const seed = document.getElementById('kw-seed').value.trim() || 'ทำ SEO';
+  const kws = generateKeywords(seed);
+  const intentColors = { Informational: 'blue', Commercial: 'purple', Transactional: 'emerald', Navigational: 'amber' };
+  document.getElementById('kw-info-count').textContent = kws.filter(k => k.intent==='Informational').length;
+  document.getElementById('kw-comm-count').textContent = kws.filter(k => k.intent==='Commercial').length;
+  document.getElementById('kw-trans-count').textContent = kws.filter(k => k.intent==='Transactional').length;
+  document.getElementById('kw-nav-count').textContent = kws.filter(k => k.intent==='Navigational').length;
+  const tbody = document.getElementById('kw-table-body');
+  tbody.innerHTML = kws.map(k => {
+    const d = difficultyOf(k.kw);
+    const c = intentColors[k.intent];
+    return `<tr class="hover:bg-ink-50">
+      <td class="p-2.5 text-sm">${k.kw}</td>
+      <td class="p-2.5"><span class="text-[10px] bg-${c}-50 text-${c}-700 px-2 py-0.5 rounded-full font-semibold">${k.intent}</span></td>
+      <td class="p-2.5"><span class="text-[10px] bg-${d.color}-50 text-${d.color}-700 px-2 py-0.5 rounded-full font-semibold">${d.label}</span></td>
+    </tr>`;
+  }).join('');
+  const isThai = /[฀-๿]/.test(seed);
+  document.getElementById('kw-title').textContent = isThai ? `คู่มือฉบับสมบูรณ์: ${seed} (ฉบับปี 2026)` : `The Complete Guide to ${seed} (2026)`;
+}
+document.getElementById('kw-btn').addEventListener('click', renderKeywords);
+document.getElementById('kw-seed').addEventListener('keypress', (e) => { if (e.key === 'Enter') renderKeywords(); });
+renderKeywords();
+
+/* ============================
+   3. AI VISIBILITY DEMO
+   ============================ */
+const aiPrompts = [
+  { prompt: 'ร้านกาแฟดีๆ ในกรุงเทพ', chatgpt: 'cited', claude: 'cited', gemini: 'mention', perplexity: 'cited', aio: 'cited' },
+  { prompt: 'เมล็ดกาแฟ premium ราคา', chatgpt: 'cited', claude: 'mention', gemini: 'cited', perplexity: 'cited', aio: 'cited' },
+  { prompt: 'arabica vs robusta', chatgpt: 'cited', claude: 'cited', gemini: 'cited', perplexity: 'cited', aio: 'cited' },
+  { prompt: 'วิธีชงกาแฟดริปที่บ้าน', chatgpt: 'cited', claude: 'mention', gemini: '—', perplexity: 'cited', aio: 'mention' },
+  { prompt: 'เครื่องชงกาแฟ home brewer', chatgpt: 'mention', claude: '—', gemini: 'mention', perplexity: 'cited', aio: 'cited' },
+  { prompt: 'คาเฟ่เปิดดึก สุขุมวิท', chatgpt: '—', claude: '—', gemini: '—', perplexity: '—', aio: 'mention' },
+  { prompt: 'ร้านขนมปังสด กรุงเทพ', chatgpt: 'cited', claude: 'cited', gemini: 'cited', perplexity: 'cited', aio: 'cited' },
+  { prompt: 'specialty coffee คืออะไร', chatgpt: 'cited', claude: 'cited', gemini: 'mention', perplexity: 'cited', aio: 'cited' },
+];
+function aiCell(s) {
+  if (s === 'cited') return '<span class="inline-block w-6 h-6 rounded-full bg-emerald-500 text-white text-[10px] font-bold leading-6">✓</span>';
+  if (s === 'mention') return '<span class="inline-block w-6 h-6 rounded-full bg-amber-400 text-white text-[10px] font-bold leading-6">~</span>';
+  return '<span class="inline-block w-6 h-6 rounded-full bg-ink-200 text-ink-500 text-[10px] font-bold leading-6">—</span>';
+}
+function renderAI() {
+  const tbody = document.getElementById('ai-prompts-body');
+  tbody.innerHTML = aiPrompts.map(p => `<tr class="hover:bg-ink-50">
+    <td class="p-3 font-medium text-xs">${p.prompt}</td>
+    <td class="p-2 text-center">${aiCell(p.chatgpt)}</td>
+    <td class="p-2 text-center">${aiCell(p.claude)}</td>
+    <td class="p-2 text-center">${aiCell(p.gemini)}</td>
+    <td class="p-2 text-center">${aiCell(p.perplexity)}</td>
+    <td class="p-2 text-center">${aiCell(p.aio)}</td>
+  </tr>`).join('');
+}
+renderAI();
+document.getElementById('ai-add-prompt').addEventListener('click', () => {
+  const p = prompt('เพิ่ม prompt ใหม่ (เช่น "กาแฟไทยอินทรีย์"):');
+  if (!p) return;
+  const states = ['cited', 'mention', '—'];
+  const rand = () => states[Math.floor(Math.random() * 3)];
+  aiPrompts.unshift({ prompt: p, chatgpt: rand(), claude: rand(), gemini: rand(), perplexity: rand(), aio: rand() });
+  renderAI();
+});
+
+/* ============================
+   4. LOCAL GRID DEMO
+   ============================ */
+let currentGridSize = 7;
+function generateGrid(size) {
+  const grid = [];
+  const center = (size - 1) / 2;
+  for (let r = 0; r < size; r++) {
+    for (let c = 0; c < size; c++) {
+      const dist = Math.sqrt((r-center)**2 + (c-center)**2);
+      let rank;
+      if (dist <= 1) rank = Math.floor(Math.random() * 3) + 1;
+      else if (dist <= 2) rank = Math.floor(Math.random() * 7) + 3;
+      else if (dist <= 3) rank = Math.floor(Math.random() * 10) + 10;
+      else rank = Math.random() > 0.4 ? Math.floor(Math.random() * 30) + 20 : 0;
+      grid.push(rank);
+    }
+  }
+  return grid;
+}
+function renderLocalGrid() {
+  const grid = generateGrid(currentGridSize);
+  const container = document.getElementById('local-grid-display');
+  container.style.gridTemplateColumns = `repeat(${currentGridSize}, 1fr)`;
+  const center = Math.floor(grid.length / 2);
+  container.innerHTML = grid.map((r, i) => {
+    let bg = 'bg-ink-200', text = 'text-ink-500', label = r > 0 ? r : '·';
+    if (r === 0) { bg = 'bg-ink-200'; text = 'text-ink-400'; label = '·'; }
+    else if (r <= 3) { bg = 'bg-emerald-500'; text = 'text-white'; }
+    else if (r <= 10) { bg = 'bg-yellow-400'; text = 'text-yellow-900'; }
+    else if (r <= 20) { bg = 'bg-orange-400'; text = 'text-white'; }
+    else { bg = 'bg-red-400'; text = 'text-white'; }
+    const isCenter = i === center;
+    const fontSize = currentGridSize >= 9 ? 'text-[10px]' : 'text-xs';
+    return `<div class="aspect-square ${bg} ${text} rounded-md flex items-center justify-center ${fontSize} font-bold ${isCenter ? 'ring-2 ring-brand-600 ring-offset-1' : ''}">${label}</div>`;
+  }).join('');
+  // Compute stats
+  const validRanks = grid.filter(r => r > 0);
+  const avg = validRanks.length ? (validRanks.reduce((a,b) => a+b, 0) / validRanks.length).toFixed(1) : '—';
+  const top3 = grid.filter(r => r > 0 && r <= 3).length;
+  document.getElementById('local-avg').textContent = avg;
+  document.getElementById('local-top3').textContent = `${top3}/${grid.length}`;
+  document.getElementById('local-size-display').textContent = `${currentGridSize}×${currentGridSize} = ${currentGridSize*currentGridSize} จุด`;
+}
+document.querySelectorAll('.local-grid-btn').forEach(btn => btn.addEventListener('click', (e) => {
+  document.querySelectorAll('.local-grid-btn').forEach(b => { b.classList.remove('bg-emerald-600','text-white','active'); b.classList.add('bg-ink-100','hover:bg-ink-200'); });
+  e.target.classList.add('bg-emerald-600','text-white','active');
+  e.target.classList.remove('bg-ink-100','hover:bg-ink-200');
+  currentGridSize = parseInt(e.target.dataset.size);
+  renderLocalGrid();
+}));
+document.getElementById('local-rescan').addEventListener('click', renderLocalGrid);
+document.getElementById('local-kw').addEventListener('change', (e) => {
+  document.getElementById('local-kw-display').textContent = e.target.value;
+  renderLocalGrid();
+});
+renderLocalGrid();
+
+/* ============================
+   5. SCHEMA GENERATOR DEMO
+   ============================ */
+const schemaSamples = {
+  Article: {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "วิธีปรับ SEO ให้ดีขึ้นในปี 2026",
+    "image": ["https://example.com/cover.jpg"],
+    "datePublished": "2026-01-15",
+    "dateModified": "2026-05-18",
+    "author": { "@type": "Person", "name": "Stamp", "url": "https://linkedin.com/in/stamp" },
+    "publisher": { "@type": "Organization", "name": "Media Agency Co.", "logo": { "@type": "ImageObject", "url": "https://example.com/logo.png" } }
+  },
+  Product: {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Acme Premium Coffee Beans",
+    "image": ["https://example.com/coffee.jpg"],
+    "description": "High-quality arabica beans from northern Thailand",
+    "sku": "ACM-COF-001",
+    "brand": { "@type": "Brand", "name": "Acme Coffee" },
+    "offers": { "@type": "Offer", "price": "590", "priceCurrency": "THB", "availability": "https://schema.org/InStock" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.7", "reviewCount": "234" }
+  },
+  FAQPage: {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "SEO คืออะไร?", "acceptedAnswer": { "@type": "Answer", "text": "SEO คือการปรับแต่งเว็บไซต์ให้ติดอันดับสูงในผลการค้นหา" } },
+      { "@type": "Question", "name": "ทำ SEO ใช้เวลานานไหม?", "acceptedAnswer": { "@type": "Answer", "text": "ปกติ 3-6 เดือนถึงจะเริ่มเห็นผลที่ชัดเจน" } }
+    ]
+  },
+  LocalBusiness: {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Bangkok Spa",
+    "image": "https://example.com/spa.jpg",
+    "address": { "@type": "PostalAddress", "streetAddress": "123 Sukhumvit Rd", "addressLocality": "Bangkok", "postalCode": "10110", "addressCountry": "TH" },
+    "telephone": "+66-2-123-4567",
+    "priceRange": "฿฿",
+    "openingHours": "Mo-Fr 09:00-21:00"
+  },
+  Organization: {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Media Agency Co.",
+    "url": "https://mediaagency.co.th",
+    "logo": "https://mediaagency.co.th/logo.png",
+    "sameAs": ["https://facebook.com/mediaagency", "https://linkedin.com/company/mediaagency", "https://line.me/ti/p/@mediaagency"]
+  },
+  BreadcrumbList: {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://example.com/blog" },
+      { "@type": "ListItem", "position": 3, "name": "SEO Guide", "item": "https://example.com/blog/seo" }
+    ]
+  },
+  HowTo: {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "วิธีชงกาแฟดริปที่บ้าน",
+    "description": "เรียนรู้การชงกาแฟดริปที่บ้านในแบบง่ายๆ",
+    "totalTime": "PT5M",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "text": "บดเมล็ดกาแฟให้ละเอียดปานกลาง" },
+      { "@type": "HowToStep", "position": 2, "text": "ตั้งกระดาษกรองและล้างด้วยน้ำร้อน" },
+      { "@type": "HowToStep", "position": 3, "text": "เทน้ำร้อน 92°C ทีละน้อย" }
+    ]
+  },
+  Review: {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "itemReviewed": { "@type": "Product", "name": "Acme Premium Coffee Beans" },
+    "reviewBody": "หอม กลม มีโทนคาราเมล ชงดริปอร่อยมาก คุ้มราคา",
+    "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+    "author": { "@type": "Person", "name": "Stamp" }
+  },
+  Event: {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Bangkok SEO Conference 2026",
+    "startDate": "2026-08-15T09:00",
+    "endDate": "2026-08-15T17:00",
+    "location": { "@type": "Place", "name": "BITEC", "address": "Bangna, Bangkok" },
+    "organizer": { "@type": "Organization", "name": "Media Agency Co." }
+  },
+  VideoObject: {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "SEO Tutorial 2026 ฉบับเริ่มต้น",
+    "description": "เรียนรู้พื้นฐาน SEO ในยุค AI search",
+    "thumbnailUrl": "https://example.com/thumb.jpg",
+    "uploadDate": "2026-05-18",
+    "duration": "PT12M30S",
+    "contentUrl": "https://example.com/video.mp4"
+  }
+};
+function renderSchema() {
+  const type = document.getElementById('schema-pick').value;
+  const obj = schemaSamples[type];
+  document.getElementById('schema-output').textContent = JSON.stringify(obj, null, 2);
+}
+document.getElementById('schema-pick').addEventListener('change', renderSchema);
+document.getElementById('schema-copy').addEventListener('click', () => {
+  const txt = `<script type="application/ld+json">\n${document.getElementById('schema-output').textContent}\n</` + `script>`;
+  navigator.clipboard.writeText(txt);
+  const btn = document.getElementById('schema-copy');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✓ Copied!';
+  setTimeout(() => btn.innerHTML = orig, 1500);
+});
+renderSchema();
+
+/* ============================
+   6. ADMIN MOCKUP CHART
+   ============================ */
+window.addEventListener('load', () => {
+  const ctx = document.getElementById('screen-chart')?.getContext('2d');
+  if (ctx && typeof Chart !== 'undefined') {
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: Array.from({length: 30}, (_, i) => i+1),
+        datasets: [{
+          data: Array.from({length: 30}, (_, i) => 30000 + i*200 + Math.sin(i/3)*2000),
+          borderColor: '#6366f1',
+          backgroundColor: 'rgba(99,102,241,0.1)',
+          fill: true, tension: 0.4, pointRadius: 0, borderWidth: 2
+        }]
+      },
+      options: { plugins:{legend:{display:false}}, scales:{x:{display:false}, y:{display:false}}, maintainAspectRatio:false }
+    });
+  }
+});
+</script>
+
+<script src="assets/i18n.js"></script>
+</body>
+</html>

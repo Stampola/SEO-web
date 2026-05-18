@@ -1,0 +1,1237 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SEO Toolkit — Audit · Keyword · Schema · pSEO</title>
+<meta name="description" content="เครื่องมือ SEO ครบเซ็ตในหน้าเดียว: ตรวจสอบเว็บ, วิจัย keyword, สร้าง schema markup และทำ programmatic SEO" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { 50:'#eef6ff',100:'#dbeafe',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8' },
+          ink: { 900:'#0b1220', 700:'#1f2937', 500:'#6b7280', 300:'#d1d5db', 100:'#f3f4f6' }
+        },
+        fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] }
+      }
+    }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  pre, code { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .tab-btn[aria-selected="true"] { background: #2563eb; color: white; }
+  .tab-btn[aria-selected="true"] svg { color: white; }
+  .panel { display:none; }
+  .panel.active { display:block; }
+  .score-ring { transform: rotate(-90deg); transform-origin: 50% 50%; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  .scrollbar-thin::-webkit-scrollbar { height: 8px; width: 8px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+</style>
+</head>
+<body class="bg-slate-50 text-ink-900 min-h-screen">
+
+<!-- Header -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-30">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-md">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+      </div>
+      <div>
+        <h1 class="text-lg font-bold tracking-tight">SEO Toolkit</h1>
+        <p class="text-xs text-ink-500">Audit · Keyword · Schema · Programmatic SEO</p>
+      </div>
+    </div>
+    <a href="https://www.skills.sh/coreyhaines31/marketingskills" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 text-sm text-ink-500 hover:text-brand-600">
+      <span>Powered by SEO best-practices</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+  </div>
+  <nav class="max-w-7xl mx-auto px-6 pb-3">
+    <div class="flex gap-1 sm:gap-2 overflow-x-auto scrollbar-thin" role="tablist">
+      <button class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-ink-700 hover:bg-slate-100 transition whitespace-nowrap" role="tab" aria-selected="true" data-tab="audit">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        SEO Audit
+      </button>
+      <button class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-ink-700 hover:bg-slate-100 transition whitespace-nowrap" role="tab" aria-selected="false" data-tab="keyword">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5a2 2 0 012 2v5a2 2 0 01-.59 1.41l-7 7a2 2 0 01-2.82 0l-3-3a2 2 0 010-2.82l7-7A2 2 0 016 3z"/></svg>
+        Keyword Planner
+      </button>
+      <button class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-ink-700 hover:bg-slate-100 transition whitespace-nowrap" role="tab" aria-selected="false" data-tab="schema">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        Schema Generator
+      </button>
+      <button class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-ink-700 hover:bg-slate-100 transition whitespace-nowrap" role="tab" aria-selected="false" data-tab="pseo">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Programmatic SEO
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+<!-- ============ PANEL 1: SEO AUDIT ============ -->
+<section class="panel active" data-panel="audit">
+  <div class="grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-1">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 sticky top-32">
+        <h2 class="font-bold text-lg mb-1">SEO Audit Tool</h2>
+        <p class="text-sm text-ink-500 mb-4">วิเคราะห์ on-page SEO ของหน้าเว็บใดๆ — ตรวจ title, meta, heading, alt, schema, canonical และอีกหลายอย่าง</p>
+
+        <label class="block text-xs font-semibold text-ink-700 mb-2">URL ของหน้าที่ต้องการตรวจ</label>
+        <div class="flex gap-2">
+          <input id="audit-url" type="url" placeholder="https://example.com" class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
+        </div>
+
+        <button id="audit-run" class="mt-3 w-full bg-brand-600 hover:bg-brand-700 text-white font-medium px-4 py-2.5 rounded-lg text-sm transition flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span id="audit-run-text">เริ่ม Audit</span>
+        </button>
+
+        <div class="mt-4 p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-800">
+          <p class="font-semibold mb-1">เคล็ดลับ:</p>
+          <p>ถ้า fetch URL ไม่สำเร็จเพราะ CORS ให้กด <b>วาง HTML เอง</b> ด้านล่าง — คัดลอกซอร์ส (View Source) จากหน้านั้นมาวางได้เลย</p>
+        </div>
+
+        <details class="mt-3">
+          <summary class="text-xs font-semibold text-brand-600 hover:text-brand-700">วาง HTML เอง (ใช้เมื่อ fetch ไม่ผ่าน)</summary>
+          <textarea id="audit-html-paste" rows="6" placeholder="<!doctype html>..." class="mt-2 w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono"></textarea>
+          <button id="audit-run-paste" class="mt-2 w-full bg-slate-700 hover:bg-slate-800 text-white px-3 py-2 rounded-lg text-xs">วิเคราะห์ HTML ที่วาง</button>
+        </details>
+      </div>
+    </div>
+
+    <div class="lg:col-span-2">
+      <div id="audit-empty" class="bg-white rounded-2xl p-12 text-center shadow-sm border border-slate-200 border-dashed">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-brand-50 flex items-center justify-center">
+          <svg class="w-8 h-8 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-1">พร้อมตรวจสอบเว็บของคุณ</h3>
+        <p class="text-sm text-ink-500">ใส่ URL ทางซ้าย เพื่อเริ่ม audit แบบครบจบ</p>
+      </div>
+
+      <div id="audit-result" class="hidden space-y-4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PANEL 2: KEYWORD PLANNER ============ -->
+<section class="panel" data-panel="keyword">
+  <div class="grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-1">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 sticky top-32">
+        <h2 class="font-bold text-lg mb-1">Keyword Research & Content Planner</h2>
+        <p class="text-sm text-ink-500 mb-4">กรอก seed keyword → ได้ keyword variations, search intent, topic clusters และ content brief</p>
+
+        <label class="block text-xs font-semibold text-ink-700 mb-2">Seed Keyword หรือหัวข้อ</label>
+        <input id="kw-seed" type="text" placeholder="เช่น ทำ SEO, online marketing, react hook" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
+
+        <label class="block text-xs font-semibold text-ink-700 mt-3 mb-2">ภาษา</label>
+        <select id="kw-lang" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">
+          <option value="th">ไทย</option>
+          <option value="en">English</option>
+        </select>
+
+        <label class="block text-xs font-semibold text-ink-700 mt-3 mb-2">ประเภทธุรกิจ</label>
+        <select id="kw-biz" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">
+          <option value="saas">SaaS / Software</option>
+          <option value="ecom">E-commerce</option>
+          <option value="content">Blog / Media</option>
+          <option value="local">Local Business</option>
+          <option value="b2b">B2B Services</option>
+        </select>
+
+        <button id="kw-run" class="mt-4 w-full bg-brand-600 hover:bg-brand-700 text-white font-medium px-4 py-2.5 rounded-lg text-sm transition">
+          สร้างแผน Keyword
+        </button>
+
+        <div class="mt-4 text-xs text-ink-500 leading-relaxed">
+          เครื่องมือนี้สร้าง keyword variations ด้วยวิธี <b>modifier expansion</b> + <b>question patterns</b> + <b>long-tail</b> — ไม่ใช่ตัวเลข search volume จริง ควรนำไป cross-check กับ Google Search Console / Ahrefs / Semrush ก่อนใช้
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-2">
+      <div id="kw-empty" class="bg-white rounded-2xl p-12 text-center shadow-sm border border-slate-200 border-dashed">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-brand-50 flex items-center justify-center">
+          <svg class="w-8 h-8 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-1">เริ่มต้นค้นคว้า Keyword</h3>
+        <p class="text-sm text-ink-500">กรอก seed keyword ทางซ้าย เพื่อสร้าง content plan ครบชุด</p>
+      </div>
+      <div id="kw-result" class="hidden space-y-4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PANEL 3: SCHEMA GENERATOR ============ -->
+<section class="panel" data-panel="schema">
+  <div class="grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-1">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 sticky top-32">
+        <h2 class="font-bold text-lg mb-1">Schema Markup Generator</h2>
+        <p class="text-sm text-ink-500 mb-4">สร้าง JSON-LD structured data ที่ Google เข้าใจ — copy แล้วเอาไปวางใน <code>&lt;head&gt;</code> ได้เลย</p>
+
+        <label class="block text-xs font-semibold text-ink-700 mb-2">ประเภท Schema</label>
+        <select id="schema-type" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">
+          <option value="Article">Article (บทความ / ข่าว)</option>
+          <option value="Product">Product (สินค้า + ราคา)</option>
+          <option value="FAQPage">FAQPage (คำถามที่พบบ่อย)</option>
+          <option value="LocalBusiness">LocalBusiness (ร้าน/บริษัทท้องถิ่น)</option>
+          <option value="Organization">Organization (องค์กร)</option>
+          <option value="BreadcrumbList">BreadcrumbList (เส้นทาง)</option>
+          <option value="HowTo">HowTo (วิธีทำ)</option>
+          <option value="Review">Review (รีวิว)</option>
+          <option value="Event">Event (อีเวนต์)</option>
+          <option value="VideoObject">VideoObject (วิดีโอ)</option>
+        </select>
+
+        <div id="schema-fields" class="mt-4 space-y-3"></div>
+
+        <button id="schema-validate" class="mt-4 w-full bg-slate-700 hover:bg-slate-800 text-white font-medium px-4 py-2 rounded-lg text-sm transition">
+          ตรวจสอบกับ Google Rich Results
+        </button>
+      </div>
+    </div>
+
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-50">
+          <h3 class="font-semibold text-sm">Generated JSON-LD</h3>
+          <div class="flex gap-2">
+            <button id="schema-copy" class="text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 font-medium">Copy</button>
+            <button id="schema-download" class="text-xs px-3 py-1.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 font-medium">Download .json</button>
+          </div>
+        </div>
+        <pre id="schema-output" class="p-5 text-xs overflow-x-auto leading-relaxed">{}</pre>
+      </div>
+
+      <div class="mt-4 bg-amber-50 border border-amber-200 rounded-2xl p-5 text-sm text-amber-900">
+        <p class="font-semibold mb-1">เคล็ดลับ:</p>
+        <ul class="list-disc list-inside space-y-1 leading-relaxed">
+          <li>ใส่ใน <code>&lt;script type="application/ld+json"&gt;...&lt;/script&gt;</code> ภายใน <code>&lt;head&gt;</code></li>
+          <li>ตรวจสอบกับ <a href="https://search.google.com/test/rich-results" target="_blank" class="underline">Google Rich Results Test</a> ทุกครั้งก่อน deploy</li>
+          <li>ใช้ Schema กับเนื้อหาที่มีอยู่จริงในหน้าเท่านั้น — ห้ามสร้างขึ้นมาแบบ misleading</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PANEL 4: PROGRAMMATIC SEO ============ -->
+<section class="panel" data-panel="pseo">
+  <div class="grid lg:grid-cols-2 gap-6">
+    <div class="space-y-4">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+        <h2 class="font-bold text-lg mb-1">Programmatic SEO Page Builder</h2>
+        <p class="text-sm text-ink-500 mb-4">สร้างหน้าเว็บแบบ scale จาก template + data — เหมาะกับ directory pages, comparison pages, location pages</p>
+
+        <label class="block text-xs font-semibold text-ink-700 mb-2">1. ข้อมูล (CSV หรือ JSON)</label>
+        <textarea id="pseo-data" rows="5" placeholder="city,population,price
+Bangkok,8000000,1200
+Chiang Mai,1200000,800
+Phuket,400000,1500" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+        <div class="flex gap-2 mt-2">
+          <label class="text-xs px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg cursor-pointer">
+            อัปโหลด CSV
+            <input id="pseo-csv-upload" type="file" accept=".csv" class="hidden" />
+          </label>
+          <button id="pseo-sample" class="text-xs px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg">ใส่ข้อมูลตัวอย่าง</button>
+        </div>
+
+        <label class="block text-xs font-semibold text-ink-700 mt-5 mb-2">2. URL Template <span class="font-normal text-ink-500">(ใช้ <code>{{column}}</code>)</span></label>
+        <input id="pseo-url-tmpl" type="text" value="/jobs-in-{{city}}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono" />
+
+        <label class="block text-xs font-semibold text-ink-700 mt-3 mb-2">3. Title Template</label>
+        <input id="pseo-title-tmpl" type="text" value="Jobs in {{city}} — Average Salary {{price}}฿/hr" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono" />
+
+        <label class="block text-xs font-semibold text-ink-700 mt-3 mb-2">4. Meta Description Template</label>
+        <input id="pseo-meta-tmpl" type="text" value="Browse jobs in {{city}} (population {{population}}). Average pay {{price}}฿/hr." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono" />
+
+        <label class="block text-xs font-semibold text-ink-700 mt-3 mb-2">5. HTML Body Template</label>
+        <textarea id="pseo-body-tmpl" rows="6" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono"><h1>Jobs in {{city}}</h1>
+<p>Welcome to our directory of jobs in {{city}}. With a population of {{population}}, this is one of Thailand's most active job markets, with an average pay of {{price}}฿/hr.</p>
+<h2>Why work in {{city}}?</h2>
+<p>{{city}} offers diverse opportunities across industries...</p></textarea>
+
+        <button id="pseo-generate" class="mt-4 w-full bg-brand-600 hover:bg-brand-700 text-white font-medium px-4 py-2.5 rounded-lg text-sm transition">
+          สร้างหน้าทั้งหมด
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <div id="pseo-empty" class="bg-white rounded-2xl p-12 text-center shadow-sm border border-slate-200 border-dashed">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-brand-50 flex items-center justify-center">
+          <svg class="w-8 h-8 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </div>
+        <h3 class="font-semibold text-lg mb-1">เริ่มสร้างหน้าเว็บแบบ scale</h3>
+        <p class="text-sm text-ink-500">ใส่ข้อมูลและ template แล้วกด "สร้างหน้าทั้งหมด"</p>
+      </div>
+      <div id="pseo-result" class="hidden"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-slate-200 bg-white mt-12">
+  <div class="max-w-7xl mx-auto px-6 py-6 text-sm text-ink-500 flex flex-col sm:flex-row justify-between gap-2">
+    <p>SEO Toolkit · สร้างขึ้นเพื่อทำ SEO ครบเซ็ต</p>
+    <p>ทุก feature ทำงาน 100% ในเบราว์เซอร์ ไม่มีการเก็บข้อมูล</p>
+  </div>
+</footer>
+
+<script>
+/* ===================== TABS ===================== */
+const tabs = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.panel');
+tabs.forEach(t => t.addEventListener('click', () => {
+  tabs.forEach(x => x.setAttribute('aria-selected','false'));
+  t.setAttribute('aria-selected','true');
+  const id = t.dataset.tab;
+  panels.forEach(p => p.classList.toggle('active', p.dataset.panel === id));
+}));
+
+/* ===================== HELPERS ===================== */
+function el(tag, attrs={}, ...children) {
+  const e = document.createElement(tag);
+  for (const k in attrs) {
+    if (k === 'class') e.className = attrs[k];
+    else if (k === 'html') e.innerHTML = attrs[k];
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  }
+  children.forEach(c => e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c));
+  return e;
+}
+function escapeHtml(s) { return (s||'').toString().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ===================== 1. SEO AUDIT ===================== */
+const auditUrl = document.getElementById('audit-url');
+const auditRun = document.getElementById('audit-run');
+const auditRunText = document.getElementById('audit-run-text');
+const auditRunPaste = document.getElementById('audit-run-paste');
+const auditHtmlPaste = document.getElementById('audit-html-paste');
+const auditEmpty = document.getElementById('audit-empty');
+const auditResult = document.getElementById('audit-result');
+
+auditRun.addEventListener('click', async () => {
+  const url = auditUrl.value.trim();
+  if (!url) { alert('กรุณาใส่ URL'); return; }
+  auditRunText.textContent = 'กำลังดึงหน้า...';
+  auditRun.disabled = true;
+  try {
+    const proxies = [
+      u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+      u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+    ];
+    let html = null, lastErr = null;
+    for (const p of proxies) {
+      try {
+        const r = await fetch(p(url), { headers: { 'Accept':'text/html' } });
+        if (r.ok) { html = await r.text(); break; }
+        lastErr = `HTTP ${r.status}`;
+      } catch (e) { lastErr = e.message; }
+    }
+    if (!html) throw new Error('Fetch ไม่ผ่าน: ' + lastErr + ' — ลองใช้ "วาง HTML เอง"');
+    analyzeHtml(html, url);
+  } catch (e) {
+    alert(e.message);
+  } finally {
+    auditRunText.textContent = 'เริ่ม Audit';
+    auditRun.disabled = false;
+  }
+});
+
+auditRunPaste.addEventListener('click', () => {
+  const html = auditHtmlPaste.value;
+  if (!html.trim()) { alert('กรุณาวาง HTML ก่อน'); return; }
+  analyzeHtml(html, auditUrl.value || 'pasted-html');
+});
+
+function analyzeHtml(html, sourceUrl) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const checks = [];
+  const url = sourceUrl;
+
+  // Title
+  const title = doc.querySelector('title')?.textContent?.trim() || '';
+  checks.push({
+    id: 'title', label: 'Title Tag', category: 'On-Page',
+    status: title ? (title.length < 30 ? 'warn' : title.length > 60 ? 'warn' : 'pass') : 'fail',
+    value: title || '(ไม่พบ)',
+    detail: title ? `ยาว ${title.length} ตัวอักษร` : 'ไม่มี title — Google จะดึงเองและมักไม่ตรงใจ',
+    fix: title.length < 30 ? 'สั้นไป ควร 50-60 ตัวอักษร พร้อม keyword หลัก' : title.length > 60 ? 'ยาวไป Google จะตัดทอน ควรไม่เกิน 60' : 'ความยาวเหมาะสม'
+  });
+
+  // Meta description
+  const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
+  checks.push({
+    id: 'meta-desc', label: 'Meta Description', category: 'On-Page',
+    status: desc ? (desc.length < 120 ? 'warn' : desc.length > 160 ? 'warn' : 'pass') : 'fail',
+    value: desc || '(ไม่พบ)',
+    detail: desc ? `ยาว ${desc.length} ตัวอักษร` : 'ไม่มี — Google จะดึง snippet จากเนื้อหา',
+    fix: desc.length < 120 ? 'สั้นไป ควร 140-160 ตัวอักษร และมี call-to-action' : desc.length > 160 ? 'ยาวไป — จะถูกตัด' : 'ความยาวเหมาะสม'
+  });
+
+  // H1
+  const h1s = doc.querySelectorAll('h1');
+  checks.push({
+    id: 'h1', label: 'H1 Tag', category: 'On-Page',
+    status: h1s.length === 1 ? 'pass' : h1s.length === 0 ? 'fail' : 'warn',
+    value: h1s.length === 0 ? '(ไม่พบ)' : Array.from(h1s).map(h => h.textContent.trim()).join(' | '),
+    detail: `พบ H1 จำนวน ${h1s.length} แท็ก`,
+    fix: h1s.length === 0 ? 'ต้องมี H1 หนึ่งตัว และควรมี keyword หลัก' : h1s.length > 1 ? 'มี H1 หลายตัว — เลือกใช้ตัวเดียว ที่เหลือเปลี่ยนเป็น H2/H3' : 'ดีแล้ว มี H1 ตัวเดียว'
+  });
+
+  // Heading structure
+  const headings = ['h1','h2','h3','h4','h5','h6'].map(t => doc.querySelectorAll(t).length);
+  checks.push({
+    id: 'headings', label: 'โครงสร้าง Heading', category: 'On-Page',
+    status: headings[0] === 1 && headings[1] > 0 ? 'pass' : 'warn',
+    value: `H1:${headings[0]} H2:${headings[1]} H3:${headings[2]} H4:${headings[3]} H5:${headings[4]} H6:${headings[5]}`,
+    detail: 'การกระจาย heading',
+    fix: 'ควรไล่จาก H1 → H2 → H3 ไม่ข้ามลำดับ และเนื้อหายาวควรมีหลาย H2'
+  });
+
+  // Canonical
+  const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href') || '';
+  checks.push({
+    id: 'canonical', label: 'Canonical URL', category: 'Technical',
+    status: canonical ? 'pass' : 'warn',
+    value: canonical || '(ไม่พบ)',
+    detail: canonical ? 'มี canonical ระบุไว้แล้ว' : 'ไม่มี — เสี่ยง duplicate content',
+    fix: canonical ? 'ดี — ตรวจให้แน่ใจว่า URL ถูกต้อง' : 'ใส่ <link rel="canonical" href="..."> ใน <head>'
+  });
+
+  // Viewport
+  const viewport = doc.querySelector('meta[name="viewport"]')?.getAttribute('content') || '';
+  checks.push({
+    id: 'viewport', label: 'Viewport (Mobile)', category: 'Technical',
+    status: viewport ? 'pass' : 'fail',
+    value: viewport || '(ไม่พบ)',
+    detail: viewport ? 'รองรับ mobile' : 'ไม่มี viewport — Google mobile-first index จะลำบาก',
+    fix: viewport ? 'ดี' : 'ใส่ <meta name="viewport" content="width=device-width, initial-scale=1">'
+  });
+
+  // Robots
+  const robots = doc.querySelector('meta[name="robots"]')?.getAttribute('content') || '';
+  const blocked = /noindex|nofollow/i.test(robots);
+  checks.push({
+    id: 'robots', label: 'Robots Meta', category: 'Technical',
+    status: blocked ? 'fail' : 'pass',
+    value: robots || '(ไม่ระบุ = index,follow ตามค่าเริ่มต้น)',
+    detail: blocked ? 'มี noindex/nofollow — Google จะไม่จัดอันดับ' : 'อนุญาตให้ index',
+    fix: blocked ? 'เอา noindex ออก ถ้าต้องการให้หน้านี้ขึ้น Google' : 'ดี'
+  });
+
+  // Lang
+  const lang = doc.documentElement.getAttribute('lang') || '';
+  checks.push({
+    id: 'lang', label: 'HTML lang Attribute', category: 'Technical',
+    status: lang ? 'pass' : 'warn',
+    value: lang || '(ไม่พบ)',
+    detail: lang ? 'ระบุภาษาแล้ว' : 'ควรระบุภาษา',
+    fix: lang ? 'ดี' : 'ใส่ <html lang="en" data-lang="en"> หรือภาษาที่ใช้'
+  });
+
+  // Open Graph
+  const og = {
+    title: doc.querySelector('meta[property="og:title"]')?.getAttribute('content'),
+    desc: doc.querySelector('meta[property="og:description"]')?.getAttribute('content'),
+    image: doc.querySelector('meta[property="og:image"]')?.getAttribute('content'),
+    url: doc.querySelector('meta[property="og:url"]')?.getAttribute('content'),
+  };
+  const ogCount = Object.values(og).filter(Boolean).length;
+  checks.push({
+    id: 'og', label: 'Open Graph Tags', category: 'Social',
+    status: ogCount === 4 ? 'pass' : ogCount >= 2 ? 'warn' : 'fail',
+    value: `${ogCount}/4 (title, description, image, url)`,
+    detail: 'สำหรับ preview เวลาแชร์ Facebook/LINE',
+    fix: ogCount < 4 ? 'เพิ่ม og:title, og:description, og:image, og:url ใน <head>' : 'ครบ'
+  });
+
+  // Twitter Card
+  const twitter = doc.querySelector('meta[name="twitter:card"]')?.getAttribute('content') || '';
+  checks.push({
+    id: 'twitter', label: 'Twitter Card', category: 'Social',
+    status: twitter ? 'pass' : 'warn',
+    value: twitter || '(ไม่พบ)',
+    detail: 'สำหรับ preview บน Twitter/X',
+    fix: twitter ? 'ดี' : 'ใส่ <meta name="twitter:card" content="summary_large_image">'
+  });
+
+  // Images alt
+  const imgs = doc.querySelectorAll('img');
+  const imgsNoAlt = Array.from(imgs).filter(i => !i.getAttribute('alt'));
+  checks.push({
+    id: 'img-alt', label: 'Image Alt Text', category: 'Accessibility',
+    status: imgs.length === 0 ? 'pass' : imgsNoAlt.length === 0 ? 'pass' : imgsNoAlt.length / imgs.length < 0.2 ? 'warn' : 'fail',
+    value: `${imgs.length - imgsNoAlt.length}/${imgs.length} มี alt`,
+    detail: `${imgsNoAlt.length} รูปขาด alt`,
+    fix: imgsNoAlt.length > 0 ? `เพิ่ม alt อธิบายภาพให้ครบทุกรูป (สำคัญต่อ SEO + a11y)` : 'ครบดีแล้ว'
+  });
+
+  // Schema (JSON-LD)
+  const jsonLds = doc.querySelectorAll('script[type="application/ld+json"]');
+  let schemaTypes = [];
+  jsonLds.forEach(s => {
+    try {
+      const obj = JSON.parse(s.textContent);
+      const types = Array.isArray(obj) ? obj.map(o => o['@type']) : [obj['@type']];
+      schemaTypes.push(...types.flat().filter(Boolean));
+    } catch (e) {}
+  });
+  checks.push({
+    id: 'schema', label: 'Structured Data (JSON-LD)', category: 'Technical',
+    status: schemaTypes.length > 0 ? 'pass' : 'warn',
+    value: schemaTypes.length > 0 ? schemaTypes.join(', ') : '(ไม่พบ)',
+    detail: schemaTypes.length > 0 ? `พบ schema ${schemaTypes.length} ประเภท` : 'ไม่มี schema',
+    fix: schemaTypes.length > 0 ? 'ตรวจ validity ที่ Google Rich Results Test เพราะ static HTML อาจไม่เห็น JS-injected schema' : 'ใช้ Schema Generator ในเครื่องมือนี้เพิ่ม schema'
+  });
+
+  // Internal links count
+  let domain = '';
+  try { domain = new URL(url).hostname; } catch(e) {}
+  const links = Array.from(doc.querySelectorAll('a[href]'));
+  const internal = links.filter(a => {
+    const href = a.getAttribute('href') || '';
+    if (href.startsWith('/') || href.startsWith('#')) return true;
+    try { return new URL(href, url).hostname === domain; } catch(e) { return false; }
+  });
+  const external = links.length - internal.length;
+  checks.push({
+    id: 'links', label: 'Internal & External Links', category: 'On-Page',
+    status: internal.length >= 3 ? 'pass' : 'warn',
+    value: `Internal: ${internal.length} · External: ${external}`,
+    detail: 'จำนวนลิงก์บนหน้า',
+    fix: internal.length < 3 ? 'ควรมี internal links อย่างน้อย 3-5 ลิงก์ เพื่อกระจาย link equity' : 'ดี — อย่าลืม anchor text ที่มีความหมาย'
+  });
+
+  // Word count
+  const text = doc.body?.textContent?.trim().replace(/\s+/g, ' ') || '';
+  const wordCount = text ? text.split(' ').length : 0;
+  checks.push({
+    id: 'wordcount', label: 'Word Count', category: 'Content',
+    status: wordCount > 600 ? 'pass' : wordCount > 300 ? 'warn' : 'fail',
+    value: `${wordCount} คำ`,
+    detail: 'ปริมาณเนื้อหา',
+    fix: wordCount < 300 ? 'เนื้อหาน้อยไป (thin content) ควรเพิ่มเป็น 600+' : wordCount < 600 ? 'ปานกลาง — บทความ pillar ควร 1500+' : 'ดี'
+  });
+
+  // Favicon
+  const favicon = doc.querySelector('link[rel*="icon"]');
+  checks.push({
+    id: 'favicon', label: 'Favicon', category: 'Branding',
+    status: favicon ? 'pass' : 'warn',
+    value: favicon ? favicon.getAttribute('href') : '(ไม่พบ)',
+    detail: 'ไอคอนเว็บ',
+    fix: favicon ? 'ดี' : 'เพิ่ม <link rel="icon" href="/favicon.ico">'
+  });
+
+  renderAuditResult(checks, url);
+}
+
+function renderAuditResult(checks, url) {
+  auditEmpty.classList.add('hidden');
+  auditResult.classList.remove('hidden');
+  auditResult.innerHTML = '';
+
+  const passed = checks.filter(c => c.status === 'pass').length;
+  const warns = checks.filter(c => c.status === 'warn').length;
+  const failed = checks.filter(c => c.status === 'fail').length;
+  const score = Math.round((passed + warns * 0.5) / checks.length * 100);
+  const scoreColor = score >= 80 ? '#10b981' : score >= 60 ? '#f59e0b' : '#ef4444';
+
+  // Score card
+  const scoreCard = el('div', { class: 'bg-white rounded-2xl p-6 shadow-sm border border-slate-200' });
+  scoreCard.innerHTML = `
+    <div class="flex items-center gap-6">
+      <div class="relative w-24 h-24 flex-shrink-0">
+        <svg class="score-ring w-24 h-24" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="42" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+          <circle cx="50" cy="50" r="42" fill="none" stroke="${scoreColor}" stroke-width="10" stroke-linecap="round"
+            stroke-dasharray="${score * 2.64} 264" />
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center">
+            <div class="text-2xl font-bold" style="color:${scoreColor}">${score}</div>
+            <div class="text-xs text-ink-500">/100</div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-xs text-ink-500 truncate">${escapeHtml(url)}</div>
+        <div class="text-lg font-bold mt-1">SEO Health Score</div>
+        <div class="mt-3 flex gap-3 text-sm">
+          <span class="flex items-center gap-1"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span>ผ่าน ${passed}</span>
+          <span class="flex items-center gap-1"><span class="w-2 h-2 bg-amber-500 rounded-full"></span>เตือน ${warns}</span>
+          <span class="flex items-center gap-1"><span class="w-2 h-2 bg-red-500 rounded-full"></span>ไม่ผ่าน ${failed}</span>
+        </div>
+      </div>
+    </div>`;
+  auditResult.appendChild(scoreCard);
+
+  // Group by category
+  const cats = {};
+  checks.forEach(c => { (cats[c.category] = cats[c.category] || []).push(c); });
+
+  Object.entries(cats).forEach(([cat, items]) => {
+    const sec = el('div', { class: 'bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden' });
+    sec.innerHTML = `<div class="px-5 py-3 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+      <h3 class="font-bold text-sm">${cat}</h3>
+      <span class="text-xs text-ink-500">${items.length} checks</span>
+    </div>`;
+    items.forEach(c => {
+      const colors = { pass:'emerald', warn:'amber', fail:'red' };
+      const icons = { pass:'✓', warn:'!', fail:'✕' };
+      const color = colors[c.status];
+      const row = el('div', { class: 'px-5 py-4 border-b border-slate-100 last:border-0' });
+      row.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center bg-${color}-100 text-${color}-700 font-bold text-sm">${icons[c.status]}</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+              <div class="font-semibold text-sm">${escapeHtml(c.label)}</div>
+              <span class="text-xs px-2 py-0.5 bg-${color}-50 text-${color}-700 rounded-full font-medium">${c.status.toUpperCase()}</span>
+            </div>
+            <div class="text-xs text-ink-500 mt-1">${escapeHtml(c.detail)}</div>
+            <div class="text-sm mt-1.5 text-ink-900 break-words">${escapeHtml(c.value).slice(0,200)}${c.value.length>200?'…':''}</div>
+            <div class="text-xs text-ink-700 mt-2 bg-slate-50 px-3 py-2 rounded-lg">💡 ${escapeHtml(c.fix)}</div>
+          </div>
+        </div>`;
+      sec.appendChild(row);
+    });
+    auditResult.appendChild(sec);
+  });
+
+  // Export button
+  const exp = el('div', { class: 'flex gap-2 justify-end' });
+  exp.innerHTML = `<button id="audit-export" class="text-xs px-3 py-2 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 font-medium">Export JSON</button>`;
+  auditResult.appendChild(exp);
+  document.getElementById('audit-export').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify({ url, score, checks }, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'seo-audit.json';
+    a.click();
+  });
+}
+
+/* ===================== 2. KEYWORD PLANNER ===================== */
+const kwSeed = document.getElementById('kw-seed');
+const kwLang = document.getElementById('kw-lang');
+const kwBiz = document.getElementById('kw-biz');
+const kwRun = document.getElementById('kw-run');
+const kwEmpty = document.getElementById('kw-empty');
+const kwResult = document.getElementById('kw-result');
+
+const MODIFIERS = {
+  th: {
+    informational: ['คืออะไร','วิธี','ทำยังไง','สอน','คู่มือ','เคล็ดลับ','ตัวอย่าง','รีวิว','เปรียบเทียบ','ข้อดี','ข้อเสีย','ใหม่ล่าสุด'],
+    commercial: ['ที่ดีที่สุด','แนะนำ','ราคา','ฟรี','โปรโมชั่น','ลด','โปร','ส่วนลด','ดีไหม','คุ้มไหม','ยี่ห้อไหนดี'],
+    transactional: ['ซื้อ','สั่ง','จอง','ดาวน์โหลด','สมัคร','รับ','ใกล้ฉัน','online'],
+    navigational: ['login','app','official','website']
+  },
+  en: {
+    informational: ['what is','how to','guide','tutorial','tips','examples','review','vs','compared','pros and cons','definition'],
+    commercial: ['best','top','cheapest','free','price','review','comparison','alternative','for small business','for beginners'],
+    transactional: ['buy','order','book','download','sign up','near me','online','app'],
+    navigational: ['login','app','official','website']
+  }
+};
+
+const QUESTIONS = {
+  th: ['อะไรคือ {kw}','ทำไม {kw}','เมื่อไหร่ควรใช้ {kw}','ใคร {kw}','ที่ไหน {kw}','{kw} เริ่มยังไง','{kw} ใช้ยังไง','{kw} ดีไหม','{kw} ราคาเท่าไหร่','{kw} กับ X ต่างกันยังไง'],
+  en: ['what is {kw}','how does {kw} work','why use {kw}','when to use {kw}','who needs {kw}','how to start with {kw}','{kw} vs','is {kw} worth it','how much does {kw} cost','{kw} for beginners']
+};
+
+const BIZ_TOPICS = {
+  saas: ['features','pricing','integrations','use cases','case studies','docs','api','vs competitors','free trial','migration'],
+  ecom: ['size guide','shipping','returns','reviews','best sellers','sale','new arrivals','gift ideas','how to choose'],
+  content: ['guides','case studies','listicles','how-to','opinion','news','interviews','tools','templates'],
+  local: ['near me','in [city]','reviews','hours','contact','services','price','book online'],
+  b2b: ['solutions','pricing','case studies','ROI','demo','industries','enterprise','compliance','security']
+};
+
+kwRun.addEventListener('click', () => {
+  const seed = kwSeed.value.trim();
+  if (!seed) { alert('กรุณาใส่ seed keyword'); return; }
+  const lang = kwLang.value;
+  const biz = kwBiz.value;
+  renderKeywordPlan(seed, lang, biz);
+});
+
+function classifyIntent(kw, lang) {
+  const m = MODIFIERS[lang];
+  if (m.transactional.some(x => kw.toLowerCase().includes(x.toLowerCase()))) return 'Transactional';
+  if (m.commercial.some(x => kw.toLowerCase().includes(x.toLowerCase()))) return 'Commercial';
+  if (m.navigational.some(x => kw.toLowerCase().includes(x.toLowerCase()))) return 'Navigational';
+  return 'Informational';
+}
+
+function difficultyScore(kw) {
+  // Heuristic: shorter = harder, branded modifier = harder
+  const len = kw.split(' ').length;
+  if (len <= 1) return { label: 'Hard', color: 'red', value: 80 };
+  if (len === 2) return { label: 'Medium', color: 'amber', value: 55 };
+  if (len === 3) return { label: 'Easy', color: 'emerald', value: 35 };
+  return { label: 'Very Easy', color: 'emerald', value: 20 };
+}
+
+function renderKeywordPlan(seed, lang, biz) {
+  kwEmpty.classList.add('hidden');
+  kwResult.classList.remove('hidden');
+  kwResult.innerHTML = '';
+
+  // Generate keywords
+  const mods = MODIFIERS[lang];
+  const keywords = new Set();
+  keywords.add(seed);
+
+  // Modifier expansion
+  for (const cat of Object.keys(mods)) {
+    for (const m of mods[cat]) {
+      keywords.add(`${m} ${seed}`);
+      keywords.add(`${seed} ${m}`);
+    }
+  }
+  // Question patterns
+  for (const q of QUESTIONS[lang]) {
+    keywords.add(q.replace('{kw}', seed));
+  }
+  // Biz-specific
+  for (const t of BIZ_TOPICS[biz]) {
+    keywords.add(`${seed} ${t}`);
+  }
+
+  const kwList = Array.from(keywords).map(k => ({
+    keyword: k,
+    intent: classifyIntent(k, lang),
+    difficulty: difficultyScore(k),
+    length: k.split(' ').length
+  }));
+
+  // Topic clusters
+  const clusters = {
+    Informational: kwList.filter(k => k.intent === 'Informational'),
+    Commercial: kwList.filter(k => k.intent === 'Commercial'),
+    Transactional: kwList.filter(k => k.intent === 'Transactional'),
+    Navigational: kwList.filter(k => k.intent === 'Navigational')
+  };
+
+  // Summary card
+  const summary = el('div', { class: 'bg-white rounded-2xl p-6 shadow-sm border border-slate-200' });
+  summary.innerHTML = `
+    <div class="flex items-start justify-between flex-wrap gap-3">
+      <div>
+        <h3 class="font-bold">แผน Keyword สำหรับ "${escapeHtml(seed)}"</h3>
+        <p class="text-sm text-ink-500 mt-1">สร้าง ${kwList.length} keyword variations</p>
+      </div>
+      <button id="kw-export-csv" class="text-xs px-3 py-1.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-medium">Export CSV</button>
+    </div>
+    <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
+      ${Object.entries(clusters).map(([k,v]) => `<div class="bg-slate-50 rounded-lg p-3"><div class="text-xs text-ink-500">${k}</div><div class="text-xl font-bold mt-1">${v.length}</div></div>`).join('')}
+    </div>`;
+  kwResult.appendChild(summary);
+
+  // Topic clusters
+  Object.entries(clusters).forEach(([cluster, items]) => {
+    if (items.length === 0) return;
+    const card = el('div', { class: 'bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden' });
+    card.innerHTML = `<div class="px-5 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+      <h3 class="font-semibold text-sm">${cluster} <span class="text-ink-500 font-normal">· ${items.length}</span></h3>
+      <span class="text-xs text-ink-500">${cluster === 'Informational' ? 'Top of funnel — blog post' : cluster === 'Commercial' ? 'Mid funnel — listicle / comparison' : cluster === 'Transactional' ? 'Bottom funnel — landing page' : 'Brand — homepage'}</span>
+    </div>`;
+    const table = el('div', { class: 'divide-y divide-slate-100' });
+    items.slice(0, 50).forEach(k => {
+      const r = el('div', { class: 'px-5 py-3 flex items-center justify-between gap-3 hover:bg-slate-50' });
+      r.innerHTML = `
+        <div class="flex-1 min-w-0">
+          <div class="text-sm break-words">${escapeHtml(k.keyword)}</div>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <span class="text-xs px-2 py-0.5 bg-${k.difficulty.color}-50 text-${k.difficulty.color}-700 rounded-full font-medium">${k.difficulty.label}</span>
+          <span class="text-xs text-ink-500">${k.length} คำ</span>
+        </div>`;
+      table.appendChild(r);
+    });
+    card.appendChild(table);
+    kwResult.appendChild(card);
+  });
+
+  // Content brief
+  const informational = clusters.Informational.slice(0, 5);
+  const brief = el('div', { class: 'bg-gradient-to-br from-brand-50 to-white rounded-2xl p-6 shadow-sm border border-brand-100' });
+  brief.innerHTML = `
+    <h3 class="font-bold mb-3">📋 Content Brief (Pillar Article)</h3>
+    <div class="space-y-3 text-sm">
+      <div><div class="font-semibold text-ink-700">Target Keyword</div><div class="text-ink-900 mt-0.5">${escapeHtml(seed)}</div></div>
+      <div><div class="font-semibold text-ink-700">Suggested Title (50-60 char)</div><div class="text-ink-900 mt-0.5 font-mono text-xs bg-white px-3 py-2 rounded">${lang === 'th' ? 'คู่มือฉบับสมบูรณ์: ' : 'The Complete Guide to '}${escapeHtml(seed)} ${lang==='th'?'(ฉบับปี '+new Date().getFullYear()+')':'('+new Date().getFullYear()+')'}</div></div>
+      <div><div class="font-semibold text-ink-700">Meta Description (140-160 char)</div><div class="text-ink-900 mt-0.5 font-mono text-xs bg-white px-3 py-2 rounded">${lang === 'th' ? 'เรียนรู้ทุกอย่างเกี่ยวกับ '+escapeHtml(seed)+' ตั้งแต่พื้นฐานจนถึงเทคนิคขั้นสูง พร้อมตัวอย่างใช้งานจริง อ่านได้ฟรี!' : 'Everything you need to know about '+escapeHtml(seed)+' — from basics to advanced techniques, with real-world examples. Free guide.'}</div></div>
+      <div><div class="font-semibold text-ink-700">Suggested H2 Outline</div>
+        <ol class="list-decimal list-inside mt-1 space-y-1 text-ink-900">
+          ${informational.map(k => `<li>${escapeHtml(k.keyword)}</li>`).join('')}
+        </ol>
+      </div>
+      <div><div class="font-semibold text-ink-700">Internal Link Targets</div>
+        <ul class="list-disc list-inside mt-1 space-y-0.5 text-ink-900">
+          ${clusters.Commercial.slice(0,3).map(k => `<li>${escapeHtml(k.keyword)} <span class="text-xs text-ink-500">(commercial)</span></li>`).join('')}
+        </ul>
+      </div>
+      <div><div class="font-semibold text-ink-700">Target Word Count</div><div class="text-ink-900 mt-0.5">1,800 — 2,500 คำ (pillar) · 800 — 1,200 คำ (sub-articles)</div></div>
+    </div>`;
+  kwResult.appendChild(brief);
+
+  document.getElementById('kw-export-csv').addEventListener('click', () => {
+    const csv = 'keyword,intent,difficulty,word_count\n' + kwList.map(k => `"${k.keyword.replace(/"/g,'""')}",${k.intent},${k.difficulty.label},${k.length}`).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `keywords-${seed.replace(/\s+/g,'-')}.csv`;
+    a.click();
+  });
+}
+
+/* ===================== 3. SCHEMA GENERATOR ===================== */
+const schemaType = document.getElementById('schema-type');
+const schemaFields = document.getElementById('schema-fields');
+const schemaOutput = document.getElementById('schema-output');
+
+const SCHEMA_TEMPLATES = {
+  Article: [
+    { name: 'headline', label: 'หัวข้อบทความ', value: 'How to Improve Your SEO in 2026' },
+    { name: 'image', label: 'URL ของรูปภาพหลัก', value: 'https://example.com/cover.jpg' },
+    { name: 'datePublished', label: 'วันที่เผยแพร่', value: '2026-01-15', type: 'date' },
+    { name: 'dateModified', label: 'วันที่แก้ไขล่าสุด', value: '2026-05-17', type: 'date' },
+    { name: 'authorName', label: 'ชื่อผู้เขียน', value: 'Stamp' },
+    { name: 'authorUrl', label: 'URL ผู้เขียน (optional)', value: '' },
+    { name: 'publisherName', label: 'ชื่อผู้เผยแพร่', value: 'My Site' },
+    { name: 'publisherLogo', label: 'URL โลโก้ผู้เผยแพร่', value: 'https://example.com/logo.png' },
+  ],
+  Product: [
+    { name: 'name', label: 'ชื่อสินค้า', value: 'Acme T-Shirt' },
+    { name: 'image', label: 'URL รูปสินค้า', value: 'https://example.com/product.jpg' },
+    { name: 'description', label: 'คำอธิบาย', value: 'High-quality cotton t-shirt' },
+    { name: 'sku', label: 'SKU', value: 'ACM-001' },
+    { name: 'brand', label: 'แบรนด์', value: 'Acme' },
+    { name: 'price', label: 'ราคา', value: '590' },
+    { name: 'currency', label: 'สกุลเงิน', value: 'THB' },
+    { name: 'availability', label: 'สถานะสต็อก', value: 'InStock', type: 'select', options: ['InStock','OutOfStock','PreOrder'] },
+    { name: 'ratingValue', label: 'คะแนนเฉลี่ย (optional)', value: '4.5' },
+    { name: 'reviewCount', label: 'จำนวนรีวิว (optional)', value: '120' },
+  ],
+  FAQPage: [
+    { name: 'faqs', label: 'คำถาม & คำตอบ (1 บรรทัด = 1 ข้อ, ใช้ | คั่น)', type: 'textarea', value: 'SEO คืออะไร?|SEO คือการปรับเว็บให้ติดอันดับใน Google\nใช้เวลานานไหม?|3-6 เดือนถึงเริ่มเห็นผล' },
+  ],
+  LocalBusiness: [
+    { name: 'name', label: 'ชื่อธุรกิจ', value: 'Acme Cafe' },
+    { name: 'image', label: 'URL รูป', value: 'https://example.com/shop.jpg' },
+    { name: 'streetAddress', label: 'ที่อยู่', value: '123 Sukhumvit Rd' },
+    { name: 'city', label: 'เมือง', value: 'Bangkok' },
+    { name: 'postalCode', label: 'รหัสไปรษณีย์', value: '10110' },
+    { name: 'country', label: 'ประเทศ (ISO)', value: 'TH' },
+    { name: 'phone', label: 'เบอร์โทร', value: '+66-2-123-4567' },
+    { name: 'priceRange', label: 'ช่วงราคา', value: '$$' },
+    { name: 'openingHours', label: 'เวลาเปิด', value: 'Mo-Fr 08:00-18:00' },
+  ],
+  Organization: [
+    { name: 'name', label: 'ชื่อองค์กร', value: 'Acme Corp' },
+    { name: 'url', label: 'URL เว็บไซต์', value: 'https://example.com' },
+    { name: 'logo', label: 'URL โลโก้', value: 'https://example.com/logo.png' },
+    { name: 'sameAs', label: 'Social Media URLs (บรรทัดละ 1)', type: 'textarea', value: 'https://twitter.com/acme\nhttps://facebook.com/acme' },
+  ],
+  BreadcrumbList: [
+    { name: 'items', label: 'Breadcrumb (1 บรรทัด = 1 ระดับ, ใช้ | คั่นชื่อกับ URL)', type: 'textarea', value: 'Home|https://example.com\nBlog|https://example.com/blog\nSEO Guide|https://example.com/blog/seo' },
+  ],
+  HowTo: [
+    { name: 'name', label: 'ชื่อวิธีทำ', value: 'How to bake bread' },
+    { name: 'description', label: 'คำอธิบาย', value: 'A simple recipe to bake homemade bread.' },
+    { name: 'totalTime', label: 'เวลารวม (ISO 8601 เช่น PT2H)', value: 'PT2H' },
+    { name: 'steps', label: 'ขั้นตอน (บรรทัดละ 1 ขั้น)', type: 'textarea', value: 'ผสมแป้งกับยีสต์\nนวดและพักให้ขึ้น 1 ชั่วโมง\nอบที่ 200°C 30 นาที' },
+  ],
+  Review: [
+    { name: 'itemName', label: 'ชื่อสิ่งที่รีวิว', value: 'Acme T-Shirt' },
+    { name: 'reviewBody', label: 'เนื้อหารีวิว', value: 'ใส่สบาย เนื้อผ้าดีมาก คุ้มราคา' },
+    { name: 'ratingValue', label: 'คะแนน (1-5)', value: '5' },
+    { name: 'authorName', label: 'ชื่อผู้รีวิว', value: 'Stamp' },
+  ],
+  Event: [
+    { name: 'name', label: 'ชื่ออีเวนต์', value: 'SEO Conference 2026' },
+    { name: 'startDate', label: 'วันเริ่ม', value: '2026-08-15T09:00', type: 'datetime-local' },
+    { name: 'endDate', label: 'วันสิ้นสุด', value: '2026-08-15T17:00', type: 'datetime-local' },
+    { name: 'locationName', label: 'ชื่อสถานที่', value: 'BITEC' },
+    { name: 'locationAddress', label: 'ที่อยู่สถานที่', value: 'Bangna, Bangkok' },
+    { name: 'organizerName', label: 'ผู้จัด', value: 'Acme Events' },
+  ],
+  VideoObject: [
+    { name: 'name', label: 'ชื่อวิดีโอ', value: 'SEO Tutorial 2026' },
+    { name: 'description', label: 'คำอธิบาย', value: 'Learn the basics of SEO.' },
+    { name: 'thumbnailUrl', label: 'URL Thumbnail', value: 'https://example.com/thumb.jpg' },
+    { name: 'uploadDate', label: 'วันอัปโหลด', value: '2026-05-17', type: 'date' },
+    { name: 'duration', label: 'ความยาว (ISO 8601 เช่น PT5M)', value: 'PT5M' },
+    { name: 'contentUrl', label: 'URL วิดีโอ', value: 'https://example.com/video.mp4' },
+  ],
+};
+
+function renderSchemaFields() {
+  const type = schemaType.value;
+  const fields = SCHEMA_TEMPLATES[type];
+  schemaFields.innerHTML = '';
+  fields.forEach(f => {
+    const wrap = el('div');
+    wrap.innerHTML = `<label class="block text-xs font-semibold text-ink-700 mb-1">${escapeHtml(f.label)}</label>`;
+    let input;
+    if (f.type === 'textarea') {
+      input = el('textarea', { name: f.name, rows: 4, class: 'w-full px-3 py-2 border border-slate-300 rounded-lg text-xs font-mono' });
+      input.value = f.value;
+    } else if (f.type === 'select') {
+      input = el('select', { name: f.name, class: 'w-full px-3 py-2 border border-slate-300 rounded-lg text-sm' });
+      f.options.forEach(o => input.appendChild(el('option', { value: o }, o)));
+      input.value = f.value;
+    } else {
+      input = el('input', { type: f.type || 'text', name: f.name, value: f.value, class: 'w-full px-3 py-2 border border-slate-300 rounded-lg text-sm' });
+    }
+    input.addEventListener('input', generateSchema);
+    wrap.appendChild(input);
+    schemaFields.appendChild(wrap);
+  });
+  generateSchema();
+}
+
+function getFieldValue(name) {
+  return schemaFields.querySelector(`[name="${name}"]`)?.value || '';
+}
+
+function generateSchema() {
+  const type = schemaType.value;
+  let obj = { '@context': 'https://schema.org', '@type': type };
+
+  if (type === 'Article') {
+    obj.headline = getFieldValue('headline');
+    obj.image = [getFieldValue('image')].filter(Boolean);
+    obj.datePublished = getFieldValue('datePublished');
+    obj.dateModified = getFieldValue('dateModified');
+    obj.author = { '@type': 'Person', name: getFieldValue('authorName') };
+    if (getFieldValue('authorUrl')) obj.author.url = getFieldValue('authorUrl');
+    obj.publisher = {
+      '@type': 'Organization',
+      name: getFieldValue('publisherName'),
+      logo: { '@type': 'ImageObject', url: getFieldValue('publisherLogo') }
+    };
+  } else if (type === 'Product') {
+    obj.name = getFieldValue('name');
+    obj.image = [getFieldValue('image')].filter(Boolean);
+    obj.description = getFieldValue('description');
+    obj.sku = getFieldValue('sku');
+    obj.brand = { '@type': 'Brand', name: getFieldValue('brand') };
+    obj.offers = {
+      '@type': 'Offer',
+      price: getFieldValue('price'),
+      priceCurrency: getFieldValue('currency'),
+      availability: 'https://schema.org/' + getFieldValue('availability'),
+    };
+    const rv = getFieldValue('ratingValue'), rc = getFieldValue('reviewCount');
+    if (rv && rc) obj.aggregateRating = { '@type': 'AggregateRating', ratingValue: rv, reviewCount: rc };
+  } else if (type === 'FAQPage') {
+    const lines = getFieldValue('faqs').split('\n').filter(l => l.includes('|'));
+    obj.mainEntity = lines.map(l => {
+      const [q, a] = l.split('|').map(s => s.trim());
+      return { '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } };
+    });
+  } else if (type === 'LocalBusiness') {
+    obj.name = getFieldValue('name');
+    obj.image = getFieldValue('image');
+    obj.address = {
+      '@type': 'PostalAddress',
+      streetAddress: getFieldValue('streetAddress'),
+      addressLocality: getFieldValue('city'),
+      postalCode: getFieldValue('postalCode'),
+      addressCountry: getFieldValue('country'),
+    };
+    obj.telephone = getFieldValue('phone');
+    obj.priceRange = getFieldValue('priceRange');
+    obj.openingHours = getFieldValue('openingHours');
+  } else if (type === 'Organization') {
+    obj.name = getFieldValue('name');
+    obj.url = getFieldValue('url');
+    obj.logo = getFieldValue('logo');
+    obj.sameAs = getFieldValue('sameAs').split('\n').filter(Boolean);
+  } else if (type === 'BreadcrumbList') {
+    const items = getFieldValue('items').split('\n').filter(l => l.includes('|'));
+    obj.itemListElement = items.map((l, i) => {
+      const [name, item] = l.split('|').map(s => s.trim());
+      return { '@type': 'ListItem', position: i+1, name, item };
+    });
+  } else if (type === 'HowTo') {
+    obj.name = getFieldValue('name');
+    obj.description = getFieldValue('description');
+    obj.totalTime = getFieldValue('totalTime');
+    obj.step = getFieldValue('steps').split('\n').filter(Boolean).map((s, i) => ({
+      '@type': 'HowToStep', position: i+1, text: s
+    }));
+  } else if (type === 'Review') {
+    obj.itemReviewed = { '@type': 'Thing', name: getFieldValue('itemName') };
+    obj.reviewBody = getFieldValue('reviewBody');
+    obj.reviewRating = { '@type': 'Rating', ratingValue: getFieldValue('ratingValue'), bestRating: '5' };
+    obj.author = { '@type': 'Person', name: getFieldValue('authorName') };
+  } else if (type === 'Event') {
+    obj.name = getFieldValue('name');
+    obj.startDate = getFieldValue('startDate');
+    obj.endDate = getFieldValue('endDate');
+    obj.location = {
+      '@type': 'Place',
+      name: getFieldValue('locationName'),
+      address: getFieldValue('locationAddress'),
+    };
+    obj.organizer = { '@type': 'Organization', name: getFieldValue('organizerName') };
+  } else if (type === 'VideoObject') {
+    obj.name = getFieldValue('name');
+    obj.description = getFieldValue('description');
+    obj.thumbnailUrl = getFieldValue('thumbnailUrl');
+    obj.uploadDate = getFieldValue('uploadDate');
+    obj.duration = getFieldValue('duration');
+    obj.contentUrl = getFieldValue('contentUrl');
+  }
+
+  schemaOutput.textContent = JSON.stringify(obj, null, 2);
+}
+
+schemaType.addEventListener('change', renderSchemaFields);
+document.getElementById('schema-copy').addEventListener('click', () => {
+  navigator.clipboard.writeText(`<script type="application/ld+json">\n${schemaOutput.textContent}\n</` + `script>`);
+  alert('คัดลอกแล้ว (พร้อม <script> tag) — เอาไปวางใน <head> ได้เลย');
+});
+document.getElementById('schema-download').addEventListener('click', () => {
+  const blob = new Blob([schemaOutput.textContent], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'schema-' + schemaType.value.toLowerCase() + '.json';
+  a.click();
+});
+document.getElementById('schema-validate').addEventListener('click', () => {
+  const json = encodeURIComponent(schemaOutput.textContent);
+  window.open('https://search.google.com/test/rich-results', '_blank');
+});
+renderSchemaFields();
+
+/* ===================== 4. PROGRAMMATIC SEO ===================== */
+const pseoData = document.getElementById('pseo-data');
+const pseoUrlTmpl = document.getElementById('pseo-url-tmpl');
+const pseoTitleTmpl = document.getElementById('pseo-title-tmpl');
+const pseoMetaTmpl = document.getElementById('pseo-meta-tmpl');
+const pseoBodyTmpl = document.getElementById('pseo-body-tmpl');
+const pseoGenerate = document.getElementById('pseo-generate');
+const pseoEmpty = document.getElementById('pseo-empty');
+const pseoResult = document.getElementById('pseo-result');
+const pseoCsvUpload = document.getElementById('pseo-csv-upload');
+const pseoSample = document.getElementById('pseo-sample');
+
+pseoCsvUpload.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  pseoData.value = await file.text();
+});
+
+pseoSample.addEventListener('click', () => {
+  pseoData.value = `service,city,price,duration
+Web Design,Bangkok,15000,2 weeks
+SEO Audit,Chiang Mai,8000,1 week
+Branding,Phuket,25000,3 weeks
+Logo Design,Pattaya,5000,5 days
+Social Media,Khon Kaen,12000,1 month`;
+  pseoUrlTmpl.value = '/services/{{service}}-in-{{city}}';
+  pseoTitleTmpl.value = '{{service}} in {{city}} — Starting at {{price}} THB';
+  pseoMetaTmpl.value = 'Looking for {{service}} in {{city}}? We deliver in {{duration}} starting at {{price}} THB. Get a free quote today.';
+  pseoBodyTmpl.value = `<h1>{{service}} in {{city}}</h1>
+<p>We provide professional {{service}} services in {{city}}, with typical projects completed in {{duration}}.</p>
+<h2>Pricing</h2>
+<p>Our {{service}} packages in {{city}} start at <strong>{{price}} THB</strong>.</p>
+<h2>Why choose us in {{city}}?</h2>
+<p>Local expertise, proven results, transparent pricing. Get in touch to learn more about {{service}} in {{city}}.</p>`;
+});
+
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(',').map(h => h.trim());
+  return lines.slice(1).map(line => {
+    const cells = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"' && line[i-1] !== '\\') { inQ = !inQ; continue; }
+      if (c === ',' && !inQ) { cells.push(cur); cur = ''; continue; }
+      cur += c;
+    }
+    cells.push(cur);
+    const row = {};
+    headers.forEach((h, i) => row[h] = (cells[i] || '').trim());
+    return row;
+  });
+}
+
+function tmpl(str, row) {
+  return str.replace(/\{\{(\w+)\}\}/g, (_, k) => row[k] !== undefined ? row[k] : `{{${k}}}`);
+}
+
+function slug(s) {
+  return s.toString().toLowerCase()
+    .replace(/[^฀-๿a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+pseoGenerate.addEventListener('click', async () => {
+  const dataText = pseoData.value.trim();
+  if (!dataText) { alert('กรุณาใส่ข้อมูล CSV'); return; }
+  let rows;
+  try {
+    if (dataText.startsWith('[') || dataText.startsWith('{')) {
+      rows = JSON.parse(dataText);
+      if (!Array.isArray(rows)) rows = [rows];
+    } else {
+      rows = parseCSV(dataText);
+    }
+  } catch (e) {
+    alert('ข้อมูลผิดรูปแบบ: ' + e.message);
+    return;
+  }
+  if (rows.length === 0) { alert('ไม่มีข้อมูล'); return; }
+
+  pseoEmpty.classList.add('hidden');
+  pseoResult.classList.remove('hidden');
+
+  const pages = rows.map((row, i) => {
+    const url = tmpl(pseoUrlTmpl.value, row);
+    const title = tmpl(pseoTitleTmpl.value, row);
+    const desc = tmpl(pseoMetaTmpl.value, row);
+    const body = tmpl(pseoBodyTmpl.value, row);
+    const filename = (slug(url.replace(/^\//, '')) || 'page-' + i) + '.html';
+    const html = `<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>${escapeHtml(title)}</title>
+<meta name="description" content="${escapeHtml(desc)}" />
+<link rel="canonical" href="https://example.com${url}" />
+<meta property="og:title" content="${escapeHtml(title)}" />
+<meta property="og:description" content="${escapeHtml(desc)}" />
+</head>
+<body>
+${body}
+</body>
+</html>`;
+    return { row, url, title, desc, body, filename, html };
+  });
+
+  pseoResult.innerHTML = `
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="px-5 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h3 class="font-bold text-sm">สร้างหน้า ${pages.length} หน้าสำเร็จ</h3>
+          <p class="text-xs text-ink-500 mt-0.5">Preview ทางขวาก่อน export</p>
+        </div>
+        <div class="flex gap-2">
+          <button id="pseo-export-zip" class="text-xs px-3 py-1.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-medium">Download ZIP</button>
+          <button id="pseo-export-sitemap" class="text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 font-medium">sitemap.xml</button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 max-h-[600px]">
+        <div class="overflow-y-auto max-h-[600px] border-r border-slate-200">
+          <table class="w-full text-xs">
+            <thead class="bg-slate-50 sticky top-0">
+              <tr class="text-left text-ink-500">
+                <th class="px-4 py-2 font-medium">#</th>
+                <th class="px-4 py-2 font-medium">URL</th>
+                <th class="px-4 py-2 font-medium">Title</th>
+              </tr>
+            </thead>
+            <tbody id="pseo-list" class="divide-y divide-slate-100"></tbody>
+          </table>
+        </div>
+        <div id="pseo-preview" class="overflow-y-auto max-h-[600px] bg-slate-50 p-5">
+          <p class="text-sm text-ink-500">เลือกหน้าทางซ้ายเพื่อดู preview</p>
+        </div>
+      </div>
+    </div>`;
+
+  const list = document.getElementById('pseo-list');
+  pages.forEach((p, i) => {
+    const tr = el('tr', { class: 'hover:bg-slate-50 cursor-pointer' });
+    tr.innerHTML = `
+      <td class="px-4 py-2 text-ink-500">${i+1}</td>
+      <td class="px-4 py-2 font-mono">${escapeHtml(p.url)}</td>
+      <td class="px-4 py-2 truncate max-w-xs">${escapeHtml(p.title)}</td>`;
+    tr.addEventListener('click', () => {
+      document.querySelectorAll('#pseo-list tr').forEach(x => x.classList.remove('bg-brand-50'));
+      tr.classList.add('bg-brand-50');
+      document.getElementById('pseo-preview').innerHTML = `
+        <div class="space-y-3">
+          <div>
+            <div class="text-xs font-semibold text-ink-500 uppercase tracking-wide">URL</div>
+            <div class="font-mono text-sm break-all">${escapeHtml(p.url)}</div>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-ink-500 uppercase tracking-wide">Title (${p.title.length} char)</div>
+            <div class="text-sm font-semibold">${escapeHtml(p.title)}</div>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-ink-500 uppercase tracking-wide">Meta Description (${p.desc.length} char)</div>
+            <div class="text-sm">${escapeHtml(p.desc)}</div>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-ink-500 uppercase tracking-wide">Body</div>
+            <div class="bg-white p-4 rounded-lg border border-slate-200 mt-1 prose prose-sm max-w-none">${p.body}</div>
+          </div>
+        </div>`;
+    });
+    list.appendChild(tr);
+  });
+  // auto-select first
+  list.firstChild?.click();
+
+  document.getElementById('pseo-export-zip').addEventListener('click', async () => {
+    const zip = new JSZip();
+    pages.forEach(p => zip.file(p.filename, p.html));
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'pseo-pages.zip';
+    a.click();
+  });
+
+  document.getElementById('pseo-export-sitemap').addEventListener('click', () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pages.map(p => `  <url>
+    <loc>https://example.com${escapeHtml(p.url)}</loc>
+    <lastmod>${new Date().toISOString().slice(0,10)}</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>`).join('\n')}
+</urlset>`;
+    const blob = new Blob([xml], { type: 'application/xml' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'sitemap.xml';
+    a.click();
+  });
+});
+
+</script>
+<script src="assets/i18n.js"></script>
+</body>
+</html>

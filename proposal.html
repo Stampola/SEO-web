@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SearchFit Pro — SEO Platform Proposal สำหรับ Thai Media Agency</title>
+<meta name="description" content="เอกสารนำเสนอ webapp ทำ SEO ครบเซ็ต สำหรับ media agency ไทย — AI search, automation, white-label, multi-client" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950:'#030712', 900:'#0b1220', 700:'#1f2937', 500:'#6b7280', 400:'#9ca3af', 300:'#d1d5db', 200:'#e5e7eb', 100:'#f3f4f6', 50:'#f9fafb' },
+          brand: { 50:'#eef2ff', 100:'#e0e7ff', 200:'#c7d2fe', 300:'#a5b4fc', 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca', 800:'#3730a3', 900:'#312e81', 950:'#1e1b4b' },
+          accent: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' },
+        },
+      }
+    }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, ui-sans-serif, sans-serif; }
+  code, pre { font-family: 'JetBrains Mono', monospace; }
+  html { scroll-behavior: smooth; }
+  body { background: #fafafa; }
+
+  /* Gradient mesh hero */
+  .hero-bg {
+    background:
+      radial-gradient(at 20% 30%, rgba(99,102,241,0.35) 0px, transparent 50%),
+      radial-gradient(at 80% 10%, rgba(249,115,22,0.25) 0px, transparent 50%),
+      radial-gradient(at 70% 80%, rgba(168,85,247,0.30) 0px, transparent 50%),
+      radial-gradient(at 10% 90%, rgba(34,197,94,0.20) 0px, transparent 50%),
+      #0b1220;
+  }
+  .glass {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-cool {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+  .card-hover:hover { transform: translateY(-2px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  .animate-blob {
+    animation: blob 8s infinite;
+  }
+  @keyframes blob {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.1); }
+    66% { transform: translate(-20px, 30px) scale(0.9); }
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .feature-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 25px 50px -12px rgba(99,102,241,0.25); }
+  .nav-link { transition: color 0.2s; }
+  .nav-link:hover { color: #6366f1; }
+
+  /* Section reveal */
+  .section { scroll-margin-top: 80px; }
+
+  /* Beautiful scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #f3f4f6; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #818cf8; }
+
+  /* Pulse animation for differentiator badges */
+  .pulse-ring {
+    box-shadow: 0 0 0 0 rgba(99,102,241,0.4);
+    animation: pulse-ring 2s infinite;
+  }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(99,102,241,0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(99,102,241,0); }
+    100% { box-shadow: 0 0 0 0 rgba(99,102,241,0); }
+  }
+</style>
+</head>
+<body class="text-ink-900">
+
+<!-- ============ STICKY NAV ============ -->
+<nav class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg border-b border-ink-200">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center shadow-lg">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+      </div>
+      <div>
+        <div class="font-extrabold text-base tracking-tight leading-none">SearchFit <span class="text-brand-600">Pro</span></div>
+        <div class="text-[10px] text-ink-500 leading-none mt-0.5">SEO Platform for Thai Agencies</div>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-1 text-sm font-medium text-ink-700">
+      <a href="#why-now" class="nav-link px-3 py-2 rounded-lg hover:bg-ink-50">ทำไมตอนนี้</a>
+      <a href="#wedges" class="nav-link px-3 py-2 rounded-lg hover:bg-ink-50">จุดต่าง</a>
+      <a href="#features" class="nav-link px-3 py-2 rounded-lg hover:bg-ink-50">ฟีเจอร์</a>
+      <a href="#automation" class="nav-link px-3 py-2 rounded-lg hover:bg-ink-50">Automation</a>
+      <a href="#pricing" class="nav-link px-3 py-2 rounded-lg hover:bg-ink-50">ราคา</a>
+      <a href="#roadmap" class="nav-link px-3 py-2 rounded-lg hover:bg-ink-50">Roadmap</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <a href="app.html" class="hidden sm:inline-flex items-center gap-1.5 text-sm bg-ink-900 hover:bg-ink-700 text-white px-4 py-2 rounded-lg font-semibold transition">
+        ดู Prototype
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 1. HERO ============ -->
+<section id="hero" class="hero-bg pt-32 pb-20 relative overflow-hidden">
+  <div class="absolute -top-24 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-blob"></div>
+  <div class="absolute top-1/3 right-1/4 w-80 h-80 bg-accent-500/20 rounded-full blur-3xl animate-blob" style="animation-delay: 2s;"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-1.5 rounded-full text-xs font-medium text-white mb-6">
+      <span class="w-2 h-2 bg-emerald-400 rounded-full pulse-ring"></span>
+      <span>Proposal v1.0 · ออกแบบสำหรับ Media Agency ไทย</span>
+    </div>
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6">
+      Webapp ทำ SEO <br/>
+      <span class="text-gradient">ที่เกิดมาเพื่อ</span> <br/>
+      <span class="text-white">Agency ไทย</span>
+    </h1>
+    <p class="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-10">
+      ครบทุกเครื่องมือที่ Ahrefs/Semrush มี <span class="text-white font-semibold">+</span> AI search visibility <span class="text-white font-semibold">+</span> Thai keyword intelligence <span class="text-white font-semibold">+</span> White-label client portal <span class="text-white font-semibold">+</span> Automation engine <br/>
+      <span class="text-accent-400 font-semibold">ในราคาคิดเป็นบาท ไม่กลัวคอร์สหมดอายุ</span>
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <a href="#wedges" class="bg-white hover:bg-ink-100 text-ink-900 px-6 py-3 rounded-xl font-bold text-sm transition shadow-lg flex items-center gap-2">
+        ดู 5 จุดต่าง
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </a>
+      <a href="app.html" class="glass hover:bg-white/10 text-white px-6 py-3 rounded-xl font-semibold text-sm transition flex items-center gap-2">
+        เปิด Prototype
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+      <a href="tools.html" class="glass hover:bg-white/10 text-white px-6 py-3 rounded-xl font-semibold text-sm transition flex items-center gap-2">
+        ลองใช้เครื่องมือ MVP
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </a>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      <div class="glass rounded-2xl p-5 text-left">
+        <div class="text-3xl font-extrabold text-white">48%</div>
+        <div class="text-xs text-white/60 mt-1">queries มี AI Overview · top10 ไม่พอแล้ว</div>
+      </div>
+      <div class="glass rounded-2xl p-5 text-left">
+        <div class="text-3xl font-extrabold text-white">527%</div>
+        <div class="text-xs text-white/60 mt-1">AI-referred traffic เพิ่ม YoY (2025)</div>
+      </div>
+      <div class="glass rounded-2xl p-5 text-left">
+        <div class="text-3xl font-extrabold text-white">97%</div>
+        <div class="text-xs text-white/60 mt-1">market share ของ Google.co.th</div>
+      </div>
+      <div class="glass rounded-2xl p-5 text-left">
+        <div class="text-3xl font-extrabold text-white">0</div>
+        <div class="text-xs text-white/60 mt-1">platform global ที่ support ภาษาไทยจริงจัง</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. WHY NOW ============ -->
+<section id="why-now" class="section py-24 bg-white relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">01 — Why Now</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">เกิดดีลตลาด <span class="text-gradient-cool">3 ทาง</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">โอกาสที่หน้าต่างจะปิด — ใครเข้าก่อนได้</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="feature-card bg-gradient-to-br from-brand-50 to-white border border-brand-100 rounded-3xl p-8">
+        <div class="w-14 h-14 rounded-2xl bg-brand-600 flex items-center justify-center mb-5">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">AI Search disruption</h3>
+        <p class="text-ink-700 leading-relaxed text-sm">Google AI Overview ขึ้นใน 48% ของ query แล้ว และ AI Mode ใช้ "query fan-out" ออกเป็น 16 sub-queries ต่อคำถาม — <strong>SEO เดิม optimize top-10 ไม่พอ</strong> ต้อง optimize "ติดในคำตอบของ AI" — ทุก agency กำลังหา tool ที่ช่วย</p>
+      </div>
+      <div class="feature-card bg-gradient-to-br from-purple-50 to-white border border-purple-100 rounded-3xl p-8">
+        <div class="w-14 h-14 rounded-2xl bg-purple-600 flex items-center justify-center mb-5">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Thai market gap</h3>
+        <p class="text-ink-700 leading-relaxed text-sm">Ahrefs/Semrush/Moz ทำภาษาไทยได้แค่ผิวเผิน — Thai tokenization ไม่เป๊ะ, ไม่ track Pantip/Wongnai/LINE — Thai SMEs ต้องจ่ายเดือนละหมื่น+ แล้วยัง <strong>ใช้ไม่ได้เต็มที่</strong> ตลาดยังว่าง</p>
+      </div>
+      <div class="feature-card bg-gradient-to-br from-accent-50 to-white border border-accent-200 rounded-3xl p-8">
+        <div class="w-14 h-14 rounded-2xl bg-accent-500 flex items-center justify-center mb-5">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Agency budget squeeze</h3>
+        <p class="text-ink-700 leading-relaxed text-sm">Semrush ขึ้นราคา, Ahrefs ลด credit, AgencyAnalytics คิดต่อลูกค้า — agencies ไทยจ่ายเดือนหลายหมื่น แต่ละเครื่องมือไม่คุย/ไม่รวมกัน — <strong>มีโอกาสจับลูกค้าด้วย flat THB pricing</strong></p>
+      </div>
+    </div>
+
+    <div class="mt-12 grid sm:grid-cols-3 gap-4 text-center">
+      <div class="bg-ink-50 rounded-2xl p-6">
+        <div class="text-xs font-semibold text-ink-500 mb-2">Source</div>
+        <div class="text-sm text-ink-700">การ research จากเอกสาร <strong>30+ ฉบับ</strong> รวมถึง Ahrefs, Semrush, Moz, Surfer, SE Ranking, AgencyAnalytics — ดูราคา/ฟีเจอร์ทั้งหมด</div>
+      </div>
+      <div class="bg-ink-50 rounded-2xl p-6">
+        <div class="text-xs font-semibold text-ink-500 mb-2">AI tooling category</div>
+        <div class="text-sm text-ink-700"><strong>เกิดใหม่ปี 2025-2026</strong> — Profound, Otterly, Bluefish, Gauge — ยังไม่มี player ไทย</div>
+      </div>
+      <div class="bg-ink-50 rounded-2xl p-6">
+        <div class="text-xs font-semibold text-ink-500 mb-2">การเข้าตลาด</div>
+        <div class="text-sm text-ink-700">Agency มีลูกค้าจริง → เริ่มใช้กับตัวเองก่อน → ขยายขายต่อให้ agency อื่นเป็น <strong>SaaS B2B</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. THE 5 WEDGES ============ -->
+<section id="wedges" class="section py-24 bg-ink-50 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-50"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">02 — Differentiators</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">5 เรื่องที่ <span class="text-gradient">เราเด่นกว่า</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">ลอกตามได้ยาก เพราะใช้ข้อมูล + เครือข่ายที่ player ระดับโลกไม่มี</p>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Wedge 1: Thai SEO -->
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-ink-100 grid md:grid-cols-12 gap-8 items-center feature-card">
+        <div class="md:col-span-2 text-center">
+          <div class="inline-flex w-20 h-20 rounded-2xl bg-gradient-to-br from-red-500 to-pink-600 items-center justify-center text-white text-3xl shadow-xl">🇹🇭</div>
+          <div class="text-xs font-bold text-brand-600 mt-3">WEDGE 01</div>
+        </div>
+        <div class="md:col-span-7">
+          <h3 class="text-2xl font-extrabold mb-2">Thai-language SEO ของจริง</h3>
+          <p class="text-ink-700 leading-relaxed mb-3">Native tokenization ด้วย PyThaiNLP — เข้าใจคำไทยไม่มีช่องว่าง, transliteration "facebook = เฟซบุ๊ก = เฟสบุ๊ค", track <strong>Pantip + Wongnai + LINE OA</strong> เป็น brand mention source — ของที่ Ahrefs ไม่มี</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2 py-1 bg-red-50 text-red-700 rounded-full">Thai Tokenizer</span>
+            <span class="px-2 py-1 bg-red-50 text-red-700 rounded-full">Pantip Mentions</span>
+            <span class="px-2 py-1 bg-red-50 text-red-700 rounded-full">Wongnai Local</span>
+            <span class="px-2 py-1 bg-red-50 text-red-700 rounded-full">LINE OA Schema</span>
+            <span class="px-2 py-1 bg-red-50 text-red-700 rounded-full">Bilingual hreflang</span>
+          </div>
+        </div>
+        <div class="md:col-span-3 bg-red-50 rounded-2xl p-4 text-center">
+          <div class="text-xs text-red-700 font-semibold mb-1">Defensibility</div>
+          <div class="text-3xl font-extrabold text-red-600">★★★★★</div>
+          <div class="text-xs text-ink-500 mt-2">ไม่มีใครทำ — ลอกยากเพราะต้องมีทีม TH</div>
+        </div>
+      </div>
+
+      <!-- Wedge 2: GEO/AI -->
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-ink-100 grid md:grid-cols-12 gap-8 items-center feature-card">
+        <div class="md:col-span-2 text-center">
+          <div class="inline-flex w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-600 items-center justify-center text-white text-3xl shadow-xl">🤖</div>
+          <div class="text-xs font-bold text-brand-600 mt-3">WEDGE 02</div>
+        </div>
+        <div class="md:col-span-7">
+          <h3 class="text-2xl font-extrabold mb-2">AI Visibility Closed-Loop</h3>
+          <p class="text-ink-700 leading-relaxed mb-3">ติดตามว่าแบรนด์/หน้าเว็บลูกค้าถูก <strong>quote ใน ChatGPT / Claude / Gemini / Perplexity / AI Overview</strong> หรือเปล่า — track prompt portfolio 100 prompts × 5 engines × รายวัน, share of voice, why-not-cited diff, แล้วสร้าง action เป็น content brief อัตโนมัติ</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2 py-1 bg-brand-50 text-brand-700 rounded-full">Prompt Portfolio</span>
+            <span class="px-2 py-1 bg-brand-50 text-brand-700 rounded-full">Multi-Engine Track</span>
+            <span class="px-2 py-1 bg-brand-50 text-brand-700 rounded-full">Citation Diff</span>
+            <span class="px-2 py-1 bg-brand-50 text-brand-700 rounded-full">Sentiment Alert</span>
+            <span class="px-2 py-1 bg-brand-50 text-brand-700 rounded-full">Action → Brief</span>
+          </div>
+        </div>
+        <div class="md:col-span-3 bg-brand-50 rounded-2xl p-4 text-center">
+          <div class="text-xs text-brand-700 font-semibold mb-1">Defensibility</div>
+          <div class="text-3xl font-extrabold text-brand-600">★★★★</div>
+          <div class="text-xs text-ink-500 mt-2">หมวดใหม่ปี 2026 — รีบเข้า</div>
+        </div>
+      </div>
+
+      <!-- Wedge 3: Local Grid -->
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-ink-100 grid md:grid-cols-12 gap-8 items-center feature-card">
+        <div class="md:col-span-2 text-center">
+          <div class="inline-flex w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 items-center justify-center text-white text-3xl shadow-xl">📍</div>
+          <div class="text-xs font-bold text-emerald-600 mt-3">WEDGE 03</div>
+        </div>
+        <div class="md:col-span-7">
+          <h3 class="text-2xl font-extrabold mb-2">Local Grid + GBP Suite</h3>
+          <p class="text-ink-700 leading-relaxed mb-3">3x3 → 21x21 grid rank scanner — ตามรอย <strong>Local Falcon</strong> แต่ <strong>ฝังในระบบ ไม่มีระบบ credit</strong> — เหมาะกับร้านอาหาร, คลินิก, แฟรนไชส์ที่กระจายหลายสาขา + GBP optimization workflow + AI Overview-for-local tracking</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded-full">Geo-Grid Scan</span>
+            <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded-full">GBP Audit</span>
+            <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded-full">Review Velocity</span>
+            <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded-full">Local AIO Track</span>
+            <span class="px-2 py-1 bg-emerald-50 text-emerald-700 rounded-full">Multi-Branch</span>
+          </div>
+        </div>
+        <div class="md:col-span-3 bg-emerald-50 rounded-2xl p-4 text-center">
+          <div class="text-xs text-emerald-700 font-semibold mb-1">Defensibility</div>
+          <div class="text-3xl font-extrabold text-emerald-600">★★★★</div>
+          <div class="text-xs text-ink-500 mt-2">Local Falcon เด่นแต่แยกตัว — รวมในนี้ดีกว่า</div>
+        </div>
+      </div>
+
+      <!-- Wedge 4: Automation -->
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-ink-100 grid md:grid-cols-12 gap-8 items-center feature-card">
+        <div class="md:col-span-2 text-center">
+          <div class="inline-flex w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-500 to-orange-600 items-center justify-center text-white text-3xl shadow-xl">⚡</div>
+          <div class="text-xs font-bold text-accent-600 mt-3">WEDGE 04</div>
+        </div>
+        <div class="md:col-span-7">
+          <h3 class="text-2xl font-extrabold mb-2">Automation Engine</h3>
+          <p class="text-ink-700 leading-relaxed mb-3">Rules-based automation — <strong>"ถ้า ___ เกิด, ทำ ___"</strong> — รัน audit, สั่ง re-index, สร้าง task ให้ writer, แจ้งใน LINE group, generate report PDF, sync ไป ClickUp — เครื่องมืออื่นแจ้งปัญหา <em>แต่หยุดตรงนั้น</em>, เราจัดการให้จบ</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2 py-1 bg-accent-50 text-accent-700 rounded-full">Rule Builder</span>
+            <span class="px-2 py-1 bg-accent-50 text-accent-700 rounded-full">LINE Alerts</span>
+            <span class="px-2 py-1 bg-accent-50 text-accent-700 rounded-full">Auto Tasks</span>
+            <span class="px-2 py-1 bg-accent-50 text-accent-700 rounded-full">Scheduled Reports</span>
+            <span class="px-2 py-1 bg-accent-50 text-accent-700 rounded-full">Webhook Out</span>
+          </div>
+        </div>
+        <div class="md:col-span-3 bg-accent-50 rounded-2xl p-4 text-center">
+          <div class="text-xs text-accent-700 font-semibold mb-1">Defensibility</div>
+          <div class="text-3xl font-extrabold text-accent-600">★★★</div>
+          <div class="text-xs text-ink-500 mt-2">ลอกได้แต่ต้องลงทุน — ของเราเริ่มก่อน</div>
+        </div>
+      </div>
+
+      <!-- Wedge 5: Pricing -->
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-ink-100 grid md:grid-cols-12 gap-8 items-center feature-card">
+        <div class="md:col-span-2 text-center">
+          <div class="inline-flex w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-500 to-yellow-600 items-center justify-center text-white text-3xl shadow-xl">💎</div>
+          <div class="text-xs font-bold text-amber-600 mt-3">WEDGE 05</div>
+        </div>
+        <div class="md:col-span-7">
+          <h3 class="text-2xl font-extrabold mb-2">THB Pricing + Transparent Flat</h3>
+          <p class="text-ink-700 leading-relaxed mb-3"><strong>ไม่มี credit ไม่ขู่เกินโควต้า</strong> — flat per-agency, unlimited staff seats, billing เป็นบาท, รับโอน/PromptPay/Omise + invoice ภาษาไทยกฎหมาย VAT/WHT ครบ — เทียบกับ Semrush ที่ขึ้นราคารายปี ทำลูกค้าไทยเหนื่อย</p>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-2 py-1 bg-amber-50 text-amber-700 rounded-full">Flat per-Agency</span>
+            <span class="px-2 py-1 bg-amber-50 text-amber-700 rounded-full">Unlimited Seats</span>
+            <span class="px-2 py-1 bg-amber-50 text-amber-700 rounded-full">THB Native</span>
+            <span class="px-2 py-1 bg-amber-50 text-amber-700 rounded-full">Tax Invoice</span>
+            <span class="px-2 py-1 bg-amber-50 text-amber-700 rounded-full">FlowAccount Sync</span>
+          </div>
+        </div>
+        <div class="md:col-span-3 bg-amber-50 rounded-2xl p-4 text-center">
+          <div class="text-xs text-amber-700 font-semibold mb-1">Customer love</div>
+          <div class="text-3xl font-extrabold text-amber-600">★★★★★</div>
+          <div class="text-xs text-ink-500 mt-2">ลูกค้าไทยจะรัก แต่ลอกได้ง่าย</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. FEATURE ARCHITECTURE ============ -->
+<section id="features" class="section py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">03 — Feature Map</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">แพลตฟอร์มทั้งหมด <span class="text-gradient-cool">4 เสาหลัก</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">+ Automation Engine ที่เชื่อมทุกเสา + Reporting Layer ที่สรุปทุกอย่างให้ลูกค้า</p>
+    </div>
+
+    <!-- Pillars -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Audit -->
+      <div class="feature-card bg-gradient-to-br from-brand-600 to-brand-700 rounded-3xl p-7 text-white shadow-xl">
+        <div class="text-3xl mb-3">🔍</div>
+        <h3 class="text-2xl font-extrabold mb-2">Audit & Score</h3>
+        <p class="text-white/80 text-sm leading-relaxed mb-4">วินิจฉัยเว็บแบบ 360° พร้อม SearchFit Score 0-100</p>
+        <ul class="text-xs text-white/90 space-y-1.5">
+          <li class="flex gap-2"><span>•</span> Crawl ทั้งเว็บ + JS rendering</li>
+          <li class="flex gap-2"><span>•</span> 100+ on-page checks</li>
+          <li class="flex gap-2"><span>•</span> Core Web Vitals (INP/LCP/CLS) + PSI</li>
+          <li class="flex gap-2"><span>•</span> Schema validator (rich result + AI extractability)</li>
+          <li class="flex gap-2"><span>•</span> AI Crawler Access Auditor (GPTBot, ClaudeBot)</li>
+          <li class="flex gap-2"><span>•</span> Broken links + redirect chains</li>
+          <li class="flex gap-2"><span>•</span> Mobile + desktop comparison</li>
+          <li class="flex gap-2"><span>•</span> Auto re-scan ทุกสัปดาห์</li>
+        </ul>
+      </div>
+
+      <!-- Research -->
+      <div class="feature-card bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-7 text-white shadow-xl">
+        <div class="text-3xl mb-3">🧠</div>
+        <h3 class="text-2xl font-extrabold mb-2">Research & Track</h3>
+        <p class="text-white/80 text-sm leading-relaxed mb-4">หา keyword + คู่แข่ง + ranking ทุก surface</p>
+        <ul class="text-xs text-white/90 space-y-1.5">
+          <li class="flex gap-2"><span>•</span> Keyword research (Thai-aware)</li>
+          <li class="flex gap-2"><span>•</span> Topic cluster + content gap</li>
+          <li class="flex gap-2"><span>•</span> Daily rank tracking (Google + Bing)</li>
+          <li class="flex gap-2"><span>•</span> Local Grid Scanner (3x3 → 21x21)</li>
+          <li class="flex gap-2"><span>•</span> Competitor analysis + SOV</li>
+          <li class="flex gap-2"><span>•</span> Backlink monitor</li>
+          <li class="flex gap-2"><span>•</span> AI Visibility tracker</li>
+          <li class="flex gap-2"><span>•</span> SERP feature monitor</li>
+        </ul>
+      </div>
+
+      <!-- Content -->
+      <div class="feature-card bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl p-7 text-white shadow-xl">
+        <div class="text-3xl mb-3">✍️</div>
+        <h3 class="text-2xl font-extrabold mb-2">Content & Optimize</h3>
+        <p class="text-white/80 text-sm leading-relaxed mb-4">สร้าง + ปรับ + เผยแพร่ content ครบทาง</p>
+        <ul class="text-xs text-white/90 space-y-1.5">
+          <li class="flex gap-2"><span>•</span> AI Content Brief generator</li>
+          <li class="flex gap-2"><span>•</span> NLP content scoring (vs SERP)</li>
+          <li class="flex gap-2"><span>•</span> Schema Markup Generator (10 types)</li>
+          <li class="flex gap-2"><span>•</span> Programmatic SEO Page Builder</li>
+          <li class="flex gap-2"><span>•</span> Internal linking suggester</li>
+          <li class="flex gap-2"><span>•</span> Author Entity Graph (E-E-A-T)</li>
+          <li class="flex gap-2"><span>•</span> Content workflow (brief → draft → review)</li>
+          <li class="flex gap-2"><span>•</span> WordPress/Webflow direct publish</li>
+        </ul>
+      </div>
+
+      <!-- Report -->
+      <div class="feature-card bg-gradient-to-br from-accent-600 to-red-600 rounded-3xl p-7 text-white shadow-xl">
+        <div class="text-3xl mb-3">📊</div>
+        <h3 class="text-2xl font-extrabold mb-2">Report & Communicate</h3>
+        <p class="text-white/80 text-sm leading-relaxed mb-4">รายงาน + client portal + ทุก channel</p>
+        <ul class="text-xs text-white/90 space-y-1.5">
+          <li class="flex gap-2"><span>•</span> White-label client portal</li>
+          <li class="flex gap-2"><span>•</span> Auto-generated monthly PDF</li>
+          <li class="flex gap-2"><span>•</span> Live dashboard (always-on)</li>
+          <li class="flex gap-2"><span>•</span> AI summary commentary</li>
+          <li class="flex gap-2"><span>•</span> LINE/Slack alerts</li>
+          <li class="flex gap-2"><span>•</span> Comment threads + approval</li>
+          <li class="flex gap-2"><span>•</span> Custom KPI dashboards</li>
+          <li class="flex gap-2"><span>•</span> Looker Studio export</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cross-cutting layers -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-ink-900 rounded-3xl p-8 text-white">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-accent-500 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold">⚡ Automation Engine</h3>
+        </div>
+        <p class="text-white/70 text-sm leading-relaxed mb-4">เชื่อม 4 เสาหลักให้ทำงานเอง — Rule Builder แบบ if-this-then-that แต่สำหรับ SEO โดยเฉพาะ</p>
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="font-semibold text-accent-400 mb-1">Triggers</div>
+            <div class="text-white/60">Schedule, ranking drop, audit fail, CWV regression, new backlink, AI mention, GSC alert</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="font-semibold text-accent-400 mb-1">Actions</div>
+            <div class="text-white/60">Run audit, create task, send LINE alert, generate report, sync ClickUp, re-index URL, AI summary</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-ink-900 to-brand-900 rounded-3xl p-8 text-white">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-purple-500 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold">📈 Scoring & Insights</h3>
+        </div>
+        <p class="text-white/70 text-sm leading-relaxed mb-4">SearchFit Score ฉบับ proprietary — รวม 6 มิติเป็นคะแนนเดียว 0-100 ที่ลูกค้าเข้าใจง่าย</p>
+        <div class="space-y-2 text-xs">
+          <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <span>On-Page</span><span class="font-bold text-purple-300">25%</span>
+          </div>
+          <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <span>Technical</span><span class="font-bold text-purple-300">20%</span>
+          </div>
+          <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <span>Performance (CWV)</span><span class="font-bold text-purple-300">15%</span>
+          </div>
+          <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <span>Content (E-E-A-T)</span><span class="font-bold text-purple-300">15%</span>
+          </div>
+          <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <span>Off-Page (Backlinks)</span><span class="font-bold text-purple-300">15%</span>
+          </div>
+          <div class="flex items-center justify-between bg-white/5 rounded-lg px-3 py-2">
+            <span>AI Visibility</span><span class="font-bold text-accent-400">10% <span class="text-[10px]">NEW</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. AUTOMATION WORKFLOWS ============ -->
+<section id="automation" class="section py-24 bg-gradient-to-b from-ink-900 to-ink-950 text-white relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-10"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-accent-400 uppercase mb-3">04 — Automation Workflows</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">ตัวอย่าง <span class="text-gradient">5 Recipe</span> ที่ทำให้งาน SEO เร็วขึ้น 10×</h2>
+      <p class="text-lg text-white/60 max-w-2xl mx-auto">เครื่องมืออื่นบอก "เจอปัญหา" — เราจัดการต่อให้ครบ</p>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Recipe 1 -->
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-red-500 flex items-center justify-center text-sm font-bold">01</div>
+          <h3 class="text-lg font-bold">"Ranking drop watcher"</h3>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-sm">
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-red-400 font-semibold mb-1">WHEN</div>
+            <div>keyword หลักร่วงเกิน 5 อันดับใน 24h</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-yellow-400 font-semibold mb-1">THEN</div>
+            <div>วิเคราะห์ SERP diff + รัน mini-audit + เปิด task ให้ specialist</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-emerald-400 font-semibold mb-1">NOTIFY</div>
+            <div>ส่ง LINE group ลูกค้า + Slack ทีมพร้อมลิงก์ task</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe 2 -->
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-sm font-bold">02</div>
+          <h3 class="text-lg font-bold">"Monthly auto-report"</h3>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-sm">
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-red-400 font-semibold mb-1">WHEN</div>
+            <div>ทุกวันที่ 1 ของเดือน 6:00</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-yellow-400 font-semibold mb-1">THEN</div>
+            <div>ดึง GSC + GA4 + rank + audit + AI mentions → AI สรุป → render PDF white-label</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-emerald-400 font-semibold mb-1">NOTIFY</div>
+            <div>อีเมล AM + ลูกค้า + LINE OA + log audit</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe 3 -->
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-500 flex items-center justify-center text-sm font-bold">03</div>
+          <h3 class="text-lg font-bold">"AI citation lost"</h3>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-sm">
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-red-400 font-semibold mb-1">WHEN</div>
+            <div>หลุดจาก AI Overview/ChatGPT citation</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-yellow-400 font-semibold mb-1">THEN</div>
+            <div>เปรียบเทียบกับหน้าที่ AI ดึงตอนนี้ → generate content brief อัพเดท → assign writer</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-emerald-400 font-semibold mb-1">NOTIFY</div>
+            <div>แจ้ง content lead + เพิ่มใน sprint อัตโนมัติ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe 4 -->
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-sm font-bold">04</div>
+          <h3 class="text-lg font-bold">"CWV regression"</h3>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-sm">
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-red-400 font-semibold mb-1">WHEN</div>
+            <div>INP > 500ms หรือ LCP > 4s ใน CrUX</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-yellow-400 font-semibold mb-1">THEN</div>
+            <div>รัน performance diagnostic → ระบุ third-party script + heavy handler → สร้าง dev ticket</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-emerald-400 font-semibold mb-1">NOTIFY</div>
+            <div>Slack dev channel + sync ticket ไป Jira/ClickUp</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe 5 -->
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-accent-500 flex items-center justify-center text-sm font-bold">05</div>
+          <h3 class="text-lg font-bold">"Content brief → published"</h3>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-sm">
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-red-400 font-semibold mb-1">WHEN</div>
+            <div>Brief ถูก approve โดยลูกค้า</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-yellow-400 font-semibold mb-1">THEN</div>
+            <div>WordPress publish → submit ไป GSC → ใส่ schema → ping internal links → ส่ง LINE OA</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-emerald-400 font-semibold mb-1">NOTIFY</div>
+            <div>แจ้ง AM + ลูกค้า + เริ่ม track ranking ใหม่</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="app.html#automations" class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-xl font-bold transition">
+        ดูหน้า Automation Builder ใน Prototype
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. PERSONAS ============ -->
+<section id="personas" class="section py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">05 — User Personas</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">6 บทบาท <span class="text-gradient-cool">ในระบบเดียว</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">ทุกคนเห็นในสิ่งที่ตัวเองต้องการ ไม่เห็นในสิ่งที่ไม่ควรเห็น</p>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="bg-ink-50">
+            <th class="text-left p-4 font-bold rounded-tl-2xl">Role</th>
+            <th class="text-left p-4 font-bold">Scope</th>
+            <th class="text-left p-4 font-bold">เห็นอะไร</th>
+            <th class="text-left p-4 font-bold rounded-tr-2xl">ทำอะไรได้</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-ink-100">
+          <tr class="hover:bg-ink-50">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-brand-100 flex items-center justify-center text-xl">👑</div>
+                <div>
+                  <div class="font-bold">Owner / Admin</div>
+                  <div class="text-xs text-ink-500">เจ้าของ agency</div>
+                </div>
+              </div>
+            </td>
+            <td class="p-4">All agency</td>
+            <td class="p-4">ทุก client, ทุก project, billing, team performance, automation logs</td>
+            <td class="p-4">จัดการ subscription, เพิ่มทีม, white-label config, billing</td>
+          </tr>
+          <tr class="hover:bg-ink-50">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-xl">📋</div>
+                <div>
+                  <div class="font-bold">Account Manager</div>
+                  <div class="text-xs text-ink-500">ดูแลลูกค้า</div>
+                </div>
+              </div>
+            </td>
+            <td class="p-4">Assigned clients</td>
+            <td class="p-4">โปรเจกต์ที่รับผิดชอบ, รายงาน, comm thread, retainer hours</td>
+            <td class="p-4">ส่ง report, ตอบ comment ลูกค้า, มอบหมาย task ทีม, จัดเรียง priority</td>
+          </tr>
+          <tr class="hover:bg-ink-50">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-xl">🔧</div>
+                <div>
+                  <div class="font-bold">SEO Specialist</div>
+                  <div class="text-xs text-ink-500">ทำงาน technical</div>
+                </div>
+              </div>
+            </td>
+            <td class="p-4">Assigned projects</td>
+            <td class="p-4">Audit detail, ranking, backlinks, technical issues, schema</td>
+            <td class="p-4">รัน audit, แก้ on-page, ส่ง schema, รัน automation manual</td>
+          </tr>
+          <tr class="hover:bg-ink-50">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-accent-100 flex items-center justify-center text-xl">✍️</div>
+                <div>
+                  <div class="font-bold">Content Writer</div>
+                  <div class="text-xs text-ink-500">เขียน content</div>
+                </div>
+              </div>
+            </td>
+            <td class="p-4">Assigned briefs</td>
+            <td class="p-4">Content brief, target keywords, SERP analysis, NLP editor</td>
+            <td class="p-4">เขียน draft, ขอ review, ขอ revision</td>
+          </tr>
+          <tr class="hover:bg-ink-50">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-xl">👁️</div>
+                <div>
+                  <div class="font-bold">Client (View)</div>
+                  <div class="text-xs text-ink-500">ลูกค้าดูอย่างเดียว</div>
+                </div>
+              </div>
+            </td>
+            <td class="p-4">Own brand only</td>
+            <td class="p-4">Live dashboard, รายงาน, content calendar (read-only)</td>
+            <td class="p-4">ดู, comment, download report</td>
+          </tr>
+          <tr class="hover:bg-ink-50">
+            <td class="p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-cyan-100 flex items-center justify-center text-xl">✅</div>
+                <div>
+                  <div class="font-bold">Client (Edit)</div>
+                  <div class="text-xs text-ink-500">ลูกค้า approve ได้</div>
+                </div>
+              </div>
+            </td>
+            <td class="p-4">Own brand only</td>
+            <td class="p-4">เหมือน View + approval queue + asset library</td>
+            <td class="p-4">Approve content/brief, ขอแก้, อัปโหลด brand asset</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. UI PREVIEW ============ -->
+<section id="ui" class="section py-24 bg-gradient-to-br from-ink-50 to-brand-50 relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-30"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">06 — UI Preview</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">UI ที่ <span class="text-gradient-cool">ใช้ง่าย</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">ทุกหน้าจอเปิดดูได้ใน prototype (คลิกการ์ดด้านล่าง)</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="app.html#admin" class="feature-card bg-white rounded-2xl overflow-hidden shadow-md border border-ink-100">
+        <div class="aspect-video bg-gradient-to-br from-brand-500 to-purple-700 flex items-center justify-center text-white text-4xl">📊</div>
+        <div class="p-5">
+          <div class="text-xs text-brand-600 font-bold tracking-wider mb-1">ADMIN VIEW</div>
+          <h3 class="font-bold text-lg mb-1">Agency Dashboard</h3>
+          <p class="text-sm text-ink-500">ภาพรวมทุก client, team performance, MRR, automation health</p>
+        </div>
+      </a>
+      <a href="app.html#clients" class="feature-card bg-white rounded-2xl overflow-hidden shadow-md border border-ink-100">
+        <div class="aspect-video bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white text-4xl">🏢</div>
+        <div class="p-5">
+          <div class="text-xs text-purple-600 font-bold tracking-wider mb-1">ADMIN VIEW</div>
+          <h3 class="font-bold text-lg mb-1">Client Portfolio</h3>
+          <p class="text-sm text-ink-500">รายชื่อลูกค้าทั้งหมด + score + retainer status + alerts</p>
+        </div>
+      </a>
+      <a href="app.html#project" class="feature-card bg-white rounded-2xl overflow-hidden shadow-md border border-ink-100">
+        <div class="aspect-video bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-4xl">🎯</div>
+        <div class="p-5">
+          <div class="text-xs text-emerald-600 font-bold tracking-wider mb-1">DEEP DIVE</div>
+          <h3 class="font-bold text-lg mb-1">Project Detail</h3>
+          <p class="text-sm text-ink-500">SEO score breakdown, ranking, audit issues, content pipeline</p>
+        </div>
+      </a>
+      <a href="app.html#automations" class="feature-card bg-white rounded-2xl overflow-hidden shadow-md border border-ink-100">
+        <div class="aspect-video bg-gradient-to-br from-accent-500 to-red-600 flex items-center justify-center text-white text-4xl">⚡</div>
+        <div class="p-5">
+          <div class="text-xs text-accent-600 font-bold tracking-wider mb-1">POWER</div>
+          <h3 class="font-bold text-lg mb-1">Automation Builder</h3>
+          <p class="text-sm text-ink-500">if-this-then-that ระดับ SEO โดยเฉพาะ + rule library</p>
+        </div>
+      </a>
+      <a href="app.html#client-portal" class="feature-card bg-white rounded-2xl overflow-hidden shadow-md border border-ink-100">
+        <div class="aspect-video bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white text-4xl">🪟</div>
+        <div class="p-5">
+          <div class="text-xs text-cyan-600 font-bold tracking-wider mb-1">CLIENT VIEW</div>
+          <h3 class="font-bold text-lg mb-1">Client Portal (white-label)</h3>
+          <p class="text-sm text-ink-500">ลูกค้าเห็นแบรนด์ agency ของคุณ — ไม่เห็น SearchFit</p>
+        </div>
+      </a>
+      <a href="app.html#ai-visibility" class="feature-card bg-white rounded-2xl overflow-hidden shadow-md border border-ink-100">
+        <div class="aspect-video bg-gradient-to-br from-violet-600 to-fuchsia-600 flex items-center justify-center text-white text-4xl">🤖</div>
+        <div class="p-5">
+          <div class="text-xs text-violet-600 font-bold tracking-wider mb-1">DIFFERENTIATOR</div>
+          <h3 class="font-bold text-lg mb-1">AI Visibility Tracker</h3>
+          <p class="text-sm text-ink-500">Track citation across ChatGPT/Claude/Gemini/Perplexity</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href="app.html" class="inline-flex items-center gap-2 bg-ink-900 hover:bg-ink-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition shadow-xl">
+        เปิด Prototype เต็มรูปแบบ
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. TECH ARCHITECTURE ============ -->
+<section id="tech" class="section py-24 bg-ink-950 text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-accent-400 uppercase mb-3">07 — Tech Architecture</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">Stack ที่ <span class="text-gradient">proven</span> + ทำงานในไทยเร็ว</h2>
+      <p class="text-lg text-white/60 max-w-2xl mx-auto">ไม่ over-engineer ใช้ของที่มีอยู่ + เลือกที่ดีสุดในแต่ละ layer</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="glass rounded-2xl p-6">
+        <div class="text-xs font-bold text-accent-400 mb-3">FRONTEND</div>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between"><span class="text-white/70">Framework</span><span class="font-semibold">Next.js 15 + React 19</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Language</span><span class="font-semibold">TypeScript strict</span></div>
+          <div class="flex justify-between"><span class="text-white/70">UI</span><span class="font-semibold">Tailwind 4 + shadcn/ui</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Data</span><span class="font-semibold">TanStack Query</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Charts</span><span class="font-semibold">Recharts + MapLibre</span></div>
+          <div class="flex justify-between"><span class="text-white/70">i18n</span><span class="font-semibold">i18next (TH/EN)</span></div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6">
+        <div class="text-xs font-bold text-accent-400 mb-3">BACKEND</div>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between"><span class="text-white/70">API</span><span class="font-semibold">Hono (edge) + Fastify</span></div>
+          <div class="flex justify-between"><span class="text-white/70">DB</span><span class="font-semibold">PostgreSQL 16 + RLS</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Time-series</span><span class="font-semibold">ClickHouse</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Cache/Queue</span><span class="font-semibold">Redis + BullMQ</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Storage</span><span class="font-semibold">Cloudflare R2</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Auth</span><span class="font-semibold">Better Auth + SSO</span></div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6">
+        <div class="text-xs font-bold text-accent-400 mb-3">AI / DATA</div>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between"><span class="text-white/70">LLM</span><span class="font-semibold">Claude Sonnet/Opus 4.6</span></div>
+          <div class="flex justify-between"><span class="text-white/70">GEO test</span><span class="font-semibold">OpenAI + Perplexity + Gemini APIs</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Thai NLP</span><span class="font-semibold">PyThaiNLP microservice</span></div>
+          <div class="flex justify-between"><span class="text-white/70">Crawl</span><span class="font-semibold">Playwright workers</span></div>
+          <div class="flex justify-between"><span class="text-white/70">SERP/Backlink</span><span class="font-semibold">DataForSEO + Bright Data</span></div>
+          <div class="flex justify-between"><span class="text-white/70">CWV</span><span class="font-semibold">PSI + CrUX APIs</span></div>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-6">
+        <div class="text-xs font-bold text-accent-400 mb-3">INTEGRATIONS (v1)</div>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="bg-white/5 rounded-lg px-3 py-2">📊 Google Search Console</div>
+          <div class="bg-white/5 rounded-lg px-3 py-2">📈 Google Analytics 4</div>
+          <div class="bg-white/5 rounded-lg px-3 py-2">📍 Google Business Profile</div>
+          <div class="bg-white/5 rounded-lg px-3 py-2">📰 WordPress / Webflow</div>
+          <div class="bg-white/5 rounded-lg px-3 py-2">💬 LINE Messaging API</div>
+          <div class="bg-white/5 rounded-lg px-3 py-2">💼 Stripe + Omise</div>
+          <div class="bg-white/5 rounded-lg px-3 py-2">📝 FlowAccount/PEAK</div>
+          <div class="bg-white/5 rounded-lg px-3 py-2">📁 ClickUp/Asana sync</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass rounded-2xl p-6">
+      <div class="text-xs font-bold text-accent-400 mb-3">DATA MODEL</div>
+      <pre class="text-xs text-white/80 overflow-x-auto bg-black/30 p-4 rounded-lg">
+Agency (tenant)
+ └── Client (brand / account)
+      └── Project (site / property)
+           ├── Keywords (ranking history → ClickHouse)
+           ├── Audits (snapshot → Postgres + S3)
+           ├── Backlinks (DataForSEO sync)
+           ├── ContentBriefs (status: brief → draft → review → published)
+           ├── Pages (URL inventory + score)
+           ├── Tasks (auto-created from audit issues)
+           ├── Automations (rules + run history)
+           └── Reports (PDF + live dashboard)
+
+Row-level security: ทุก query scope ด้วย agency_id + client_id</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. PRICING ============ -->
+<section id="pricing" class="section py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">08 — Pricing</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">ราคา <span class="text-gradient-cool">เป็นบาท · ใส</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">ไม่มี credit, ไม่ขู่เกินโควต้า, ทดลองฟรี 14 วันโดยไม่ต้องใส่บัตร</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Starter -->
+      <div class="bg-white rounded-3xl p-8 border-2 border-ink-200 feature-card">
+        <div class="text-xs font-bold text-ink-500 tracking-wider mb-2">STARTER</div>
+        <div class="text-3xl font-extrabold mb-1">฿1,490<span class="text-sm font-normal text-ink-500">/mo</span></div>
+        <div class="text-xs text-ink-500 mb-6">ฟรีแลนซ์ / ใช้ภายในเดียว</div>
+        <ul class="space-y-2.5 text-sm mb-6">
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 3 client</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 2 staff seats</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 250 keywords tracked</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> Site audit + score</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> Basic schema + pSEO</li>
+          <li class="flex gap-2 text-ink-400"><span>✕</span> White-label</li>
+          <li class="flex gap-2 text-ink-400"><span>✕</span> AI Visibility</li>
+        </ul>
+        <button class="w-full bg-ink-100 hover:bg-ink-200 text-ink-900 font-semibold py-3 rounded-xl transition">ทดลองฟรี 14 วัน</button>
+      </div>
+      <!-- Agency (featured) -->
+      <div class="bg-gradient-to-br from-brand-600 to-purple-700 rounded-3xl p-8 text-white shadow-2xl scale-105 feature-card relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-500 text-white text-xs font-bold px-4 py-1 rounded-full">⭐ POPULAR</div>
+        <div class="text-xs font-bold text-white/80 tracking-wider mb-2">AGENCY</div>
+        <div class="text-3xl font-extrabold mb-1">฿4,990<span class="text-sm font-normal text-white/70">/mo</span></div>
+        <div class="text-xs text-white/70 mb-6">Agency ขนาดกลาง 10-20 ลูกค้า</div>
+        <ul class="space-y-2.5 text-sm mb-6">
+          <li class="flex gap-2"><span>✓</span> 15 client</li>
+          <li class="flex gap-2"><span>✓</span> <strong>Unlimited staff seats</strong></li>
+          <li class="flex gap-2"><span>✓</span> 2,500 keywords</li>
+          <li class="flex gap-2"><span>✓</span> <strong>White-label</strong> (logo + colors)</li>
+          <li class="flex gap-2"><span>✓</span> AI Visibility (100 prompts)</li>
+          <li class="flex gap-2"><span>✓</span> Local Grid Scanner</li>
+          <li class="flex gap-2"><span>✓</span> Automation Engine</li>
+        </ul>
+        <button class="w-full bg-white hover:bg-ink-100 text-brand-700 font-bold py-3 rounded-xl transition">ทดลองฟรี 14 วัน</button>
+      </div>
+      <!-- Pro -->
+      <div class="bg-white rounded-3xl p-8 border-2 border-ink-200 feature-card">
+        <div class="text-xs font-bold text-ink-500 tracking-wider mb-2">PRO</div>
+        <div class="text-3xl font-extrabold mb-1">฿14,990<span class="text-sm font-normal text-ink-500">/mo</span></div>
+        <div class="text-xs text-ink-500 mb-6">Agency ใหญ่ 30+ ลูกค้า</div>
+        <ul class="space-y-2.5 text-sm mb-6">
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 50 client</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> Unlimited staff seats</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> 10,000 keywords</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> <strong>Custom domain</strong> + email SPF/DKIM</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> AI Visibility (500 prompts)</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> Priority support</li>
+          <li class="flex gap-2"><span class="text-emerald-500">✓</span> Public API access</li>
+        </ul>
+        <button class="w-full bg-ink-900 hover:bg-ink-700 text-white font-semibold py-3 rounded-xl transition">ทดลองฟรี 14 วัน</button>
+      </div>
+      <!-- Enterprise -->
+      <div class="bg-ink-900 rounded-3xl p-8 text-white feature-card">
+        <div class="text-xs font-bold text-accent-400 tracking-wider mb-2">ENTERPRISE</div>
+        <div class="text-3xl font-extrabold mb-1">ติดต่อทีม</div>
+        <div class="text-xs text-white/60 mb-6">Network agencies / brand ใหญ่</div>
+        <ul class="space-y-2.5 text-sm mb-6">
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> Unlimited clients</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> Custom keyword volume</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> SSO + SAML</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> Dedicated CSM</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> Custom integrations</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> SLA 99.9%</li>
+          <li class="flex gap-2"><span class="text-emerald-400">✓</span> Onboarding workshop</li>
+        </ul>
+        <button class="w-full bg-accent-500 hover:bg-accent-600 text-white font-semibold py-3 rounded-xl transition">นัดคุย</button>
+      </div>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto text-center">
+      <div class="bg-emerald-50 rounded-2xl p-5">
+        <div class="text-2xl mb-1">💰</div>
+        <div class="text-sm font-bold">รับโอน + PromptPay + Omise + Stripe</div>
+        <div class="text-xs text-ink-500 mt-1">ลูกค้าไทยจ่ายสบาย</div>
+      </div>
+      <div class="bg-brand-50 rounded-2xl p-5">
+        <div class="text-2xl mb-1">📄</div>
+        <div class="text-sm font-bold">ใบกำกับภาษีถูกต้อง</div>
+        <div class="text-xs text-ink-500 mt-1">VAT 7% + WHT 3% sync FlowAccount</div>
+      </div>
+      <div class="bg-purple-50 rounded-2xl p-5">
+        <div class="text-2xl mb-1">🎁</div>
+        <div class="text-sm font-bold">ลด 20% รายปี</div>
+        <div class="text-xs text-ink-500 mt-1">+ early adopter ล็อกราคา 12 เดือน</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. ROADMAP ============ -->
+<section id="roadmap" class="section py-24 bg-ink-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div class="inline-block text-xs font-bold tracking-[0.2em] text-brand-600 uppercase mb-3">09 — Roadmap</div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">12 เดือน <span class="text-gradient-cool">3 เฟส</span></h2>
+      <p class="text-lg text-ink-500 max-w-2xl mx-auto">เปิดตลาดด้วย MVP ใน 3 เดือน → ตามด้วย automation/AI → จบด้วย scale features</p>
+    </div>
+
+    <div class="space-y-6">
+      <div class="bg-white rounded-3xl p-8 border-l-4 border-brand-600 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-600 text-white flex items-center justify-center font-extrabold">P1</div>
+          <div>
+            <h3 class="text-2xl font-bold">Phase 1 — MVP</h3>
+            <div class="text-sm text-ink-500">เดือน 1-3 · ทำงานได้, ขายได้, มี traction</div>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-sm">
+          <div class="bg-brand-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">Core</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• 3-tier model + auth + 6 roles</li>
+              <li>• Project setup wizard</li>
+              <li>• GSC + GA4 OAuth</li>
+              <li>• Site audit + SearchFit Score</li>
+            </ul>
+          </div>
+          <div class="bg-brand-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">Tools</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• Keyword research + tracker</li>
+              <li>• Schema generator (10 types)</li>
+              <li>• pSEO page builder</li>
+              <li>• Content brief workflow</li>
+            </ul>
+          </div>
+          <div class="bg-brand-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">Business</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• White-label basic</li>
+              <li>• PDF report generator</li>
+              <li>• Stripe + Omise billing</li>
+              <li>• LINE notifications</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl p-8 border-l-4 border-purple-600 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center font-extrabold">P2</div>
+          <div>
+            <h3 class="text-2xl font-bold">Phase 2 — Automation + AI</h3>
+            <div class="text-sm text-ink-500">เดือน 4-6 · differentiator + retention</div>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-sm">
+          <div class="bg-purple-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">Automation</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• Rule builder UI</li>
+              <li>• 20+ recipe templates</li>
+              <li>• ClickUp/Asana sync</li>
+              <li>• Approval workflows</li>
+            </ul>
+          </div>
+          <div class="bg-purple-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">AI Surface</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• AI Overview citation tracker</li>
+              <li>• GEO prompt portfolio</li>
+              <li>• AI Summary on reports</li>
+              <li>• Author Entity Graph</li>
+            </ul>
+          </div>
+          <div class="bg-purple-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">Power</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• Local Grid Scanner</li>
+              <li>• GBP integration</li>
+              <li>• Backlink monitoring</li>
+              <li>• Looker Studio export</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl p-8 border-l-4 border-accent-500 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-xl bg-accent-500 text-white flex items-center justify-center font-extrabold">P3</div>
+          <div>
+            <h3 class="text-2xl font-bold">Phase 3 — Scale & Defensibility</h3>
+            <div class="text-sm text-ink-500">เดือน 7-12 · เปิดเป็น SaaS B2B จริงจัง</div>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 text-sm">
+          <div class="bg-accent-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">Thai Moat</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• Pantip mention tracking</li>
+              <li>• Wongnai local intelligence</li>
+              <li>• LINE OA deep integration</li>
+              <li>• FlowAccount/PEAK/Xero sync</li>
+            </ul>
+          </div>
+          <div class="bg-accent-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">Enterprise</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• Full white-label (domain)</li>
+              <li>• SSO + SAML</li>
+              <li>• Public API + Zapier</li>
+              <li>• Audit log + SOC 2 roadmap</li>
+            </ul>
+          </div>
+          <div class="bg-accent-50 rounded-lg p-3">
+            <div class="font-semibold mb-1.5">Mobile + AI Advanced</div>
+            <ul class="text-xs text-ink-700 space-y-1">
+              <li>• Mobile companion app (iOS/Android)</li>
+              <li>• AI Crawler Access Auditor</li>
+              <li>• AI Mode fan-out simulator</li>
+              <li>• Co-pilot Chat assistant</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. CTA ============ -->
+<section class="py-24 bg-gradient-to-br from-brand-600 via-purple-600 to-accent-600 text-white text-center">
+  <div class="max-w-3xl mx-auto px-6">
+    <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">พร้อมจะเริ่มแล้ว?</h2>
+    <p class="text-xl text-white/80 mb-10 leading-relaxed">
+      ทุกอย่างใน proposal นี้สามารถ <strong>เปิดดูใน prototype จริง</strong> ได้ทันที — สำรวจ admin view, client portal, automation builder, AI tracker
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="app.html" class="bg-white text-brand-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-ink-50 transition shadow-2xl flex items-center gap-2">
+        เปิด Prototype
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+      <a href="tools.html" class="bg-white/10 backdrop-blur-lg border border-white/30 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/20 transition flex items-center gap-2">
+        ลองเครื่องมือ MVP
+      </a>
+    </div>
+    <p class="text-sm text-white/60 mt-8">หรือ download เอกสาร research ฉบับเต็ม → <a href="research/competitor-analysis.md" class="underline">competitor-analysis.md</a> · <a href="research/ai-seo-trends.md" class="underline">ai-seo-trends.md</a> · <a href="research/agency-workflow.md" class="underline">agency-workflow.md</a> · <a href="research/architecture-spec.md" class="underline">architecture-spec.md</a></p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink-950 text-white py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 mb-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+          </div>
+          <div class="font-extrabold text-lg">SearchFit <span class="text-brand-400">Pro</span></div>
+        </div>
+        <p class="text-sm text-white/60 max-w-md">SEO platform สำหรับ media agency ไทย — AI search ready, Thai-native, automation-first, white-label</p>
+      </div>
+      <div>
+        <div class="text-xs font-bold tracking-wider text-white/40 mb-3">PRODUCT</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#features" class="text-white/70 hover:text-white">Features</a></li>
+          <li><a href="#pricing" class="text-white/70 hover:text-white">Pricing</a></li>
+          <li><a href="#roadmap" class="text-white/70 hover:text-white">Roadmap</a></li>
+          <li><a href="app.html" class="text-white/70 hover:text-white">Prototype</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs font-bold tracking-wider text-white/40 mb-3">RESEARCH</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="research/competitor-analysis.md" class="text-white/70 hover:text-white">Competitor Analysis</a></li>
+          <li><a href="research/ai-seo-trends.md" class="text-white/70 hover:text-white">AI SEO Trends</a></li>
+          <li><a href="research/agency-workflow.md" class="text-white/70 hover:text-white">Agency Workflow</a></li>
+          <li><a href="research/architecture-spec.md" class="text-white/70 hover:text-white">Architecture Spec</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-white/10 text-xs text-white/40 flex flex-col sm:flex-row justify-between gap-2">
+      <p>© 2026 SearchFit Pro · Proposal v1.0</p>
+      <p>เอกสารนำเสนอ — ทำขึ้นเพื่อ Thai media agency</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth-scroll active section indicator (optional)
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY + 100;
+    sections.forEach(sec => {
+      const id = sec.getAttribute('id');
+      const link = document.querySelector('.nav-link[href="#' + id + '"]');
+      if (!link) return;
+      if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+        navLinks.forEach(l => l.classList.remove('text-brand-600','bg-brand-50'));
+        link.classList.add('text-brand-600','bg-brand-50');
+      }
+    });
+  });
+</script>
+
+<script src="assets/i18n.js"></script>
+</body>
+</html>

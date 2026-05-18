@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>คู่มือใช้งาน · SearchFit Pro Help Center</title>
+<meta name="description" content="คู่มือใช้งาน webapp SEO — อธิบายตัวชี้วัด, ค่าต่างๆ, วิธีใช้งาน สำหรับลูกค้า media agency" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950:'#030712', 900:'#0b1220', 800:'#1f2937', 700:'#374151', 500:'#6b7280', 400:'#9ca3af', 300:'#d1d5db', 200:'#e5e7eb', 100:'#f3f4f6', 50:'#f9fafb' },
+          brand: { 50:'#eef2ff', 100:'#e0e7ff', 200:'#c7d2fe', 300:'#a5b4fc', 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca', 800:'#3730a3', 900:'#312e81' },
+          accent: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' },
+        }
+      }
+    }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, ui-sans-serif, sans-serif; }
+  code, pre { font-family: 'JetBrains Mono', monospace; }
+  html { scroll-behavior: smooth; }
+  body { background: #fafbfc; }
+  .topic { scroll-margin-top: 100px; }
+  .sub-topic { scroll-margin-top: 100px; }
+  .sidebar-link.active { background: linear-gradient(135deg, #eef2ff, #f5f3ff); color: #4338ca; font-weight: 700; border-left-color: #6366f1; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 3px; }
+  .metric-card { transition: all 0.2s; }
+  .metric-card:hover { transform: translateY(-1px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+  /* Threshold pills */
+  .pill-good { background: #d1fae5; color: #065f46; }
+  .pill-warn { background: #fef3c7; color: #92400e; }
+  .pill-bad { background: #fee2e2; color: #991b1b; }
+  /* Search highlight */
+  mark { background: #fde68a; padding: 0 2px; border-radius: 2px; }
+  /* Hide elements when filtered */
+  .hidden-filter { display: none; }
+  /* Number badge */
+  .num-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  details summary { list-style: none; cursor: pointer; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] summary .chev { transform: rotate(180deg); }
+  .chev { transition: transform 0.2s; }
+</style>
+</head>
+<body class="text-ink-900">
+
+<!-- ============ TOP BAR ============ -->
+<header class="sticky top-0 z-30 bg-white/90 backdrop-blur-lg border-b border-ink-200">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-4">
+    <a href="index.html" class="flex items-center gap-2.5 flex-shrink-0">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+      </div>
+      <div class="hidden sm:block">
+        <div class="font-extrabold text-sm leading-none">SearchFit <span class="text-brand-600">Pro</span></div>
+        <div class="text-[10px] text-ink-500 leading-none mt-0.5">📚 Help Center</div>
+      </div>
+    </a>
+
+    <div class="flex-1 relative max-w-2xl">
+      <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-ink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+      <input id="search" type="text" placeholder="ค้นหาคู่มือ... (เช่น INP, schema, AI Overview, content brief)" class="w-full pl-9 pr-12 py-2.5 bg-ink-50 border border-ink-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white" />
+      <kbd class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-ink-400 bg-white border border-ink-200 rounded px-1.5 py-0.5 hidden sm:inline-block">/</kbd>
+    </div>
+
+    <div class="flex items-center gap-2 flex-shrink-0">
+      <a href="app.html" class="hidden sm:inline-flex text-xs font-semibold text-ink-700 px-3 py-2 hover:bg-ink-50 rounded-lg">← Back to App</a>
+      <a href="app.html" class="sm:hidden text-xs font-semibold bg-brand-600 text-white px-3 py-2 rounded-lg">← App</a>
+    </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto px-6 py-8 flex gap-8">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="hidden lg:block w-60 flex-shrink-0">
+    <nav class="sticky top-24 space-y-1" id="side-nav">
+      <a href="#start" data-topic="start" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">🎯 เริ่มต้น</a>
+      <a href="#score" data-topic="score" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">📊 SEO Score</a>
+      <a href="#ranking" data-topic="ranking" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">🔍 Ranking</a>
+      <a href="#cwv" data-topic="cwv" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">⚡ Core Web Vitals</a>
+      <a href="#ai-visibility" data-topic="ai-visibility" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">🤖 AI Visibility</a>
+      <a href="#schema" data-topic="schema" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">🏷️ Schema Markup</a>
+      <a href="#local" data-topic="local" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">📍 Local SEO</a>
+      <a href="#content" data-topic="content" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">✍️ Content</a>
+      <a href="#offpage" data-topic="offpage" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">🔗 Off-Page</a>
+      <a href="#automation" data-topic="automation" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">⚡ Automation</a>
+      <a href="#roles" data-topic="roles" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">👥 Roles & Access</a>
+      <a href="#howto" data-topic="howto" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">🚀 วิธีใช้งาน</a>
+      <a href="#faq" data-topic="faq" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">❓ FAQ</a>
+      <a href="#glossary" data-topic="glossary" class="sidebar-link block px-3 py-2 text-sm rounded-r-lg border-l-2 border-transparent text-ink-700 hover:bg-ink-50">📚 Glossary</a>
+    </nav>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="flex-1 min-w-0 space-y-12">
+
+    <!-- Hero -->
+    <div class="bg-gradient-to-br from-brand-600 via-purple-600 to-accent-500 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+      <div class="relative">
+        <div class="text-xs font-bold tracking-[0.2em] uppercase mb-3 opacity-80">📚 Help Center</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-4">คู่มือใช้งาน <br/>SearchFit Pro</h1>
+        <p class="text-lg text-white/80 max-w-2xl mb-6">เข้าใจตัวชี้วัด SEO, AI Visibility, Schema, Local Grid, และทุกค่าในระบบ — สำหรับลูกค้าที่ไม่จำเป็นต้องเป็น SEO expert</p>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <a href="#score" class="bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">SEO Score คืออะไร?</a>
+          <a href="#cwv" class="bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">INP / LCP / CLS</a>
+          <a href="#ai-visibility" class="bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">AI Visibility</a>
+          <a href="#schema" class="bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">Schema Markup</a>
+          <a href="#faq" class="bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-1.5 rounded-lg font-semibold">คำถามที่พบบ่อย</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================== START ====================== -->
+    <section id="start" class="topic search-section" data-keywords="เริ่มต้น login บัญชี สิทธิ์ welcome">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center text-2xl">🎯</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">เริ่มต้นใช้งาน</h2>
+          <p class="text-sm text-ink-500">ทุกอย่างที่คุณต้องรู้ก่อนเริ่ม</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden metric-card">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50">
+            <span>🚀 ระบบนี้คืออะไร?</span>
+            <svg class="chev w-4 h-4 text-ink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            SearchFit Pro คือเครื่องมือ SEO ที่ <strong>media agency ของคุณ</strong> ใช้ดูแลการตลาดผ่าน search ของแบรนด์คุณ — ติดตามอันดับ Google, AI search (ChatGPT/Perplexity), ตรวจสุขภาพเว็บ, และส่งรายงานให้คุณทุกเดือน
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden metric-card">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50">
+            <span>🔐 บัญชีและการ login</span>
+            <svg class="chev w-4 h-4 text-ink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed space-y-2">
+            <p>Agency จะส่ง <strong>email + ลิงก์ตั้งรหัส</strong> ให้คุณ ใช้ login ได้ทันที</p>
+            <p>มี 2 ระดับสิทธิ์สำหรับลูกค้า:</p>
+            <ul class="list-disc list-inside space-y-1 ml-2">
+              <li><strong>Client (View):</strong> ดูได้อย่างเดียว — comment, download report</li>
+              <li><strong>Client (Edit):</strong> approve content, ขอแก้, อัปโหลด brand asset</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden metric-card">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50">
+            <span>👁 คุณเห็นอะไรในระบบ?</span>
+            <svg class="chev w-4 h-4 text-ink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed space-y-2">
+            <p>คุณจะเห็น <strong>เฉพาะข้อมูลของแบรนด์ตัวเอง</strong> — ไม่เห็นลูกค้าคนอื่นของ agency</p>
+            <p>หน้าหลักของคุณ:</p>
+            <ul class="list-disc list-inside space-y-1 ml-2">
+              <li>📊 My Dashboard — SEO Score + traffic + KPIs</li>
+              <li>✅ Approvals — เนื้อหารออนุมัติ</li>
+              <li>📄 Reports — รายงานเดือนสะสม</li>
+              <li>🤖 AI Visibility — แบรนด์ปรากฏใน AI หรือไม่</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden metric-card">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50">
+            <span>💬 ติดต่อทีม</span>
+            <svg class="chev w-4 h-4 text-ink-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            ในหน้า My Dashboard จะเห็น <strong>Account Manager (AM)</strong> ที่ดูแลคุณอยู่ คลิก "📅 นัดประชุม" เพื่อจอง slot ได้ หรือ comment ใน thread รายงาน — เร็วและทุกอย่างถูกบันทึก
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ====================== SEO SCORE ====================== -->
+    <section id="score" class="topic search-section" data-keywords="seo score คะแนน searchfit on-page tech cwv content off-page ai">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl">📊</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">SearchFit Score · ตัวชี้วัดหลัก</h2>
+          <p class="text-sm text-ink-500">คะแนนรวม 0-100 ที่บอกสุขภาพ SEO ของเว็บคุณ</p>
+        </div>
+      </div>
+
+      <!-- Main score -->
+      <div class="bg-white rounded-2xl border border-ink-200 p-6 mb-6 metric-card">
+        <div class="grid md:grid-cols-3 gap-6 items-center">
+          <div>
+            <h3 class="text-xl font-extrabold mb-2">SearchFit Score (0-100)</h3>
+            <p class="text-sm text-ink-700 leading-relaxed">คะแนนรวมจาก <strong>6 มิติ</strong> — บอกสุขภาพ SEO ในตัวเลขเดียวที่เข้าใจง่าย คล้ายกับเครดิตสกอร์การเงิน</p>
+          </div>
+          <div class="bg-ink-50 rounded-xl p-4">
+            <div class="text-xs text-ink-500 font-semibold mb-2">เกณฑ์</div>
+            <div class="space-y-1.5 text-sm">
+              <div class="flex items-center gap-2"><span class="pill-good num-badge">80+</span> ดีมาก / Excellent</div>
+              <div class="flex items-center gap-2"><span class="pill-warn num-badge">65-79</span> ปานกลาง / Good</div>
+              <div class="flex items-center gap-2"><span class="pill-bad num-badge">&lt;65</span> ต้องแก้ / Poor</div>
+            </div>
+          </div>
+          <div class="bg-brand-50 rounded-xl p-4">
+            <div class="text-xs text-brand-700 font-semibold mb-2">ตัวอย่าง</div>
+            <div class="text-sm text-ink-700">Coffee Co. มี <strong>92 / 100</strong> = ดีมาก<br/>FashionBrand มี <strong>58 / 100</strong> = ต้องเร่งแก้ปัญหา CWV</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── ALL BENCHMARKS AT A GLANCE ─── -->
+      <div class="bg-gradient-to-br from-brand-50 via-white to-purple-50 border border-brand-100 rounded-2xl p-6 mb-6">
+        <h3 class="text-xl font-extrabold mb-1" data-en="🎯 What's a good score for every metric?" data-th="🎯 คะแนนเท่าไหร่ถึงดี (สรุปทุกตัวชี้วัด)">🎯 คะแนนเท่าไหร่ถึงดี (สรุปทุกตัวชี้วัด)</h3>
+        <p class="text-sm text-ink-500 mb-5" data-en="Quick reference card — keep this open while reviewing reports." data-th="ตารางอ้างอิงเร็ว — เปิดไว้ดูตอนอ่านรายงาน">ตารางอ้างอิงเร็ว — เปิดไว้ดูตอนอ่านรายงาน</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="text-xs uppercase tracking-wider text-ink-500">
+              <tr class="border-b border-ink-200">
+                <th class="text-left py-2 font-semibold" data-en="Metric" data-th="ตัวชี้วัด">Metric</th>
+                <th class="text-left py-2 font-semibold text-emerald-600" data-en="Excellent" data-th="ดีมาก">Excellent</th>
+                <th class="text-left py-2 font-semibold text-brand-600" data-en="Good" data-th="ดี">Good</th>
+                <th class="text-left py-2 font-semibold text-amber-600" data-en="Needs work" data-th="ปรับปรุง">Needs work</th>
+                <th class="text-left py-2 font-semibold text-rose-600" data-en="Poor" data-th="แย่">Poor</th>
+              </tr>
+            </thead>
+            <tbody class="text-ink-700">
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold">SearchFit Score</td><td class="font-mono text-emerald-700">85+</td><td class="font-mono text-brand-700">70–84</td><td class="font-mono text-amber-700">50–69</td><td class="font-mono text-rose-700">&lt;50</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold">CTR · Google Search</td><td class="font-mono text-emerald-700">≥3%</td><td class="font-mono text-brand-700">2–3%</td><td class="font-mono text-amber-700">1–2%</td><td class="font-mono text-rose-700">&lt;1%</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold" data-en="Avg position" data-th="อันดับเฉลี่ย">อันดับเฉลี่ย</td><td class="font-mono text-emerald-700">1–3</td><td class="font-mono text-brand-700">4–10</td><td class="font-mono text-amber-700">11–20</td><td class="font-mono text-rose-700">&gt;20</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold">LCP (page speed)</td><td class="font-mono text-emerald-700">≤2.5s</td><td class="font-mono text-brand-700">2.5–3s</td><td class="font-mono text-amber-700">3–4s</td><td class="font-mono text-rose-700">&gt;4s</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold">INP (responsiveness)</td><td class="font-mono text-emerald-700">≤200ms</td><td class="font-mono text-brand-700">200–300ms</td><td class="font-mono text-amber-700">300–500ms</td><td class="font-mono text-rose-700">&gt;500ms</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold">CLS (layout stability)</td><td class="font-mono text-emerald-700">≤0.1</td><td class="font-mono text-brand-700">0.1–0.15</td><td class="font-mono text-amber-700">0.15–0.25</td><td class="font-mono text-rose-700">&gt;0.25</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold">Engagement rate · GA4</td><td class="font-mono text-emerald-700">≥60%</td><td class="font-mono text-brand-700">50–60%</td><td class="font-mono text-amber-700">40–50%</td><td class="font-mono text-rose-700">&lt;40%</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold" data-en="Avg engagement time" data-th="เวลาเฉลี่ยที่ใช้">เวลาเฉลี่ยที่ใช้</td><td class="font-mono text-emerald-700">≥90s</td><td class="font-mono text-brand-700">60–90s</td><td class="font-mono text-amber-700">30–60s</td><td class="font-mono text-rose-700">&lt;30s</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold" data-en="AI citations (per month)" data-th="AI citations ต่อเดือน">AI citations ต่อเดือน</td><td class="font-mono text-emerald-700">30+</td><td class="font-mono text-brand-700">16–30</td><td class="font-mono text-amber-700">6–15</td><td class="font-mono text-rose-700">0–5</td></tr>
+              <tr class="border-b border-ink-100"><td class="py-2 font-semibold">Domain Rating (DR)</td><td class="font-mono text-emerald-700">70+</td><td class="font-mono text-brand-700">40–70</td><td class="font-mono text-amber-700">20–40</td><td class="font-mono text-rose-700">&lt;20</td></tr>
+              <tr><td class="py-2 font-semibold" data-en="Indexed pages" data-th="หน้าที่ index">หน้าที่ index</td><td class="font-mono text-emerald-700">≥95%</td><td class="font-mono text-brand-700">80–95%</td><td class="font-mono text-amber-700">60–80%</td><td class="font-mono text-rose-700">&lt;60%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-4 text-xs text-ink-500 italic" data-en="Benchmarks aggregated from Backlinko, Ahrefs, Semrush, web.dev (Google), and 2024–2025 industry studies." data-th="เกณฑ์รวบรวมจาก Backlinko, Ahrefs, Semrush, web.dev (Google), และการศึกษาอุตสาหกรรมปี 2024–2025">Benchmarks aggregated from Backlinko, Ahrefs, Semrush, web.dev (Google), and 2024–2025 industry studies.</div>
+      </div>
+
+      <!-- 6 dimensions -->
+      <h3 class="text-xl font-bold mb-4">6 มิติของคะแนน</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center font-extrabold">25%</div>
+            <h4 class="font-bold text-lg">On-Page</h4>
+          </div>
+          <p class="text-sm text-ink-700 mb-3">คะแนนเรื่องการเขียนเว็บให้ Google เข้าใจ — title, meta description, headings (H1-H6), alt ภาพ, internal links, keyword targeting</p>
+          <div class="bg-ink-50 rounded-lg p-3 text-xs">
+            <strong>ทำไมสำคัญ:</strong> เป็นพื้นฐาน Google มอง ถ้า title/meta ดี = คะแนน 80+ ขึ้นไป
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center font-extrabold">20%</div>
+            <h4 class="font-bold text-lg">Technical</h4>
+          </div>
+          <p class="text-sm text-ink-700 mb-3">เว็บไซต์ Google เข้าถึงได้ดีหรือไม่ — crawlability, indexation, sitemap, robots.txt, HTTPS, hreflang, lang attribute</p>
+          <div class="bg-ink-50 rounded-lg p-3 text-xs">
+            <strong>ทำไมสำคัญ:</strong> ถ้า Google เข้าไม่ได้ = ไม่ติดอันดับเลย แม้เนื้อหาดีแค่ไหน
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-extrabold">15%</div>
+            <h4 class="font-bold text-lg">Performance (CWV)</h4>
+          </div>
+          <p class="text-sm text-ink-700 mb-3">ความเร็วเว็บ — Core Web Vitals: INP, LCP, CLS · ดูเพิ่ม <a href="#cwv" class="text-brand-600 font-semibold hover:underline">หัวข้อ CWV</a></p>
+          <div class="bg-ink-50 rounded-lg p-3 text-xs">
+            <strong>ทำไมสำคัญ:</strong> Google ใช้ CWV เป็น ranking factor + ถ้าเว็บช้า = bounce rate สูง = sales หาย
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-extrabold">15%</div>
+            <h4 class="font-bold text-lg">Content</h4>
+          </div>
+          <p class="text-sm text-ink-700 mb-3">คุณภาพและความลึกของเนื้อหา — word count, freshness, E-E-A-T signals, originality (เนื้อหาไม่ซ้ำใคร)</p>
+          <div class="bg-ink-50 rounded-lg p-3 text-xs">
+            <strong>ทำไมสำคัญ:</strong> Google update ใหญ่ (Helpful Content Update) ลงโทษเว็บที่เนื้อหาไม่มีค่า
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-cyan-100 text-cyan-700 flex items-center justify-center font-extrabold">15%</div>
+            <h4 class="font-bold text-lg">Off-Page</h4>
+          </div>
+          <p class="text-sm text-ink-700 mb-3">เว็บอื่นพูดถึงคุณดีแค่ไหน — backlinks, referring domains, brand mentions, social signals · ดูเพิ่ม <a href="#offpage" class="text-brand-600 font-semibold hover:underline">หัวข้อ Off-Page</a></p>
+          <div class="bg-ink-50 rounded-lg p-3 text-xs">
+            <strong>ทำไมสำคัญ:</strong> ยิ่งมีเว็บใหญ่ link มา = Google มองว่าน่าเชื่อถือ
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl border border-purple-200 p-5 metric-card relative">
+          <span class="absolute top-2 right-2 text-[10px] bg-purple-600 text-white px-2 py-0.5 rounded-full font-bold">NEW · DIFFERENTIATOR</span>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-purple-200 text-purple-800 flex items-center justify-center font-extrabold">10%</div>
+            <h4 class="font-bold text-lg">AI Visibility</h4>
+          </div>
+          <p class="text-sm text-ink-700 mb-3">แบรนด์ของคุณติดอยู่ใน ChatGPT/Claude/Gemini/Perplexity/AI Overview มากแค่ไหน · ดูเพิ่ม <a href="#ai-visibility" class="text-brand-600 font-semibold hover:underline">หัวข้อ AI Visibility</a></p>
+          <div class="bg-white/60 rounded-lg p-3 text-xs">
+            <strong>ทำไมสำคัญ:</strong> ปี 2026 คน 30%+ เริ่มถาม ChatGPT แทน Google — ถ้าไม่ติดใน AI = หายไปจาก market
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== RANKING ====================== -->
+    <section id="ranking" class="topic search-section" data-keywords="ranking rank keyword position top10 top3 serp featured snippet paa shopping volume difficulty kd">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-2xl">🔍</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Ranking & Keywords</h2>
+          <p class="text-sm text-ink-500">ค่าที่เห็นในตาราง keyword ranking</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Rank / Position</h4>
+          <p class="text-xs text-ink-500 mb-3">อันดับใน Google · เลขน้อย = ดี</p>
+          <p class="text-sm text-ink-700 mb-3"><strong>1</strong> = หน้าแรก อันดับแรก · <strong>10</strong> = หน้าแรกตำแหน่งสุดท้าย · <strong>11+</strong> = หน้าสอง (คนคลิก &lt;1%)</p>
+          <div class="bg-emerald-50 rounded-lg p-3 text-xs"><strong>เป้าหมาย:</strong> Top 3 = ~50% ของคลิก · Top 10 = ~90% · ถ้าไม่ Top 10 ส่วนใหญ่ไม่มีคนเห็น</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Δ (Delta) · การเปลี่ยนแปลง</h4>
+          <p class="text-xs text-ink-500 mb-3">เทียบกับสัปดาห์ก่อน</p>
+          <p class="text-sm text-ink-700 mb-3"><span class="text-emerald-600 font-bold">↑ 8</span> = ดีขึ้น 8 อันดับ · <span class="text-red-600 font-bold">↓ 6</span> = ตก 6 อันดับ · <span class="text-ink-500">—</span> = ไม่เปลี่ยน</p>
+          <div class="bg-amber-50 rounded-lg p-3 text-xs"><strong>เมื่อตกมาก:</strong> ระบบ Automation ของเราจะแจ้งใน LINE + เปิด task ให้ทีม SEO ตรวจสอบทันที</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Volume / Vol</h4>
+          <p class="text-xs text-ink-500 mb-3">จำนวนคนค้นหา keyword นั้นต่อเดือน</p>
+          <p class="text-sm text-ink-700 mb-3"><strong>2.4k</strong> = 2,400 ครั้ง/เดือน · ถ้า keyword มี volume สูงและคุณติด top 3 = traffic เยอะ</p>
+          <div class="bg-blue-50 rounded-lg p-3 text-xs"><strong>หมายเหตุ:</strong> ตัวเลขเป็นค่าประมาณจาก Google Keyword Planner — ตัวเลขจริงอาจต่างได้</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">KD · Keyword Difficulty</h4>
+          <p class="text-xs text-ink-500 mb-3">ความยากในการแข่งกับเว็บอื่นเพื่อให้ติดอันดับ</p>
+          <div class="space-y-1 text-sm mb-3">
+            <div class="flex items-center gap-2"><span class="pill-good num-badge">0-30</span> Easy · มือใหม่ติดได้</div>
+            <div class="flex items-center gap-2"><span class="pill-warn num-badge">31-60</span> Medium · ต้องเขียนดี + รอ 3-6 เดือน</div>
+            <div class="flex items-center gap-2"><span class="pill-bad num-badge">61+</span> Hard · ต้องมี domain authority สูง</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-3">SERP Features (สัญลักษณ์ในคอลัมน์ SERP)</h4>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-start gap-2"><span class="text-lg">🤖</span><div><strong>AIO</strong> = AI Overview · ติดในกรอบสรุป AI ของ Google</div></div>
+            <div class="flex items-start gap-2"><span class="text-lg">⭐</span><div><strong>Featured</strong> = Featured snippet · กรอบคำตอบใหญ่บนสุด ก่อนผลปกติ</div></div>
+            <div class="flex items-start gap-2"><span class="text-lg">❓</span><div><strong>PAA</strong> = People Also Ask · กล่อง "คำถามที่คนยังถาม"</div></div>
+            <div class="flex items-start gap-2"><span class="text-lg">🛒</span><div><strong>Shopping</strong> = กล่องผลิตภัณฑ์ที่มีรูป + ราคา</div></div>
+            <div class="flex items-start gap-2"><span class="text-lg">🎬</span><div><strong>Video</strong> = ผลวิดีโอ (มักเป็น YouTube)</div></div>
+            <div class="flex items-start gap-2"><span class="text-lg">📍</span><div><strong>Map Pack</strong> = กล่องร้านค้าใกล้เคียง 3 ร้าน (Local)</div></div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Top 10 / Top 3</h4>
+          <p class="text-xs text-ink-500 mb-3">จำนวน keyword ที่ติดอันดับสูง</p>
+          <div class="text-sm text-ink-700 space-y-1">
+            <p><strong>Top 10</strong> = อยู่หน้าแรก Google — เป้าหมายหลักของ SEO</p>
+            <p><strong>Top 3</strong> = อันดับ 1-3 — กลุ่มที่ได้คลิกมากที่สุด (50%+)</p>
+          </div>
+          <div class="bg-emerald-50 rounded-lg p-3 text-xs mt-3"><strong>เคล็ดลับ:</strong> เป้าหมายที่ดี = top 10 เพิ่ม 5-10 ตัวต่อเดือน</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== CWV ====================== -->
+    <section id="cwv" class="topic search-section" data-keywords="cwv core web vitals inp lcp cls performance speed ความเร็ว page speed">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl">⚡</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Core Web Vitals (CWV)</h2>
+          <p class="text-sm text-ink-500">3 ค่าที่ Google ใช้วัดความเร็วและประสบการณ์ผู้ใช้</p>
+        </div>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6 text-sm text-amber-900">
+        <strong>📌 ทำไม CWV สำคัญ?</strong> Google บอกเอง (มีนาคม 2026) ว่า CWV เป็น ranking signal เทียบเท่ากับ content quality · ถ้าเว็บผ่านทั้ง 3 ตัว → bounce rate ต่ำกว่า 24%
+      </div>
+
+      <div class="space-y-4">
+        <!-- INP -->
+        <div id="inp" class="sub-topic bg-white rounded-2xl border border-ink-200 p-6 metric-card">
+          <div class="grid md:grid-cols-4 gap-4 items-start">
+            <div class="md:col-span-1">
+              <div class="text-4xl mb-2">⌨️</div>
+              <h3 class="text-xl font-extrabold mb-1">INP</h3>
+              <p class="text-xs text-ink-500">Interaction to Next Paint</p>
+            </div>
+            <div class="md:col-span-3">
+              <p class="text-sm text-ink-700 leading-relaxed mb-3">ใช้เวลานานแค่ไหนตั้งแต่ผู้ใช้คลิก/แตะปุ่ม จนหน้าจอเปลี่ยน — วัดความตอบสนองของเว็บ <strong>(ค่าใหม่ที่มาแทน FID ตั้งแต่ มี.ค. 2024)</strong></p>
+              <div class="grid grid-cols-3 gap-2 mb-3">
+                <div class="pill-good rounded-lg p-3 text-center"><div class="text-xs">ดี</div><div class="font-extrabold text-lg">≤ 200ms</div></div>
+                <div class="pill-warn rounded-lg p-3 text-center"><div class="text-xs">ต้องปรับ</div><div class="font-extrabold text-lg">200-500ms</div></div>
+                <div class="pill-bad rounded-lg p-3 text-center"><div class="text-xs">แย่</div><div class="font-extrabold text-lg">&gt; 500ms</div></div>
+              </div>
+              <div class="bg-ink-50 rounded-lg p-3 text-xs text-ink-700">
+                <strong>43% ของเว็บไซต์ปัจจุบันตก INP</strong> เป็นค่าที่แก้ยากที่สุด · มักเกิดจาก JavaScript handler หนัก หรือ third-party scripts (เช่น chatbot, ads)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LCP -->
+        <div id="lcp" class="sub-topic bg-white rounded-2xl border border-ink-200 p-6 metric-card">
+          <div class="grid md:grid-cols-4 gap-4 items-start">
+            <div class="md:col-span-1">
+              <div class="text-4xl mb-2">🖼️</div>
+              <h3 class="text-xl font-extrabold mb-1">LCP</h3>
+              <p class="text-xs text-ink-500">Largest Contentful Paint</p>
+            </div>
+            <div class="md:col-span-3">
+              <p class="text-sm text-ink-700 leading-relaxed mb-3">ใช้เวลานานแค่ไหนจนเห็นเนื้อหาหลักของหน้า (รูปใหญ่ หรือบล็อก text ใหญ่) ปรากฏบนหน้าจอ</p>
+              <div class="grid grid-cols-3 gap-2 mb-3">
+                <div class="pill-good rounded-lg p-3 text-center"><div class="text-xs">ดี</div><div class="font-extrabold text-lg">≤ 2.5s</div></div>
+                <div class="pill-warn rounded-lg p-3 text-center"><div class="text-xs">ต้องปรับ</div><div class="font-extrabold text-lg">2.5-4s</div></div>
+                <div class="pill-bad rounded-lg p-3 text-center"><div class="text-xs">แย่</div><div class="font-extrabold text-lg">&gt; 4s</div></div>
+              </div>
+              <div class="bg-ink-50 rounded-lg p-3 text-xs text-ink-700">
+                <strong>วิธีแก้:</strong> compress รูปภาพ, ใช้ format ใหม่ (WebP, AVIF), preload รูปแรก, ลดขนาด CSS/JS, ใช้ CDN
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLS -->
+        <div id="cls" class="sub-topic bg-white rounded-2xl border border-ink-200 p-6 metric-card">
+          <div class="grid md:grid-cols-4 gap-4 items-start">
+            <div class="md:col-span-1">
+              <div class="text-4xl mb-2">📐</div>
+              <h3 class="text-xl font-extrabold mb-1">CLS</h3>
+              <p class="text-xs text-ink-500">Cumulative Layout Shift</p>
+            </div>
+            <div class="md:col-span-3">
+              <p class="text-sm text-ink-700 leading-relaxed mb-3">วัด <strong>"การกระโดด"</strong> ของ layout — เคยเลื่อนหน้าจอแล้วเว็บกระตุก/ปุ่มย้ายที่จนกดผิดปุ่มมั้ย? CLS คือค่านั้น</p>
+              <div class="grid grid-cols-3 gap-2 mb-3">
+                <div class="pill-good rounded-lg p-3 text-center"><div class="text-xs">ดี</div><div class="font-extrabold text-lg">≤ 0.1</div></div>
+                <div class="pill-warn rounded-lg p-3 text-center"><div class="text-xs">ต้องปรับ</div><div class="font-extrabold text-lg">0.1-0.25</div></div>
+                <div class="pill-bad rounded-lg p-3 text-center"><div class="text-xs">แย่</div><div class="font-extrabold text-lg">&gt; 0.25</div></div>
+              </div>
+              <div class="bg-ink-50 rounded-lg p-3 text-xs text-ink-700">
+                <strong>วิธีแก้:</strong> ระบุ <code>width</code> + <code>height</code> ของรูปและ video, จองพื้นที่ ads ล่วงหน้า, ห้ามแทรก element ใหม่บนเนื้อหาที่กำลังอ่าน
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== AI VISIBILITY ====================== -->
+    <section id="ai-visibility" class="topic search-section" data-keywords="ai visibility chatgpt claude gemini perplexity geo aeo sov citation mention sentiment prompt portfolio aio">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-2xl">🤖</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">AI Visibility</h2>
+          <p class="text-sm text-ink-500">วัด visibility ของแบรนด์ใน AI search</p>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-2xl p-4 mb-6 text-sm">
+        <strong class="text-purple-900">🌟 ทำไมสำคัญในปี 2026?</strong>
+        <p class="mt-1 text-purple-800">AI Overview ปรากฏใน 48% ของ Google queries แล้ว · ChatGPT มี 800M users/wk · คนเริ่มถาม AI แทน Google มากขึ้นเรื่อยๆ — ถ้าแบรนด์ไม่ถูก quote ใน AI = หายจาก search ยุคใหม่</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Citation Status (สัญลักษณ์ในตาราง)</h4>
+          <p class="text-xs text-ink-500 mb-3">แต่ละ prompt ใน Prompt Portfolio</p>
+          <div class="space-y-2.5 text-sm">
+            <div class="flex items-start gap-2">
+              <span class="inline-block w-6 h-6 rounded-full bg-emerald-500 text-white text-[10px] font-bold leading-6 text-center flex-shrink-0">✓</span>
+              <div><strong>Cited</strong> · AI ดึงเนื้อหาจากเว็บคุณมาตอบ + ใส่ link · <span class="text-emerald-700 font-semibold">ดี!</span></div>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="inline-block w-6 h-6 rounded-full bg-amber-400 text-white text-[10px] font-bold leading-6 text-center flex-shrink-0">~</span>
+              <div><strong>Mention</strong> · AI พูดถึงชื่อแบรนด์ แต่ไม่ใส่ link · <span class="text-amber-700 font-semibold">ก้ำกึ่ง</span></div>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="inline-block w-6 h-6 rounded-full bg-ink-200 text-ink-500 text-[10px] font-bold leading-6 text-center flex-shrink-0">—</span>
+              <div><strong>Not present</strong> · AI ไม่พูดถึงคุณเลย · <span class="text-red-700 font-semibold">ต้องทำ</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">SOV · Share of Voice</h4>
+          <p class="text-xs text-ink-500 mb-3">ส่วนแบ่งการถูก cite เทียบกับคู่แข่ง</p>
+          <p class="text-sm text-ink-700 mb-3"><strong>47% SOV</strong> = ใน 100 prompts ที่เกี่ยวข้อง คุณติด 47 ครั้ง · คู่แข่งติดที่เหลือรวมกัน</p>
+          <div class="bg-purple-50 rounded-lg p-3 text-xs">
+            <strong>เป้าหมาย:</strong> SOV &gt; 30% สำหรับ niche ของคุณ — ถ้าคู่แข่งติดมากกว่าหมายถึง content ของเขาแข็งกว่า ต้องลงไปดูว่าเขาเขียนอย่างไร
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Sentiment Score (1-10)</h4>
+          <p class="text-xs text-ink-500 mb-3">AI พูดถึงแบรนด์คุณในแง่บวกหรือลบ</p>
+          <div class="space-y-1 text-sm mb-3">
+            <div class="flex items-center gap-2"><span class="pill-good num-badge">8+</span> Positive · AI พูดดี</div>
+            <div class="flex items-center gap-2"><span class="pill-warn num-badge">5-7</span> Neutral · เฉยๆ</div>
+            <div class="flex items-center gap-2"><span class="pill-bad num-badge">&lt;5</span> Negative · มีปัญหา · ต้องเร่งแก้ภาพลักษณ์</div>
+          </div>
+          <div class="bg-amber-50 rounded-lg p-3 text-xs"><strong>Alert:</strong> ถ้า sentiment ตก ระบบจะส่ง LINE alert ทันที</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Prompt Portfolio</h4>
+          <p class="text-xs text-ink-500 mb-3">ชุด prompt ที่ระบบทดสอบทุกวัน</p>
+          <p class="text-sm text-ink-700 mb-3">เราเลือก 50-100 prompts ที่เกี่ยวกับธุรกิจคุณ · รัน 5 AI engines × ทุกวัน · เก็บ history เพื่อดู trend</p>
+          <div class="bg-ink-50 rounded-lg p-3 text-xs">
+            <strong>ตัวอย่าง prompts สำหรับร้านกาแฟ:</strong><br/>
+            "ร้านกาแฟดีๆในกรุงเทพ" · "เมล็ดกาแฟ premium" · "arabica vs robusta" · "วิธีชงดริปที่บ้าน"
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card md:col-span-2">
+          <h4 class="font-bold text-lg mb-1">GEO vs AEO · ความต่าง</h4>
+          <p class="text-xs text-ink-500 mb-3">2 ศัพท์ที่มักสับสน</p>
+          <div class="grid sm:grid-cols-2 gap-3 mt-2">
+            <div class="bg-brand-50 rounded-lg p-3">
+              <div class="font-bold text-sm text-brand-900 mb-1">GEO · Generative Engine Optimization</div>
+              <p class="text-xs text-brand-800">ปรับเว็บให้ <strong>ChatGPT/Claude/Gemini/Perplexity</strong> ดึงไปตอบ</p>
+            </div>
+            <div class="bg-purple-50 rounded-lg p-3">
+              <div class="font-bold text-sm text-purple-900 mb-1">AEO · Answer Engine Optimization</div>
+              <p class="text-xs text-purple-800">ปรับเว็บให้ติด <strong>Featured Snippet, PAA, Voice Search</strong> ใน Google</p>
+            </div>
+          </div>
+          <p class="text-xs text-ink-500 mt-2">ปี 2026 ทั้งคู่ใกล้กันมาก — เนื้อหาแบบ Q&A สั้น + structured data ดี = ติดทั้งสองทาง</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== SCHEMA ====================== -->
+    <section id="schema" class="topic search-section" data-keywords="schema markup json-ld structured data rich result article product faq local breadcrumb howto review event video">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center text-2xl">🏷️</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Schema Markup</h2>
+          <p class="text-sm text-ink-500">โค้ดที่ Google และ AI เอาไป "อ่าน" หน้าเว็บคุณได้ตรงๆ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-6 mb-6">
+        <h3 class="font-extrabold text-lg mb-2">Schema คืออะไร?</h3>
+        <p class="text-sm text-ink-700 leading-relaxed mb-3">เป็นโค้ด JSON พิเศษที่ <strong>ซ่อนใน HTML</strong> บอก Google ว่าหน้านี้คือ "บทความ", "สินค้า ราคา 500 บาท", "ร้านอาหารเปิด 10-22น" · Google เอาไปแสดงเป็น <strong>rich result</strong> สวยๆ ในผลค้นหา</p>
+        <p class="text-sm text-ink-700 leading-relaxed">ในยุค AI Search · Schema ยิ่งสำคัญเพราะ ChatGPT/Gemini ใช้เป็น <strong>signal หลัก</strong> ในการเลือก quote</p>
+      </div>
+
+      <h3 class="text-xl font-bold mb-4">Schema Types ที่สำคัญ (เราสร้างให้ได้ในระบบ)</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">📰</div><h4 class="font-bold text-sm">Article</h4><p class="text-xs text-ink-500 mt-1">บทความ · blog · ข่าว</p></div>
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">🛒</div><h4 class="font-bold text-sm">Product</h4><p class="text-xs text-ink-500 mt-1">สินค้า + ราคา + รีวิว</p></div>
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">❓</div><h4 class="font-bold text-sm">FAQPage</h4><p class="text-xs text-ink-500 mt-1">FAQ · คำถาม-คำตอบ</p></div>
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">📍</div><h4 class="font-bold text-sm">LocalBusiness</h4><p class="text-xs text-ink-500 mt-1">ร้าน · บริษัทท้องถิ่น</p></div>
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">🏢</div><h4 class="font-bold text-sm">Organization</h4><p class="text-xs text-ink-500 mt-1">องค์กร · social links</p></div>
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">🍞</div><h4 class="font-bold text-sm">BreadcrumbList</h4><p class="text-xs text-ink-500 mt-1">เส้นทาง navigation</p></div>
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">🔧</div><h4 class="font-bold text-sm">HowTo</h4><p class="text-xs text-ink-500 mt-1">วิธีทำ step-by-step</p></div>
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">⭐</div><h4 class="font-bold text-sm">Review</h4><p class="text-xs text-ink-500 mt-1">รีวิว + คะแนน</p></div>
+        <div class="bg-white border border-ink-200 rounded-xl p-4 metric-card"><div class="text-2xl mb-1">📅</div><h4 class="font-bold text-sm">Event</h4><p class="text-xs text-ink-500 mt-1">อีเวนต์ · งานสัมมนา</p></div>
+      </div>
+
+      <div class="bg-cyan-50 border border-cyan-200 rounded-2xl p-4 mt-6 text-sm text-cyan-900">
+        <strong>💡 AI Extractability Score:</strong> ค่าใหม่ที่เราคิดเอง · วัดว่า schema ของคุณ AI ดึงไปใช้ได้ดีแค่ไหน (0-100) · ดีกว่าค่าของ Google เพราะ Google ดู rich-result eligibility อย่างเดียว
+      </div>
+    </section>
+
+    <!-- ====================== LOCAL ====================== -->
+    <section id="local" class="topic search-section" data-keywords="local seo gbp google business profile grid review velocity map pack">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl">📍</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Local SEO</h2>
+          <p class="text-sm text-ink-500">สำหรับธุรกิจที่มีสาขา (ร้านอาหาร, คลินิก, สปา, แฟรนไชส์)</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">GBP · Google Business Profile</h4>
+          <p class="text-xs text-ink-500 mb-3">โปรไฟล์ธุรกิจใน Google Maps</p>
+          <p class="text-sm text-ink-700 mb-3">เป็นจุดแรกที่ลูกค้าหาคุณใน Google · ต้อง <strong>complete</strong> ทุกข้อมูล + อัปเดต posts + ตอบ Q&A + รับ review</p>
+          <div class="bg-emerald-50 rounded-lg p-3 text-xs"><strong>เป้าหมายในระบบ:</strong> 100% complete + review velocity ≥ 5/wk + posts ≥ 4/mo + ตอบ Q&A ทั้งหมด</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Local Grid / Geo-Grid</h4>
+          <p class="text-xs text-ink-500 mb-3">วัด rank ในแผนที่จริง</p>
+          <p class="text-sm text-ink-700 mb-3">3×3 ถึง 21×21 grid · แต่ละจุดบนแผนที่ Google search คำเดียวกัน <strong>จากตำแหน่งที่ต่างกัน</strong> · เห็นว่ารัศมีไหนคุณติด ไหนไม่ติด</p>
+          <div class="bg-ink-50 rounded-lg p-3 text-xs">
+            <strong>สีในกริด:</strong>
+            <span class="inline-flex items-center gap-1 ml-2"><span class="w-2 h-2 bg-emerald-500 rounded"></span> 1-3</span>
+            <span class="inline-flex items-center gap-1 ml-2"><span class="w-2 h-2 bg-yellow-400 rounded"></span> 4-10</span>
+            <span class="inline-flex items-center gap-1 ml-2"><span class="w-2 h-2 bg-orange-400 rounded"></span> 11-20</span>
+            <span class="inline-flex items-center gap-1 ml-2"><span class="w-2 h-2 bg-red-400 rounded"></span> 21+</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Review Velocity</h4>
+          <p class="text-xs text-ink-500 mb-3">จำนวน review ใหม่ต่อสัปดาห์</p>
+          <p class="text-sm text-ink-700 mb-3">Google ดู <strong>"ความสม่ำเสมอ"</strong> — เคยได้ 50 review พรวดเดียวเมื่อ 2 ปีก่อน แล้วเงียบ = ดูเหมือนซื้อรีวิว → Google ลด ranking</p>
+          <div class="space-y-1 text-sm">
+            <div class="flex items-center gap-2"><span class="pill-good num-badge">5+/wk</span> ดี · สม่ำเสมอ</div>
+            <div class="flex items-center gap-2"><span class="pill-warn num-badge">2-4/wk</span> พอใช้</div>
+            <div class="flex items-center gap-2"><span class="pill-bad num-badge">&lt;2/wk</span> ต่ำ · ต้องเร่ง</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Map Pack</h4>
+          <p class="text-xs text-ink-500 mb-3">กล่องร้าน 3 ร้านที่ Google แสดงพร้อมแผนที่</p>
+          <p class="text-sm text-ink-700 mb-3">ติดที่นี่ = ได้ <strong>44-58% ของคลิก</strong> สำหรับ search ที่มี local intent · เทียบกับผลปกติได้แค่ 10-20%</p>
+          <div class="bg-emerald-50 rounded-lg p-3 text-xs"><strong>เป้าหมาย:</strong> ติด Map Pack ใน search หลัก เช่น "[ร้านคุณ] ใกล้ฉัน", "[บริการ] in [city]"</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== CONTENT ====================== -->
+    <section id="content" class="topic search-section" data-keywords="content brief nlp score topic cluster pseo programmatic eeat helpful update">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xl">✍️</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Content</h2>
+          <p class="text-sm text-ink-500">คำที่เห็นในส่วน Content Pipeline และ Approvals</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Content Brief</h4>
+          <p class="text-xs text-ink-500 mb-3">เอกสารคู่มือ writer ก่อนเขียน</p>
+          <p class="text-sm text-ink-700 mb-3">ระบุ: target keyword, intent, outline (H2/H3), word count, internal links, schema ที่ต้องใส่ — ช่วยให้บทความออกมา <strong>SEO-friendly ตั้งแต่ draft แรก</strong></p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">NLP Score (0-100)</h4>
+          <p class="text-xs text-ink-500 mb-3">คะแนนความครบของเนื้อหา vs SERP</p>
+          <p class="text-sm text-ink-700 mb-3">วิเคราะห์ top 10 ของ keyword นั้น · เช็คว่าบทความเรามี <strong>entities, terms, headings</strong> ที่หน้าติดอันดับมีหรือไม่</p>
+          <div class="space-y-1 text-sm">
+            <div class="flex items-center gap-2"><span class="pill-good num-badge">85+</span> ครบ พร้อม publish</div>
+            <div class="flex items-center gap-2"><span class="pill-warn num-badge">70-84</span> ต้องเพิ่มเนื้อหา</div>
+            <div class="flex items-center gap-2"><span class="pill-bad num-badge">&lt;70</span> ขาดเยอะ ต้องเขียนใหม่</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">E-E-A-T</h4>
+          <p class="text-xs text-ink-500 mb-3">Experience · Expertise · Authoritativeness · Trustworthiness</p>
+          <p class="text-sm text-ink-700 mb-3">Google ใช้เกณฑ์นี้วัด <strong>"คนเขียนน่าเชื่อถือมั้ย"</strong> · ปี 2026 เน้นมาก โดยเฉพาะ <strong>Author entity</strong> (LinkedIn link, credentials)</p>
+          <div class="bg-amber-50 rounded-lg p-3 text-xs"><strong>96% ของ AI Overview citations</strong> มาจากเว็บที่ E-E-A-T ดี · ไม่ใช่แค่เนื้อหาดี ต้องมี author จริง</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Topic Cluster</h4>
+          <p class="text-xs text-ink-500 mb-3">กลุ่ม content ที่ link กัน</p>
+          <p class="text-sm text-ink-700 mb-3">1 <strong>pillar article</strong> (บทความใหญ่ครอบคลุม) + 5-10 <strong>sub-articles</strong> ที่เจาะลึก · ทุกบทความ link กลับมาที่ pillar</p>
+          <div class="bg-indigo-50 rounded-lg p-3 text-xs"><strong>ผลลัพธ์:</strong> Google มองว่าคุณเป็น "ผู้เชี่ยวชาญในหัวข้อนี้" → rank ดีขึ้นทุกตัว</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">pSEO · Programmatic SEO</h4>
+          <p class="text-xs text-ink-500 mb-3">สร้างหน้าเว็บ scale</p>
+          <p class="text-sm text-ink-700 mb-3">ใช้ template + data สร้างหน้า 100-1000+ หน้าทีเดียว เช่น "Web Design ใน [เมือง]" × 50 เมือง = 50 หน้า · เหมาะกับ directory, location pages</p>
+          <div class="bg-amber-50 rounded-lg p-3 text-xs"><strong>⚠ ระวัง:</strong> Google update มี.ค. 2026 ลงโทษ pSEO ที่ <strong>เนื้อหาไม่ unique</strong> · ของเรามี HCU-auditor เช็คให้</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Status ของ Content (kanban)</h4>
+          <div class="space-y-2 text-sm mt-3">
+            <div class="flex items-start gap-2"><span class="w-2 h-2 rounded-full bg-ink-400 mt-1.5"></span><div><strong>Brief</strong> · เพิ่งสร้าง brief, ยังไม่มีคนเขียน</div></div>
+            <div class="flex items-start gap-2"><span class="w-2 h-2 rounded-full bg-amber-500 mt-1.5"></span><div><strong>Drafting</strong> · writer กำลังเขียน · มี progress %</div></div>
+            <div class="flex items-start gap-2"><span class="w-2 h-2 rounded-full bg-blue-500 mt-1.5"></span><div><strong>In Review</strong> · เขียนเสร็จ · รอ approve · <strong>คุณเห็นในแท็บ Approvals</strong></div></div>
+            <div class="flex items-start gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5"></span><div><strong>Published</strong> · ขึ้นเว็บแล้ว + submit GSC + ใส่ schema</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== OFFPAGE ====================== -->
+    <section id="offpage" class="topic search-section" data-keywords="off-page backlink referring domain anchor text domain authority da">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-700 flex items-center justify-center text-2xl">🔗</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Off-Page · Backlinks</h2>
+          <p class="text-sm text-ink-500">เว็บอื่นชี้กลับมาที่เว็บคุณ — สำคัญต่อความน่าเชื่อถือ</p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Backlink</h4>
+          <p class="text-xs text-ink-500 mb-3">ลิงก์จากเว็บอื่นมาเว็บคุณ</p>
+          <p class="text-sm text-ink-700 mb-3">เปรียบเสมือน "vote" · ยิ่งเว็บใหญ่/น่าเชื่อถือ link มา ยิ่งเพิ่มความน่าเชื่อถือของคุณในสายตา Google</p>
+          <div class="bg-rose-50 rounded-lg p-3 text-xs"><strong>คุณภาพ &gt; ปริมาณ</strong> · 1 link จาก nytimes.com &gt; 1000 links จาก blog ทั่วไป</div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Referring Domains</h4>
+          <p class="text-xs text-ink-500 mb-3">จำนวน "เว็บที่ไม่ซ้ำ" ที่ link มา</p>
+          <p class="text-sm text-ink-700 mb-3">วัดดีกว่าจำนวน backlink รวม · เพราะ 100 links จาก 100 เว็บ &gt; 1000 links จาก 5 เว็บ</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Domain Authority (DA)</h4>
+          <p class="text-xs text-ink-500 mb-3">คะแนนความน่าเชื่อถือของโดเมน 0-100</p>
+          <p class="text-sm text-ink-700 mb-3">Moz เป็นคนคิด · ใช้กันแพร่หลายในวงการ SEO · ดูที่ฝั่งคู่แข่งของคุณ DA เท่าไหร่ — ถ้าน้อยกว่าคุณ คุณมีโอกาสชนะ</p>
+          <div class="space-y-1 text-sm">
+            <div class="flex items-center gap-2"><span class="pill-bad num-badge">0-20</span> เว็บใหม่</div>
+            <div class="flex items-center gap-2"><span class="pill-warn num-badge">21-50</span> ปกติ</div>
+            <div class="flex items-center gap-2"><span class="pill-good num-badge">51-80</span> Authority สูง</div>
+            <div class="flex items-center gap-2"><span class="pill-good num-badge">81+</span> เว็บระดับโลก (NYT, Wikipedia)</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-ink-200 p-5 metric-card">
+          <h4 class="font-bold text-lg mb-1">Anchor Text</h4>
+          <p class="text-xs text-ink-500 mb-3">ข้อความที่ลิงก์ใช้</p>
+          <p class="text-sm text-ink-700 mb-3">เช่น link <a class="text-brand-600 underline">"ร้านกาแฟ premium"</a> มาที่เว็บคุณ · anchor text ส่งสัญญาณให้ Google ว่าหน้านี้พูดถึงอะไร</p>
+          <div class="bg-amber-50 rounded-lg p-3 text-xs"><strong>เคล็ดลับ:</strong> anchor text ที่ดี = หลากหลาย — ไม่ใช่ keyword ตรงทั้งหมด (จะดูเหมือนซื้อ link)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== AUTOMATION ====================== -->
+    <section id="automation" class="topic search-section" data-keywords="automation rule trigger action notify recipe workflow ifttt">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-accent-100 text-accent-700 flex items-center justify-center text-2xl">⚡</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Automation</h2>
+          <p class="text-sm text-ink-500">ระบบที่ทำงานให้ทีม SEO อัตโนมัติ — คุณได้ประโยชน์โดยไม่ต้องทำเอง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-6 mb-6">
+        <h3 class="font-extrabold text-lg mb-3">Automation Rule = "When ___ then ___"</h3>
+        <div class="grid md:grid-cols-3 gap-3">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+            <div class="text-xs font-bold text-red-700 uppercase tracking-wider mb-1">WHEN (Trigger)</div>
+            <p class="text-sm">เกิดเหตุการณ์ เช่น keyword ตก, AI ไม่ cite, INP เกินค่า</p>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3">
+            <div class="text-xs font-bold text-amber-700 uppercase tracking-wider mb-1">THEN (Action)</div>
+            <p class="text-sm">ระบบทำอะไร: รัน audit, สร้าง task, generate report</p>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
+            <div class="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1">NOTIFY (Channel)</div>
+            <p class="text-sm">แจ้งใคร: LINE, Slack, email, ticket ใน ClickUp</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="font-bold mb-3">ตัวอย่าง 5 Automation Recipes</h3>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <div class="bg-white rounded-xl border border-ink-200 p-4 metric-card"><div class="font-bold text-sm mb-1">🚨 Ranking drop watcher</div><p class="text-xs text-ink-500">keyword ตก &gt; 5 อันดับ → mini-audit + task + LINE alert</p></div>
+        <div class="bg-white rounded-xl border border-ink-200 p-4 metric-card"><div class="font-bold text-sm mb-1">📊 Monthly auto-report</div><p class="text-xs text-ink-500">วันที่ 1 ของเดือน → PDF + email + LINE OA</p></div>
+        <div class="bg-white rounded-xl border border-ink-200 p-4 metric-card"><div class="font-bold text-sm mb-1">🤖 AI citation lost</div><p class="text-xs text-ink-500">หลุดจาก AIO → diff + content brief อัตโนมัติ</p></div>
+        <div class="bg-white rounded-xl border border-ink-200 p-4 metric-card"><div class="font-bold text-sm mb-1">⚡ CWV regression</div><p class="text-xs text-ink-500">INP &gt; 500ms → dev ticket ใน ClickUp</p></div>
+      </div>
+    </section>
+
+    <!-- ====================== ROLES ====================== -->
+    <section id="roles" class="topic search-section" data-keywords="roles permission access owner am specialist writer client view edit white-label">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-violet-100 text-violet-700 flex items-center justify-center text-2xl">👥</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Roles & Access</h2>
+          <p class="text-sm text-ink-500">บทบาทต่างๆ และสิทธิ์ที่แต่ละคนเห็น</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-ink-50 text-xs text-ink-500 uppercase tracking-wider">
+            <tr><th class="text-left p-4 font-semibold">Role</th><th class="text-left p-4 font-semibold">เห็นอะไร</th><th class="text-left p-4 font-semibold">ทำอะไรได้</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100">
+            <tr>
+              <td class="p-4 font-semibold flex items-center gap-2">👑 Owner</td>
+              <td class="p-4 text-ink-700">ทุกอย่าง · ทุกลูกค้า · billing · team · automation logs</td>
+              <td class="p-4 text-ink-700">บริหาร subscription · จัดการทีม · white-label config</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold flex items-center gap-2">📋 AM</td>
+              <td class="p-4 text-ink-700">ลูกค้าที่รับผิดชอบ · รายงาน · comm · retainer hours</td>
+              <td class="p-4 text-ink-700">ส่ง report · ตอบ comment · มอบหมาย task ทีม</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold flex items-center gap-2">🔧 Specialist</td>
+              <td class="p-4 text-ink-700">Audit detail · ranking · backlinks · technical issues</td>
+              <td class="p-4 text-ink-700">รัน audit · แก้ on-page · run automations</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold flex items-center gap-2">✍️ Writer</td>
+              <td class="p-4 text-ink-700">Content brief · target keywords · NLP editor</td>
+              <td class="p-4 text-ink-700">เขียน draft · ขอ review</td>
+            </tr>
+            <tr class="bg-blue-50">
+              <td class="p-4 font-semibold flex items-center gap-2">👁 Client (View)</td>
+              <td class="p-4 text-ink-700"><strong>เฉพาะแบรนด์ของคุณ</strong> · dashboard · reports · AI visibility</td>
+              <td class="p-4 text-ink-700">ดู · comment · download report</td>
+            </tr>
+            <tr class="bg-cyan-50">
+              <td class="p-4 font-semibold flex items-center gap-2">✅ Client (Edit)</td>
+              <td class="p-4 text-ink-700">เหมือน View + approval queue + asset library</td>
+              <td class="p-4 text-ink-700">Approve content · ขอแก้ · อัปโหลด brand asset</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 bg-violet-50 border border-violet-200 rounded-2xl p-5">
+        <h3 class="font-bold mb-2">🎨 White-label คืออะไร?</h3>
+        <p class="text-sm text-ink-700 leading-relaxed">เมื่อคุณ login เข้าระบบ คุณจะ <strong>ไม่เห็นชื่อ "SearchFit Pro"</strong> เลย — เห็นแบรนด์ของ agency แทน (logo, สี, domain เช่น <code class="bg-white px-1 py-0.5 rounded">seo.mediaagency.co.th</code>) · นี่เพื่อให้คุณรู้สึกว่าเป็นเครื่องมือของ agency ที่คุณจ้าง</p>
+      </div>
+    </section>
+
+    <!-- ====================== HOW-TO ====================== -->
+    <section id="howto" class="topic search-section" data-keywords="วิธีใช้ how to approve content comment download report invite ขอแก้">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl">🚀</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">วิธีใช้งาน (How-To)</h2>
+          <p class="text-sm text-ink-500">ทำงานทั่วไปที่ลูกค้าใช้บ่อย</p>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>✅ วิธี approve content ที่ทีมส่งมา</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-2">
+              <li>ใน sidebar กด <strong>"Approvals"</strong> · จะเห็นจำนวนรอใน badge แดง</li>
+              <li>คลิก <strong>"👁 ดู draft"</strong> เพื่ออ่านบทความ</li>
+              <li>ถ้าโอเค → กด <strong>"✓ Approve"</strong> · ระบบจะ publish + ใส่ schema + ping Google ให้อัตโนมัติ</li>
+              <li>ถ้าต้องแก้ → กด <strong>"✎ ขอแก้"</strong> + พิมพ์ comment · ทีมจะเห็นและแก้ให้</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>📥 วิธีดาวน์โหลด report เดือนล่าสุด</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            <ol class="list-decimal list-inside space-y-2">
+              <li>กด <strong>"Reports"</strong> ใน sidebar</li>
+              <li>เลือกรายงานเดือนที่ต้องการ (มี badge "NEW" ถ้ายังไม่เคยเปิด)</li>
+              <li>กด <strong>"ดู PDF"</strong> · เปิดในเบราว์เซอร์ หรือดาวน์โหลดได้</li>
+            </ol>
+            <p class="mt-3 text-xs text-ink-500">💡 ระบบจะส่ง email + LINE ทุกครั้งที่มี report ใหม่ ไม่ต้อง check เอง</p>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>💬 วิธี comment บนรายงาน</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            ใน My Dashboard ส่วน "AI Summary" → กดปุ่ม <strong>"💬 Comment"</strong> · พิมพ์คำถาม/แจ้งปัญหา · AM จะได้รับ notification ทันทีและตอบกลับใน thread เดียวกัน — ไม่ต้องส่งอีเมลแยก
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>📅 วิธีนัดประชุมกับ AM</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            ใน My Dashboard → กด <strong>"📅 นัดประชุมกับ [ชื่อ AM]"</strong> ใต้ AI Summary · เปิด calendar เลือก slot · ระบบจะส่ง Google Meet link ให้คุณและทีม
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>🔐 วิธีเชิญคนอื่นในทีมเข้าระบบ (Client Edit เท่านั้น)</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            ไป <strong>Settings → Team</strong> → กด <strong>"+ Invite member"</strong> · ใส่ email + เลือกสิทธิ์ (View หรือ Edit) · ระบบส่ง email พร้อมลิงก์ตั้งรหัสให้
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>🚪 ออกจากระบบ (Logout)</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            ที่มุมล่างซ้ายของ sidebar → คลิก <strong>avatar</strong> ของคุณ → เลือก <strong>"🚪 Log out"</strong>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ====================== FAQ ====================== -->
+    <section id="faq" class="topic search-section" data-keywords="faq คำถาม seo ใช้เวลา keyword ตก ทำไม nofollow noindex">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-yellow-100 text-yellow-700 flex items-center justify-center text-2xl">❓</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">คำถามที่พบบ่อย (FAQ)</h2>
+          <p class="text-sm text-ink-500">คำถามที่ลูกค้ามักถาม</p>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>SEO ใช้เวลานานไหมกว่าจะเห็นผล?</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            ปกติ <strong>3-6 เดือน</strong> ถึงเริ่มเห็น traffic เพิ่มมีนัยสำคัญ · 6-12 เดือนถึงเห็นผลเต็มที่ · ขึ้นกับ:
+            <ul class="list-disc list-inside mt-2 space-y-0.5">
+              <li>อายุของ domain (เว็บใหม่ &gt; ใช้เวลานานกว่า)</li>
+              <li>ความแข่งขันของ keyword (KD สูง &gt; ช้า)</li>
+              <li>คุณภาพและความถี่ของ content ที่ผลิต</li>
+              <li>backlink ที่ได้มาตามธรรมชาติ</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>ทำไม keyword ของฉันถึงตกอันดับ?</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            สาเหตุที่พบบ่อย:
+            <ol class="list-decimal list-inside mt-2 space-y-1">
+              <li><strong>Google update</strong> — เปลี่ยน algorithm ครั้งใหญ่ปีละ 2-4 ครั้ง</li>
+              <li><strong>คู่แข่งเขียนดีกว่า</strong> — เขาทำ content ใหม่ที่ครอบคลุมกว่า</li>
+              <li><strong>Content เก่า</strong> — Google ชอบเนื้อหา fresh · ถ้าไม่อัปเดต 6 เดือน rank จะค่อยๆ ตก</li>
+              <li><strong>Technical issue</strong> — INP เพิ่มขึ้น, schema หาย, redirect chain</li>
+              <li><strong>Search intent เปลี่ยน</strong> — คนค้นด้วย keyword เดิมแต่อยากได้คำตอบรูปแบบใหม่</li>
+            </ol>
+            <p class="mt-3 text-xs text-ink-500">💡 ระบบของเรามี Automation "Ranking drop watcher" ที่ตรวจให้อัตโนมัติเมื่อเกิดเหตุการณ์</p>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>SEO Score 92 หมายความว่ายังไง?</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            หมายถึงเว็บคุณ <strong>ทำได้ดีเยี่ยม</strong> ใน 6 มิติของ SEO · ใกล้เคียงเต็ม 100 · เหลือแค่ปรับเล็กน้อย เช่น schema หรือ off-page เพิ่ม backlink · <a href="#score" class="text-brand-600 font-semibold hover:underline">อ่านเพิ่มที่ SEO Score</a>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>AI Overview จะแทน Google ในอนาคตหรือไม่?</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            อยู่ <strong>ใน</strong> Google search results ทุกวันนี้ ไม่ใช่แทน · แต่กินพื้นที่บนหน้าจอมากขึ้น = ผู้ใช้ <strong>scroll น้อยลง</strong> · ถ้าคุณ <strong>ติดอยู่ใน AI Overview</strong> = ได้ traffic · ถ้าไม่ติด = ผู้ใช้เห็น AI ตอบจบ ไม่คลิกอะไรเลย (zero-click)
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>ฉันต้องลงทุนกับ AI search ไหม?</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            <strong>ใช่</strong> โดยเฉพาะถ้ากลุ่มเป้าหมายเป็นคนรุ่นใหม่ · ปี 2026 พบว่า 30%+ ของคนเริ่มถาม ChatGPT แทน Google สำหรับการ research · ลงทุนน้อย ผลตอบแทนสูง — เพราะ:
+            <ul class="list-disc list-inside mt-2 space-y-0.5">
+              <li>คนทำน้อย = แข่งน้อย</li>
+              <li>วิธีปรับ = ดี SEO ปกติเลย (E-E-A-T, schema, content depth)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>ฉัน approve content ผิดต้องทำยังไง?</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            ไม่ต้องตกใจ · แจ้ง AM ทาง LINE หรือ comment ใน thread รายงาน · ทีมจะ <strong>unpublish + แก้ไข</strong> ให้ได้ใน 1-2 ชั่วโมง · Google ใช้เวลาประมวลผล redirect ปกติ 1-3 วัน
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>ระบบเก็บข้อมูลของฉันยังไง? ปลอดภัยไหม?</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            ระบบใช้ <strong>Row-level Security</strong> ใน database · ทุก query กรอง agency_id + client_id อัตโนมัติ — ลูกค้าคนอื่นเข้าถึงข้อมูลคุณไม่ได้แม้แต่ admin ของ agency อื่น · มี audit log ทุกการเปลี่ยนแปลง · 2FA ได้ · PDPA compliant
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl border border-ink-200 overflow-hidden">
+          <summary class="px-5 py-4 font-bold flex items-center justify-between hover:bg-ink-50"><span>ถ้าฉันยกเลิกสัญญากับ agency ข้อมูลจะหายไปไหม?</span><svg class="chev w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="px-5 pb-5 text-sm text-ink-700 leading-relaxed">
+            คุณสามารถ <strong>export ทุก report + raw data</strong> เป็น PDF/CSV/JSON ก่อนยกเลิก · เก็บไว้ใช้กับเครื่องมืออื่นได้ · ถ้าจะกลับมาภายหลัง agency เก็บข้อมูลให้ 90 วันก่อนลบถาวร
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ====================== GLOSSARY ====================== -->
+    <section id="glossary" class="topic search-section" data-keywords="glossary ดัชนี ศัพท์ คำศัพท์">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-ink-100 text-ink-700 flex items-center justify-center text-2xl">📚</div>
+        <div>
+          <h2 class="text-3xl font-extrabold">Glossary · ดัชนีศัพท์</h2>
+          <p class="text-sm text-ink-500">คำศัพท์ที่ใช้บ่อยในระบบ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-ink-200 p-6">
+        <dl class="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+          <div><dt class="font-bold text-ink-900">AEO</dt><dd class="text-ink-600 text-xs">Answer Engine Optimization — ปรับเว็บให้ติด Featured Snippet, PAA, voice search</dd></div>
+          <div><dt class="font-bold text-ink-900">AIO</dt><dd class="text-ink-600 text-xs">AI Overview — กรอบสรุป AI บนสุดของผล Google search</dd></div>
+          <div><dt class="font-bold text-ink-900">AM</dt><dd class="text-ink-600 text-xs">Account Manager — คนของ agency ที่ดูแลคุณโดยตรง</dd></div>
+          <div><dt class="font-bold text-ink-900">Backlink</dt><dd class="text-ink-600 text-xs">ลิงก์จากเว็บอื่นมาเว็บคุณ</dd></div>
+          <div><dt class="font-bold text-ink-900">CLS</dt><dd class="text-ink-600 text-xs">Cumulative Layout Shift — วัดการกระโดดของ layout</dd></div>
+          <div><dt class="font-bold text-ink-900">CTR</dt><dd class="text-ink-600 text-xs">Click-Through Rate — สัดส่วนคนคลิกเทียบกับคนเห็น</dd></div>
+          <div><dt class="font-bold text-ink-900">CWV</dt><dd class="text-ink-600 text-xs">Core Web Vitals — 3 ตัววัดความเร็ว INP/LCP/CLS</dd></div>
+          <div><dt class="font-bold text-ink-900">DA</dt><dd class="text-ink-600 text-xs">Domain Authority — คะแนนความน่าเชื่อถือของโดเมน 0-100</dd></div>
+          <div><dt class="font-bold text-ink-900">E-E-A-T</dt><dd class="text-ink-600 text-xs">Experience · Expertise · Authoritativeness · Trustworthiness — เกณฑ์คุณภาพของ Google</dd></div>
+          <div><dt class="font-bold text-ink-900">GA4</dt><dd class="text-ink-600 text-xs">Google Analytics 4 — เครื่องมือวัด traffic ของ Google</dd></div>
+          <div><dt class="font-bold text-ink-900">GBP</dt><dd class="text-ink-600 text-xs">Google Business Profile — โปรไฟล์ธุรกิจใน Google Maps</dd></div>
+          <div><dt class="font-bold text-ink-900">GEO</dt><dd class="text-ink-600 text-xs">Generative Engine Optimization — ปรับเว็บให้ AI quote</dd></div>
+          <div><dt class="font-bold text-ink-900">GSC</dt><dd class="text-ink-600 text-xs">Google Search Console — เครื่องมือดู search performance ของ Google</dd></div>
+          <div><dt class="font-bold text-ink-900">HCU</dt><dd class="text-ink-600 text-xs">Helpful Content Update — Google update ลงโทษ content ไม่มีค่า</dd></div>
+          <div><dt class="font-bold text-ink-900">INP</dt><dd class="text-ink-600 text-xs">Interaction to Next Paint — เวลาตอบสนองของเว็บ</dd></div>
+          <div><dt class="font-bold text-ink-900">JSON-LD</dt><dd class="text-ink-600 text-xs">JavaScript Object Notation for Linked Data — format ของ schema markup</dd></div>
+          <div><dt class="font-bold text-ink-900">KD</dt><dd class="text-ink-600 text-xs">Keyword Difficulty — ความยากในการแข่งกับเว็บอื่น 0-100</dd></div>
+          <div><dt class="font-bold text-ink-900">LCP</dt><dd class="text-ink-600 text-xs">Largest Contentful Paint — เวลาเห็นเนื้อหาหลัก</dd></div>
+          <div><dt class="font-bold text-ink-900">Map Pack</dt><dd class="text-ink-600 text-xs">กล่อง 3 ร้านพร้อมแผนที่ใน Google</dd></div>
+          <div><dt class="font-bold text-ink-900">NLP</dt><dd class="text-ink-600 text-xs">Natural Language Processing — คะแนนความครบของ content vs SERP</dd></div>
+          <div><dt class="font-bold text-ink-900">PAA</dt><dd class="text-ink-600 text-xs">People Also Ask — กล่องคำถามที่คนยังถามใน Google</dd></div>
+          <div><dt class="font-bold text-ink-900">pSEO</dt><dd class="text-ink-600 text-xs">Programmatic SEO — สร้างหน้าเว็บ scale ด้วย template</dd></div>
+          <div><dt class="font-bold text-ink-900">SERP</dt><dd class="text-ink-600 text-xs">Search Engine Results Page — หน้าแสดงผลการค้นหา</dd></div>
+          <div><dt class="font-bold text-ink-900">SOV</dt><dd class="text-ink-600 text-xs">Share of Voice — ส่วนแบ่ง mentions/citations เทียบคู่แข่ง</dd></div>
+          <div><dt class="font-bold text-ink-900">UTM</dt><dd class="text-ink-600 text-xs">Urchin Tracking Module — พารามิเตอร์ใน URL วัดที่มาของ traffic</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="bg-gradient-to-br from-brand-600 to-purple-700 rounded-3xl p-8 text-white text-center">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-3">ยังมีคำถามอื่นๆ?</h2>
+      <p class="text-white/80 mb-6">ติดต่อ Account Manager ของคุณได้โดยตรง — เร็วและตอบทุกข้อ</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="app.html" class="bg-white text-brand-700 px-5 py-2.5 rounded-xl font-bold text-sm">← กลับไปที่แอป</a>
+        <a href="proposal.html" class="bg-white/10 backdrop-blur border border-white/30 text-white px-5 py-2.5 rounded-xl font-bold text-sm">ดู Proposal เต็ม</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="border-t border-ink-200 bg-white mt-12">
+  <div class="max-w-7xl mx-auto px-6 py-6 text-sm text-ink-500 flex flex-col sm:flex-row justify-between gap-2">
+    <p>SearchFit Pro Help Center · อัปเดต พ.ค. 2026</p>
+    <p>มีข้อเสนอแนะ? <a href="#" class="text-brand-600 hover:underline">ส่งฟีดแบ็คให้ทีม</a></p>
+  </div>
+</footer>
+
+<script>
+/* ============ SEARCH ============ */
+const searchInput = document.getElementById('search');
+const sections = document.querySelectorAll('.search-section');
+
+function filterSearch(q) {
+  q = q.trim().toLowerCase();
+  if (!q) {
+    sections.forEach(s => s.classList.remove('hidden-filter'));
+    // remove highlights
+    document.querySelectorAll('mark').forEach(m => {
+      const t = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(t, m);
+    });
+    return;
+  }
+  sections.forEach(s => {
+    const keywords = s.dataset.keywords || '';
+    const text = s.textContent.toLowerCase() + ' ' + keywords.toLowerCase();
+    s.classList.toggle('hidden-filter', !text.includes(q));
+  });
+}
+searchInput.addEventListener('input', (e) => filterSearch(e.target.value));
+
+// Keyboard shortcut /
+document.addEventListener('keydown', (e) => {
+  if (e.key === '/' && document.activeElement !== searchInput && !e.metaKey && !e.ctrlKey) {
+    e.preventDefault();
+    searchInput.focus();
+  }
+  if (e.key === 'Escape' && document.activeElement === searchInput) {
+    searchInput.value = '';
+    filterSearch('');
+    searchInput.blur();
+  }
+});
+
+/* ============ ACTIVE SIDEBAR LINK ON SCROLL ============ */
+const navLinks = document.querySelectorAll('.sidebar-link');
+const topics = document.querySelectorAll('.topic');
+function updateActiveLink() {
+  let active = null;
+  const scrollY = window.scrollY + 120;
+  topics.forEach(t => {
+    if (t.offsetTop <= scrollY) active = t.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.dataset.topic === active);
+  });
+}
+window.addEventListener('scroll', updateActiveLink, { passive: true });
+updateActiveLink();
+
+// Handle hash navigation
+if (location.hash) {
+  setTimeout(() => {
+    const el = document.querySelector(location.hash);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+</script>
+
+<script src="assets/i18n.js"></script>
+</body>
+</html>
