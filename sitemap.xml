@@ -6,90 +6,90 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://example.com/index.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/index.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/index.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/index.html?lang=th"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://searchfit-pro.stamp-adda.workers.dev/index.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://searchfit-pro.stamp-adda.workers.dev/index.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://searchfit-pro.stamp-adda.workers.dev/index.html"/>
   </url>
 
   <url>
-    <loc>https://example.com/pricing.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/pricing.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/pricing.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/pricing.html?lang=th"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://searchfit-pro.stamp-adda.workers.dev/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://searchfit-pro.stamp-adda.workers.dev/pricing.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://searchfit-pro.stamp-adda.workers.dev/pricing.html"/>
   </url>
 
   <url>
-    <loc>https://example.com/preview.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/preview.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/preview.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/preview.html?lang=th"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/preview.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://searchfit-pro.stamp-adda.workers.dev/preview.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://searchfit-pro.stamp-adda.workers.dev/preview.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://searchfit-pro.stamp-adda.workers.dev/preview.html"/>
   </url>
 
   <url>
-    <loc>https://example.com/proposal.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/proposal.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/proposal.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/proposal.html?lang=th"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/proposal.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://searchfit-pro.stamp-adda.workers.dev/proposal.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://searchfit-pro.stamp-adda.workers.dev/proposal.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://searchfit-pro.stamp-adda.workers.dev/proposal.html"/>
   </url>
 
   <url>
-    <loc>https://example.com/tools.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/tools.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/tools.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/tools.html?lang=th"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/tools.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://searchfit-pro.stamp-adda.workers.dev/tools.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://searchfit-pro.stamp-adda.workers.dev/tools.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://searchfit-pro.stamp-adda.workers.dev/tools.html"/>
   </url>
 
   <url>
-    <loc>https://example.com/app.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/app.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/app.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/app.html?lang=th"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/app.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://searchfit-pro.stamp-adda.workers.dev/app.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://searchfit-pro.stamp-adda.workers.dev/app.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://searchfit-pro.stamp-adda.workers.dev/app.html"/>
   </url>
 
   <url>
-    <loc>https://example.com/signup.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/signup.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://example.com/playbook.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/playbook.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/playbook.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/playbook.html?lang=th"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/playbook.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://searchfit-pro.stamp-adda.workers.dev/playbook.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://searchfit-pro.stamp-adda.workers.dev/playbook.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://searchfit-pro.stamp-adda.workers.dev/playbook.html"/>
   </url>
 
   <url>
-    <loc>https://example.com/help.html</loc>
+    <loc>https://searchfit-pro.stamp-adda.workers.dev/help.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/help.html"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/help.html?lang=th"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/help.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://searchfit-pro.stamp-adda.workers.dev/help.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://searchfit-pro.stamp-adda.workers.dev/help.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://searchfit-pro.stamp-adda.workers.dev/help.html"/>
   </url>
 
 </urlset>

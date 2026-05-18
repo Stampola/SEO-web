@@ -24,4 +24,4 @@ User-agent: Google-Extended
 Allow: /
 
 # Sitemap
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://searchfit-pro.stamp-adda.workers.dev/sitemap.xml
