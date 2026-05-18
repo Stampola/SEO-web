@@ -5,6 +5,63 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>SearchFit Pro — SEO Platform for Thai Media Agencies</title>
 <meta name="description" data-en="All-in-one SEO platform for media agencies — proposal, prototype, working MVP tools, bilingual." data-th="webapp ทำ SEO ครบเซ็ตสำหรับ media agency ไทย — proposal, prototype, และ MVP tools" content="All-in-one SEO platform for media agencies — proposal, prototype, working MVP tools, bilingual." />
+
+<!-- Canonical + hreflang -->
+<link rel="canonical" href="https://example.com/index.html" />
+<link rel="alternate" hreflang="en" href="https://example.com/index.html" />
+<link rel="alternate" hreflang="th" href="https://example.com/index.html?lang=th" />
+<link rel="alternate" hreflang="x-default" href="https://example.com/index.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SearchFit Pro" />
+<meta property="og:title" content="SearchFit Pro — SEO Platform for Thai Media Agencies" />
+<meta property="og:description" content="Proposal, interactive prototype, and working MVP tools — built for Thai media agencies serving SEO to clients and themselves." />
+<meta property="og:url" content="https://example.com/index.html" />
+<meta property="og:image" content="https://example.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="SearchFit Pro — The SEO workbench built for agencies" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="th_TH" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SearchFit Pro — SEO Platform for Thai Media Agencies" />
+<meta name="twitter:description" content="Proposal, interactive prototype, and working MVP tools — bilingual EN/TH." />
+<meta name="twitter:image" content="https://example.com/og-image.png" />
+
+<!-- Icons + PWA -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#6366f1" />
+
+<!-- JSON-LD: Organization + WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://example.com/#organization",
+      "name": "SearchFit Pro",
+      "url": "https://example.com/",
+      "logo": "https://example.com/icon-512.png",
+      "description": "SEO platform built for Thai media agencies — proposal, prototype, and working MVP tools."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://example.com/#website",
+      "url": "https://example.com/",
+      "name": "SearchFit Pro",
+      "publisher": { "@id": "https://example.com/#organization" },
+      "inLanguage": ["en", "th"]
+    }
+  ]
+}
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -65,10 +122,12 @@
     <nav class="hidden md:flex items-center gap-1 text-sm">
       <a href="preview.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Preview" data-th="พรีวิว">Preview</a>
       <a href="proposal.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Proposal" data-th="ข้อเสนอ">Proposal</a>
+      <a href="pricing.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Pricing" data-th="ราคา">Pricing</a>
       <a href="app.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="App" data-th="แอป">App</a>
       <a href="tools.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Tools" data-th="เครื่องมือ">Tools</a>
       <a href="help.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Help" data-th="ช่วยเหลือ">Help</a>
-      <a href="app.html" class="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-brand-500 to-purple-600 text-white font-semibold hover:opacity-90 transition" data-en="Sign in" data-th="เข้าสู่ระบบ">Sign in</a>
+      <a href="app.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Sign in" data-th="เข้าสู่ระบบ">Sign in</a>
+      <a href="signup.html?plan=basic" class="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-brand-500 to-purple-600 text-white font-semibold hover:opacity-90 transition" data-en="Start free" data-th="เริ่มฟรี">Start free</a>
     </nav>
   </header>
 

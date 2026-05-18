@@ -1,6 +1,80 @@
 # SearchFit Pro — Feature Inventory & Pricing Plan
 
-เอกสารสรุปสำหรับ Media Agency Co. · v1.0 · 18 พ.ค. 2026
+เอกสารสรุปสำหรับ Media Agency Co. · v2.0 · 18 พ.ค. 2026
+
+---
+
+## ⭐ ส่วนที่ 0 — โมเดลธุรกิจหลัก (Self-serve SaaS)
+
+ลูกค้าสมัครเองได้ทาง `pricing.html` · เลือกแพ็กเกจ · จ่ายผ่าน QR PromptPay หรือบัตรเครดิต · ทดลองฟรี 7 วันสำหรับแพ็กเกจเสียเงิน
+
+### 🎁 Free — ฿0/ตลอด
+- 1 website · 5 keywords · audit หน้าแรกเดือนละครั้ง
+- Schema generator 3 ประเภท · AI Visibility preview (1 engine, 3 prompts)
+- Help Center · community support
+- มี SearchFit branding · ไม่ต้องใส่บัตรเครดิต
+
+### ⚡ Basic — ฿10,000/เดือน (หรือ ฿100,000/ปี · ประหยัด ฿20,000 = 17%)
+- 3 websites · 50 keywords
+- SEO Audit ทั่วเว็บ · re-scan รายสัปดาห์
+- Schema generator 10 ประเภท
+- AI Visibility · 5 engines · 15 prompts
+- Rank Tracker + 2 competitors
+- Backlinks Monitor
+- Monthly PDF report
+- Client portal · 2 viewer accounts
+- Email/LINE support · 24 ชม.
+- มี SearchFit branding
+
+### 🚀 Advanced — ฿30,000/เดือน (หรือ ฿300,000/ปี · ประหยัด ฿60,000 = 17%)
+- ทุกอย่างใน Basic เพิ่ม:
+- Unlimited websites · 200 keywords
+- SEO Audit · re-scan รายวัน
+- AI Visibility · 50 prompts · weekly
+- Rank Tracker + 5 competitors
+- Local Grid scanner (สูงสุด 13×13)
+- Programmatic SEO builder · ไม่จำกัด
+- Automation Builder (20+ recipes)
+- White-label client portal + custom domain
+- Slack / LINE integrations
+- API access
+- Priority support · 4 ชม.
+
+### Enterprise — ติดต่อทีมขาย
+สำหรับ > 1,000 keywords, multi-location, dedicated team, custom integration
+
+### หน้าที่เกี่ยวข้องในระบบ
+
+| ขั้นตอน | หน้า |
+|---|---|
+| เห็นราคา + เลือกแพ็กเกจ | `pricing.html` |
+| สร้างบัญชี | `signup.html?plan=…&cycle=…` |
+| ชำระเงิน (QR / บัตรเครดิต) | `checkout.html?plan=…&cycle=…` |
+| ใช้งานแอป | `app.html` |
+| Admin SearchFit ดูแลลูกค้า | `admin.html` |
+
+### หลังบ้าน — SearchFit Admin (`admin.html`)
+
+ทีม SearchFit เข้ามาช่วยลูกค้าได้ทุกขั้นตอน:
+- Dashboard: MRR, active subs, free tier, churn
+- Customer list (filter, search) · click → detail page
+- **"View as customer"** — เข้าไปดูในมุมมองลูกค้าจริงๆ พร้อม banner สีส้มแจ้งว่ากำลัง impersonate (กันลืม)
+- Change plan · issue refund · reset password · suspend account · send message
+- Billing: invoices, outstanding, refunds (เห็นใบที่ปลอดภัยจ่ายผ่าน Omise / 2C2P / PromptPay)
+- Support ticket queue + priority
+- Immutable audit log — ทุก action ของ admin ถูกบันทึกแก้ไม่ได้
+
+### Payment integration ที่ตั้งไว้
+
+| Method | Provider | สถานะใน UI |
+|---|---|---|
+| 💳 บัตรเครดิต Visa/MC/JCB | Omise (primary), 2C2P (backup) | UI พร้อม · ใส่ API key ทีหลัง |
+| 📱 QR PromptPay | PromptPay (Bank of Thailand) | UI พร้อม · payload generation ทีหลัง |
+| 🧾 ใบกำกับภาษีไทย | FlowAccount | UI พร้อม · webhook ทีหลัง |
+
+---
+
+## (ต่อด้านล่าง — โมเดล Agency เก่า เก็บไว้อ้างอิง)
 
 ---
 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sitemap.xml — SearchFit Pro
+     Replace example.com with your real domain. Update <lastmod> when pages change.
+     Note: signup.html is indexable; checkout.html and admin.html are noindex (not listed). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://example.com/index.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/index.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/index.html"/>
+  </url>
+
+  <url>
+    <loc>https://example.com/pricing.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/pricing.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/pricing.html"/>
+  </url>
+
+  <url>
+    <loc>https://example.com/preview.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/preview.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/preview.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/preview.html"/>
+  </url>
+
+  <url>
+    <loc>https://example.com/proposal.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/proposal.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/proposal.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/proposal.html"/>
+  </url>
+
+  <url>
+    <loc>https://example.com/tools.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/tools.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/tools.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/tools.html"/>
+  </url>
+
+  <url>
+    <loc>https://example.com/app.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/app.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/app.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/app.html"/>
+  </url>
+
+  <url>
+    <loc>https://example.com/signup.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://example.com/playbook.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/playbook.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/playbook.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/playbook.html"/>
+  </url>
+
+  <url>
+    <loc>https://example.com/help.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/help.html"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://example.com/help.html?lang=th"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://example.com/help.html"/>
+  </url>
+
+</urlset>

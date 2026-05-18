@@ -1,0 +1,28 @@
+# SearchFit Pro
+
+> All-in-one SEO platform built for Thai media agencies. Includes proposal, interactive prototype, four working MVP tools (SEO Audit, Keyword Research, Schema Generator, Programmatic SEO), and a role-based webapp with white-label client portal. Bilingual EN/TH.
+
+SearchFit Pro is a static site that demonstrates a full SEO platform for media agencies. It bundles a sales proposal, a single-page live preview with seven runnable demos, a multi-role SPA, four browser-side SEO tools, a daily/weekly/monthly task playbook, a help center with glossary, and pricing. No backend, no signup, runs in the browser.
+
+## Pages
+
+- [Landing hub](https://example.com/index.html): Overview of the platform and links to every section.
+- [Live Preview](https://example.com/preview.html): Seven working demos plus eleven mockup screens in one page.
+- [Proposal](https://example.com/proposal.html): Eleven-section sales proposal with market, differentiation, pricing, and roadmap.
+- [Pricing](https://example.com/pricing.html): Four tiers (Starter / Growth / Pro / Enterprise) plus add-ons.
+- [Tools](https://example.com/tools.html): Four working browser-side tools — SEO Audit, Keyword Research, Schema Generator, Programmatic SEO.
+- [App SPA](https://example.com/app.html): Role-based demo (Owner, AM, Specialist, Writer, Client view, Client edit) with white-label portal.
+- [Playbook](https://example.com/playbook.html): 40+ SEO tasks split by daily, weekly, monthly with time and impact ratings.
+- [Help Center](https://example.com/help.html): Client-friendly guide covering every metric, plus a 25-term glossary and benchmark tables.
+
+## Research
+
+- [Competitor Analysis](https://example.com/research/competitor-analysis.md): Ahrefs, Semrush, Moz, Surfer, SE Ranking, AgencyAnalytics + niche tools.
+- [AI SEO Trends 2026](https://example.com/research/ai-seo-trends.md): AI Overview, GEO, AEO, E-E-A-T, HCU, CWV, Schema, Local, AI Crawlers, Thai market.
+- [Agency Workflow](https://example.com/research/agency-workflow.md): Multi-tenant, RBAC, white-label, reporting, onboarding, integrations, billing.
+- [Architecture Spec](https://example.com/research/architecture-spec.md): Data model, tech stack, scoring system, API design, phases, security.
+
+## Optional
+
+- [Business Plan](https://example.com/business-plan.md): Feature inventory and pricing packages.
+- [README](https://example.com/README.md): Project overview and how to run locally.

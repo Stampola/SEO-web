@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Checkout · SearchFit Pro</title>
+<meta name="description" content="Complete your SearchFit Pro subscription — Thai QR PromptPay or credit card." />
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="canonical" href="https://example.com/checkout.html" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#6366f1" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: { colors: {
+      ink: { 900:'#0b1220', 700:'#1f2937', 500:'#6b7280', 300:'#d1d5db', 100:'#f3f4f6' },
+      brand: { 300:'#a5b4fc', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca' },
+      accent: { 500:'#f97316' }
+    } } }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', ui-sans-serif, sans-serif; }
+  html[data-lang="th"] * { font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', ui-sans-serif, sans-serif; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  body {
+    background:
+      radial-gradient(at 20% 22%, rgba(99,102,241,0.22) 0px, transparent 50%),
+      radial-gradient(at 78% 78%, rgba(168,85,247,0.18) 0px, transparent 50%),
+      #07091a;
+    min-height: 100vh;
+  }
+  .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+  .tab-btn { padding: 12px 16px; font-weight: 600; font-size: 14px; color: rgba(255,255,255,0.65); border-bottom: 2px solid transparent; }
+  .tab-btn.active { color: white; border-color: #818cf8; }
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadein .2s; }
+  @keyframes fadein { from { opacity:0; transform: translateY(4px) } to { opacity:1; transform:none } }
+  .field input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 11px 14px; font-size: 14px; color: white; }
+  .field input::placeholder { color: rgba(255,255,255,0.30); }
+  .field input:focus { outline: none; border-color: #818cf8; box-shadow: 0 0 0 3px rgba(99,102,241,0.25); }
+  .field label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.75); display: block; margin-bottom: 6px; }
+  .ring-glow { box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 20px 40px -16px rgba(99,102,241,.5); }
+  /* QR code visual (placeholder pattern - replace with real PromptPay QR on backend) */
+  .qr-grid { display: grid; grid-template-columns: repeat(25, 1fr); gap: 0; width: 240px; height: 240px; background: white; padding: 10px; border-radius: 10px; }
+  .qr-grid div { background: #0b1220; }
+  .qr-grid div.w { background: white; }
+</style>
+</head>
+<body class="text-white">
+
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Brand -->
+  <a href="index.html" class="flex items-center gap-3 mb-10">
+    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center">
+      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+    </div>
+    <span class="font-extrabold text-lg">SearchFit <span class="text-brand-300">Pro</span></span>
+  </a>
+
+  <!-- Stepper -->
+  <ol class="flex items-center gap-2 text-xs text-white/60 mb-8">
+    <li class="flex items-center gap-2"><span class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-[11px]">✓</span> <span data-en="Plan" data-th="แพ็กเกจ">Plan</span></li>
+    <li class="text-white/30">›</li>
+    <li class="flex items-center gap-2"><span class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-[11px]">✓</span> <span data-en="Account" data-th="บัญชี">Account</span></li>
+    <li class="text-white/30">›</li>
+    <li class="flex items-center gap-2 text-white font-semibold"><span class="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center text-[11px]">3</span> <span data-en="Payment" data-th="ชำระเงิน">Payment</span></li>
+  </ol>
+
+  <h1 class="text-3xl md:text-4xl font-extrabold mb-2" data-en="Payment" data-th="ชำระเงิน">Payment</h1>
+  <p class="text-white/60 mb-10" data-en="Pick how you want to pay. You can change it later in Settings → Billing." data-th="เลือกวิธีจ่ายเงิน · เปลี่ยนได้ทีหลังที่ Settings → Billing">Pick how you want to pay. You can change it later in Settings → Billing.</p>
+
+  <div class="grid lg:grid-cols-5 gap-8">
+
+    <!-- LEFT: payment methods -->
+    <div class="lg:col-span-3 glass rounded-2xl p-6">
+      <div class="flex border-b border-white/10 mb-6">
+        <button type="button" class="tab-btn active" data-tab="qr">📱 <span data-en="QR PromptPay" data-th="QR PromptPay">QR PromptPay</span></button>
+        <button type="button" class="tab-btn" data-tab="card">💳 <span data-en="Credit / debit card" data-th="บัตรเครดิต / เดบิต">Credit / debit card</span></button>
+      </div>
+
+      <!-- QR PANEL -->
+      <div id="panel-qr" class="panel active">
+        <div class="text-center">
+          <p class="text-sm text-white/70 mb-5" data-en="Open your banking app, tap Scan, point at the QR." data-th="เปิดแอปธนาคาร · กดสแกน · ส่องไปที่ QR">Open your banking app, tap Scan, point at the QR.</p>
+
+          <div class="inline-block bg-white p-4 rounded-2xl shadow-2xl ring-glow mb-4">
+            <!-- decorative QR (visually plausible; replace with real PromptPay payload server-side) -->
+            <div class="qr-grid" id="qrGrid"></div>
+            <div class="text-center mt-3">
+              <div class="flex items-center justify-center gap-1.5 text-ink-900 font-bold text-sm">
+                <span class="inline-block bg-emerald-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded">PromptPay</span>
+                <span>Thai QR</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-3xl font-extrabold mb-1" id="qr-amount">฿10,000.00</div>
+          <div class="text-xs text-white/55 mb-4">
+            <span data-en="Reference:" data-th="เลขอ้างอิง:">Reference:</span> <span class="mono" id="qr-ref">SFP-2026051800001</span>
+          </div>
+
+          <div class="inline-flex items-center gap-2 bg-white/5 px-4 py-2 rounded-lg text-sm text-white/70">
+            <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+            <span data-en="Waiting for payment…" data-th="กำลังรอชำระเงิน…">Waiting for payment…</span>
+            <span class="text-white/50" id="qr-timer">14:59</span>
+          </div>
+
+          <details class="mt-6 text-left bg-white/5 rounded-xl p-4 text-sm">
+            <summary class="font-semibold cursor-pointer" data-en="Pay manually (bank transfer)" data-th="หรือโอนแบบ manual ผ่านธนาคาร">Pay manually (bank transfer)</summary>
+            <div class="mt-3 text-white/70 space-y-1.5">
+              <div class="flex justify-between"><span data-en="Bank" data-th="ธนาคาร">Bank</span><span class="font-semibold text-white">Kasikorn Bank</span></div>
+              <div class="flex justify-between"><span data-en="Account name" data-th="ชื่อบัญชี">Account name</span><span class="font-semibold text-white">SearchFit Pro Co., Ltd.</span></div>
+              <div class="flex justify-between"><span data-en="Account no." data-th="เลขบัญชี">Account no.</span><span class="font-semibold text-white mono">123-4-56789-0</span></div>
+              <div class="flex justify-between"><span data-en="Reference" data-th="อ้างอิง">Reference</span><span class="font-semibold text-white mono" id="qr-ref-manual">SFP-2026051800001</span></div>
+              <p class="text-xs text-white/50 mt-3" data-en="Upload the slip after transfer in Settings → Billing. Activation usually within 1 hour during business hours." data-th="อัปโหลด slip ที่ Settings → Billing หลังโอน · เปิดใช้ภายใน 1 ชม. ช่วงเวลาทำการ">Upload the slip after transfer in Settings → Billing. Activation usually within 1 hour during business hours.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- CARD PANEL -->
+      <div id="panel-card" class="panel">
+        <form id="cardForm" class="space-y-4" autocomplete="on">
+          <div class="field"><label for="cc-name" data-en="Name on card" data-th="ชื่อบนบัตร">Name on card</label><input id="cc-name" name="cc-name" autocomplete="cc-name" required placeholder="Stamp Sethakorn" /></div>
+          <div class="field"><label for="cc-num" data-en="Card number" data-th="เลขบัตร">Card number</label><input id="cc-num" name="cc-num" inputmode="numeric" autocomplete="cc-number" required placeholder="4242 4242 4242 4242" maxlength="23" /></div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="field"><label for="cc-exp" data-en="Expiry (MM / YY)" data-th="วันหมดอายุ (MM / YY)">Expiry (MM / YY)</label><input id="cc-exp" name="cc-exp" inputmode="numeric" autocomplete="cc-exp" required placeholder="12 / 28" maxlength="7" /></div>
+            <div class="field"><label for="cc-cvc" data-en="CVC" data-th="CVC">CVC</label><input id="cc-cvc" name="cc-cvc" inputmode="numeric" autocomplete="cc-csc" required placeholder="123" maxlength="4" /></div>
+          </div>
+
+          <div class="bg-white/5 rounded-xl p-4 text-xs text-white/60 leading-relaxed flex gap-3">
+            <span class="text-lg">🔒</span>
+            <span data-en-html="Your card is tokenized by our PCI-DSS payment provider (Omise / 2C2P). <strong>SearchFit Pro never stores card details.</strong>" data-th-html="ข้อมูลบัตรถูก tokenize ผ่าน payment provider ที่ผ่าน PCI-DSS (Omise / 2C2P) · <strong>SearchFit Pro ไม่เก็บข้อมูลบัตร</strong>">Your card is tokenized by our PCI-DSS payment provider (Omise / 2C2P). <strong>SearchFit Pro never stores card details.</strong></span>
+          </div>
+
+          <label class="flex items-center gap-2 text-sm text-white/70 select-none">
+            <input type="checkbox" checked class="accent-brand-500" />
+            <span data-en="Save card for future renewals" data-th="บันทึกบัตรไว้สำหรับการต่ออายุครั้งหน้า">Save card for future renewals</span>
+          </label>
+        </form>
+      </div>
+
+      <!-- Common: tax invoice -->
+      <div class="mt-7 border-t border-white/10 pt-5">
+        <details class="text-sm">
+          <summary class="font-semibold cursor-pointer" data-en="🧾 Need a Thai tax invoice?" data-th="🧾 ต้องการใบกำกับภาษี?">🧾 Need a Thai tax invoice?</summary>
+          <div class="grid sm:grid-cols-2 gap-3 mt-3">
+            <div class="field"><label data-en="Company name (Thai)" data-th="ชื่อบริษัท (ภาษาไทย)">Company name (Thai)</label><input placeholder="บริษัท เอซีเอ็มอี จำกัด" /></div>
+            <div class="field"><label data-en="Tax ID (13 digits)" data-th="เลขผู้เสียภาษี (13 หลัก)">Tax ID (13 digits)</label><input inputmode="numeric" maxlength="13" placeholder="0105500000000" /></div>
+            <div class="field sm:col-span-2"><label data-en="Billing address" data-th="ที่อยู่จดทะเบียน">Billing address</label><input placeholder="123 สุขุมวิท คลองเตย กรุงเทพฯ 10110" /></div>
+          </div>
+          <p class="text-xs text-white/50 mt-2" data-en="Issued via FlowAccount and emailed within 1 business day." data-th="ออกผ่าน FlowAccount · ส่งทาง email ภายใน 1 วันทำการ">Issued via FlowAccount and emailed within 1 business day.</p>
+        </details>
+      </div>
+    </div>
+
+    <!-- RIGHT: order summary -->
+    <aside class="lg:col-span-2">
+      <div class="glass rounded-2xl p-6 sticky top-6">
+        <div class="text-xs text-white/55 font-semibold uppercase tracking-wider mb-3" data-en="Order summary" data-th="สรุปการสั่งซื้อ">Order summary</div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="font-bold text-lg" id="o-plan">Basic</span>
+          <span class="text-xs bg-white/10 px-2 py-0.5 rounded-full" id="o-cycle" data-en="Monthly" data-th="รายเดือน">Monthly</span>
+        </div>
+        <div class="flex items-baseline justify-between mb-5">
+          <span class="text-3xl font-extrabold" id="o-price">฿10,000</span>
+          <span class="text-sm text-white/60" id="o-per" data-en="/month" data-th="/เดือน">/month</span>
+        </div>
+
+        <div class="border-t border-white/10 pt-4 space-y-2 text-sm mb-5">
+          <div class="flex justify-between text-white/70"><span data-en="Subtotal" data-th="ยอดรวม">Subtotal</span><span id="o-subtotal">฿10,000.00</span></div>
+          <div class="flex justify-between text-white/70"><span data-en="VAT 7%" data-th="VAT 7%">VAT 7%</span><span id="o-vat">฿700.00</span></div>
+          <div class="flex justify-between text-white font-bold text-base border-t border-white/10 pt-2 mt-2"><span data-en="Today's total" data-th="ยอดที่ต้องจ่ายวันนี้">Today's total</span><span id="o-total">฿10,700.00</span></div>
+        </div>
+
+        <div class="text-xs text-white/55 mb-5" id="o-renew-note">—</div>
+
+        <button id="payNow" class="block w-full text-center px-5 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-purple-600 text-white font-bold hover:opacity-90 transition" data-en="Confirm payment" data-th="ยืนยันชำระเงิน">Confirm payment</button>
+        <p class="text-[11px] text-white/40 text-center mt-3"><span data-en="Powered by" data-th="ดำเนินการชำระเงินผ่าน">Powered by</span> <span class="text-white/60 font-semibold">Omise · 2C2P · PromptPay</span></p>
+        <p class="text-[11px] text-white/40 text-center mt-1"><a href="signup.html" class="underline" data-en="← Back to account" data-th="← กลับไปข้อมูลบัญชี">← Back to account</a></p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Success modal (hidden by default) -->
+  <div id="successModal" class="fixed inset-0 bg-ink-900/80 backdrop-blur-sm flex items-center justify-center p-6 hidden z-50">
+    <div class="bg-gradient-to-br from-brand-600 to-purple-700 rounded-3xl p-10 max-w-md text-center ring-glow">
+      <div class="w-16 h-16 mx-auto rounded-full bg-white/20 flex items-center justify-center mb-5 text-3xl">✓</div>
+      <h2 class="text-2xl font-extrabold mb-2" data-en="Payment received!" data-th="รับเงินแล้ว!">Payment received!</h2>
+      <p class="text-white/80 text-sm mb-2" id="success-line"></p>
+      <p class="text-white/60 text-xs mb-6" id="success-note"></p>
+      <a href="app.html" class="inline-block bg-white text-brand-700 px-6 py-3 rounded-xl font-bold" data-en="Open the app →" data-th="เปิดแอป →">Open the app →</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ─── Build a decorative QR-like grid (visual only) ──────────────────
+  (function(){
+    const grid = document.getElementById('qrGrid');
+    const N = 25;
+    // Pseudo-random deterministic pattern for visual stability
+    let seed = 1337;
+    function rand(){ seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    for (let y=0; y<N; y++){
+      for (let x=0; x<N; x++){
+        const d = document.createElement('div');
+        const isFinder = (x<7 && y<7) || (x>=N-7 && y<7) || (x<7 && y>=N-7);
+        let on;
+        if (isFinder) {
+          const fx = x<7 ? x : x-(N-7);
+          const fy = y<7 ? y : y-(N-7);
+          on = (fx===0||fx===6||fy===0||fy===6) || (fx>=2 && fx<=4 && fy>=2 && fy<=4);
+        } else {
+          on = rand() > 0.5;
+        }
+        if (!on) d.classList.add('w');
+        grid.appendChild(d);
+      }
+    }
+  })();
+
+  // ─── Order summary from query string ────────────────────────────────
+  (function(){
+    const params = new URLSearchParams(location.search);
+    const plan = (params.get('plan') || 'basic').toLowerCase();
+    const cycle = (params.get('cycle') || 'monthly').toLowerCase();
+    const prices = {
+      basic: { monthly: 10000, annual: 100000 },
+      advanced: { monthly: 30000, annual: 300000 }
+    };
+    if (!prices[plan]) { location.href = 'pricing.html'; return; }
+    const total = prices[plan][cycle] || prices.basic.monthly;
+    const vat = Math.round(total * 0.07);
+    const grand = total + vat;
+    const planLabel = { basic: 'Basic', advanced: 'Advanced' }[plan];
+    const fmt = n => '฿' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const fmtSimple = n => '฿' + n.toLocaleString();
+
+    document.getElementById('o-plan').textContent = planLabel;
+    document.getElementById('o-price').textContent = fmtSimple(total);
+    document.getElementById('o-subtotal').textContent = fmt(total);
+    document.getElementById('o-vat').textContent = fmt(vat);
+    document.getElementById('o-total').textContent = fmt(grand);
+    document.getElementById('qr-amount').textContent = fmt(grand);
+    const refStr = 'SFP-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + String(Math.floor(Math.random()*100000)).padStart(5,'0');
+    document.getElementById('qr-ref').textContent = refStr;
+    document.getElementById('qr-ref-manual').textContent = refStr;
+
+    function updateLocaleLabels(){
+      const lang = document.documentElement.getAttribute('data-lang') || 'en';
+      document.getElementById('o-cycle').textContent = cycle === 'annual'
+        ? (lang === 'th' ? 'รายปี' : 'Annual')
+        : (lang === 'th' ? 'รายเดือน' : 'Monthly');
+      document.getElementById('o-per').textContent = cycle === 'annual'
+        ? (lang === 'th' ? '/ปี' : '/year')
+        : (lang === 'th' ? '/เดือน' : '/month');
+      const d = new Date();
+      cycle === 'annual' ? d.setFullYear(d.getFullYear()+1) : d.setMonth(d.getMonth()+1);
+      const dateStr = d.toLocaleDateString(lang === 'th' ? 'th-TH' : 'en-GB', { day:'numeric', month:'short', year:'numeric' });
+      document.getElementById('o-renew-note').textContent = (lang === 'th'
+        ? 'จะต่ออายุอัตโนมัติวันที่ ' + dateStr + ' · ยกเลิกได้ตลอดที่ Settings → Billing'
+        : 'Auto-renews on ' + dateStr + '. Cancel anytime in Settings → Billing.');
+    }
+    updateLocaleLabels();
+    document.addEventListener('langchange', updateLocaleLabels);
+
+    // ─── Tab switching ─────────────────────────────────────────────
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(x => x.classList.toggle('active', x===b));
+        document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + b.dataset.tab));
+      });
+    });
+
+    // ─── Card input formatting ─────────────────────────────────────
+    const cc = document.getElementById('cc-num');
+    cc.addEventListener('input', () => {
+      let v = cc.value.replace(/\D/g,'').slice(0,19);
+      cc.value = v.replace(/(.{4})/g,'$1 ').trim();
+    });
+    const exp = document.getElementById('cc-exp');
+    exp.addEventListener('input', () => {
+      let v = exp.value.replace(/\D/g,'').slice(0,4);
+      exp.value = v.length >= 3 ? v.slice(0,2) + ' / ' + v.slice(2) : v;
+    });
+
+    // ─── QR countdown ──────────────────────────────────────────────
+    let secs = 15*60;
+    const timerEl = document.getElementById('qr-timer');
+    setInterval(() => {
+      if (secs <= 0) return;
+      secs--;
+      const m = Math.floor(secs/60).toString().padStart(2,'0');
+      const s = (secs%60).toString().padStart(2,'0');
+      timerEl.textContent = m + ':' + s;
+    }, 1000);
+
+    // ─── Confirm payment (mock) ────────────────────────────────────
+    document.getElementById('payNow').addEventListener('click', () => {
+      const lang = document.documentElement.getAttribute('data-lang') || 'en';
+      const modal = document.getElementById('successModal');
+      document.getElementById('success-line').textContent = lang === 'th'
+        ? planLabel + ' · ' + (cycle==='annual'?'รายปี':'รายเดือน') + ' · ' + fmt(grand)
+        : planLabel + ' · ' + (cycle==='annual'?'annual':'monthly') + ' · ' + fmt(grand);
+      document.getElementById('success-note').textContent = lang === 'th'
+        ? 'ใบเสร็จและใบกำกับภาษีจะส่งทาง email ภายใน 1 วันทำการ'
+        : 'Receipt and tax invoice will be emailed within 1 business day.';
+      modal.classList.remove('hidden');
+    });
+  })();
+</script>
+<script src="assets/i18n.js"></script>
+</body>
+</html>

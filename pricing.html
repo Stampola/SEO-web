@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pricing · SearchFit Pro — Free, Basic ฿10,000, Advanced ฿30,000</title>
+<meta name="description" data-en="Self-serve SEO platform. Free tier, Basic ฿10,000/mo, Advanced ฿30,000/mo. Save 17% on annual." data-th="SaaS ทำ SEO เอง · มีแพ็กเกจฟรี · Basic ฿10,000/เดือน · Advanced ฿30,000/เดือน · จ่ายรายปีประหยัด 17%" content="Self-serve SEO platform. Free tier, Basic ฿10,000/mo, Advanced ฿30,000/mo. Save 17% on annual." />
+
+<!-- Canonical + hreflang -->
+<link rel="canonical" href="https://example.com/pricing.html" />
+<link rel="alternate" hreflang="en" href="https://example.com/pricing.html" />
+<link rel="alternate" hreflang="th" href="https://example.com/pricing.html?lang=th" />
+<link rel="alternate" hreflang="x-default" href="https://example.com/pricing.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SearchFit Pro" />
+<meta property="og:title" content="Pricing — SearchFit Pro · Free / Basic ฿10,000 / Advanced ฿30,000" />
+<meta property="og:description" content="Self-serve SEO SaaS. Free forever tier. Basic and Advanced billed monthly or annually (17% off)." />
+<meta property="og:url" content="https://example.com/pricing.html" />
+<meta property="og:image" content="https://example.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="SearchFit Pro — Pricing" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="th_TH" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pricing — SearchFit Pro" />
+<meta name="twitter:description" content="Free · Basic ฿10,000/mo · Advanced ฿30,000/mo · Annual saves 17%." />
+<meta name="twitter:image" content="https://example.com/og-image.png" />
+
+<!-- Icons + PWA -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#6366f1" />
+
+<!-- JSON-LD: Product/Offer for each plan -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "SearchFit Pro",
+  "description": "Self-serve SEO platform for SMBs and small agencies — audits, AI Visibility, schema, rank tracking, reports.",
+  "brand": { "@type": "Brand", "name": "SearchFit Pro" },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Free",
+      "price": "0",
+      "priceCurrency": "THB",
+      "url": "https://example.com/pricing.html#free",
+      "availability": "https://schema.org/InStock",
+      "description": "1 website, 5 keywords, monthly homepage audit, basic schema generator. Forever free."
+    },
+    {
+      "@type": "Offer",
+      "name": "Basic (monthly)",
+      "price": "10000",
+      "priceCurrency": "THB",
+      "url": "https://example.com/pricing.html#basic",
+      "availability": "https://schema.org/InStock",
+      "description": "3 websites, 50 keywords, weekly site-wide audit, AI Visibility 15 prompts, rank tracker + 2 competitors, monthly PDF report."
+    },
+    {
+      "@type": "Offer",
+      "name": "Basic (annual)",
+      "price": "100000",
+      "priceCurrency": "THB",
+      "url": "https://example.com/pricing.html#basic",
+      "availability": "https://schema.org/InStock",
+      "description": "Basic billed annually — save 17% (฿20,000 off)."
+    },
+    {
+      "@type": "Offer",
+      "name": "Advanced (monthly)",
+      "price": "30000",
+      "priceCurrency": "THB",
+      "url": "https://example.com/pricing.html#advanced",
+      "availability": "https://schema.org/InStock",
+      "description": "Unlimited websites, 200 keywords, daily audits, AI Visibility 50 prompts weekly, Local Grid, Programmatic SEO, white-label client portal."
+    },
+    {
+      "@type": "Offer",
+      "name": "Advanced (annual)",
+      "price": "300000",
+      "priceCurrency": "THB",
+      "url": "https://example.com/pricing.html#advanced",
+      "availability": "https://schema.org/InStock",
+      "description": "Advanced billed annually — save 17% (฿60,000 off)."
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Pricing", "item": "https://example.com/pricing.html" }
+  ]
+}
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: { 950:'#030712', 900:'#0b1220', 800:'#1f2937', 700:'#374151', 500:'#6b7280', 400:'#9ca3af', 300:'#d1d5db', 200:'#e5e7eb', 100:'#f3f4f6', 50:'#f9fafb' },
+          brand: { 50:'#eef2ff', 100:'#e0e7ff', 200:'#c7d2fe', 300:'#a5b4fc', 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca', 800:'#3730a3', 900:'#312e81' },
+          accent: { 400:'#fb923c', 500:'#f97316', 600:'#ea580c' },
+        }
+      }
+    }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Plus Jakarta Sans', 'Inter', 'Noto Sans Thai', ui-sans-serif, sans-serif; }
+  html[data-lang="th"] * { font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', 'Inter', ui-sans-serif, sans-serif; }
+  body {
+    background:
+      radial-gradient(at 18% 22%, rgba(99,102,241,0.22) 0px, transparent 50%),
+      radial-gradient(at 82% 8%, rgba(249,115,22,0.16) 0px, transparent 50%),
+      radial-gradient(at 70% 78%, rgba(168,85,247,0.22) 0px, transparent 50%),
+      #07091a;
+    min-height: 100vh;
+  }
+  .text-gradient { background: linear-gradient(135deg,#818cf8 0%,#c084fc 45%,#fb923c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+  .ring-glow { box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 20px 40px -16px rgba(99,102,241,.5); }
+  .plan-pop { transform: translateY(-8px); }
+  /* billing toggle */
+  .billing-toggle { position: relative; display: inline-flex; padding: 4px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: 999px; }
+  .billing-toggle button { position: relative; z-index: 2; padding: 8px 18px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.7); border-radius: 999px; transition: color .2s; }
+  .billing-toggle button.active { color: #0b1220; }
+  .billing-toggle .pill { position: absolute; top: 4px; bottom: 4px; background: #ffffff; border-radius: 999px; transition: left .25s ease, width .25s ease; z-index: 1; }
+</style>
+</head>
+<body class="text-white">
+
+<div class="max-w-7xl mx-auto px-6 py-10">
+
+  <!-- Top bar -->
+  <header class="flex items-center justify-between mb-12">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center shadow-2xl ring-glow">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+      </div>
+      <div>
+        <div class="font-extrabold text-xl tracking-tight">SearchFit <span class="text-brand-300">Pro</span></div>
+        <div class="text-[11px] text-white/55" data-en="Do-it-yourself SEO platform" data-th="ทำ SEO เอง · SaaS">Do-it-yourself SEO platform</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-1 text-sm">
+      <a href="preview.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Preview" data-th="พรีวิว">Preview</a>
+      <a href="tools.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Tools" data-th="เครื่องมือ">Tools</a>
+      <a href="pricing.html" class="px-3 py-2 rounded-lg text-white font-semibold bg-white/10" data-en="Pricing" data-th="ราคา">Pricing</a>
+      <a href="help.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Help" data-th="ช่วยเหลือ">Help</a>
+      <a href="app.html" class="px-3 py-2 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition" data-en="Sign in" data-th="เข้าสู่ระบบ">Sign in</a>
+      <a href="signup.html?plan=basic" class="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-brand-500 to-purple-600 text-white font-semibold hover:opacity-90 transition" data-en="Start free" data-th="เริ่มฟรี">Start free</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="text-center mb-10 pt-4">
+    <div class="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-semibold mb-6">
+      <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+      <span data-en="Self-serve SaaS · cancel anytime" data-th="สมัครเองได้ · ยกเลิกได้ตลอด">Self-serve SaaS · cancel anytime</span>
+    </div>
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5"
+        data-en-html='Start free. <span class="text-gradient">Pay only when it works.</span>'
+        data-th-html='เริ่มฟรี <span class="text-gradient">จ่ายเมื่อใช้จริง</span>'>
+      Start free. <span class="text-gradient">Pay only when it works.</span>
+    </h1>
+    <p class="text-lg text-white/70 max-w-2xl mx-auto mb-8"
+       data-en="For business owners, marketers, and small agencies. Real working tools — not just dashboards."
+       data-th="สำหรับเจ้าของธุรกิจ, marketer, และ agency เล็กๆ · เครื่องมือใช้งานได้จริง ไม่ใช่แค่ dashboard สวยๆ">
+      For business owners, marketers, and small agencies. Real working tools — not just dashboards.
+    </p>
+
+    <!-- Billing toggle -->
+    <div class="inline-flex items-center gap-3">
+      <div id="billingToggle" class="billing-toggle" role="tablist">
+        <div class="pill" id="billingPill" style="left:4px; width:96px"></div>
+        <button type="button" class="active" data-cycle="monthly" data-en="Monthly" data-th="รายเดือน">Monthly</button>
+        <button type="button" data-cycle="annual" data-en="Annual · save 17%" data-th="รายปี · ประหยัด 17%">Annual · save 17%</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 plan grid -->
+  <section class="grid md:grid-cols-3 gap-6 mb-14 mt-6">
+
+    <!-- FREE -->
+    <div id="free" class="glass rounded-3xl p-7 flex flex-col">
+      <div class="text-2xl mb-3">🎁</div>
+      <h2 class="text-xl font-extrabold mb-1" data-en="Free" data-th="ฟรี">Free</h2>
+      <p class="text-xs text-white/60 mb-5" data-en="Try the platform — forever" data-th="ลองใช้งาน · ฟรีตลอด">Try the platform — forever</p>
+      <div class="mb-5">
+        <span class="text-4xl font-extrabold">฿0</span>
+        <span class="text-sm text-white/60" data-en="/forever" data-th="/ตลอดไป">/forever</span>
+      </div>
+      <ul class="text-sm text-white/80 space-y-2 mb-6 flex-1">
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="1 website" data-th="1 เว็บไซต์">1 website</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="5 tracked keywords" data-th="ติดตาม 5 keyword">5 tracked keywords</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="SEO Audit (homepage · monthly)" data-th="SEO Audit (หน้าแรก · รายเดือน)">SEO Audit (homepage · monthly)</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Schema Generator · 3 types" data-th="Schema Generator · 3 ประเภท">Schema Generator · 3 types</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="AI Visibility preview · 1 engine · 3 prompts" data-th="AI Visibility ตัวอย่าง · 1 engine · 3 prompts">AI Visibility preview · 1 engine · 3 prompts</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Help Center + community support" data-th="Help Center + community support">Help Center + community support</span></li>
+        <li class="flex gap-2 text-white/50"><span>—</span> <span data-en="No reports / no white-label" data-th="ยังไม่มี report / white-label">No reports / no white-label</span></li>
+      </ul>
+      <a href="signup.html?plan=free" class="block text-center px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 font-semibold transition" data-en="Sign up free" data-th="สมัครฟรี">Sign up free</a>
+      <p class="text-[11px] text-white/40 text-center mt-2" data-en="No credit card required" data-th="ไม่ต้องใส่บัตรเครดิต">No credit card required</p>
+    </div>
+
+    <!-- BASIC (highlighted) -->
+    <div id="basic" class="bg-gradient-to-br from-brand-600 to-purple-700 rounded-3xl p-7 flex flex-col ring-glow plan-pop relative">
+      <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-500 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full" data-en="Most popular" data-th="ขายดีที่สุด">Most popular</span>
+      <div class="text-2xl mb-3">⚡</div>
+      <h2 class="text-xl font-extrabold mb-1">Basic</h2>
+      <p class="text-xs text-white/85 mb-5" data-en="SMBs, freelance marketers" data-th="SMB, marketer สาย freelance">SMBs, freelance marketers</p>
+      <div class="mb-1">
+        <span class="text-4xl font-extrabold price-amount" data-monthly="฿10,000" data-annual="฿8,333">฿10,000</span>
+        <span class="text-sm text-white/80" data-en="/month" data-th="/เดือน">/month</span>
+      </div>
+      <p class="text-[11px] text-white/70 mb-5 billing-note" data-monthly-en="Billed monthly · cancel anytime" data-monthly-th="เก็บรายเดือน · ยกเลิกได้ตลอด" data-annual-en="Billed annually as ฿100,000 · save ฿20,000" data-annual-th="เก็บรายปี ฿100,000 · ประหยัด ฿20,000">Billed monthly · cancel anytime</p>
+      <ul class="text-sm text-white/90 space-y-2 mb-6 flex-1">
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="3 websites" data-th="3 เว็บไซต์">3 websites</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="50 tracked keywords" data-th="ติดตาม 50 keyword">50 tracked keywords</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="SEO Audit full site · weekly" data-th="SEO Audit ทั่วเว็บ · รายสัปดาห์">SEO Audit full site · weekly</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="Schema Generator · 10 types" data-th="Schema Generator · 10 ประเภท">Schema Generator · 10 types</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="AI Visibility · 5 engines · 15 prompts" data-th="AI Visibility · 5 engines · 15 prompts">AI Visibility · 5 engines · 15 prompts</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="Rank Tracker + 2 competitors" data-th="Rank Tracker + 2 competitors">Rank Tracker + 2 competitors</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="Backlinks Monitor" data-th="Backlinks Monitor">Backlinks Monitor</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="Monthly PDF report" data-th="Monthly PDF report">Monthly PDF report</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="Client portal · 2 viewers" data-th="Client portal · 2 viewer">Client portal · 2 viewers</span></li>
+        <li class="flex gap-2"><span class="text-emerald-300">✓</span> <span data-en="Email / LINE support · 24h" data-th="Email/LINE support · 24 ชม.">Email / LINE support · 24h</span></li>
+      </ul>
+      <a id="cta-basic" href="signup.html?plan=basic&cycle=monthly" class="block text-center px-5 py-3 rounded-xl bg-white text-brand-700 font-bold hover:scale-[1.02] transition shadow-xl" data-en="Get Basic" data-th="เริ่ม Basic">Get Basic</a>
+      <p class="text-[11px] text-white/70 text-center mt-2" data-en="7-day free trial · no card required" data-th="ทดลองฟรี 7 วัน · ไม่ต้องใส่บัตร">7-day free trial · no card required</p>
+    </div>
+
+    <!-- ADVANCED -->
+    <div id="advanced" class="glass rounded-3xl p-7 flex flex-col border border-white/15">
+      <div class="text-2xl mb-3">🚀</div>
+      <h2 class="text-xl font-extrabold mb-1">Advanced</h2>
+      <p class="text-xs text-white/60 mb-5" data-en="Small agencies, e-commerce teams" data-th="agency เล็ก, ทีม e-commerce">Small agencies, e-commerce teams</p>
+      <div class="mb-1">
+        <span class="text-4xl font-extrabold price-amount" data-monthly="฿30,000" data-annual="฿25,000">฿30,000</span>
+        <span class="text-sm text-white/60" data-en="/month" data-th="/เดือน">/month</span>
+      </div>
+      <p class="text-[11px] text-white/55 mb-5 billing-note" data-monthly-en="Billed monthly · cancel anytime" data-monthly-th="เก็บรายเดือน · ยกเลิกได้ตลอด" data-annual-en="Billed annually as ฿300,000 · save ฿60,000" data-annual-th="เก็บรายปี ฿300,000 · ประหยัด ฿60,000">Billed monthly · cancel anytime</p>
+      <ul class="text-sm text-white/80 space-y-2 mb-6 flex-1">
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span class="font-semibold" data-en="Everything in Basic, plus:" data-th="ทุกอย่างใน Basic เพิ่มเติม:">Everything in Basic, plus:</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Unlimited websites" data-th="เว็บไซต์ไม่จำกัด">Unlimited websites</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="200 tracked keywords" data-th="ติดตาม 200 keyword">200 tracked keywords</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="SEO Audit · daily rescan" data-th="SEO Audit · re-scan ทุกวัน">SEO Audit · daily rescan</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="AI Visibility · 50 prompts · weekly" data-th="AI Visibility · 50 prompts · รายสัปดาห์">AI Visibility · 50 prompts · weekly</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Rank Tracker + 5 competitors" data-th="Rank Tracker + 5 competitors">Rank Tracker + 5 competitors</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Local Grid scanner (up to 13×13)" data-th="Local Grid (สูงสุด 13×13)">Local Grid scanner (up to 13×13)</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Programmatic SEO builder · unlimited" data-th="Programmatic SEO builder · ไม่จำกัด">Programmatic SEO builder · unlimited</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Automation Builder (20+ recipes)" data-th="Automation Builder (20+ recipes)">Automation Builder (20+ recipes)</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="White-label client portal + custom domain" data-th="White-label client portal + custom domain">White-label client portal + custom domain</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Slack / LINE integrations" data-th="Slack / LINE integrations">Slack / LINE integrations</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="API access" data-th="API access">API access</span></li>
+        <li class="flex gap-2"><span class="text-emerald-400">✓</span> <span data-en="Priority support · 4h" data-th="Priority support · 4 ชม.">Priority support · 4h</span></li>
+      </ul>
+      <a id="cta-advanced" href="signup.html?plan=advanced&cycle=monthly" class="block text-center px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 font-semibold transition" data-en="Get Advanced" data-th="เริ่ม Advanced">Get Advanced</a>
+      <p class="text-[11px] text-white/55 text-center mt-2" data-en="7-day free trial · no card required" data-th="ทดลองฟรี 7 วัน · ไม่ต้องใส่บัตร">7-day free trial · no card required</p>
+    </div>
+
+  </section>
+
+  <!-- Value strip -->
+  <section class="glass rounded-3xl p-8 mb-12">
+    <h2 class="text-2xl font-extrabold mb-2 text-center" data-en="What you actually get for your money" data-th="คุณได้อะไรจริงจากเงินที่จ่าย">What you actually get for your money</h2>
+    <p class="text-sm text-white/60 text-center mb-8" data-en="Every feature listed runs in your browser today — no &quot;coming soon&quot;." data-th="ทุก feature ที่ listed อยู่ใช้งานได้ในเบราว์เซอร์วันนี้ ไม่มี &quot;coming soon&quot;">Every feature listed runs in your browser today — no "coming soon".</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="rounded-2xl bg-white/5 p-5 border border-white/10">
+        <div class="text-2xl mb-2">⚡</div>
+        <div class="font-bold text-sm mb-1" data-en="Live SEO Audit" data-th="SEO Audit สด">Live SEO Audit</div>
+        <div class="text-xs text-white/60" data-en="Drop in any URL → 16-point report in under 30 seconds." data-th="ใส่ URL → ออก report 16 จุดใน 30 วินาที">Drop in any URL → 16-point report in under 30 seconds.</div>
+      </div>
+      <div class="rounded-2xl bg-white/5 p-5 border border-white/10">
+        <div class="text-2xl mb-2">🤖</div>
+        <div class="font-bold text-sm mb-1">AI Visibility</div>
+        <div class="text-xs text-white/60" data-en="Track when ChatGPT, Claude, Gemini, Perplexity mention you." data-th="ติดตามว่า ChatGPT, Claude, Gemini, Perplexity พูดถึงคุณเมื่อไหร่">Track when ChatGPT, Claude, Gemini, Perplexity mention you.</div>
+      </div>
+      <div class="rounded-2xl bg-white/5 p-5 border border-white/10">
+        <div class="text-2xl mb-2">📊</div>
+        <div class="font-bold text-sm mb-1" data-en="Monthly reports" data-th="Report รายเดือน">Monthly reports</div>
+        <div class="text-xs text-white/60" data-en="Auto-generated PDF + live link you can send your client/boss." data-th="PDF อัตโนมัติ + live link ส่งลูกค้า/หัวหน้าได้เลย">Auto-generated PDF + live link you can send your client/boss.</div>
+      </div>
+      <div class="rounded-2xl bg-white/5 p-5 border border-white/10">
+        <div class="text-2xl mb-2">🎨</div>
+        <div class="font-bold text-sm mb-1" data-en="White-label (Advanced)" data-th="White-label (Advanced)">White-label (Advanced)</div>
+        <div class="text-xs text-white/60" data-en="Your logo, your domain. Clients never see SearchFit branding." data-th="โลโก้คุณ, domain คุณ · ลูกค้าไม่เห็นแบรนด์ SearchFit">Your logo, your domain. Clients never see SearchFit branding.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="glass rounded-3xl p-8 mb-12 overflow-x-auto">
+    <h2 class="text-2xl font-extrabold mb-6" data-en="Compare plans" data-th="เปรียบเทียบแพ็กเกจ">Compare plans</h2>
+    <table class="w-full text-sm min-w-[600px]">
+      <thead>
+        <tr class="text-white/60 text-xs uppercase tracking-wider">
+          <th class="text-left font-semibold py-2" data-en="Feature" data-th="Feature">Feature</th>
+          <th class="text-center font-semibold py-2" data-en="Free" data-th="Free">Free</th>
+          <th class="text-center font-semibold py-2 text-brand-300">Basic</th>
+          <th class="text-center font-semibold py-2">Advanced</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-white/10">
+        <tr><td class="py-3" data-en="Websites" data-th="เว็บไซต์">Websites</td><td class="text-center">1</td><td class="text-center text-brand-300">3</td><td class="text-center" data-en="Unlimited" data-th="ไม่จำกัด">Unlimited</td></tr>
+        <tr><td class="py-3" data-en="Tracked keywords" data-th="Keyword">Tracked keywords</td><td class="text-center">5</td><td class="text-center text-brand-300">50</td><td class="text-center">200</td></tr>
+        <tr><td class="py-3" data-en="SEO Audit rescan" data-th="SEO Audit re-scan">SEO Audit rescan</td><td class="text-center" data-en="Monthly · homepage" data-th="รายเดือน · หน้าแรก">Monthly · homepage</td><td class="text-center text-brand-300" data-en="Weekly · full site" data-th="รายสัปดาห์ · ทั่วเว็บ">Weekly · full site</td><td class="text-center" data-en="Daily · full site" data-th="รายวัน · ทั่วเว็บ">Daily · full site</td></tr>
+        <tr><td class="py-3">Schema Generator</td><td class="text-center" data-en="3 types" data-th="3 ประเภท">3 types</td><td class="text-center text-brand-300" data-en="10 types" data-th="10 ประเภท">10 types</td><td class="text-center" data-en="10 + custom" data-th="10 + custom">10 + custom</td></tr>
+        <tr><td class="py-3">AI Visibility</td><td class="text-center">3 prompts · 1 engine</td><td class="text-center text-brand-300">15 prompts · 5 engines</td><td class="text-center">50 prompts · weekly</td></tr>
+        <tr><td class="py-3">Rank Tracker</td><td class="text-center text-white/30">—</td><td class="text-center text-brand-300" data-en="+ 2 competitors" data-th="+ 2 competitors">+ 2 competitors</td><td class="text-center" data-en="+ 5 competitors" data-th="+ 5 competitors">+ 5 competitors</td></tr>
+        <tr><td class="py-3">Backlinks Monitor</td><td class="text-center text-white/30">—</td><td class="text-center text-brand-300">✓</td><td class="text-center" data-en="✓ + outreach" data-th="✓ + outreach">✓ + outreach</td></tr>
+        <tr><td class="py-3">Local Grid</td><td class="text-center text-white/30">—</td><td class="text-center text-white/30">—</td><td class="text-center">up to 13×13</td></tr>
+        <tr><td class="py-3">Programmatic SEO</td><td class="text-center text-white/30">—</td><td class="text-center text-white/30">—</td><td class="text-center" data-en="Unlimited" data-th="ไม่จำกัด">Unlimited</td></tr>
+        <tr><td class="py-3">Automations</td><td class="text-center text-white/30">—</td><td class="text-center text-white/30">—</td><td class="text-center">20+ recipes</td></tr>
+        <tr><td class="py-3" data-en="Reports" data-th="Report">Reports</td><td class="text-center text-white/30">—</td><td class="text-center text-brand-300" data-en="Monthly PDF" data-th="PDF รายเดือน">Monthly PDF</td><td class="text-center" data-en="Auto + live portal" data-th="Auto + live portal">Auto + live portal</td></tr>
+        <tr><td class="py-3">White-label</td><td class="text-center text-white/30">—</td><td class="text-center text-white/30">—</td><td class="text-center">✓</td></tr>
+        <tr><td class="py-3">API access</td><td class="text-center text-white/30">—</td><td class="text-center text-white/30">—</td><td class="text-center">✓</td></tr>
+        <tr><td class="py-3" data-en="Support SLA" data-th="Support SLA">Support SLA</td><td class="text-center" data-en="Community" data-th="Community">Community</td><td class="text-center text-brand-300">24h</td><td class="text-center">4h priority</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Payment methods strip -->
+  <section class="glass rounded-3xl p-8 mb-12 text-center">
+    <h2 class="text-xl font-extrabold mb-3" data-en="Payment methods" data-th="วิธีการชำระเงิน">Payment methods</h2>
+    <p class="text-sm text-white/60 mb-6" data-en="Pay via Thai bank QR (PromptPay) or international credit card." data-th="จ่ายผ่าน QR ธนาคารไทย (PromptPay) หรือบัตรเครดิตต่างประเทศ">Pay via Thai bank QR (PromptPay) or international credit card.</p>
+    <div class="flex flex-wrap items-center justify-center gap-6 text-white/70 text-sm">
+      <div class="flex items-center gap-2"><span class="text-2xl">📱</span> <span data-en="QR PromptPay" data-th="QR PromptPay">QR PromptPay</span></div>
+      <div class="flex items-center gap-2"><span class="text-2xl">💳</span> <span data-en="Visa / Mastercard / JCB" data-th="Visa / Mastercard / JCB">Visa / Mastercard / JCB</span></div>
+      <div class="flex items-center gap-2"><span class="text-2xl">🧾</span> <span data-en="Tax invoice via FlowAccount" data-th="ออกใบกำกับภาษีผ่าน FlowAccount">Tax invoice via FlowAccount</span></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="glass rounded-3xl p-8 mb-12">
+    <h2 class="text-2xl font-extrabold mb-6" data-en="Frequently asked" data-th="คำถามที่พบบ่อย">Frequently asked</h2>
+    <div class="space-y-3">
+      <details class="bg-white/5 rounded-xl p-5">
+        <summary class="font-semibold cursor-pointer" data-en="Can I switch plans?" data-th="สลับแพ็กเกจได้ไหม?">Can I switch plans?</summary>
+        <p class="text-sm text-white/70 mt-3" data-en="Yes. Upgrade or downgrade any time — billing is pro-rated. Annual switches refund the unused portion." data-th="ได้ · upgrade/downgrade ได้ตลอด · เก็บแบบ pro-rate · ถ้าเป็นรายปีจะคืนส่วนที่เหลือ">Yes. Upgrade or downgrade any time — billing is pro-rated. Annual switches refund the unused portion.</p>
+      </details>
+      <details class="bg-white/5 rounded-xl p-5">
+        <summary class="font-semibold cursor-pointer" data-en="What happens after the 7-day trial?" data-th="หมด 7 วันแล้วเกิดอะไรขึ้น?">What happens after the 7-day trial?</summary>
+        <p class="text-sm text-white/70 mt-3" data-en="If you don't enter payment, the account drops to the Free plan. No charge, no surprise." data-th="ถ้ายังไม่ใส่ payment account จะถูกลดเป็น Free อัตโนมัติ · ไม่มีการเก็บเงินแบบเซอร์ไพรส์">If you don't enter payment, the account drops to the Free plan. No charge, no surprise.</p>
+      </details>
+      <details class="bg-white/5 rounded-xl p-5">
+        <summary class="font-semibold cursor-pointer" data-en="Do you issue Thai tax invoices?" data-th="ออกใบกำกับภาษีไทยได้ไหม?">Do you issue Thai tax invoices?</summary>
+        <p class="text-sm text-white/70 mt-3" data-en="Yes — full Thai tax invoice (ใบกำกับภาษี) via FlowAccount, with your company name and tax ID." data-th="ออกใบกำกับภาษีเต็มรูปแบบผ่าน FlowAccount · พร้อมชื่อบริษัทและเลขผู้เสียภาษี">Yes — full Thai tax invoice (ใบกำกับภาษี) via FlowAccount, with your company name and tax ID.</p>
+      </details>
+      <details class="bg-white/5 rounded-xl p-5">
+        <summary class="font-semibold cursor-pointer" data-en="Will my data be deleted if I cancel?" data-th="ถ้ายกเลิก ข้อมูลจะถูกลบไหม?">Will my data be deleted if I cancel?</summary>
+        <p class="text-sm text-white/70 mt-3" data-en="No — your data stays for 90 days. Export reports, keyword history, and audits as CSV/PDF/JSON at any time." data-th="ไม่ · ข้อมูลอยู่ 90 วัน · export report, keyword history, audit เป็น CSV/PDF/JSON ได้ตลอด">No — your data stays for 90 days. Export reports, keyword history, and audits as CSV/PDF/JSON at any time.</p>
+      </details>
+      <details class="bg-white/5 rounded-xl p-5">
+        <summary class="font-semibold cursor-pointer" data-en="Is there an Enterprise plan?" data-th="มีแพ็กเกจ Enterprise ไหม?">Is there an Enterprise plan?</summary>
+        <p class="text-sm text-white/70 mt-3" data-en="Yes — for &gt; 1,000 keywords, multi-location, dedicated team, or custom integrations. Contact us." data-th="มี · ถ้ามากกว่า 1,000 keyword, หลายสาขา, dedicated team, หรือ custom integration · ติดต่อทีมขาย">Yes — for &gt; 1,000 keywords, multi-location, dedicated team, or custom integrations. Contact us.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-gradient-to-br from-brand-600 to-purple-700 rounded-3xl p-10 text-center mb-12">
+    <h2 class="text-3xl font-extrabold mb-3" data-en="Ready when you are." data-th="พร้อมเริ่มเมื่อไหร่ก็เริ่ม">Ready when you are.</h2>
+    <p class="text-white/80 mb-6 max-w-xl mx-auto" data-en="Sign up free — no card required. Upgrade only when SearchFit Pro pays for itself." data-th="สมัครฟรี · ไม่ต้องใส่บัตร · จะ upgrade เมื่อ SearchFit คุ้มค่ากับคุณแล้วก็ได้">Sign up free — no card required. Upgrade only when SearchFit Pro pays for itself.</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="signup.html?plan=free" class="bg-white text-brand-700 px-6 py-3 rounded-xl font-bold" data-en="Start free" data-th="เริ่มฟรี">Start free</a>
+      <a href="preview.html" class="bg-white/10 backdrop-blur border border-white/30 text-white px-6 py-3 rounded-xl font-bold" data-en="See it in action" data-th="ดูการใช้งานจริง">See it in action</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="text-center text-xs text-white/40 pt-8 border-t border-white/10">
+    <p>© 2026 SearchFit Pro · Pricing v2.0 · <span data-en="Prices in THB, VAT excluded" data-th="ราคาเป็น ฿ ยังไม่รวม VAT">Prices in THB, VAT excluded</span></p>
+  </div>
+
+</div>
+
+<script>
+  // Billing cycle toggle
+  (function(){
+    const toggle = document.getElementById('billingToggle');
+    const pill = document.getElementById('billingPill');
+    const btns = toggle.querySelectorAll('button');
+    const ctaBasic = document.getElementById('cta-basic');
+    const ctaAdvanced = document.getElementById('cta-advanced');
+    function movePill(activeBtn){
+      pill.style.left = activeBtn.offsetLeft + 'px';
+      pill.style.width = activeBtn.offsetWidth + 'px';
+    }
+    function setCycle(cycle){
+      btns.forEach(b => b.classList.toggle('active', b.dataset.cycle === cycle));
+      const activeBtn = toggle.querySelector('button.active');
+      movePill(activeBtn);
+      // Price + note
+      document.querySelectorAll('.price-amount').forEach(el => {
+        el.textContent = cycle === 'annual' ? el.dataset.annual : el.dataset.monthly;
+      });
+      const lang = document.documentElement.getAttribute('data-lang') || 'en';
+      document.querySelectorAll('.billing-note').forEach(el => {
+        el.textContent = el.getAttribute('data-' + cycle + '-' + lang);
+      });
+      // CTA hrefs
+      ctaBasic.href = 'signup.html?plan=basic&cycle=' + cycle;
+      ctaAdvanced.href = 'signup.html?plan=advanced&cycle=' + cycle;
+    }
+    toggle.addEventListener('click', e => {
+      const b = e.target.closest('button[data-cycle]');
+      if (!b) return;
+      setCycle(b.dataset.cycle);
+    });
+    window.addEventListener('load', () => setCycle('monthly'));
+    document.addEventListener('langchange', () => {
+      const active = toggle.querySelector('button.active');
+      if (active) setCycle(active.dataset.cycle);
+    });
+  })();
+</script>
+<script src="assets/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sign up · SearchFit Pro</title>
+<meta name="description" content="Create your SearchFit Pro account — pick a plan, enter your details, start in seconds." />
+<meta name="robots" content="noindex, follow" />
+
+<link rel="canonical" href="https://example.com/signup.html" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#6366f1" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: { colors: {
+      ink: { 900:'#0b1220', 700:'#1f2937', 500:'#6b7280', 300:'#d1d5db', 100:'#f3f4f6' },
+      brand: { 300:'#a5b4fc', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca' },
+      accent: { 500:'#f97316' }
+    } } }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', ui-sans-serif, sans-serif; }
+  html[data-lang="th"] * { font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', ui-sans-serif, sans-serif; }
+  body {
+    background:
+      radial-gradient(at 18% 22%, rgba(99,102,241,0.22) 0px, transparent 50%),
+      radial-gradient(at 82% 8%, rgba(168,85,247,0.18) 0px, transparent 50%),
+      #07091a;
+    min-height: 100vh;
+  }
+  .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+  .plan-card { cursor: pointer; transition: all .2s; }
+  .plan-card.selected { border-color: #818cf8; background: rgba(99,102,241,0.12); box-shadow: 0 0 0 1px rgba(129,140,248,.5); }
+  .plan-card .check { display: none; }
+  .plan-card.selected .check { display: flex; }
+  .field input, .field select { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 11px 14px; font-size: 14px; color: white; }
+  .field input::placeholder { color: rgba(255,255,255,0.35); }
+  .field input:focus, .field select:focus { outline: none; border-color: #818cf8; box-shadow: 0 0 0 3px rgba(99,102,241,0.25); }
+  .field label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); display: block; margin-bottom: 6px; }
+</style>
+</head>
+<body class="text-white">
+
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Brand -->
+  <a href="index.html" class="flex items-center gap-3 mb-10">
+    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center">
+      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+    </div>
+    <span class="font-extrabold text-lg">SearchFit <span class="text-brand-300">Pro</span></span>
+  </a>
+
+  <!-- Stepper -->
+  <ol class="flex items-center gap-2 text-xs text-white/60 mb-8">
+    <li class="flex items-center gap-2 text-white font-semibold"><span class="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center text-[11px]">1</span> <span data-en="Plan" data-th="แพ็กเกจ">Plan</span></li>
+    <li class="text-white/30">›</li>
+    <li class="flex items-center gap-2 text-white font-semibold"><span class="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center text-[11px]">2</span> <span data-en="Account" data-th="บัญชี">Account</span></li>
+    <li class="text-white/30">›</li>
+    <li class="flex items-center gap-2"><span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-[11px]">3</span> <span data-en="Payment" data-th="ชำระเงิน">Payment</span></li>
+  </ol>
+
+  <h1 class="text-3xl md:text-4xl font-extrabold mb-2" data-en="Create your account" data-th="สร้างบัญชี">Create your account</h1>
+  <p class="text-white/60 mb-10" data-en="Pick a plan and tell us about your business. You can change anything later." data-th="เลือกแพ็กเกจ + บอกเรื่องธุรกิจคุณ · เปลี่ยนได้ทุกเมื่อ">Pick a plan and tell us about your business. You can change anything later.</p>
+
+  <form id="signupForm" class="grid lg:grid-cols-5 gap-8">
+
+    <!-- LEFT: plan selector -->
+    <div class="lg:col-span-3 space-y-6">
+      <div>
+        <h2 class="font-bold mb-4" data-en="1. Choose your plan" data-th="1. เลือกแพ็กเกจ">1. Choose your plan</h2>
+        <div class="grid sm:grid-cols-3 gap-3">
+
+          <label class="plan-card glass rounded-2xl p-5 block" data-plan="free">
+            <input type="radio" name="plan" value="free" class="sr-only" />
+            <div class="flex justify-between items-start mb-3">
+              <div class="text-2xl">🎁</div>
+              <span class="check w-6 h-6 rounded-full bg-brand-500 items-center justify-center text-xs font-bold">✓</span>
+            </div>
+            <div class="font-bold text-sm" data-en="Free" data-th="ฟรี">Free</div>
+            <div class="text-2xl font-extrabold mt-2">฿0</div>
+            <div class="text-[11px] text-white/55 mt-1" data-en="Forever · no card" data-th="ตลอดไป · ไม่ต้องใส่บัตร">Forever · no card</div>
+          </label>
+
+          <label class="plan-card glass rounded-2xl p-5 block relative" data-plan="basic">
+            <input type="radio" name="plan" value="basic" class="sr-only" />
+            <span class="absolute -top-2 right-3 bg-accent-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" data-en="Popular" data-th="ฮิต">Popular</span>
+            <div class="flex justify-between items-start mb-3">
+              <div class="text-2xl">⚡</div>
+              <span class="check w-6 h-6 rounded-full bg-brand-500 items-center justify-center text-xs font-bold">✓</span>
+            </div>
+            <div class="font-bold text-sm">Basic</div>
+            <div class="text-2xl font-extrabold mt-2 price-display" data-monthly="฿10,000" data-annual="฿8,333">฿10,000</div>
+            <div class="text-[11px] text-white/55 mt-1 cycle-display" data-monthly-en="/month" data-monthly-th="/เดือน" data-annual-en="/mo · billed yearly" data-annual-th="/เดือน · เก็บรายปี">/month</div>
+          </label>
+
+          <label class="plan-card glass rounded-2xl p-5 block" data-plan="advanced">
+            <input type="radio" name="plan" value="advanced" class="sr-only" />
+            <div class="flex justify-between items-start mb-3">
+              <div class="text-2xl">🚀</div>
+              <span class="check w-6 h-6 rounded-full bg-brand-500 items-center justify-center text-xs font-bold">✓</span>
+            </div>
+            <div class="font-bold text-sm">Advanced</div>
+            <div class="text-2xl font-extrabold mt-2 price-display" data-monthly="฿30,000" data-annual="฿25,000">฿30,000</div>
+            <div class="text-[11px] text-white/55 mt-1 cycle-display" data-monthly-en="/month" data-monthly-th="/เดือน" data-annual-en="/mo · billed yearly" data-annual-th="/เดือน · เก็บรายปี">/month</div>
+          </label>
+
+        </div>
+
+        <!-- Billing cycle -->
+        <div class="mt-5 flex items-center gap-3 text-sm">
+          <span class="text-white/70" data-en="Billing cycle:" data-th="รอบบิล:">Billing cycle:</span>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="cycle" value="monthly" checked class="accent-brand-500" />
+            <span data-en="Monthly" data-th="รายเดือน">Monthly</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" name="cycle" value="annual" class="accent-brand-500" />
+            <span data-en="Annual · save 17%" data-th="รายปี · ประหยัด 17%">Annual · save 17%</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Account form -->
+      <div>
+        <h2 class="font-bold mb-4 mt-8" data-en="2. Your account" data-th="2. ข้อมูลบัญชี">2. Your account</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="field"><label for="company" data-en="Company / brand name" data-th="ชื่อบริษัท / แบรนด์">Company / brand name</label><input id="company" name="company" required data-placeholder-en="Acme Coffee Co." data-placeholder-th="Acme Coffee Co." placeholder="Acme Coffee Co." /></div>
+          <div class="field"><label for="website" data-en="Your website" data-th="เว็บไซต์">Your website</label><input id="website" name="website" type="url" required data-placeholder-en="https://yoursite.com" data-placeholder-th="https://yoursite.com" placeholder="https://yoursite.com" /></div>
+          <div class="field"><label for="name" data-en="Your name" data-th="ชื่อคุณ">Your name</label><input id="name" name="name" required data-placeholder-en="Stamp Sethakorn" data-placeholder-th="Stamp Sethakorn" placeholder="Stamp Sethakorn" /></div>
+          <div class="field"><label for="email" data-en="Email" data-th="อีเมล">Email</label><input id="email" name="email" type="email" required data-placeholder-en="you@company.com" data-placeholder-th="you@company.com" placeholder="you@company.com" /></div>
+          <div class="field"><label for="password" data-en="Password (min 8)" data-th="รหัสผ่าน (อย่างน้อย 8)">Password (min 8)</label><input id="password" name="password" type="password" minlength="8" required placeholder="••••••••" /></div>
+          <div class="field">
+            <label for="biztype" data-en="You are…" data-th="คุณคือ…">You are…</label>
+            <select id="biztype" name="biztype">
+              <option value="smb" data-en="SMB / brand owner" data-th="SMB / เจ้าของแบรนด์">SMB / brand owner</option>
+              <option value="marketer" data-en="In-house marketer" data-th="Marketer ในองค์กร">In-house marketer</option>
+              <option value="freelancer" data-en="Freelance / consultant" data-th="Freelance / ที่ปรึกษา">Freelance / consultant</option>
+              <option value="agency" data-en="Agency (small team)" data-th="Agency (ทีมเล็ก)">Agency (small team)</option>
+              <option value="ecom" data-en="E-commerce" data-th="E-commerce">E-commerce</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="flex items-start gap-2 mt-5 text-sm text-white/70">
+          <input type="checkbox" required class="mt-1 accent-brand-500" />
+          <span data-en-html='I agree to the <a href="#" class="text-brand-300 underline">Terms</a> and <a href="#" class="text-brand-300 underline">Privacy Policy</a>.' data-th-html='ฉันยอมรับ <a href="#" class="text-brand-300 underline">เงื่อนไขการใช้งาน</a> และ <a href="#" class="text-brand-300 underline">นโยบายความเป็นส่วนตัว</a>'>I agree to the <a href="#" class="text-brand-300 underline">Terms</a> and <a href="#" class="text-brand-300 underline">Privacy Policy</a>.</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- RIGHT: order summary -->
+    <aside class="lg:col-span-2">
+      <div class="glass rounded-2xl p-6 sticky top-6">
+        <div class="text-xs text-white/55 font-semibold uppercase tracking-wider mb-3" data-en="Order summary" data-th="สรุปการสั่งซื้อ">Order summary</div>
+        <div class="flex items-baseline justify-between mb-1">
+          <span class="font-bold text-lg" id="summary-plan-name">Basic</span>
+          <span class="text-sm text-white/60" id="summary-cycle" data-en="Monthly" data-th="รายเดือน">Monthly</span>
+        </div>
+        <div class="flex items-baseline justify-between mb-5">
+          <span class="text-3xl font-extrabold" id="summary-price">฿10,000</span>
+          <span class="text-sm text-white/60" id="summary-per" data-en="/month" data-th="/เดือน">/month</span>
+        </div>
+        <div class="text-xs text-white/60 mb-5 leading-relaxed" id="summary-note" data-en="7-day free trial · cancel anytime · no card required to start." data-th="ทดลองฟรี 7 วัน · ยกเลิกได้ตลอด · ไม่ต้องใส่บัตรตอนเริ่ม">7-day free trial · cancel anytime · no card required to start.</div>
+        <div class="border-t border-white/10 pt-4 mb-5 space-y-2 text-sm">
+          <div class="flex justify-between text-white/70"><span data-en="Today's charge" data-th="ยอดที่ต้องจ่ายวันนี้">Today's charge</span><span class="font-semibold text-white" id="summary-today">฿0</span></div>
+          <div class="flex justify-between text-white/70"><span data-en="Renews on" data-th="ต่ออายุวันที่">Renews on</span><span id="summary-renew">—</span></div>
+        </div>
+        <button type="submit" class="block w-full text-center px-5 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-purple-600 text-white font-bold hover:opacity-90 transition" id="submit-btn" data-en="Continue to payment" data-th="ดำเนินการชำระเงิน">Continue to payment</button>
+        <p class="text-[11px] text-white/40 text-center mt-3" data-en="🔒 Encrypted in transit. Card data never touches our servers." data-th="🔒 เข้ารหัสตลอดทาง · ข้อมูลบัตรไม่ผ่าน server เรา">🔒 Encrypted in transit. Card data never touches our servers.</p>
+      </div>
+      <p class="text-xs text-white/50 text-center mt-4">
+        <span data-en="Already have an account?" data-th="มีบัญชีอยู่แล้ว?">Already have an account?</span> <a href="app.html" class="text-brand-300 underline" data-en="Sign in" data-th="เข้าสู่ระบบ">Sign in</a>
+      </p>
+    </aside>
+
+  </form>
+
+</div>
+
+<script>
+  (function(){
+    const params = new URLSearchParams(location.search);
+    const initialPlan = (params.get('plan') || 'basic').toLowerCase();
+    const initialCycle = (params.get('cycle') || 'monthly').toLowerCase();
+
+    function selectPlan(plan){
+      document.querySelectorAll('.plan-card').forEach(c => {
+        const on = c.dataset.plan === plan;
+        c.classList.toggle('selected', on);
+        c.querySelector('input').checked = on;
+      });
+      updateSummary();
+    }
+    function selectCycle(cycle){
+      document.querySelectorAll('input[name="cycle"]').forEach(r => r.checked = (r.value === cycle));
+      // Update plan card display
+      document.querySelectorAll('.price-display').forEach(el => {
+        el.textContent = cycle === 'annual' ? el.dataset.annual : el.dataset.monthly;
+      });
+      const lang = document.documentElement.getAttribute('data-lang') || 'en';
+      document.querySelectorAll('.cycle-display').forEach(el => {
+        el.textContent = el.getAttribute('data-' + cycle + '-' + lang);
+      });
+      updateSummary();
+    }
+    function updateSummary(){
+      const plan = document.querySelector('input[name="plan"]:checked').value;
+      const cycle = document.querySelector('input[name="cycle"]:checked').value;
+      const lang = document.documentElement.getAttribute('data-lang') || 'en';
+
+      const priceMap = {
+        free: { monthly: 0, annual: 0 },
+        basic: { monthly: 10000, annual: 100000 },
+        advanced: { monthly: 30000, annual: 300000 }
+      };
+      const planLabel = { free: 'Free', basic: 'Basic', advanced: 'Advanced' }[plan];
+      document.getElementById('summary-plan-name').textContent = planLabel;
+      const cyc = document.getElementById('summary-cycle');
+      cyc.textContent = cycle === 'annual'
+        ? (lang === 'th' ? 'รายปี' : 'Annual')
+        : (lang === 'th' ? 'รายเดือน' : 'Monthly');
+
+      const total = priceMap[plan][cycle];
+      const perMonth = cycle === 'annual' ? Math.round(total/12) : total;
+      const priceText = '฿' + (cycle === 'annual' ? perMonth : total).toLocaleString();
+      document.getElementById('summary-price').textContent = priceText === '฿0' ? '฿0' : priceText;
+      document.getElementById('summary-per').textContent = cycle === 'annual'
+        ? (lang === 'th' ? '/เดือน (เก็บรายปี)' : '/mo (billed yearly)')
+        : (lang === 'th' ? '/เดือน' : '/month');
+
+      const submit = document.getElementById('submit-btn');
+      const today = document.getElementById('summary-today');
+      const renew = document.getElementById('summary-renew');
+      const note = document.getElementById('summary-note');
+
+      if (plan === 'free') {
+        submit.textContent = lang === 'th' ? 'สร้างบัญชีฟรี' : 'Create free account';
+        today.textContent = '฿0';
+        renew.textContent = lang === 'th' ? 'ไม่มี (ฟรีตลอด)' : 'Never';
+        note.textContent = lang === 'th'
+          ? 'ไม่มีค่าใช้จ่าย · upgrade เมื่อพร้อม'
+          : 'No charge. Upgrade when ready.';
+      } else {
+        submit.textContent = lang === 'th' ? 'ดำเนินการชำระเงิน' : 'Continue to payment';
+        today.textContent = '฿0';
+        const d = new Date();
+        d.setDate(d.getDate() + 7);
+        renew.textContent = d.toLocaleDateString(lang === 'th' ? 'th-TH' : 'en-GB', { day:'numeric', month:'short', year:'numeric' });
+        const totalText = '฿' + total.toLocaleString();
+        note.textContent = lang === 'th'
+          ? 'ทดลองฟรี 7 วัน · หลังจากนั้นเก็บ ' + totalText + ' · ยกเลิกได้ตลอด'
+          : '7-day free trial. After that, ' + totalText + ' will be charged. Cancel anytime.';
+      }
+    }
+
+    document.querySelectorAll('.plan-card').forEach(c => {
+      c.addEventListener('click', () => selectPlan(c.dataset.plan));
+    });
+    document.querySelectorAll('input[name="cycle"]').forEach(r => {
+      r.addEventListener('change', () => selectCycle(r.value));
+    });
+
+    // Initialize
+    selectPlan(['free','basic','advanced'].includes(initialPlan) ? initialPlan : 'basic');
+    selectCycle(['monthly','annual'].includes(initialCycle) ? initialCycle : 'monthly');
+
+    // Submit → checkout (or skip for free)
+    document.getElementById('signupForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const plan = document.querySelector('input[name="plan"]:checked').value;
+      const cycle = document.querySelector('input[name="cycle"]:checked').value;
+      if (plan === 'free') {
+        // simulate account creation
+        alert((document.documentElement.getAttribute('data-lang')==='th')
+          ? 'สร้างบัญชีฟรีเรียบร้อย! กำลังพาไป app...'
+          : 'Free account created! Taking you to the app…');
+        location.href = 'app.html';
+      } else {
+        location.href = 'checkout.html?plan=' + plan + '&cycle=' + cycle;
+      }
+    });
+
+    document.addEventListener('langchange', updateSummary);
+  })();
+</script>
+<script src="assets/i18n.js"></script>
+</body>
+</html>

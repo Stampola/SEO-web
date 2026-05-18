@@ -493,17 +493,35 @@
   const SKIP_TAGS = new Set(['SCRIPT','STYLE','NOSCRIPT','CODE','PRE','TEXTAREA','SVG']);
 
   function getLang(){
+    // 1) Explicit ?lang=th|en wins (so hreflang URLs from sitemap/Google work)
+    try {
+      const url = new URL(window.location.href);
+      const q = url.searchParams.get('lang');
+      if (q === 'th' || q === 'en') {
+        try { localStorage.setItem(KEY, q); } catch(e){}
+        return q;
+      }
+    } catch(e){}
+    // 2) Persisted preference
     try {
       const stored = localStorage.getItem(KEY);
       if (stored === 'th' || stored === 'en') return stored;
+    } catch(e){}
+    // 3) Browser language hint (Thai users get Thai)
+    try {
+      const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (nav.startsWith('th')) return 'th';
     } catch(e){}
     return 'en';
   }
 
   function setLang(lang){
     try { localStorage.setItem(KEY, lang); } catch(e){}
-    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('lang', lang === 'th' ? 'th' : 'en');
     document.documentElement.setAttribute('data-lang', lang);
+    // Keep og:locale in sync for crawlers re-fetching SPA-style
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute('content', lang === 'th' ? 'th_TH' : 'en_US');
     apply(lang);
     updateToggleUI(lang);
     document.dispatchEvent(new CustomEvent('langchange', { detail: { lang }}));

@@ -5,6 +5,66 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>SEO Toolkit — Audit · Keyword · Schema · pSEO</title>
 <meta name="description" content="เครื่องมือ SEO ครบเซ็ตในหน้าเดียว: ตรวจสอบเว็บ, วิจัย keyword, สร้าง schema markup และทำ programmatic SEO" />
+
+<!-- Canonical + hreflang -->
+<link rel="canonical" href="https://example.com/tools.html" />
+<link rel="alternate" hreflang="en" href="https://example.com/tools.html" />
+<link rel="alternate" hreflang="th" href="https://example.com/tools.html?lang=th" />
+<link rel="alternate" hreflang="x-default" href="https://example.com/tools.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SearchFit Pro" />
+<meta property="og:title" content="SEO Toolkit — Audit · Keyword · Schema · pSEO" />
+<meta property="og:description" content="4 working browser-side SEO tools. Drop in a real URL — it audits. No backend, no signup." />
+<meta property="og:url" content="https://example.com/tools.html" />
+<meta property="og:image" content="https://example.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="SearchFit Pro — Free SEO Toolkit" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="th_TH" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SEO Toolkit — Audit · Keyword · Schema · pSEO" />
+<meta name="twitter:description" content="4 free browser-side SEO tools. No signup." />
+<meta name="twitter:image" content="https://example.com/og-image.png" />
+
+<!-- Icons + PWA -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#6366f1" />
+
+<!-- JSON-LD: WebApplication + Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SearchFit Pro SEO Toolkit",
+  "url": "https://example.com/tools.html",
+  "description": "Free in-browser SEO tools: site audit, keyword research, schema generator, programmatic SEO.",
+  "applicationCategory": "SEO",
+  "operatingSystem": "Web",
+  "inLanguage": ["en", "th"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": [
+    "Live SEO Audit (16-point check)",
+    "Keyword research and clustering",
+    "JSON-LD schema generator (10 types)",
+    "Programmatic SEO bulk page builder"
+  ],
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/index.html" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://example.com/tools.html" }
+    ]
+  }
+}
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>

@@ -1,0 +1,27 @@
+# robots.txt — SearchFit Pro
+# Replace example.com with your real domain before going live.
+
+User-agent: *
+Allow: /
+
+# Common AI/search crawlers explicitly allowed
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap
+Sitemap: https://example.com/sitemap.xml

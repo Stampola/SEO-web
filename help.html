@@ -5,6 +5,100 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>คู่มือใช้งาน · SearchFit Pro Help Center</title>
 <meta name="description" content="คู่มือใช้งาน webapp SEO — อธิบายตัวชี้วัด, ค่าต่างๆ, วิธีใช้งาน สำหรับลูกค้า media agency" />
+
+<!-- Canonical + hreflang -->
+<link rel="canonical" href="https://example.com/help.html" />
+<link rel="alternate" hreflang="en" href="https://example.com/help.html" />
+<link rel="alternate" hreflang="th" href="https://example.com/help.html?lang=th" />
+<link rel="alternate" hreflang="x-default" href="https://example.com/help.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="SearchFit Pro" />
+<meta property="og:title" content="Help Center · คู่มือใช้งาน SearchFit Pro" />
+<meta property="og:description" content="อธิบายทุกตัวชี้วัด (SEO Score, INP, AI Visibility, Schema, Local Grid) · FAQ · Glossary 25+ คำศัพท์." />
+<meta property="og:url" content="https://example.com/help.html" />
+<meta property="og:image" content="https://example.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="SearchFit Pro — Help Center" />
+<meta property="og:locale" content="th_TH" />
+<meta property="og:locale:alternate" content="en_US" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Help Center · SearchFit Pro" />
+<meta name="twitter:description" content="คู่มือใช้งาน · FAQ · Glossary สำหรับลูกค้า media agency." />
+<meta name="twitter:image" content="https://example.com/og-image.png" />
+
+<!-- Icons + PWA -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#6366f1" />
+
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "url": "https://example.com/help.html",
+  "inLanguage": "th",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "SEO ใช้เวลานานไหมกว่าจะเห็นผล?",
+      "acceptedAnswer": { "@type": "Answer", "text": "ปกติ 3-6 เดือนจึงเริ่มเห็น traffic เพิ่มมีนัยสำคัญ และ 6-12 เดือนจึงเห็นผลเต็มที่ ขึ้นกับอายุของ domain ความแข่งขันของ keyword คุณภาพและความถี่ของ content และ backlink ที่ได้มาตามธรรมชาติ." }
+    },
+    {
+      "@type": "Question",
+      "name": "ทำไม keyword ของฉันถึงตกอันดับ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "สาเหตุที่พบบ่อย: Google update เปลี่ยน algorithm ปีละ 2-4 ครั้ง, คู่แข่งเขียน content ใหม่ที่ครอบคลุมกว่า, content เก่าที่ไม่ได้อัปเดต, technical issue (INP เพิ่ม, schema หาย, redirect chain) หรือ search intent เปลี่ยน." }
+    },
+    {
+      "@type": "Question",
+      "name": "SEO Score 92 หมายความว่ายังไง?",
+      "acceptedAnswer": { "@type": "Answer", "text": "หมายถึงเว็บคุณทำได้ดีเยี่ยมใน 6 มิติของ SEO ใกล้เคียงเต็ม 100 เหลือแค่ปรับเล็กน้อย เช่น schema หรือ off-page เพิ่ม backlink." }
+    },
+    {
+      "@type": "Question",
+      "name": "AI Overview จะแทน Google ในอนาคตหรือไม่?",
+      "acceptedAnswer": { "@type": "Answer", "text": "AI Overview อยู่ใน Google search results ทุกวันนี้ ไม่ใช่แทน แต่กินพื้นที่บนหน้าจอมากขึ้น ทำให้ผู้ใช้ scroll น้อยลง ถ้าติดอยู่ใน AI Overview จะได้ traffic ถ้าไม่ติดผู้ใช้อาจเห็น AI ตอบจบและไม่คลิกอะไรเลย (zero-click)." }
+    },
+    {
+      "@type": "Question",
+      "name": "ฉันต้องลงทุนกับ AI search ไหม?",
+      "acceptedAnswer": { "@type": "Answer", "text": "ใช่ โดยเฉพาะถ้ากลุ่มเป้าหมายเป็นคนรุ่นใหม่ ปี 2026 พบว่า 30%+ ของคนเริ่มถาม ChatGPT แทน Google สำหรับการ research การลงทุนน้อยและผลตอบแทนสูงเพราะคนทำน้อย และวิธีปรับคือ SEO ปกติเลย (E-E-A-T, schema, content depth)." }
+    },
+    {
+      "@type": "Question",
+      "name": "ฉัน approve content ผิดต้องทำยังไง?",
+      "acceptedAnswer": { "@type": "Answer", "text": "ไม่ต้องตกใจ แจ้ง AM ทาง LINE หรือ comment ใน thread รายงาน ทีมจะ unpublish และแก้ไขให้ได้ใน 1-2 ชั่วโมง Google ใช้เวลาประมวลผล redirect ปกติ 1-3 วัน." }
+    },
+    {
+      "@type": "Question",
+      "name": "ระบบเก็บข้อมูลของฉันยังไง? ปลอดภัยไหม?",
+      "acceptedAnswer": { "@type": "Answer", "text": "ระบบใช้ Row-level Security ใน database ทุก query กรอง agency_id และ client_id อัตโนมัติ ลูกค้าคนอื่นเข้าถึงข้อมูลคุณไม่ได้แม้แต่ admin ของ agency อื่น มี audit log ทุกการเปลี่ยนแปลง รองรับ 2FA และ PDPA compliant." }
+    },
+    {
+      "@type": "Question",
+      "name": "ถ้าฉันยกเลิกสัญญากับ agency ข้อมูลจะหายไปไหม?",
+      "acceptedAnswer": { "@type": "Answer", "text": "คุณสามารถ export ทุก report และ raw data เป็น PDF/CSV/JSON ก่อนยกเลิก เก็บไว้ใช้กับเครื่องมืออื่นได้ ถ้าจะกลับมาภายหลัง agency เก็บข้อมูลให้ 90 วันก่อนลบถาวร." }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Help Center", "item": "https://example.com/help.html" }
+  ]
+}
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {

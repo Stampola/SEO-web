@@ -1,0 +1,22 @@
+# Cloudflare Pages — redirects & rewrites
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Pretty URLs (optional) — /pricing → /pricing.html
+/pricing       /pricing.html      301
+/preview       /preview.html      301
+/proposal      /proposal.html     301
+/tools         /tools.html        301
+/playbook      /playbook.html     301
+/help          /help.html         301
+/signup        /signup.html       301
+/checkout      /checkout.html     301
+/app           /app.html          301
+/admin         /admin.html        301
+
+# Legacy slug variants
+/sign-up       /signup.html       301
+/sign-in       /app.html          301
+/login         /app.html          301
+
+# Fallback to 404
+/*             /404.html          404

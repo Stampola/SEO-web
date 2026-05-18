@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SearchFit Admin · Internal Console</title>
+<meta name="description" content="SearchFit Pro internal admin console — manage customers, subscriptions, support tickets, impersonation." />
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="canonical" href="https://example.com/admin.html" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#0b1220" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: { colors: {
+      ink: { 950:'#030712', 900:'#0b1220', 800:'#1f2937', 700:'#374151', 500:'#6b7280', 300:'#d1d5db', 100:'#f3f4f6' },
+      brand: { 300:'#a5b4fc', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca' },
+      accent: { 500:'#f97316' },
+      danger: { 500:'#ef4444', 600:'#dc2626' }
+    } } }
+  };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', ui-sans-serif, sans-serif; }
+  html[data-lang="th"] * { font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', ui-sans-serif, sans-serif; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  body { background: #0b1220; color: #e5e7eb; min-height: 100vh; }
+  .glass { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .badge.free { background: rgba(148,163,184,0.15); color: #cbd5e1; }
+  .badge.basic { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+  .badge.advanced { background: rgba(168,85,247,0.18); color: #d8b4fe; }
+  .badge.trial { background: rgba(251,146,60,0.15); color: #fdba74; }
+  .badge.cancelled { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .badge.past_due { background: rgba(245,158,11,0.18); color: #fcd34d; }
+  .badge.active { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+  .row:hover { background: rgba(255,255,255,0.025); cursor: pointer; }
+  .row.selected { background: rgba(99,102,241,0.10); border-left: 3px solid #818cf8; padding-left: calc(1rem - 3px); }
+  .impersonate-banner { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+</style>
+</head>
+<body>
+
+<!-- Impersonation banner (shown when impersonating) -->
+<div id="impersonateBanner" class="impersonate-banner text-white px-6 py-2.5 text-sm font-semibold flex items-center justify-between hidden">
+  <span>👤 <span data-en="Viewing as customer:" data-th="กำลังดูในมุมมองลูกค้า:">Viewing as customer:</span> <strong id="imp-name">—</strong> (<span class="mono" id="imp-email"></span>)</span>
+  <button id="exitImpersonate" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-md text-xs" data-en="Exit view" data-th="ออกจากมุมมอง">Exit view</button>
+</div>
+
+<div class="flex min-h-screen">
+
+  <!-- Sidebar -->
+  <aside class="w-60 border-r border-white/10 bg-ink-950/60 flex flex-col">
+    <div class="px-5 py-5 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center">
+          <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+        </div>
+        <div>
+          <div class="font-extrabold text-sm">SearchFit</div>
+          <div class="text-[10px] text-accent-500 font-bold tracking-wider uppercase">Admin Console</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="flex-1 px-3 py-4 space-y-1 text-sm">
+      <button class="nav-btn w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 bg-white/10 text-white" data-view="dashboard">📊 <span data-en="Dashboard" data-th="แดชบอร์ด">Dashboard</span></button>
+      <button class="nav-btn w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-white/70 hover:bg-white/5" data-view="customers">👥 <span data-en="Customers" data-th="ลูกค้า">Customers</span></button>
+      <button class="nav-btn w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-white/70 hover:bg-white/5" data-view="billing">💳 <span data-en="Billing" data-th="การเงิน">Billing</span></button>
+      <button class="nav-btn w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-white/70 hover:bg-white/5" data-view="support">🎧 <span data-en="Support" data-th="ซัพพอร์ต">Support</span> <span class="ml-auto text-[10px] bg-danger-500 px-1.5 py-0.5 rounded">3</span></button>
+      <button class="nav-btn w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-white/70 hover:bg-white/5" data-view="audit">📜 <span data-en="Audit log" data-th="Audit log">Audit log</span></button>
+      <button class="nav-btn w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 text-white/70 hover:bg-white/5" data-view="settings">⚙️ <span data-en="Settings" data-th="ตั้งค่า">Settings</span></button>
+    </nav>
+
+    <div class="p-3 border-t border-white/10">
+      <div class="bg-white/5 rounded-lg p-3 flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-brand-600 flex items-center justify-center text-xs font-bold">SK</div>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold truncate">Stamp Sethakorn</div>
+          <div class="text-[10px] text-white/55 truncate">SearchFit Owner</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1 overflow-auto">
+
+    <!-- DASHBOARD VIEW -->
+    <section data-view="dashboard" class="view-panel p-8">
+      <h1 class="text-2xl font-extrabold mb-1" data-en="Internal Dashboard" data-th="แดชบอร์ดภายใน">Internal Dashboard</h1>
+      <p class="text-sm text-white/55 mb-8" data-en="Real-time MRR, customer health, and support load." data-th="MRR สด · สุขภาพลูกค้า · ภาระงาน support">Real-time MRR, customer health, and support load.</p>
+
+      <!-- Top metrics -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="glass p-5">
+          <div class="text-xs text-white/55 mb-1" data-en="MRR (this month)" data-th="MRR (เดือนนี้)">MRR (this month)</div>
+          <div class="text-3xl font-extrabold mono">฿428,000</div>
+          <div class="text-xs text-emerald-400 mt-1">↗ +12.4% vs last month</div>
+        </div>
+        <div class="glass p-5">
+          <div class="text-xs text-white/55 mb-1" data-en="Active subscriptions" data-th="Subscription ที่ active">Active subscriptions</div>
+          <div class="text-3xl font-extrabold mono">47</div>
+          <div class="text-xs text-emerald-400 mt-1">↗ +5 this month</div>
+        </div>
+        <div class="glass p-5">
+          <div class="text-xs text-white/55 mb-1" data-en="On free tier" data-th="ใช้ Free tier">On free tier</div>
+          <div class="text-3xl font-extrabold mono">213</div>
+          <div class="text-xs text-white/55 mt-1" data-en="22% convert in 60d" data-th="22% upgrade ใน 60 วัน">22% convert in 60d</div>
+        </div>
+        <div class="glass p-5">
+          <div class="text-xs text-white/55 mb-1" data-en="Churn (30d)" data-th="Churn (30 วัน)">Churn (30d)</div>
+          <div class="text-3xl font-extrabold mono">2.1%</div>
+          <div class="text-xs text-emerald-400 mt-1">↘ from 3.4%</div>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-5 mb-8">
+        <!-- MRR chart -->
+        <div class="glass p-6 lg:col-span-2">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold" data-en="MRR — last 6 months" data-th="MRR — 6 เดือนล่าสุด">MRR — last 6 months</h3>
+            <span class="text-xs text-white/55">2026</span>
+          </div>
+          <div style="height:240px"><canvas id="mrrChart"></canvas></div>
+        </div>
+        <!-- Plan mix -->
+        <div class="glass p-6">
+          <h3 class="font-bold mb-4" data-en="Plan mix" data-th="สัดส่วนแพ็กเกจ">Plan mix</h3>
+          <div style="height:240px"><canvas id="planChart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Recent signups -->
+      <div class="glass p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-bold" data-en="Recent signups" data-th="สมัครล่าสุด">Recent signups</h3>
+          <button class="text-xs text-brand-300 hover:underline" data-go="customers" data-en="View all customers →" data-th="ดูลูกค้าทั้งหมด →">View all customers →</button>
+        </div>
+        <table class="w-full text-sm">
+          <thead><tr class="text-[11px] text-white/55 uppercase tracking-wider"><th class="text-left py-2 font-semibold">Company</th><th class="text-left font-semibold">Plan</th><th class="text-left font-semibold">Status</th><th class="text-left font-semibold">Signup</th><th class="text-right font-semibold">MRR</th></tr></thead>
+          <tbody class="divide-y divide-white/5" id="recentRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CUSTOMERS VIEW -->
+    <section data-view="customers" class="view-panel p-8 hidden">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-2xl font-extrabold mb-1" data-en="Customers" data-th="ลูกค้า">Customers</h1>
+          <p class="text-sm text-white/55" data-en="Click any row to inspect, impersonate, or help." data-th="คลิกที่ row ใดก็ได้เพื่อตรวจสอบ, ดูในมุมมองลูกค้า, หรือช่วย">Click any row to inspect, impersonate, or help.</p>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="glass p-4 mb-4 flex flex-wrap gap-3 items-center">
+        <input id="searchInput" placeholder="🔍 Search by company, email, domain…" class="flex-1 min-w-[240px] bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm placeholder:text-white/35" />
+        <select id="planFilter" class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm">
+          <option value="">All plans</option><option>Free</option><option>Basic</option><option>Advanced</option>
+        </select>
+        <select id="statusFilter" class="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm">
+          <option value="">All statuses</option><option>active</option><option>trial</option><option>past_due</option><option>cancelled</option>
+        </select>
+        <button class="px-3 py-2 bg-white/5 rounded-lg text-sm hover:bg-white/10">📥 <span data-en="Export CSV" data-th="ส่งออก CSV">Export CSV</span></button>
+      </div>
+
+      <!-- List -->
+      <div class="glass overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-white/5"><tr class="text-[11px] text-white/55 uppercase tracking-wider">
+            <th class="text-left py-3 px-4 font-semibold">Company</th>
+            <th class="text-left font-semibold">Email</th>
+            <th class="text-left font-semibold">Plan</th>
+            <th class="text-left font-semibold">Status</th>
+            <th class="text-right font-semibold">MRR</th>
+            <th class="text-left pl-6 font-semibold">Last seen</th>
+            <th class="text-right pr-4 font-semibold"></th>
+          </tr></thead>
+          <tbody class="divide-y divide-white/5" id="customerRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CUSTOMER DETAIL VIEW -->
+    <section data-view="detail" class="view-panel p-8 hidden">
+      <button id="backToList" class="text-sm text-brand-300 hover:underline mb-4">← <span data-en="Back to customer list" data-th="กลับไปรายการลูกค้า">Back to customer list</span></button>
+
+      <div id="detailContent"></div>
+    </section>
+
+    <!-- BILLING VIEW -->
+    <section data-view="billing" class="view-panel p-8 hidden">
+      <h1 class="text-2xl font-extrabold mb-6" data-en="Billing" data-th="การเงิน">Billing</h1>
+      <div class="grid grid-cols-3 gap-4 mb-6">
+        <div class="glass p-5"><div class="text-xs text-white/55 mb-1" data-en="Collected (this month)" data-th="เก็บได้ (เดือนนี้)">Collected (this month)</div><div class="text-2xl font-extrabold mono">฿398,520</div></div>
+        <div class="glass p-5"><div class="text-xs text-white/55 mb-1" data-en="Outstanding" data-th="ค้างชำระ">Outstanding</div><div class="text-2xl font-extrabold mono text-amber-300">฿32,100</div></div>
+        <div class="glass p-5"><div class="text-xs text-white/55 mb-1" data-en="Refunded (30d)" data-th="คืนเงิน (30 วัน)">Refunded (30d)</div><div class="text-2xl font-extrabold mono">฿4,500</div></div>
+      </div>
+      <div class="glass p-6">
+        <h3 class="font-bold mb-4" data-en="Recent invoices" data-th="ใบเสร็จล่าสุด">Recent invoices</h3>
+        <table class="w-full text-sm">
+          <thead><tr class="text-[11px] text-white/55 uppercase tracking-wider"><th class="text-left py-2 font-semibold">Invoice</th><th class="text-left font-semibold">Customer</th><th class="text-left font-semibold">Method</th><th class="text-right font-semibold">Amount</th><th class="text-left pl-6 font-semibold">Status</th><th class="text-left pl-6 font-semibold">Date</th></tr></thead>
+          <tbody class="divide-y divide-white/5" id="invoiceRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SUPPORT VIEW -->
+    <section data-view="support" class="view-panel p-8 hidden">
+      <h1 class="text-2xl font-extrabold mb-6" data-en="Support tickets" data-th="ตั๋ว Support">Support tickets</h1>
+      <div class="glass p-6 space-y-3" id="ticketRows"></div>
+    </section>
+
+    <!-- AUDIT LOG VIEW -->
+    <section data-view="audit" class="view-panel p-8 hidden">
+      <h1 class="text-2xl font-extrabold mb-1" data-en="Audit log" data-th="Audit log">Audit log</h1>
+      <p class="text-sm text-white/55 mb-6" data-en="Every admin action (impersonation, refund, plan change, suspension) is logged immutably." data-th="ทุก action ของ admin (ดูมุมมองลูกค้า, refund, เปลี่ยน plan, suspend) ถูกบันทึกแก้ไม่ได้">Every admin action (impersonation, refund, plan change, suspension) is logged immutably.</p>
+      <div class="glass p-6"><table class="w-full text-sm"><thead><tr class="text-[11px] text-white/55 uppercase tracking-wider"><th class="text-left py-2 font-semibold">When</th><th class="text-left font-semibold">Who</th><th class="text-left font-semibold">Action</th><th class="text-left font-semibold">Target</th></tr></thead><tbody class="divide-y divide-white/5" id="auditRows"></tbody></table></div>
+    </section>
+
+    <!-- SETTINGS VIEW -->
+    <section data-view="settings" class="view-panel p-8 hidden">
+      <h1 class="text-2xl font-extrabold mb-1" data-en="Admin settings" data-th="ตั้งค่า admin">Admin settings</h1>
+      <p class="text-sm text-white/55 mb-6" data-en="Payment providers, taxes, notification routes, admin team." data-th="Payment provider · ภาษี · ช่องทางแจ้งเตือน · ทีม admin">Payment providers, taxes, notification routes, admin team.</p>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="glass p-6">
+          <h3 class="font-bold mb-3" data-en="Payment providers" data-th="Payment providers">Payment providers</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><span>💳 Omise (cards)</span><span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">Connected</span></div>
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><span>💳 2C2P (cards backup)</span><span class="text-xs bg-white/10 text-white/55 px-2 py-0.5 rounded">Setup</span></div>
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><span>📱 PromptPay (QR)</span><span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">Connected</span></div>
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><span>🧾 FlowAccount (tax)</span><span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">Connected</span></div>
+          </div>
+        </div>
+        <div class="glass p-6">
+          <h3 class="font-bold mb-3" data-en="Plan prices" data-th="ราคาแพ็กเกจ">Plan prices</h3>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between"><span>Free</span><span class="mono">฿0</span></div>
+            <div class="flex justify-between"><span>Basic monthly</span><span class="mono">฿10,000</span></div>
+            <div class="flex justify-between"><span>Basic annual</span><span class="mono">฿100,000</span></div>
+            <div class="flex justify-between"><span>Advanced monthly</span><span class="mono">฿30,000</span></div>
+            <div class="flex justify-between"><span>Advanced annual</span><span class="mono">฿300,000</span></div>
+            <div class="flex justify-between text-white/55"><span>VAT</span><span class="mono">7%</span></div>
+            <div class="flex justify-between text-white/55"><span data-en="Annual discount" data-th="ส่วนลดรายปี">Annual discount</span><span class="mono">17%</span></div>
+          </div>
+          <button class="mt-4 text-xs text-brand-300 hover:underline" data-en="Edit plan pricing →" data-th="แก้ราคาแพ็กเกจ →">Edit plan pricing →</button>
+        </div>
+        <div class="glass p-6">
+          <h3 class="font-bold mb-3" data-en="Admin team" data-th="ทีม Admin">Admin team</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-[11px] font-bold">SK</div><span>Stamp Sethakorn</span></div><span class="text-xs text-brand-300">Owner</span></div>
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-purple-600 flex items-center justify-center text-[11px] font-bold">NM</div><span>Nong Mali</span></div><span class="text-xs text-white/55">Support</span></div>
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-accent-500 flex items-center justify-center text-[11px] font-bold">PT</div><span>Pim Tanya</span></div><span class="text-xs text-white/55">Billing</span></div>
+          </div>
+        </div>
+        <div class="glass p-6">
+          <h3 class="font-bold mb-3" data-en="Notification routes" data-th="ช่องทางแจ้งเตือน">Notification routes</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><span>📲 LINE · #admin-alerts</span><span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">On</span></div>
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><span>💬 Slack · #payments</span><span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">On</span></div>
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg"><span>📧 Email · ops@searchfit.pro</span><span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">On</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // ─── Mock customer data ──────────────────────────────────────────
+  const CUSTOMERS = [
+    { id: 'c001', company: 'Acme Coffee Co.',   email: 'ceo@coffeeco.th',         domain: 'coffeeco.th',         plan: 'Basic',    status: 'active',    mrr: 10000, signup: '2026-03-14', last: '2 min ago',  cycle: 'monthly', country: 'TH' },
+    { id: 'c002', company: 'HealthWise Clinic', email: 'doctor@healthwise.com',   domain: 'healthwise.com',      plan: 'Advanced', status: 'active',    mrr: 30000, signup: '2026-01-22', last: '14 min ago', cycle: 'annual',  country: 'TH' },
+    { id: 'c003', company: 'Travel Roam',       email: 'hello@travelroam.co',     domain: 'travelroam.co',       plan: 'Advanced', status: 'past_due', mrr: 30000, signup: '2025-11-08', last: '1 hour ago', cycle: 'monthly', country: 'TH' },
+    { id: 'c004', company: 'EduStudio',         email: 'admin@edustudio.ac.th',   domain: 'edustudio.ac.th',     plan: 'Basic',    status: 'active',    mrr: 10000, signup: '2026-04-02', last: '3 hours ago',cycle: 'monthly', country: 'TH' },
+    { id: 'c005', company: 'Boon Bakery',       email: 'boon@boonbakery.co.th',   domain: 'boonbakery.co.th',    plan: 'Free',     status: 'active',    mrr: 0,     signup: '2026-05-10', last: 'Yesterday',  cycle: '—',       country: 'TH' },
+    { id: 'c006', company: 'GreenLeaf Wellness',email: 'info@greenleaf.th',       domain: 'greenleaf.th',        plan: 'Basic',    status: 'trial',    mrr: 0,     signup: '2026-05-15', last: '20 min ago', cycle: 'monthly', country: 'TH' },
+    { id: 'c007', company: 'Bangkok Eats',      email: 'partners@bkkeats.co',     domain: 'bkkeats.co',          plan: 'Advanced', status: 'active',    mrr: 25000, signup: '2025-09-04', last: '8 hours ago',cycle: 'annual',  country: 'TH' },
+    { id: 'c008', company: 'Studio Norn',       email: 'design@studionorn.com',   domain: 'studionorn.com',      plan: 'Basic',    status: 'cancelled', mrr: 0,     signup: '2025-12-01', last: '12 days ago',cycle: 'monthly', country: 'TH' },
+    { id: 'c009', company: 'Phuket Yacht Tours',email: 'book@phuketyacht.com',    domain: 'phuketyacht.com',     plan: 'Basic',    status: 'active',    mrr: 10000, signup: '2026-02-18', last: '40 min ago', cycle: 'monthly', country: 'TH' },
+    { id: 'c010', company: 'NodeStack (agency)',email: 'hi@nodestack.io',         domain: 'nodestack.io',        plan: 'Advanced', status: 'active',    mrr: 30000, signup: '2026-01-05', last: '5 min ago',  cycle: 'monthly', country: 'TH' },
+    { id: 'c011', company: 'Mango Marketing',   email: 'team@mangomktg.co.th',    domain: 'mangomktg.co.th',     plan: 'Free',     status: 'active',    mrr: 0,     signup: '2026-05-16', last: '1 hour ago', cycle: '—',       country: 'TH' },
+    { id: 'c012', company: 'Siam Skincare',     email: 'crm@siamskincare.com',    domain: 'siamskincare.com',    plan: 'Basic',    status: 'active',    mrr: 10000, signup: '2026-03-30', last: 'Just now',   cycle: 'monthly', country: 'TH' }
+  ];
+
+  const INVOICES = [
+    { id:'INV-2026-0473', cust:'Acme Coffee Co.',    method:'Card · Visa ····4242', amt:10700, status:'paid',     date:'2026-05-14' },
+    { id:'INV-2026-0472', cust:'HealthWise Clinic',  method:'Card · Mastercard ····8881', amt:32100, status:'paid',date:'2026-05-13' },
+    { id:'INV-2026-0471', cust:'Travel Roam',        method:'PromptPay',           amt:32100, status:'failed',   date:'2026-05-12' },
+    { id:'INV-2026-0470', cust:'NodeStack',          method:'Card · Visa ····0042', amt:32100, status:'paid',     date:'2026-05-12' },
+    { id:'INV-2026-0469', cust:'Bangkok Eats',       method:'Card · JCB ····7711',  amt:267500,status:'paid',     date:'2026-05-10' },
+    { id:'INV-2026-0468', cust:'Phuket Yacht Tours', method:'PromptPay',           amt:10700, status:'paid',     date:'2026-05-10' }
+  ];
+
+  const TICKETS = [
+    { id:'T-2410', cust:'Travel Roam',     subj:'Payment failed — card declined twice', prio:'High',   age:'2h',  status:'open' },
+    { id:'T-2409', cust:'HealthWise',      subj:'Want to add a second domain to Basic', prio:'Normal', age:'5h',  status:'open' },
+    { id:'T-2408', cust:'GreenLeaf',       subj:'AI Visibility prompts: how to add Thai?', prio:'Normal',age:'1d',  status:'open' },
+    { id:'T-2407', cust:'NodeStack',       subj:'Whitelabel domain stuck on DNS check', prio:'Low',    age:'2d',  status:'resolved' }
+  ];
+
+  const AUDIT = [
+    { when:'10:42:15', who:'Stamp Sethakorn', action:'impersonated → Travel Roam', target:'c003' },
+    { when:'09:14:02', who:'Pim Tanya',       action:'refund ฿10,700 → Studio Norn', target:'c008' },
+    { when:'08:55:38', who:'Nong Mali',       action:'changed plan: Free → Basic',   target:'c011' },
+    { when:'Yesterday 17:22', who:'Stamp Sethakorn', action:'suspended account (past_due 14d)', target:'c003' },
+    { when:'Yesterday 14:10', who:'Pim Tanya', action:'issued tax invoice TINV-2026-0089', target:'c002' }
+  ];
+
+  const fmt = n => '฿' + n.toLocaleString();
+
+  // ─── Render: dashboard ──────────────────────────────────────────
+  function renderDashboard(){
+    const recent = [...CUSTOMERS].sort((a,b)=>b.signup.localeCompare(a.signup)).slice(0,5);
+    document.getElementById('recentRows').innerHTML = recent.map(c => `
+      <tr class="row" data-cust="${c.id}">
+        <td class="py-2.5"><div class="font-semibold text-sm">${c.company}</div><div class="text-[11px] text-white/45">${c.domain}</div></td>
+        <td><span class="badge ${c.plan.toLowerCase()}">${c.plan}</span></td>
+        <td><span class="badge ${c.status}">${c.status}</span></td>
+        <td class="text-xs text-white/55">${c.signup}</td>
+        <td class="text-right mono text-sm">${fmt(c.mrr)}</td>
+      </tr>
+    `).join('');
+    recent.forEach(() => {});
+    document.querySelectorAll('#recentRows .row').forEach(r => r.addEventListener('click', () => openDetail(r.dataset.cust)));
+  }
+
+  // ─── Render: customers list ─────────────────────────────────────
+  function renderCustomers(){
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const pf = document.getElementById('planFilter').value;
+    const sf = document.getElementById('statusFilter').value;
+    const filtered = CUSTOMERS.filter(c =>
+      (!q || c.company.toLowerCase().includes(q) || c.email.toLowerCase().includes(q) || c.domain.toLowerCase().includes(q)) &&
+      (!pf || c.plan === pf) &&
+      (!sf || c.status === sf)
+    );
+    document.getElementById('customerRows').innerHTML = filtered.map(c => `
+      <tr class="row" data-cust="${c.id}">
+        <td class="py-3 px-4"><div class="font-semibold text-sm">${c.company}</div><div class="text-[11px] text-white/45">${c.domain}</div></td>
+        <td><span class="mono text-xs text-white/75">${c.email}</span></td>
+        <td><span class="badge ${c.plan.toLowerCase()}">${c.plan}</span></td>
+        <td><span class="badge ${c.status}">${c.status.replace('_',' ')}</span></td>
+        <td class="text-right mono text-sm">${fmt(c.mrr)}</td>
+        <td class="pl-6 text-xs text-white/55">${c.last}</td>
+        <td class="pr-4 text-right"><button class="text-xs text-brand-300 hover:underline" data-en="Open →" data-th="เปิด →">Open →</button></td>
+      </tr>
+    `).join('');
+    document.querySelectorAll('#customerRows .row').forEach(r => r.addEventListener('click', () => openDetail(r.dataset.cust)));
+  }
+
+  // ─── Render: customer detail ────────────────────────────────────
+  function openDetail(custId){
+    const c = CUSTOMERS.find(x => x.id === custId);
+    if (!c) return;
+    const detail = document.getElementById('detailContent');
+    detail.innerHTML = `
+      <div class="flex items-start gap-4 mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center text-xl font-extrabold">${c.company.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
+        <div class="flex-1">
+          <h1 class="text-2xl font-extrabold">${c.company}</h1>
+          <div class="flex flex-wrap items-center gap-2 mt-1 text-sm">
+            <span class="badge ${c.plan.toLowerCase()}">${c.plan}</span>
+            <span class="badge ${c.status}">${c.status.replace('_',' ')}</span>
+            <span class="text-white/55">·</span>
+            <span class="mono text-white/70">${c.email}</span>
+            <span class="text-white/55">·</span>
+            <a href="https://${c.domain}" target="_blank" rel="noopener" class="text-brand-300 hover:underline">${c.domain} ↗</a>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button id="impBtn" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-ink-900 font-bold text-sm">👤 <span data-en="View as customer" data-th="ดูในมุมมองลูกค้า">View as customer</span></button>
+          <details class="relative">
+            <summary class="px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-sm cursor-pointer select-none">⋯</summary>
+            <div class="absolute right-0 mt-2 w-56 bg-ink-800 border border-white/10 rounded-xl shadow-2xl p-1 text-sm z-10">
+              <button class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" data-en="Change plan…" data-th="เปลี่ยนแพ็กเกจ…">Change plan…</button>
+              <button class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" data-en="Issue refund…" data-th="คืนเงิน…">Issue refund…</button>
+              <button class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5" data-en="Send message" data-th="ส่งข้อความ">Send message</button>
+              <button class="block w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 text-amber-300" data-en="Reset password" data-th="รีเซ็ตรหัสผ่าน">Reset password</button>
+              <hr class="border-white/10 my-1" />
+              <button class="block w-full text-left px-3 py-2 rounded-lg hover:bg-danger-500/10 text-danger-500" data-en="Suspend account" data-th="ระงับบัญชี">Suspend account</button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-4 gap-4 mb-6">
+        <div class="glass p-5"><div class="text-xs text-white/55 mb-1" data-en="MRR" data-th="MRR">MRR</div><div class="text-2xl font-extrabold mono">${fmt(c.mrr)}</div></div>
+        <div class="glass p-5"><div class="text-xs text-white/55 mb-1" data-en="Lifetime value" data-th="Lifetime value">Lifetime value</div><div class="text-2xl font-extrabold mono">${fmt(c.mrr*8)}</div></div>
+        <div class="glass p-5"><div class="text-xs text-white/55 mb-1" data-en="Cycle" data-th="รอบบิล">Cycle</div><div class="text-2xl font-extrabold">${c.cycle}</div></div>
+        <div class="glass p-5"><div class="text-xs text-white/55 mb-1" data-en="Member since" data-th="เป็นลูกค้าตั้งแต่">Member since</div><div class="text-2xl font-extrabold mono">${c.signup}</div></div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-5">
+        <div class="glass p-6 lg:col-span-2">
+          <h3 class="font-bold mb-4">📈 <span data-en="Usage (this month)" data-th="การใช้งาน (เดือนนี้)">Usage (this month)</span></h3>
+          <div class="space-y-3 text-sm">
+            ${[
+              ['Websites tracked',       c.plan==='Free'?1:c.plan==='Basic'?3:8,  c.plan==='Free'?1:c.plan==='Basic'?3:'∞'],
+              ['Keywords tracked',       c.plan==='Free'?4:c.plan==='Basic'?47:148, c.plan==='Free'?5:c.plan==='Basic'?50:200],
+              ['Audits run',             c.plan==='Free'?1:c.plan==='Basic'?22:84, '—'],
+              ['AI Visibility prompts',  c.plan==='Free'?3:c.plan==='Basic'?14:48, c.plan==='Free'?3:c.plan==='Basic'?15:50],
+              ['Reports generated',      c.plan==='Free'?0:c.plan==='Basic'?1:4,   '—']
+            ].map(r => `
+              <div>
+                <div class="flex justify-between mb-1.5"><span class="text-white/70">${r[0]}</span><span class="mono">${r[1]} <span class="text-white/40">/ ${r[2]}</span></span></div>
+                ${r[2] !== '—' && r[2] !== '∞' ? `<div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-brand-500" style="width:${Math.min(100, (r[1]/r[2])*100)}%"></div></div>` : ''}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div class="glass p-6">
+          <h3 class="font-bold mb-4">💳 <span data-en="Billing" data-th="การเงิน">Billing</span></h3>
+          ${c.status === 'cancelled' || c.status === 'past_due' ? `<div class="bg-danger-500/10 border border-danger-500/30 text-danger-500 text-xs p-2.5 rounded-lg mb-3">${c.status === 'past_due' ? '⚠️ Card declined — last attempt 2026-05-12' : '✗ Cancelled on 2026-05-06'}</div>` : ''}
+          <div class="space-y-2.5 text-sm">
+            <div class="flex justify-between"><span class="text-white/55" data-en="Plan" data-th="แพ็กเกจ">Plan</span><span class="font-semibold">${c.plan}</span></div>
+            <div class="flex justify-between"><span class="text-white/55" data-en="Cycle" data-th="รอบ">Cycle</span><span>${c.cycle}</span></div>
+            <div class="flex justify-between"><span class="text-white/55" data-en="MRR" data-th="MRR">MRR</span><span class="mono">${fmt(c.mrr)}</span></div>
+            <div class="flex justify-between"><span class="text-white/55" data-en="Next renewal" data-th="ต่ออายุครั้งหน้า">Next renewal</span><span>${c.status==='active'?'2026-06-01':'—'}</span></div>
+            <div class="flex justify-between"><span class="text-white/55" data-en="Payment method" data-th="วิธีจ่าย">Payment method</span><span>${c.mrr>0?'Visa ····4242':'—'}</span></div>
+          </div>
+          <button class="mt-4 w-full text-center text-xs text-brand-300 hover:underline" data-en="See full invoice history →" data-th="ดูประวัติใบเสร็จทั้งหมด →">See full invoice history →</button>
+        </div>
+        <div class="glass p-6 lg:col-span-3">
+          <h3 class="font-bold mb-4">📜 <span data-en="Recent activity (this account)" data-th="กิจกรรมล่าสุด (บัญชีนี้)">Recent activity (this account)</span></h3>
+          <ul class="space-y-2 text-sm">
+            <li class="flex gap-3"><span class="text-white/40 mono text-xs w-24 flex-shrink-0">${c.last}</span><span>SEO Audit run on <a class="text-brand-300 hover:underline">${c.domain}/about</a> — score 84</span></li>
+            <li class="flex gap-3"><span class="text-white/40 mono text-xs w-24 flex-shrink-0">2h ago</span><span>3 keywords moved into top-10</span></li>
+            <li class="flex gap-3"><span class="text-white/40 mono text-xs w-24 flex-shrink-0">Yesterday</span><span>Schema generator used — Article × 4</span></li>
+            <li class="flex gap-3"><span class="text-white/40 mono text-xs w-24 flex-shrink-0">2d ago</span><span>Monthly report generated and emailed</span></li>
+            <li class="flex gap-3"><span class="text-white/40 mono text-xs w-24 flex-shrink-0">5d ago</span><span>Added website: <a class="text-brand-300 hover:underline">${c.domain.replace('.','-shop.')}</a></span></li>
+          </ul>
+        </div>
+      </div>
+    `;
+    document.getElementById('impBtn').addEventListener('click', () => impersonate(c));
+    showView('detail');
+  }
+
+  function impersonate(c){
+    document.getElementById('imp-name').textContent = c.company;
+    document.getElementById('imp-email').textContent = c.email;
+    document.getElementById('impersonateBanner').classList.remove('hidden');
+  }
+  document.getElementById('exitImpersonate').addEventListener('click', () => {
+    document.getElementById('impersonateBanner').classList.add('hidden');
+  });
+
+  // ─── Other panels ───────────────────────────────────────────────
+  function renderBilling(){
+    document.getElementById('invoiceRows').innerHTML = INVOICES.map(i => `
+      <tr>
+        <td class="py-2.5 mono text-xs text-white/80">${i.id}</td>
+        <td class="text-sm">${i.cust}</td>
+        <td class="text-xs text-white/70">${i.method}</td>
+        <td class="text-right mono text-sm">${fmt(i.amt)}</td>
+        <td class="pl-6"><span class="badge ${i.status==='paid'?'active':'cancelled'}">${i.status}</span></td>
+        <td class="pl-6 text-xs text-white/55">${i.date}</td>
+      </tr>
+    `).join('');
+  }
+  function renderSupport(){
+    document.getElementById('ticketRows').innerHTML = TICKETS.map(t => `
+      <div class="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition cursor-pointer">
+        <div class="text-xs mono text-white/45 w-16 flex-shrink-0 pt-1">${t.id}</div>
+        <div class="flex-1 min-w-0">
+          <div class="font-semibold text-sm">${t.subj}</div>
+          <div class="text-xs text-white/55 mt-0.5">${t.cust} · ${t.age} ago</div>
+        </div>
+        <span class="badge ${t.prio==='High'?'cancelled':t.prio==='Normal'?'trial':'free'}">${t.prio}</span>
+        <span class="badge ${t.status==='open'?'past_due':'active'}">${t.status}</span>
+      </div>
+    `).join('');
+  }
+  function renderAudit(){
+    document.getElementById('auditRows').innerHTML = AUDIT.map(a => `
+      <tr>
+        <td class="py-2.5 text-xs mono text-white/55 w-32">${a.when}</td>
+        <td class="text-sm">${a.who}</td>
+        <td class="text-sm">${a.action}</td>
+        <td class="text-xs mono text-white/55">${a.target}</td>
+      </tr>
+    `).join('');
+  }
+
+  // ─── Navigation ─────────────────────────────────────────────────
+  function showView(name){
+    document.querySelectorAll('.view-panel').forEach(s => s.classList.toggle('hidden', s.dataset.view !== name));
+    document.querySelectorAll('.nav-btn').forEach(b => {
+      const on = b.dataset.view === name || (name==='detail' && b.dataset.view==='customers');
+      b.classList.toggle('bg-white/10', on);
+      b.classList.toggle('text-white', on);
+      b.classList.toggle('text-white/70', !on);
+    });
+    if (name === 'dashboard') renderDashboard();
+    if (name === 'customers') renderCustomers();
+    if (name === 'billing') renderBilling();
+    if (name === 'support') renderSupport();
+    if (name === 'audit') renderAudit();
+  }
+  document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', () => showView(b.dataset.view)));
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => showView(b.dataset.go)));
+  document.getElementById('backToList').addEventListener('click', () => showView('customers'));
+  document.getElementById('searchInput').addEventListener('input', renderCustomers);
+  document.getElementById('planFilter').addEventListener('change', renderCustomers);
+  document.getElementById('statusFilter').addEventListener('change', renderCustomers);
+
+  // ─── Charts ─────────────────────────────────────────────────────
+  function drawCharts(){
+    new Chart(document.getElementById('mrrChart'), {
+      type:'line',
+      data:{
+        labels:['Dec','Jan','Feb','Mar','Apr','May'],
+        datasets:[{
+          label:'MRR', data:[195000, 242000, 287000, 331000, 381000, 428000],
+          borderColor:'#818cf8', backgroundColor:'rgba(99,102,241,0.15)', fill:true, tension:0.35, borderWidth:2, pointRadius:3
+        }]
+      },
+      options:{ plugins:{ legend:{ display:false } }, scales:{ x:{ grid:{ color:'rgba(255,255,255,0.05)' }, ticks:{ color:'#94a3b8' } }, y:{ grid:{ color:'rgba(255,255,255,0.05)' }, ticks:{ color:'#94a3b8', callback:v=>'฿'+(v/1000)+'k' } } } }
+    });
+    new Chart(document.getElementById('planChart'), {
+      type:'doughnut',
+      data:{
+        labels:['Free','Basic','Advanced'],
+        datasets:[{ data:[213, 28, 19], backgroundColor:['#475569','#6366f1','#a855f7'], borderColor:'#0b1220', borderWidth:3 }]
+      },
+      options:{ plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1', font:{ size:11 } } } } }
+    });
+  }
+
+  // ─── Init ───────────────────────────────────────────────────────
+  showView('dashboard');
+  drawCharts();
+</script>
+<script src="assets/i18n.js"></script>
+</body>
+</html>

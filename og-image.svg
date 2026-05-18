@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.2" cy="0.25" r="0.5">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.85" cy="0.85" r="0.5">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow3" cx="0.9" cy="0.1" r="0.4">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lensG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="textG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="50%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  <rect width="1200" height="630" fill="url(#glow3)"/>
+
+  <!-- Logo mark -->
+  <g transform="translate(90,90)">
+    <rect width="110" height="110" rx="26" fill="url(#lensG)"/>
+    <g fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="46" cy="46" r="22"/>
+      <line x1="64" y1="64" x2="86" y2="86"/>
+    </g>
+  </g>
+  <text x="220" y="170" font-family="'Plus Jakarta Sans','Inter',sans-serif" font-weight="800" font-size="48" fill="#ffffff">SearchFit <tspan fill="#a5b4fc">Pro</tspan></text>
+
+  <!-- Headline -->
+  <text x="90" y="320" font-family="'Plus Jakarta Sans','Inter',sans-serif" font-weight="800" font-size="84" fill="#ffffff">The SEO workbench</text>
+  <text x="90" y="410" font-family="'Plus Jakarta Sans','Inter',sans-serif" font-weight="800" font-size="84" fill="url(#textG)">built for agencies</text>
+
+  <!-- Subhead -->
+  <text x="90" y="475" font-family="'Plus Jakarta Sans','Inter',sans-serif" font-weight="500" font-size="28" fill="#cbd5e1">Proposal · Live prototype · Working MVP tools · EN / TH</text>
+
+  <!-- Feature chips -->
+  <g font-family="'Plus Jakarta Sans','Inter',sans-serif" font-weight="600" font-size="22" fill="#ffffff">
+    <g>
+      <rect x="90" y="520" width="170" height="48" rx="24" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.20"/>
+      <text x="175" y="552" text-anchor="middle">AI Visibility</text>
+    </g>
+    <g>
+      <rect x="275" y="520" width="160" height="48" rx="24" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.20"/>
+      <text x="355" y="552" text-anchor="middle">Local Grid</text>
+    </g>
+    <g>
+      <rect x="450" y="520" width="180" height="48" rx="24" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.20"/>
+      <text x="540" y="552" text-anchor="middle">Schema Studio</text>
+    </g>
+    <g>
+      <rect x="645" y="520" width="210" height="48" rx="24" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.20"/>
+      <text x="750" y="552" text-anchor="middle">White-label Reports</text>
+    </g>
+    <g>
+      <rect x="870" y="520" width="230" height="48" rx="24" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.20"/>
+      <text x="985" y="552" text-anchor="middle">Automation Builder</text>
+    </g>
+  </g>
+</svg>
